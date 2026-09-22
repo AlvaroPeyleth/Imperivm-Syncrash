@@ -1,0 +1,9 @@
+# Public repository allowlist. The local work/ archive contains dumps, player
+# logs, game files and experimental binaries that must be reviewed separately.
+/*
+!/.gitignore
+!/README.md
+!/docs/
+!/docs/**
+
+# Add a new source directory to this allowlist only after reviewing its files.
