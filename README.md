@@ -1,38 +1,95 @@
-# Syncrash
+<p align="center">
+  <img src="src/Syncrash/assets/mark.png" width="64" alt="Emblema de Syncrash">
+</p>
+<h1 align="center">Syncrash</h1>
+<p align="center"><strong>Estabilidad para Imperivm. Una instalación sencilla.</strong></p>
+<p align="center">
+  <a href="https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest">Descargar Syncrash</a> ·
+  <a href="docs/TRANSPARENCIA.md">Qué modifica</a> ·
+  <a href="docs/ENTREGA_ACTUAL.md">Verificar la descarga</a> ·
+  <a href="docs/CREDITOS.md">Créditos</a>
+</p>
 
-**Syncrash** es un único proyecto para mejorar la estabilidad de *Imperivm RTC: HD Edition — Great Battles of Rome*. Empezamos por **Steam vanilla**. La protección frente a cierres y las futuras correcciones de desincronización se publicarán como versiones del mismo producto.
+![Ilustración original de Syncrash: un casco romano ante un campamento](src/Syncrash/assets/banner.png)
 
-Syncrash no está afiliado al desarrollador ni al editor del juego.
+Syncrash es un proyecto independiente para investigar y reducir cierres y desincronizaciones en **Imperivm RTC: HD Edition — Great Battles of Rome**. Todas las mejoras se reúnen en un mismo producto, empezando por **Steam vanilla**.
 
-## Candidato Steam v1
+**Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-La entrega actual es **un solo `Syncrash.exe`**, con una pantalla compacta, ilustración e icono propios. No necesitas instalar un observador ni escribir comandos. La [ficha de entrega](docs/ENTREGA_ACTUAL.md) recoge su versión, tamaño y SHA256.
+## Descargar y jugar
 
-1. Cierra Imperivm y abre Syncrash. La pantalla explica el alcance, muestra el repositorio y localiza el juego; abrirla no modifica archivos.
-2. Deja seleccionada **Steam vanilla**. Si la ruta no aparece o quieres otra instalación, pulsa **Elegir** y selecciona su `gbr.exe`.
-3. Pulsa **Aplicar parche**. Al terminar puedes abrir el juego desde Steam. Si ya tenías nuestra V2, la vuelve a aplicar y muestra el mismo resultado.
+Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
 
-Syncrash comprueba los hashes de `gbr.exe` y `Packs/data.pak`. Solo acepta el Steam original admitido o la V2 exacta. **El único archivo del juego que sustituye es `gbr.exe`.** La interfaz tiene versión 1.0.1; el parche aplicado sigue siendo la misma guarda V2 que se estaba probando.
+1. Cierra Imperivm y abre **Syncrash.exe**.
+2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
+3. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-**No guarda copia ni ofrece restauración.** Para recuperar el juego vanilla hay que volver a descargarlo o verificar sus archivos desde Steam. El ejecutable distribuido no contiene archivos completos del juego, PAK, logs ni volcados.
+Puedes volver a aplicarlo si ya lo tienes instalado. Para una prueba multijugador, todos deben utilizar la misma versión de Syncrash y los mismos recursos del juego.
 
-| Función | Estado |
+**Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
+
+## Compatibilidad y alcance
+
+| Edición o función | Estado |
 | --- | --- |
-| Protección de cierres | La guarda V2 cubre tres puntos de llamada identificados. Instalación y reinstalación se prueban en copias. Una sesión local de unos 79 minutos con V2 terminó normalmente y sin excepciones capturadas. Los Logs recibidos de ambos jugadores no muestran un desync explícito; esto no garantiza que se hayan eliminado todos los fallos. |
-| Corrección de desync Steam | **Aún no existe una corrección causal validada.** Esta v1 no debe presentarse como solución de desincronizaciones. Las herramientas de diagnóstico siguen siendo de investigación local y no forman parte del ejecutable compartido. |
+| Steam vanilla | Disponible para los archivos exactos [identificados por SHA256](docs/TRANSPARENCIA.md#archivos-admitidos). |
+| Protección de cierres | Comprueba el tipo de objeto antes de tres llamadas concretas. No cubre todos los posibles cierres. |
+| Desincronizaciones | En investigación; v1 no incorpora una corrección de desync. |
+| Community Mod | Próximamente. La opción está desactivada. |
+| Otros mods | Sin compatibilidad validada. |
 
-**Community Mod aparece desactivado** en la pantalla. Su futura compatibilidad será un parche sobre una instalación del mod obtenida por separado de su creador. Syncrash no descargará ni redistribuirá Community Mod. La hipótesis `tgtbool = false` pertenece a Community v11.3 y no se aplica a Steam vanilla.
+Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por sus canales habituales**. No lo incluiremos ni cambiaremos su distribución. [Hoja de ruta](docs/ROADMAP.md).
 
-Steam vanilla se trata como base fijada por hash. No se espera que el juego reciba cambios, pero Syncrash seguirá rechazando archivos desconocidos. **El repositorio sigue privado por ahora**; el enlace requerirá acceso autorizado hasta que su propietario decida hacerlo público. No hay aún una versión pública validada.
+## Qué cambia en tu equipo
 
-## Código y comprobaciones
+- Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
+- **Solo sustituye `gbr.exe`.** No modifica mapas, guardados, PAK ni archivos de audio.
+- No instala servicios, observadores ni actualizadores. No envía datos ni registros.
+- Abrir Syncrash no modifica el juego: el parche se aplica al pulsar el botón.
 
-El código del aplicador, la receta de diferencias y la ilustración están en [`src/Syncrash/`](src/Syncrash/). Se compila en Windows con .NET Framework, sin descargar dependencias:
+El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
+
+## Transparencia y comprobaciones
+
+El código del aplicador y la receta de cambios están en [`src/Syncrash`](src/Syncrash). La [explicación técnica](docs/FUNCIONAMIENTO.md) describe el mecanismo y sus límites. La [ficha de la versión](docs/ENTREGA_ACTUAL.md) identifica el EXE distribuido, su hash y el estado del análisis antivirus.
+
+Se han probado instalación, reinstalación y rechazo de archivos incompatibles en copias aisladas. Una sesión Steam de unos 79 minutos con la protección terminó normalmente y sin las excepciones vigiladas. Los registros recibidos de ambos jugadores no muestran un desync explícito. **Eso no demuestra que todos los fallos estén resueltos ni que el parche evitara un cierre en esa partida.**
+
+El EXE no lleva firma digital Authenticode. El código abierto y un análisis antivirus permiten revisar aspectos del proyecto, pero no son una garantía absoluta de seguridad o estabilidad.
+
+## Ayuda a mejorar Syncrash
+
+Las partidas normales también ayudan. Cuéntanos la versión, duración aproximada, mapa y si observaste un cierre, desync o anomalía. Si todo fue bien, también interesa saberlo.
+
+Ante un fallo, conserva los **Logs de ambos jugadores antes de volver a abrir el juego**. Pueden contener IP y datos personales: compártelos por privado con **`xtalvarotx` en Discord**, nunca en una incidencia pública. [Guía de pruebas sencilla](docs/PRUEBAS_SIN_OBSERVADOR.md).
+
+Puedes abrir una [incidencia](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/issues) con una descripción sin datos privados. Consulta [cómo colaborar](CONTRIBUTING.md).
+
+## Autoría y reutilización
+
+**Creado por [AlvaroPeyleth](https://github.com/AlvaroPeyleth) · Discord: `xtalvarotx`.**
+
+El código propio se publica bajo [licencia MIT](LICENSE). Puedes usarlo, modificarlo e integrarlo en tu mod, conservando el aviso de copyright y la licencia. Si lo incorporas a tu proyecto, agradecemos esta mención visible:
+
+> Incluye trabajo de Syncrash, de AlvaroPeyleth (Discord: xtalvarotx).
+> https://github.com/AlvaroPeyleth/Imperivm-Syncrash
+
+La mención visible es una petición de reconocimiento; las obligaciones legales son las de MIT. Los derechos sobre Imperivm y los proyectos de terceros pertenecen a sus titulares. Syncrash no está afiliado al desarrollador ni al editor del juego.
+
+## Gracias por hacerlo posible
+
+Gracias a **Feronidas, Rubeneitor, Wini, Upercat y Osuka9 / Osquita** por compartir registros que ayudan a investigar los fallos. Gracias también a mi hermano y a quienes dedican tiempo a probar y comunicar lo que ocurre.
+
+Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen las pruebas, los registros y las referencias técnicas, sin publicar datos de las partidas.
+
+## Compilar y conocer el proyecto
+
+En Windows, con .NET Framework y su compilador disponibles:
 
 ```powershell
 & ./src/Syncrash/build.ps1
 ```
 
-El resultado es el mismo archivo único para compartir. El instalador no envía datos ni instala servicios; el enlace a GitHub solo abre el navegador al pulsarlo. Una interfaz y un enlace no garantizan por sí solos la seguridad de un ejecutable: consulta [qué modifica y cómo comprobarlo](docs/TRANSPARENCIA.md).
+Genera `Syncrash.exe` sin descargar dependencias. La licencia queda incrustada en el ejecutable. El compilador puede producir metadatos distintos entre compilaciones; el `gbr.exe` parcheado debe coincidir con el hash documentado.
 
-Para las pruebas con más jugadores basta seguir la [guía sin observador](docs/PRUEBAS_SIN_OBSERVADOR.md). Consulta también la [hoja de ruta](docs/ROADMAP.md) y el [plan técnico](docs/PLAN_DE_EJECUCION.md). Los Logs, dumps y archivos completos del juego se conservan fuera de Git.
+[Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

@@ -2,11 +2,11 @@
 
 ## Producto
 
-Syncrash tendrá **una entrega por edición compatible**. Steam vanilla es la primera base, fijada por hashes. Las siguientes correcciones de cierres o desincronizaciones se incorporarán a nuevas versiones de Syncrash Steam, sin repartir parches independientes. Community Mod tendrá después una variante del mismo producto; sus actualizaciones exigirán identificar y probar de nuevo sus recursos. Otros mods podrán añadirse con perfiles propios.
+Syncrash es **un único producto con perfiles para las ediciones compatibles**. Steam vanilla es la primera base, fijada por hashes. Las siguientes correcciones de cierres o desincronizaciones se incorporarán a nuevas versiones de Syncrash Steam, sin repartir parches independientes. Community Mod tendrá después una variante del mismo producto; sus actualizaciones exigirán identificar y probar de nuevo sus recursos. Otros mods podrán añadirse con perfiles propios.
 
-## Steam v1: candidato privado
+## Steam v1: primera entrega pública experimental
 
-La entrega actual es un único ejecutable con bienvenida, enlace al repositorio privado, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. Reaplica la misma V2 si ya estaba instalada. No crea respaldo ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam.
+La entrega actual es un único ejecutable con bienvenida, ayuda integrada y enlaces al código y a las descargas, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. Reaplica la misma V2 si ya estaba instalada. No crea respaldo ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam.
 
 La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
 

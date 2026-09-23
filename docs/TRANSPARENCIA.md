@@ -1,6 +1,6 @@
 # Qué hace Syncrash Steam v1
 
-Syncrash es un proyecto experimental de estabilidad para Imperivm. Esta entrega aplica la guarda V2 de cierres; las correcciones de desync Steam siguen en investigación. El repositorio `https://github.com/AlvaroPeyleth/Imperivm-Syncrash` permanece privado hasta que su propietario decida abrirlo. Un visitante sin acceso puede recibir un 404 de GitHub.
+Syncrash es un proyecto experimental de estabilidad para Imperivm. Esta entrega aplica la guarda V2 de cierres; las correcciones de desync Steam siguen en investigación. El código y las versiones se publican en [GitHub](https://github.com/AlvaroPeyleth/Imperivm-Syncrash).
 
 ## Acceso a archivos
 
@@ -13,7 +13,7 @@ Al aplicar:
 3. Escribe un temporal en la carpeta del juego, verifica el resultado y sustituye únicamente `gbr.exe`. El temporal se elimina. No se guarda respaldo.
 4. Comprueba el hash final y muestra el resultado.
 
-No modifica PAK, mapas, guardados, configuración ni archivos de audio. No instala un observador, servicios, tareas programadas, actualizadores ni controladores. No envía Logs ni otros datos por red. El único enlace externo abre GitHub en el navegador cuando el usuario lo pulsa.
+No modifica PAK, mapas, guardados, configuración ni archivos de audio. No instala un observador, servicios, tareas programadas, actualizadores ni controladores. No envía Logs ni otros datos por red. Los enlaces de código y descargas abren GitHub en el navegador cuando el usuario los pulsa. La ayuda integrada se puede leer sin conexión.
 
 ## Archivos admitidos
 
@@ -27,7 +27,7 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta cont
 
 ## Confianza y límites
 
-La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. El candidato actual no lleva firma digital Authenticode. La compilación puede generar un hash distinto por los metadatos del compilador; el hash de `gbr.exe` resultante sí debe ser exactamente el indicado.
+La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. El ejecutable actual no lleva firma digital Authenticode. La compilación puede generar un hash distinto por los metadatos del compilador; el hash de `gbr.exe` resultante sí debe ser exactamente el indicado.
 
 Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.
 
@@ -36,3 +36,11 @@ Para quitar Syncrash, reinstala Imperivm o verifica sus archivos desde Steam. Si
 ## Community Mod
 
 Su opción está desactivada. La futura variante de Syncrash se aplicará **después de instalar Community Mod por sus propios canales**. No se incluye, descarga ni redistribuye el mod de su creador. Se admitirán únicamente versiones del mod identificadas y probadas.
+
+## Licencia, privacidad y análisis
+
+El código propio se ofrece bajo [MIT](../LICENSE), con autoría de AlvaroPeyleth (Discord: xtalvarotx). Consulta los [créditos](CREDITOS.md) y el [funcionamiento técnico](FUNCIONAMIENTO.md). No se conceden derechos sobre el código original de Imperivm.
+
+La [ficha de entrega](ENTREGA_ACTUAL.md) identifica el binario y el estado de VirusTotal. Un hash permite identificar el archivo; un análisis antivirus no certifica que sea infalible o inocuo. No aconsejamos desactivar el antivirus para ejecutarlo.
+
+Los logs y dumps de jugadores permanecen fuera del repositorio, incluido su historial revisado. Las incidencias públicas deben describir el problema sin adjuntar datos personales. El historial conserva la identidad y el correo profesional del autor por decisión expresa suya.

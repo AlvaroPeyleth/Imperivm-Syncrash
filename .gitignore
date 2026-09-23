@@ -25,3 +25,7 @@
 !/src/Syncrash/assets/PROVENANCE.md
 
 # Add a new source directory to this allowlist only after reviewing its files.
+
+!/LICENSE
+!/CONTRIBUTING.md
+!/CHANGELOG.md

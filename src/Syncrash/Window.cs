@@ -105,7 +105,27 @@ internal sealed class SyncrashWindow : Form
             catch (Exception) { status.Text = "No se pudo abrir el navegador. El enlace está en el README del proyecto."; }
         };
         AddRow(body, repo);
-        AddRow(body, Copy("Código y documentación · privado por ahora", 8.5F));
+        var links = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Top, Margin = new Padding(0, 6, 0, 0) };
+        var help = new LinkLabel { Text = "Qué hace Syncrash", AutoSize = true, LinkColor = Crimson, Margin = new Padding(0, 0, 20, 0) };
+        var download = new LinkLabel { Text = "Descargar última versión", AutoSize = true, LinkColor = Crimson, Margin = Padding.Empty };
+        links.Controls.Add(help);
+        links.Controls.Add(download);
+        AddRow(body, links);
+        var details = Copy("Syncrash v1 incorpora protección para tres rutas de cierre identificadas.\nNo corrige todavía las desincronizaciones de Steam.\n\nComprueba gbr.exe y Packs/data.pak; solo sustituye gbr.exe.\nNo instala observadores ni servicios. No descarga mods ni envía datos.\nCommunity Mod aún no está disponible.\n\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nCódigo propio bajo licencia MIT; conserva la licencia y la autoría.\nLicencia incluida en el ejecutable y disponible en GitHub.", 9F);
+        details.Margin = new Padding(0, 12, 0, 8);
+        details.Visible = false;
+        AddRow(body, details);
+        help.LinkClicked += delegate
+        {
+            details.Visible = !details.Visible;
+            help.Text = details.Visible ? "Ocultar información" : "Qué hace Syncrash";
+            if (details.Visible) scroll.ScrollControlIntoView(details);
+        };
+        download.LinkClicked += delegate
+        {
+            try { Process.Start(new ProcessStartInfo(Repository + "/releases/latest") { UseShellExecute = true }); }
+            catch (Exception) { status.Text = "Abre el repositorio para descargar la última versión."; }
+        };
 
         var footer = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, BackColor = Color.FromArgb(236, 234, 229), Padding = new Padding(28, 16, 28, 16), Margin = Padding.Empty };
         footer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));

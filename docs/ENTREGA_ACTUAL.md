@@ -1,27 +1,38 @@
-# Entrega privada de prueba
+# Syncrash v1 · Ficha de entrega
 
-Fecha: 23/09/2026. Producto: Syncrash Steam v1. Interfaz: 1.0.1.0. Protección aplicada al juego: guarda V2.
+**Primera entrega pública experimental para Steam vanilla.** Fecha: 23/09/2026. Aplicador: **1.0.2.0**. La protección del juego conserva la guarda V2 de las pruebas privadas.
+
+[Descargar Syncrash.exe](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)
 
 | Dato | Valor |
 | --- | --- |
-| Archivo para compartir | `Syncrash.exe` |
-| Tamaño | 2.397.184 bytes |
-| SHA256 del aplicador | `9b782d8c1ed88d58232778b62f9129219ffaf26ed3c30314a69aed4549111533` |
+| Archivo | `Syncrash.exe` |
+| Tamaño | 2.400.256 bytes |
+| SHA256 del aplicador | `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3` |
 | SHA256 de `gbr.exe` tras aplicar | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
+| Firma Authenticode | Sin firma digital. |
+| VirusTotal | Análisis pendiente. No se afirma que haya pasado un análisis antivirus. |
 
-Esta ficha identifica el binario entregado para pruebas; no es una publicación pública ni una garantía de ausencia de fallos. El repositorio sigue privado y el candidato no está firmado digitalmente.
+## Qué contiene
 
-## Cambios de la interfaz
+Un único ejecutable con el aplicador, la receta de diferencias, los recursos gráficos propios y la licencia MIT incrustada. No contiene el juego completo, PAK, logs, volcados ni observador. Añade ayuda sin conexión y enlaces al código y a las descargas.
 
-- Pantalla de bienvenida compacta con ilustración e icono originales, enlace al repositorio y texto breve.
-- Steam vanilla disponible; Community desactivado. Su futura variante se aplicará sobre el mod instalado por separado.
-- El juego se modifica solo al pulsar Aplicar parche. Si ya hay V2 exacta, se vuelve a escribir y se muestra el mismo mensaje de éxito.
-- Sin respaldo, descarga de mods, observador obligatorio ni envío de datos. La recuperación se hace desde Steam.
+Esta v1 **no incorpora una corrección de desync Steam**. Community Mod permanece desactivado.
 
-## Verificación
+## Comprobaciones de esta entrega
 
-El binario final pasó instalación y reinstalación en una copia aislada con ruta que contiene espacios y `ñ`. Ambas operaciones terminaron con código 0 y el mismo hash V2. La reinstalación volvió a escribir el archivo. En esa instalación solo quedaron `gbr.exe` y `Packs/data.pak`, sin respaldos ni temporales. La lógica de rechazo de ejecutable desconocido y PAK distinto se probó durante esta revisión y dejó los archivos intactos.
+- Instalación y reinstalación del EXE final en una copia aislada: salida 0 y resultado V2 exacto. La reinstalación vuelve a escribir el archivo.
+- Ejecutable alterado y PAK incompatible: rechazo con salida 1, sin modificar `gbr.exe`.
+- Ningún respaldo ni temporal restante tras las pruebas.
+- Revisión del render nativo de la pantalla y de la ayuda desplegada. No equivale a verificar todas las resoluciones, escalados o interacciones en otros equipos.
+- Receta idéntica a la entrega privada: SHA256 `9388df692e9f0f0478f8060d625e643618cfc16dd28298c1cbe879aaa6bfc583`.
 
-La primera bienvenida se revisó en el escritorio. La versión visual final, tras la petición de simplificarla, se revisó mediante un render nativo fuera de pantalla, sin retomar la automatización del escritorio detenida por el usuario. El icono, la distribución y el texto son legibles en ese render. La revisión independiente no encontró defectos materiales en el render ni en el código; no equivale a una prueba completa de interacción, teclado o escalado DPI en otros equipos.
+La sesión Steam de unos 79 minutos y los registros pareados documentados corresponden a esta misma protección del juego, antes del cambio de interfaz. No se presenta una nueva partida como realizada con este aplicador.
 
-Los registros detallados de pruebas permanecen en `work/`, fuera del repositorio, porque incluyen copias de archivos del juego.
+Los resultados detallados y las copias de ensayo se conservan en el archivo local de investigación, fuera del repositorio. Consulta el [plan de pruebas](PLAN_DE_EJECUCION.md) y los [límites](TRANSPARENCIA.md).
+
+## Verificar la descarga
+
+La release incluye `SHA256SUMS.txt`. El hash identifica exactamente el archivo publicado. Las compilaciones propias pueden diferir por metadatos del compilador; el resultado parcheado del juego debe conservar el hash documentado.
+
+Cuando exista un informe VirusTotal, se enlazará al hash exacto de esta entrega. Un análisis es una comprobación adicional, no una certificación de seguridad. Si tu antivirus lo bloquea, conserva el nombre de la detección y comunícalo; no desactives la protección para forzar su ejecución.
