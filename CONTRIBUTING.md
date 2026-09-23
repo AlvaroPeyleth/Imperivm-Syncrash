@@ -6,7 +6,7 @@ Gracias por ayudar a investigar y mejorar Imperivm.
 
 Indica versión de Syncrash, Steam vanilla o mod, mapa, anfitrión, duración y últimas acciones antes del fallo. Aclara si todos llevaban el mismo parche y si era una partida nueva o cargada.
 
-Las incidencias de GitHub son públicas. **No adjuntes logs completos, dumps, partidas con datos personales, IP ni rutas de usuario.** Para compartir evidencia original, contacta por privado con **xtalvarotx en Discord**. Puedes publicar una descripción y una captura previamente revisada.
+Las incidencias de GitHub son públicas. **No adjuntes logs completos, dumps, partidas con datos personales, IP ni rutas de usuario.** Para compartir evidencia original, utiliza el **[formulario de recopilación de logs](https://forms.gle/QAGziVvHk6peHPor9)** o contacta por privado con **xtalvarotx en Discord**. El formulario es una alternativa si no tienes Discord. Puedes publicar una descripción y una captura previamente revisada.
 
 ## Proponer cambios
 
