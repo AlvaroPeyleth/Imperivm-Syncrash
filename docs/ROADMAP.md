@@ -19,6 +19,6 @@ La reconstrucción y aplicación pasaron pruebas en copias. El observador regist
 
 ## Community y otros mods
 
-Cuando Steam esté estabilizado, identificar el paquete efectivo de Community Mod y probar dentro del motor el candidato `tgtbool = false`. Esta hipótesis es exclusiva de Community v11.3 y no se traslada a Steam. Syncrash se aplicará sobre el mod previamente instalado por el jugador; no lo descargará ni redistribuirá. Una variante de Syncrash Community necesitará sus propios hashes y ensayos iguales en ambos PC. El mismo criterio servirá para otros mods.
+Cuando Steam esté estabilizado, ampliar la investigación a Community y otros mods. Las correcciones de cierres y desincronizaciones que identifiquemos y validemos podrán incorporarse a futuras versiones de Syncrash para aumentar su alcance más allá de vanilla. Syncrash se aplicará sobre el mod previamente instalado por el jugador; no lo descargará ni redistribuirá. Una variante de Syncrash Community necesitará sus propios hashes y ensayos iguales en ambos PC. El mismo criterio servirá para otros mods.
 
 Conectividad, puertos y relay quedan fuera de esta línea de estabilidad: poder entrar en una partida no demuestra que ambas simulaciones sigan sincronizadas.

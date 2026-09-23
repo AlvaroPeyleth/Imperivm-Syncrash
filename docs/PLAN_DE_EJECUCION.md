@@ -7,7 +7,7 @@
 - Base Steam: `gbr.exe` original SHA256 `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473`; con guarda V2 SHA256 `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc`; `Packs/data.pak` vanilla SHA256 `6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50`.
 - La interfaz 1.0.2 espera al botón Aplicar parche. Se probó instalación y reinstalación real en una copia, ambas con hash V2 exacto; también el rechazo de ejecutable desconocido y PAK distinto sin cambios. No dejó respaldo ni temporal. La búsqueda encontró la instalación Steam local. La nueva interfaz no se ha probado todavía en otro PC.
 - El 23/09 una sesión real de unos 79 minutos con V2 confirmó ProcDump, recogió 2.328 muestras sin errores y terminó con código 0. Los Logs recibidos de ambos jugadores no muestran un desync explícito y coinciden en 329 registros de generación del mapa. Queda sin explicar una observación de tropas visibles en niebla y sin verificar el hash remoto. Este resultado no demuestra que se evitase un crash.
-- No hay una corrección causal validada para desync Steam. El candidato `tgtbool` pertenece solo a Community Mod v11.3.
+- No hay una corrección causal validada para desync Steam. Las correcciones de cierres y desincronizaciones identificadas y validadas en otros mods podrán ampliar el alcance de futuras versiones de Syncrash.
 
 ## Próxima prueba con dos equipos
 

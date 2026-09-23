@@ -24,9 +24,15 @@ Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPey
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
 3. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-Puedes volver a aplicarlo si ya lo tienes instalado. Para una prueba multijugador, todos deben utilizar la misma versión de Syncrash y los mismos recursos del juego.
+Puedes volver a aplicarlo si ya lo tienes instalado. Para las pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
 
 **Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
+
+## ¿Puedo jugar con alguien que no tiene Syncrash?
+
+Se han realizado pruebas entre jugadores con Syncrash y sin él, sin problemas comunicados, aunque la compatibilidad sigue en evaluación. La protección se aplica únicamente al equipo donde está instalado: no evita los cierres de otros jugadores ni garantiza que la partida continúe si alguien se desconecta. Que otro jugador no lo tenga no desactiva tu protección.
+
+Recomendamos que todos utilicen la misma versión de Syncrash. Esta compatibilidad observada corresponde a **v1** y se revisará al incorporar nuevas correcciones.
 
 ## Compatibilidad y alcance
 

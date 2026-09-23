@@ -26,6 +26,6 @@ El aplicador verifica la base Steam y los recursos, reconstruye el resultado en 
 
 Se distribuyen cambios parciales, no una copia completa de Imperivm. Los bytes de referencia del juego se incluyen para identificar y aplicar el cambio; la licencia MIT del trabajo propio no altera los derechos de sus titulares.
 
-## Desincronizaciones y Community
+## Desincronizaciones y otros mods
 
-Esta v1 no incorpora una corrección causal validada de desync Steam. El candidato `tgtbool = false` pertenece a la investigación de Community Mod v11.3 y no se aplica a vanilla. Las futuras correcciones se integrarán en nuevas versiones de Syncrash, con perfiles de compatibilidad comprobados.
+Esta v1 no incorpora una corrección causal validada de desync Steam. Las correcciones de cierres y desincronizaciones que identifiquemos y validemos en otros mods podrán incorporarse a futuras versiones de Syncrash para ampliar su alcance más allá de Steam vanilla, con perfiles de compatibilidad comprobados.
