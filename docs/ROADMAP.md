@@ -1,25 +1,24 @@
-# Roadmap toward Syncrash
+# Hoja de ruta de Syncrash
 
-Syncrash may eventually provide one installation and diagnostic experience while keeping AntiCrasher and Syncro as separately identifiable components. Combining them depends on evidence that each works and that they can coexist without creating different simulation states between players.
+## Producto
 
-## 1. Reliable observation
+Syncrash tendrá **una entrega por edición compatible**. Steam vanilla es la primera base, fijada por hashes. Las siguientes correcciones de cierres o desincronizaciones se incorporarán a nuevas versiones de Syncrash Steam, sin repartir parches independientes. Community Mod tendrá después una variante del mismo producto; sus actualizaciones exigirán identificar y probar de nuevo sus recursos. Otros mods podrán añadirse con perfiles propios.
 
-Repair the local game observer. A session is covered only when it identifies the correct process, confirms that exception capture is attached and records valid samples. The observer must distinguish a normal exit, a crash and a desync, and report when capture failed.
+## Steam v1: candidato privado
 
-## 2. Validate AntiCrasher v2
+La entrega actual es un único ejecutable con bienvenida, enlace al repositorio privado, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. Reaplica la misma V2 si ya estaba instalada. No crea respaldo ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam.
 
-Audit the second reconstructed crash and the three guarded call sites, including the x86 calling contract, list removal, object lifetime and later state. Keep the current V2 build unchanged as a reference. A separate diagnostic build may count rejected references, but a rejection alone is not proof that a crash was prevented.
+La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
 
-## 3. Establish a causal Syncro candidate
+## Siguientes versiones de Steam
 
-Identify the script and bytecode the game actually runs. Review the complete meaning and flow of the suspected uninitialized boolean. Test whether changing its previous byte changes a decision, a command and the resulting game state under otherwise equal conditions. Verify the corresponding resource in Steam vanilla independently of any Community Mod resource.
+1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
+2. Si aparece un desync, localizar la primera diferencia observada entre ambos estados y comprobar su causa en los recursos efectivos de Steam. Las herramientas locales de manifiestos sirven para comparar archivos, pero no prueban igualdad de la simulación.
+3. Incorporar una corrección de desync a una **nueva versión del mismo Syncrash Steam** cuando exista una ruta causal comprobada y una prueba con ambos clientes idénticos. Verificar su convivencia con la guarda de cierres.
+4. Mantener el ejecutable de uso directo y los controles de hash en cada versión. Cada corrección se describirá con el alcance demostrado; una causa resuelta no implica que todas las demás lo estén.
 
-## 4. Test coexistence
+## Community y otros mods
 
-Compare identified executable and resource variants on both players' computers. Test AntiCrasher with equal resources on both sides, then test a validated Syncro candidate installed identically on both sides. Determine whether an AntiCrasher rejection can leave the two simulations with different states. Preserve paired logs and the earliest observable divergence.
+Cuando Steam esté estabilizado, identificar el paquete efectivo de Community Mod y probar dentro del motor el candidato `tgtbool = false`. Esta hipótesis es exclusiva de Community v11.3 y no se traslada a Steam. Syncrash se aplicará sobre el mod previamente instalado por el jugador; no lo descargará ni redistribuirá. Una variante de Syncrash Community necesitará sus propios hashes y ensayos iguales en ambos PC. El mismo criterio servirá para otros mods.
 
-## 5. Prepare a reversible distribution
-
-Only after those checks, build a package that verifies exact supported hashes, backs up originals, installs selected components and restores each one independently. Publish a compatibility matrix and clear limits. A shared installer does not imply that both fixes must be merged into one binary.
-
-Router port setup, NAT traversal and relay networking are separate future work. They do not establish simulation synchronization.
+Conectividad, puertos y relay quedan fuera de esta línea de estabilidad: poder entrar en una partida no demuestra que ambas simulaciones sigan sincronizadas.

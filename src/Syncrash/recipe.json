@@ -1,0 +1,107 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Syncrash Steam v1 crash protection",
+  "source_sha256": "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
+  "result_sha256": "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+  "source_bytes": 4456448,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 310,
+      "before": "05",
+      "after": "06"
+    },
+    {
+      "offset": 333,
+      "before": "a0",
+      "after": "b0"
+    },
+    {
+      "offset": 385,
+      "before": "50",
+      "after": "60"
+    },
+    {
+      "offset": 392,
+      "before": "000000",
+      "after": "69cc44"
+    },
+    {
+      "offset": 752,
+      "before": "000000000000",
+      "after": "2e6976666978"
+    },
+    {
+      "offset": 760,
+      "before": "00",
+      "after": "2a"
+    },
+    {
+      "offset": 765,
+      "before": "0000",
+      "after": "5069"
+    },
+    {
+      "offset": 769,
+      "before": "00",
+      "after": "10"
+    },
+    {
+      "offset": 774,
+      "before": "00",
+      "after": "44"
+    },
+    {
+      "offset": 788,
+      "before": "00",
+      "after": "20"
+    },
+    {
+      "offset": 791,
+      "before": "00",
+      "after": "60"
+    },
+    {
+      "offset": 1438976,
+      "before": "8b11ff5250",
+      "after": "e8fb5a5300"
+    },
+    {
+      "offset": 1513340,
+      "before": "8b11ff",
+      "after": "e87f38"
+    },
+    {
+      "offset": 1513344,
+      "before": "50",
+      "after": "00"
+    },
+    {
+      "offset": 1513462,
+      "before": "8b11ff",
+      "after": "e80538"
+    },
+    {
+      "offset": 1513466,
+      "before": "50",
+      "after": "00"
+    }
+  ],
+  "append_nonzero": [
+    {
+      "offset": 4456448,
+      "before": "000000000000000000000000000000000000000000",
+      "after": "8b41048b40048d4c010485c974168b11ff35b81282"
+    },
+    {
+      "offset": 4456470,
+      "before": "00000000000000000000000000000000",
+      "after": "ff520485c074078bc88b10ff6250b801"
+    },
+    {
+      "offset": 4456489,
+      "before": "00",
+      "after": "c3"
+    }
+  ]
+}

@@ -2,8 +2,26 @@
 # logs, game files and experimental binaries that must be reviewed separately.
 /*
 !/.gitignore
+!/.gitattributes
 !/README.md
 !/docs/
 !/docs/**
+
+# Reviewed installer source and original illustration; no game files or logs.
+!/src/
+/src/*
+!/src/Syncrash/
+/src/Syncrash/*
+!/src/Syncrash/*.cs
+!/src/Syncrash/*.json
+!/src/Syncrash/*.manifest
+!/src/Syncrash/*.ps1
+!/src/Syncrash/assets/
+/src/Syncrash/assets/*
+!/src/Syncrash/assets/banner.png
+!/src/Syncrash/assets/icon-source.png
+!/src/Syncrash/assets/mark.png
+!/src/Syncrash/assets/syncrash.ico
+!/src/Syncrash/assets/PROVENANCE.md
 
 # Add a new source directory to this allowlist only after reviewing its files.
