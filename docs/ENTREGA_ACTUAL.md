@@ -11,7 +11,7 @@
 | SHA256 del aplicador | `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3` |
 | SHA256 de `gbr.exe` tras aplicar | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
 | Firma Authenticode | Sin firma digital. |
-| VirusTotal | Análisis pendiente. No se afirma que haya pasado un análisis antivirus. |
+| VirusTotal | **7/71 motores detectan el archivo**, análisis del 24/09/2026. [Ver informe](https://www.virustotal.com/gui/file/986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3). Pendiente de investigación. |
 
 ## Qué contiene
 
@@ -35,4 +35,22 @@ Los resultados detallados y las copias de ensayo se conservan en el archivo loca
 
 La release incluye `SHA256SUMS.txt`. El hash identifica exactamente el archivo publicado. Las compilaciones propias pueden diferir por metadatos del compilador; el resultado parcheado del juego debe conservar el hash documentado.
 
-Cuando exista un informe VirusTotal, se enlazará al hash exacto de esta entrega. Un análisis es una comprobación adicional, no una certificación de seguridad. Si tu antivirus lo bloquea, conserva el nombre de la detección y comunícalo; no desactives la protección para forzar su ejecución.
+El informe VirusTotal enlazado corresponde al SHA256 exacto del EXE publicado. Un análisis es una comprobación adicional, no una certificación de seguridad. Si tu antivirus lo bloquea, conserva el nombre de la detección y comunícalo; no desactives la protección para forzar su ejecución.
+
+## Resultado de VirusTotal · 24/09/2026
+
+El análisis final muestra **7 detecciones entre 71 motores**, con estos nombres:
+
+| Motor | Detección |
+| --- | --- |
+| Arctic Wolf | Unsafe |
+| DeepInstinct | MALICIOUS |
+| Malwarebytes | MachineLearning/Anomalous.100% |
+| MaxSecure | Trojan.Malware.300983.susgen |
+| Microsoft | Trojan:Win32/Wacatac.C!ml |
+| SecureAge | Malicious |
+| Trapmine | Suspicious.low.ml.score |
+
+No se ha confirmado que sean falsos positivos ni se ha establecido su causa. El resultado no se presenta como un sello de seguridad. Recomendamos posponer nuevas instalaciones hasta revisar las detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
+
+El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. El siguiente paso es contrastar el binario y su compilación con el código publicado y, si procede, solicitar revisión a los proveedores que lo detectan. El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.

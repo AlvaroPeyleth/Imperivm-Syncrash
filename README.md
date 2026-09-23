@@ -16,6 +16,8 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
+**Estado del análisis antivirus (24/09/2026):** VirusTotal muestra **7 detecciones de 71 motores** para el EXE publicado. Su causa sigue pendiente de investigación; no se han confirmado falsos positivos. Recomendamos posponer nuevas instalaciones hasta revisarlas. [Ver informe](https://www.virustotal.com/gui/file/986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3) · [Detalle de las detecciones](docs/ENTREGA_ACTUAL.md).
+
 ## Descargar y jugar
 
 Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
