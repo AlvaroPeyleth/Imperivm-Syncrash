@@ -81,7 +81,13 @@ El parche se aplica de forma controlada: comprueba la identidad de los archivos 
 - **Búsqueda de unidades:** localiza las bibliotecas de Steam.
 - **EXE sin firma y alta entropía:** el aplicador no tiene firma digital e incorpora imágenes comprimidas; estas son una explicación plausible de la señal de entropía.
 
-El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. El siguiente paso es solicitar a los proveedores que revisen esas clasificaciones; publicaremos sus respuestas. Los motivos identificados y lo que queda por aclarar están detallados en la documentación de seguridad.
+El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. **Ya hemos enviado el ejecutable a Microsoft para su revisión**: la última consulta muestra «No malware detected» en Cloud y Client, con la resolución final todavía pendiente. Continuaremos las gestiones con los demás proveedores y publicaremos las respuestas recibidas.
+
+### Firma digital en preparación
+
+**Estamos trabajando en una firma digital para reforzar la seguridad y la confianza de quienes descargan Syncrash.** Hemos iniciado la verificación de PEYLETH SOLUTIONS SL en Azure Artifact Signing; a 24/09/2026 está «In Progress». La firma permitirá identificar al editor y comprobar que el archivo no ha sido modificado desde que lo firmamos.
+
+El EXE disponible **todavía no está firmado**. Cuando termine la verificación, prepararemos y comprobaremos una entrega firmada con sello de tiempo, y actualizaremos su hash e informes. La firma y la revisión antivirus son procesos distintos; firmar no garantiza que desaparezcan inmediatamente los avisos de SmartScreen. [Estado y próximos pasos](docs/SEGURIDAD.md#firma-digital-en-tramitación).
 
 [Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
 

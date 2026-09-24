@@ -15,3 +15,9 @@ Explica el problema, la evidencia y los límites de la solución. Para cambios d
 Las contribuciones de código propio se proponen bajo MIT. Identifica su procedencia y conserva atribuciones de terceros. No incluyas archivos completos del juego ni datos de jugadores. El archivo local de investigación no forma parte de este repositorio.
 
 Consulta el [plan de ejecución](docs/PLAN_DE_EJECUCION.md) antes de abordar una corrección nueva.
+
+## Mantener la documentación al día
+
+Cada trabajo debe incluir su documentación: qué cambia, evidencia, resultado y pendientes. Actualiza las explicaciones anteriores que hayan quedado obsoletas y revisa los documentos relacionados. Conserva las pruebas históricas con fecha y versión, sin presentarlas como resultados actuales.
+
+Las [reglas del repositorio](AGENTS.md) describen la organización y la revisión previa a publicar. La documentación útil para usuarios va a GitHub; las evidencias originales y los trámites con datos privados se conservan en `work/`, fuera de Git.

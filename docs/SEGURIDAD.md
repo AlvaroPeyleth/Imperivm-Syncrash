@@ -81,7 +81,33 @@ Malwarebytes describe [MachineLearning/Anomalous.100%](https://www.malwarebytes.
 
 ### Estado de la revisión con los proveedores
 
-Nuestras comprobaciones respaldan la hipótesis de falsos positivos. Vamos a solicitar la revisión a los proveedores que detectan el archivo, aportando el ejecutable, su hash, el código y la comparación de la compilación. La solicitud y sus respuestas están pendientes. Mientras se aclaran esas detecciones, mantenemos la recomendación de posponer nuevas instalaciones.
+**Actualizado: 24/09/2026.** Hemos iniciado los reportes para que los proveedores revisen las detecciones que nuestras comprobaciones señalan como posibles falsos positivos.
+
+| Gestión | Estado comprobado |
+| --- | --- |
+| Microsoft Security Intelligence | Solicitud enviada con el EXE publicado, su SHA256, el código y la revisión técnica. La última consulta muestra «No malware detected» en Cloud y Client; la determinación final sigue «Pending». |
+| Otros proveedores que detectan el archivo | Pendiente enviar solicitudes individuales. Los análisis de VirusTotal y MetaDefender ya realizados no equivalen a una reclamación ante cada motor. |
+
+El resultado actual del expediente de Microsoft es posterior al análisis de VirusTotal y pertenece a otro servicio. Conservamos ambos resultados con su fecha; no presentamos la solicitud como una resolución final ni como la retirada de las demás alertas. Publicaremos las respuestas relevantes sin exponer datos privados del expediente.
+
+## Firma digital en tramitación
+
+Estamos preparando la firma Authenticode de Syncrash mediante **Azure Artifact Signing**, para que los jugadores puedan identificar al editor y comprobar la integridad de la descarga. La organización solicitante es **PEYLETH SOLUTIONS SL**.
+
+**Estado comprobado el 24/09/2026:** cuenta de firma creada, acceso de verificación configurado y solicitud de identidad empresarial enviada. Azure muestra **«In Progress»**. El EXE de la entrega actual sigue sin firma; aún no se ha creado un perfil de certificado ni publicado un binario firmado.
+
+Próximos pasos:
+
+1. Completar las verificaciones o documentación que solicite Microsoft y obtener la aprobación de identidad.
+2. Crear el perfil de firma pública y configurar el acceso necesario para firmar.
+3. Firmar la entrega con sello de tiempo, comprobar la firma y repetir las comprobaciones necesarias del aplicador.
+4. Publicar el EXE firmado con su nuevo SHA256, ficha e informes correspondientes. La firma cambia el hash del aplicador; no añade por sí misma nuevas correcciones al juego.
+
+El sello de tiempo permite conservar la validez de la firma tras caducar el certificado, salvo revocación. Darse de baja del servicio no invalida por sí solo los archivos ya firmados. La firma identifica al editor y permite detectar alteraciones: **no es un veredicto antivirus ni garantiza eliminar inmediatamente el aviso de reputación de SmartScreen**.
+
+Referencias: [gestión de certificados y sello de tiempo](https://learn.microsoft.com/en-us/azure/artifact-signing/concept-certificate-management), [SmartScreen y baja del servicio](https://learn.microsoft.com/en-us/azure/artifact-signing/faq).
+
+Los datos de facturación, identificadores internos, documentación de identidad y enlaces privados de los trámites se conservan fuera de GitHub. Esta sección es la referencia pública del estado de ambas gestiones.
 
 ## Cómo comprobar una descarga y comunicar un problema
 

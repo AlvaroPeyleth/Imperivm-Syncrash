@@ -2,7 +2,7 @@
 
 ## Resultado
 
-**Hemos revisado el aplicador que desarrollamos y contrastado el EXE distribuido con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. Sigue pendiente solicitar y obtener la revisión de los proveedores; todavía no conocemos la regla o característica concreta que activó cada motor.
+**Hemos revisado el aplicador que desarrollamos y contrastado el EXE distribuido con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. La solicitud a Microsoft ya está enviada, con resolución final pendiente; las solicitudes a otros proveedores siguen pendientes. Todavía no conocemos la regla o característica concreta que activó cada motor. El [estado de las gestiones](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores) se mantiene en la documentación de seguridad.
 
 ## Evidencia
 
@@ -23,7 +23,7 @@ La revisión vincula el archivo distribuido con el código público. No equivale
 
 ## Siguiente paso
 
-Solicitar revisión de posible falso positivo a Microsoft y Malwarebytes aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve.
+Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. La firma digital está en tramitación y se documenta por separado en [Seguridad](SEGURIDAD.md#firma-digital-en-tramitación).
 
 Fuentes:
 - https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100

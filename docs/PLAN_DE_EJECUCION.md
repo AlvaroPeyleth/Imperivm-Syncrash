@@ -1,6 +1,6 @@
 # Syncrash: estado y siguiente ensayo
 
-**Actualizado: 23/09/2026.** Hay un solo producto Syncrash. Se empieza por Steam vanilla y se estudiará Community Mod después.
+**Actualizado: 24/09/2026.** Hay un solo producto Syncrash. Se empieza por Steam vanilla y se estudiará Community Mod después.
 
 ## Evidencia disponible
 
@@ -8,6 +8,13 @@
 - La interfaz 1.0.2 espera al botón Aplicar parche. Se probó instalación y reinstalación real en una copia, ambas con hash V2 exacto; también el rechazo de ejecutable desconocido y PAK distinto sin cambios. No dejó respaldo ni temporal. La búsqueda encontró la instalación Steam local. La nueva interfaz no se ha probado todavía en otro PC.
 - El 23/09 una sesión real de unos 79 minutos con V2 confirmó ProcDump, recogió 2.328 muestras sin errores y terminó con código 0. Los Logs recibidos de ambos jugadores no muestran un desync explícito y coinciden en 329 registros de generación del mapa. Queda sin explicar una observación de tropas visibles en niebla y sin verificar el hash remoto. Este resultado no demuestra que se evitase un crash.
 - No hay una corrección causal validada para desync Steam. Las correcciones de cierres y desincronizaciones identificadas y validadas en otros mods podrán ampliar el alcance de futuras versiones de Syncrash.
+
+## Distribución y confianza
+
+- Microsoft: reporte antivirus enviado; resolución final pendiente en la última consulta.
+- Azure Artifact Signing: solicitud de identidad empresarial enviada y en curso. La entrega publicada aún no está firmada.
+- Tras la aprobación, preparar firma con sello de tiempo, verificarla y publicar el nuevo hash y los informes correspondientes.
+- Mantener el [estado público en Seguridad](SEGURIDAD.md#firma-digital-en-tramitación) y los detalles administrativos en el archivo local. Seguir las [reglas de documentación](../AGENTS.md).
 
 ## Próxima prueba con dos equipos
 

@@ -10,6 +10,10 @@ La entrega actual es un único ejecutable con bienvenida, ayuda integrada y enla
 
 La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
 
+## Firma y revisión antivirus
+
+A 24/09/2026 hemos enviado el reporte a Microsoft e iniciado la verificación empresarial de Azure Artifact Signing. La prioridad de distribución es completar la verificación, preparar una entrega firmada con sello de tiempo y seguir las revisiones de falsos positivos. El [estado y los criterios de publicación](SEGURIDAD.md#firma-digital-en-tramitación) se mantienen en Seguridad. Esto no cambia el alcance de las correcciones de v1.
+
 ## Siguientes versiones de Steam
 
 1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
