@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.Win32;
@@ -16,6 +17,14 @@ internal static class Syncrash
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SyncrashWindow());
             return 0;
+        }
+        var utf8 = new UTF8Encoding(false);
+        try { Console.OutputEncoding = utf8; }
+        catch (IOException)
+        {
+            // A WinForms executable can have redirected streams without a console handle.
+            Console.SetOut(new StreamWriter(Console.OpenStandardOutput(), utf8) { AutoFlush = true });
+            Console.SetError(new StreamWriter(Console.OpenStandardError(), utf8) { AutoFlush = true });
         }
         if (args.Length == 1 && args[0] == "--detect-only")
         {

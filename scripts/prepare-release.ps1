@@ -13,7 +13,11 @@ $commit = (& git @gitArgs rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0 -or $commit -notmatch '^[0-9a-f]{40}$') { throw 'No se pudo identificar el commit fuente.' }
 if (& git @gitArgs status --porcelain) { throw 'El árbol fuente tiene cambios: prepara el candidato desde un commit limpio.' }
 $version = [Reflection.AssemblyName]::GetAssemblyName($exe).Version.ToString()
-if ($version -ne '1.0.3.0') { throw "Versión de candidato inesperada: $version" }
+$assemblyInfo = Get-Content -LiteralPath (Join-Path $root 'src/Syncrash/AssemblyInfo.cs') -Raw -Encoding UTF8
+$versionMatches = [regex]::Matches($assemblyInfo, '(?m)^\s*\[assembly:\s*AssemblyVersion\("(\d+\.\d+\.\d+\.\d+)"\)\]\s*$')
+if ($versionMatches.Count -ne 1) { throw 'No se pudo identificar una única AssemblyVersion en AssemblyInfo.cs.' }
+$expectedVersion = $versionMatches[0].Groups[1].Value
+if ($version -ne $expectedVersion) { throw "Versión de candidato inesperada: $version; se esperaba $expectedVersion." }
 $exeInfo = [ordered]@{
     file = [IO.Path]::GetFileName($exe)
     bytes = (Get-Item -LiteralPath $exe).Length
@@ -49,15 +53,16 @@ $manifest = [ordered]@{
 }
 $manifest | ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 (Join-Path $package 'release-manifest.json')
 ("$finalHash  Syncrash.exe`n") | Set-Content -Encoding ascii (Join-Path $package 'SHA256SUMS.txt')
-@'
-Syncrash 1.0.3.0: candidato local para pruebas. No es la entrega v1.0.0 publicada.
+@"
+Syncrash ${version}: candidato local para pruebas. No es la entrega v1.0.0 publicada.
 Uso: cierra Imperivm, comprueba tu instalación Steam vanilla y aplica desde la interfaz.
 Recuperación: verifica los archivos del juego en Steam. No se crea copia de seguridad.
 El aplicador no lleva firma digital: comprueba su SHA256 con SHA256SUMS.txt y con la ficha de esta entrega.
 No desactives protecciones del sistema para ejecutar el aplicador.
-'@ | Set-Content -Encoding utf8 (Join-Path $package 'LEEME.txt')
-$zip = Join-Path $output 'Syncrash-1.0.3-candidato.zip'
+"@ | Set-Content -Encoding utf8 (Join-Path $package 'LEEME.txt')
+$zipName = "Syncrash-$version-candidato.zip"
+$zip = Join-Path $output $zipName
 Compress-Archive -Path (Join-Path $package '*') -DestinationPath $zip
 $zipHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant()
-("$zipHash  Syncrash-1.0.3-candidato.zip`n") | Set-Content -Encoding ascii (Join-Path $output 'ZIP-SHA256SUMS.txt')
+("$zipHash  $zipName`n") | Set-Content -Encoding ascii (Join-Path $output 'ZIP-SHA256SUMS.txt')
 Write-Output "Candidato local: $output; EXE $finalHash; ZIP $zipHash"

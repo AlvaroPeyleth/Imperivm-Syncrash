@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,9 +25,11 @@ internal static class SyncrashTests
         Run("game open and failed process check rejected", ProcessFailures);
         Run("failure before replacement preserves original", BeforeReplaceFailure);
         Run("replacement denied preserves original", ReplaceDenied);
+        Run("permission messages preserve file state and nested causes", PermissionMessages);
         Run("failure after replacement reports installed state", AfterReplaceFailure);
         Run("same-target concurrent application excluded", ConcurrentApply);
         Run("CLI --check and retired --test do not write", CliReadOnly);
+        Run("CLI redirected streams without console", CliRedirected);
         Console.WriteLine("PASS: " + passed + " synthetic/Windows tests");
         return 0;
     }
@@ -233,6 +236,33 @@ internal static class SyncrashTests
         }
     }
 
+    private static void PermissionMessages()
+    {
+        var direct = new UnauthorizedAccessException("denied");
+        Assert(SyncrashWindow.DescribeApplyError(direct).Contains("Acceso denegado"), "direct denial missing");
+        var ordinary = new IOException("ordinary failure");
+        Assert(SyncrashWindow.DescribeApplyError(ordinary) == ordinary.Message, "unrelated error changed");
+        using (var f = new Fixture())
+        {
+            PatchOperationException before = Throws<PatchOperationException>(delegate {
+                f.Apply(delegate { }, delegate { throw direct; }, null);
+            });
+            string message = SyncrashWindow.DescribeApplyError(before);
+            Assert(message.Contains(before.Message) && message.Contains("original sigue intacto") &&
+                message.Contains("Acceso denegado"), "pre-replace denial lost state or advice");
+            PatchOperationException after = Throws<PatchOperationException>(delegate {
+                f.Apply(delegate { }, null, delegate { throw direct; });
+            });
+            message = SyncrashWindow.DescribeApplyError(after);
+            Assert(message.Contains(after.Message) && message.Contains("resultado parece instalado") &&
+                message.Contains("Acceso denegado"), "post-replace denial lost state or advice");
+        }
+        var cleanup = new PatchOperationException("No se pudo confirmar el estado de gbr.exe.",
+            new AggregateException(ordinary, new IOException("cleanup", direct)));
+        string combined = SyncrashWindow.DescribeApplyError(cleanup);
+        Assert(combined.Contains(cleanup.Message) && combined.Contains("Acceso denegado"), "secondary denial lost");
+    }
+
     private static void ConcurrentApply()
     {
         using (var f = new Fixture())
@@ -275,6 +305,24 @@ internal static class SyncrashTests
             Assert(Cli("--check " + quoted) == 1, "production check accepted synthetic input");
             Assert(Cli("--apply") == 2, "ambiguous apply accepted");
             Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "CLI wrote synthetic input");
+        }
+    }
+
+    private static void CliRedirected()
+    {
+        var start = new ProcessStartInfo(appPath, "--apply") {
+            UseShellExecute = false, CreateNoWindow = true,
+            RedirectStandardOutput = true, RedirectStandardError = true,
+            StandardOutputEncoding = new UTF8Encoding(false, true),
+            StandardErrorEncoding = new UTF8Encoding(false, true)
+        };
+        using (Process child = Process.Start(start))
+        {
+            Task<string> output = child.StandardOutput.ReadToEndAsync();
+            Task<string> error = child.StandardError.ReadToEndAsync();
+            if (!child.WaitForExit(10000)) { child.Kill(); throw new Exception("redirected CLI timed out"); }
+            Assert(child.ExitCode == 2 && output.Result == "" && error.Result.StartsWith("Uso: Syncrash.exe"),
+                "redirected CLI failed or unexpected encoding");
         }
     }
 }

@@ -217,6 +217,27 @@ internal sealed class SyncrashWindow : Form
         }
     }
 
+    private static bool HasAccessDenied(Exception error)
+    {
+        if (error == null) return false;
+        if (error is UnauthorizedAccessException) return true;
+        var aggregate = error as AggregateException;
+        if (aggregate != null)
+        {
+            foreach (Exception inner in aggregate.InnerExceptions)
+                if (HasAccessDenied(inner)) return true;
+            return false;
+        }
+        return HasAccessDenied(error.InnerException);
+    }
+
+    internal static string DescribeApplyError(Exception error)
+    {
+        return HasAccessDenied(error)
+            ? error.Message + "\n\nAcceso denegado. Comprueba permisos, bloqueos y el aviso de seguridad de Windows. No se ha forzado la aplicación."
+            : error.Message;
+    }
+
     private async Task ApplyAsync()
     {
         if (busy) return;
@@ -237,16 +258,11 @@ internal sealed class SyncrashWindow : Form
             status.ForeColor = Crimson;
             status.Text = error.Message;
         }
-        catch (UnauthorizedAccessException)
-        {
-            status.ForeColor = Crimson;
-            status.Text = "Acceso denegado. Comprueba permisos, bloqueos y el aviso de seguridad de Windows. No se ha forzado la aplicación.";
-        }
         catch (Exception error)
         {
             status.ForeColor = Crimson;
-            status.Text = error.Message;
-            MessageBox.Show(this, error.Message, "No se pudo aplicar Syncrash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            status.Text = DescribeApplyError(error);
+            MessageBox.Show(this, status.Text, "No se pudo aplicar Syncrash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         finally
         {

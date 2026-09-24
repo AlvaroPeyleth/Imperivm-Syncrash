@@ -66,4 +66,8 @@ Estas evidencias explican las reglas estáticas concretas de este informe, no la
 
 ## Candidato local 1.0.3.0 · 24/09/2026
 
-El [candidato técnico](CANDIDATO_1.0.3.md) tiene SHA256 `1407eddc96743a90a669257acb21146bc2ee99f28ba155d08d853f2a7910d812`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 12 pruebas sintéticas en Windows y se comprobó el parche en una copia aislada de archivos reales admitidos. **No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre este hash, ni se publicó.** Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.
+El [candidato técnico actual](CANDIDATO_1.0.3.md), tras los ajustes de auditoría, tiene **2.403.840 bytes** y SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 14 pruebas con Windows PowerShell 5.1 y se repitió el ensayo sobre una copia aislada de archivos reales admitidos con este EXE: resultado V2 exacto, PAK intacto, reaplicación sin escritura y original conservado ante acceso denegado. La evidencia actual está en `work/audit-final-20260924/`, fuera de Git.
+
+La comprobación anterior de 12 pruebas y copia real corresponde históricamente al SHA256 `1407eddc96743a90a669257acb21146bc2ee99f28ba155d08d853f2a7910d812` (2.403.328 bytes), conservado en `work/codex-verification-20260924/`; no identifica el nuevo ejecutable.
+
+**No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre ninguno de esos dos hashes de 1.0.3.0, ni se publicó el candidato.** Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.
