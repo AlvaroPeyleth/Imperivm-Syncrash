@@ -27,6 +27,8 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta cont
 
 ## Confianza y límites
 
+Consulta [Seguridad y verificaciones](SEGURIDAD.md) para conocer las medidas del aplicador, la comparación entre código y EXE y la explicación de las alertas antivirus conocidas.
+
 La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. El ejecutable actual no lleva firma digital Authenticode. La compilación puede generar un hash distinto por los metadatos del compilador; el hash de `gbr.exe` resultante sí debe ser exactamente el indicado.
 
 Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.

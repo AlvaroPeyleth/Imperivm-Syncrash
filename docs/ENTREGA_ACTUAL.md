@@ -53,4 +53,10 @@ El análisis final muestra **7 detecciones entre 71 motores**, con estos nombres
 
 No se ha confirmado que sean falsos positivos ni se ha establecido su causa. El resultado no se presenta como un sello de seguridad. Recomendamos posponer nuevas instalaciones hasta revisar las detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
 
-El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. El siguiente paso es contrastar el binario y su compilación con el código publicado y, si procede, solicitar revisión a los proveedores que lo detectan. El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.
+El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. La comparación con el código publicado ya se ha realizado y se resume a continuación. Sigue pendiente solicitar y obtener la revisión de los proveedores que lo detectan. El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.
+
+## Revisión del aplicador
+
+La [revisión del 24/09/2026](REVISION_ANTIVIRUS.md) vincula el EXE publicado con el código de la entrega: coinciden el código compilado y los recursos; al igualar los saltos de línea del manifiesto solo cambian metadatos generados por el compilador. No se ha encontrado comportamiento malicioso en el aplicador revisado. La causa exacta de las detecciones y su posible condición de falsos positivos siguen pendientes de revisión por los proveedores.
+
+La [explicación de seguridad](SEGURIDAD.md) reúne las comprobaciones y los resultados de VirusTotal y MetaDefender con sus límites.

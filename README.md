@@ -6,6 +6,7 @@
 <p align="center">
   <a href="https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest">Descargar Syncrash</a> ·
   <a href="docs/TRANSPARENCIA.md">Qué modifica</a> ·
+  <a href="docs/SEGURIDAD.md">Seguridad y verificaciones</a> ·
   <a href="docs/ENTREGA_ACTUAL.md">Verificar la descarga</a> ·
   <a href="docs/CREDITOS.md">Créditos</a>
 </p>
@@ -57,9 +58,21 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
-## Transparencia y comprobaciones
+## Seguridad y código verificable
 
-El código del aplicador y la receta de cambios están en [`src/Syncrash`](src/Syncrash). La [explicación técnica](docs/FUNCIONAMIENTO.md) describe el mecanismo y sus límites. La [ficha de la versión](docs/ENTREGA_ACTUAL.md) identifica el EXE distribuido, su hash y el estado del análisis antivirus.
+**Publicamos el código para que puedas revisar qué hace Syncrash y cómo aplica el parche.** El aplicador, la receta de cambios y las instrucciones de compilación están en [`src/Syncrash`](src/Syncrash). La revisión realizada no ha encontrado comportamiento malicioso en el aplicador y ha contrastado el EXE distribuido con una recompilación del código publicado.
+
+El parche se aplica de forma controlada: comprueba la identidad de los archivos mediante SHA256, exige que el juego esté cerrado, reconstruye el resultado y lo verifica antes de sustituir `gbr.exe`. Estas comprobaciones reducen el riesgo de aplicar cambios a una edición incorrecta o producir un resultado distinto del previsto. **Un hash es una huella para comprobar archivos; Syncrash calcula y compara hashes.**
+
+### ¿Por qué aparecen alertas antivirus?
+
+En el informe detallado de MetaDefender, algunas reglas señalan precisamente las funciones SHA256, la consulta del proceso del juego y la búsqueda de unidades de Steam. Hemos relacionado esas reglas con su uso legítimo en el código. Otras señalan un EXE sin firma y datos de alta entropía, para los que las imágenes comprimidas incrustadas son una explicación plausible.
+
+**Esto explica reglas concretas de MetaDefender; no confirma que todas las detecciones antivirus sean falsos positivos.** El 24/09/2026 observamos 7/71 detecciones en VirusTotal y 2/21 en MetaDefender, sobre el mismo archivo. Publicamos ambos resultados y sus límites: el código abierto facilita una revisión, pero no sustituye esa revisión ni garantiza ausencia de errores.
+
+[Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
+
+## Pruebas de estabilidad
 
 Se han probado instalación, reinstalación y rechazo de archivos incompatibles en copias aisladas. Una sesión Steam de unos 79 minutos con la protección terminó normalmente y sin las excepciones vigiladas. Los registros recibidos de ambos jugadores no muestran un desync explícito. **Eso no demuestra que todos los fallos estén resueltos ni que el parche evitara un cierre en esa partida.**
 
