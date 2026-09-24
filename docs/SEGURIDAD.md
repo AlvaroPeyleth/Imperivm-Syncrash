@@ -94,7 +94,7 @@ El resultado actual del expediente de Microsoft es posterior al análisis de Vir
 
 Estamos preparando la firma Authenticode de Syncrash mediante **Azure Artifact Signing**, para que los jugadores puedan identificar al editor y comprobar la integridad de la descarga. La organización solicitante es **PEYLETH SOLUTIONS SL**.
 
-**Estado comprobado el 24/09/2026:** cuenta de firma creada, acceso de verificación configurado y solicitud de identidad empresarial enviada. Azure muestra **«In Progress»**. El EXE de la entrega actual sigue sin firma; aún no se ha creado un perfil de certificado ni publicado un binario firmado.
+**Estado comprobado el 24/09/2026:** cuenta de firma creada, acceso de verificación configurado y solicitud de identidad empresarial enviada. El paso de credenciales solicitado por Microsoft se completó y su pantalla confirma **«Verification successful!»**. Tras actualizar, la lista de Azure todavía muestra **«Action Required»** y el detalle «In Progress»: la aprobación final de la solicitud aún no está confirmada. El EXE de la entrega actual sigue sin firma; aún no se ha creado un perfil de certificado ni publicado un binario firmado.
 
 Próximos pasos:
 
