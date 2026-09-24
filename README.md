@@ -31,6 +31,12 @@ Puedes volver a aplicarlo si ya lo tienes instalado. Para las pruebas multijugad
 
 **Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
 
+### Así es Syncrash v1
+
+![Pantalla real de Syncrash v1: Steam vanilla seleccionado, Community Mod próximamente y botón Aplicar parche](docs/images/syncrash-v1-aplicador.png)
+
+Una sola ventana para seleccionar el juego y aplicar el parche. Esta captura muestra el aplicador actual; Community Mod permanece desactivado. Puedes consultar qué modifica y acceder al código desde la propia aplicación.
+
 ## ¿Puedo jugar con alguien que no tiene Syncrash?
 
 Se han realizado pruebas entre jugadores con Syncrash y sin él, sin problemas comunicados, aunque la compatibilidad sigue en evaluación. La protección se aplica únicamente al equipo donde está instalado: no evita los cierres de otros jugadores ni garantiza que la partida continúe si alguien se desconecta. Que otro jugador no lo tenga no desactiva tu protección.
