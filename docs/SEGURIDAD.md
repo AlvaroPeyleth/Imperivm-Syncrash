@@ -4,6 +4,8 @@
 
 Hemos revisado las operaciones del aplicador y contrastado el EXE distribuido con una recompilación del código publicado. No encontramos código malicioso. También hemos relacionado varias reglas del analizador con funciones legítimas del programa; estas comprobaciones respaldan nuestra hipótesis de falsos positivos.
 
+**Estado a 24/09/2026:** los análisis publicados corresponden a la entrega v1.0.0. El código actual genera el [candidato local 1.0.3.0](CANDIDATO_1.0.3.md), todavía sin publicar ni analizar por antivirus. Ya se aplicó con éxito a una copia de archivos reales del juego; falta probar una partida con él.
+
 ## Revisa, modifica o compila tu propia versión
 
 El [código del aplicador](../src/Syncrash), la receta del parche y el proceso de compilación son públicos. Puedes inspeccionarlos, modificarlos y generar tu propio ejecutable siguiendo las [instrucciones de compilación](../README.md#compilar-y-conocer-el-proyecto). La [licencia MIT](../LICENSE) permite reutilizar el código conservando el aviso de copyright y la licencia.
@@ -19,7 +21,7 @@ El [código publicado](../src/Syncrash/Program.cs) permite seguir estas operacio
 5. **Verifica antes de sustituir.** Escribe un temporal junto al destino, comprueba su hash y vuelve a comprobar que los archivos de entrada no hayan cambiado antes de reemplazar únicamente `gbr.exe`.
 6. **Confirma el resultado final.** Verifica de nuevo su hash y elimina el temporal si queda pendiente.
 
-Estas medidas hacen que la aplicación sea repetible y permiten rechazar archivos incompatibles. Se han probado instalación, reinstalación y rechazo de EXE/PAK alterados en copias aisladas. La protección del juego cubre las tres rutas de cierre descritas en [Funcionamiento](FUNCIONAMIENTO.md).
+La entrega v1.0.0 se probó en copias aisladas: instalación, reinstalación y rechazo de un EXE o PAK alterado. Esa versión reescribe el resultado si ya está instalado. El candidato 1.0.3.0 responde «ya instalado» sin reescribir, impide dos aplicaciones simultáneas y añade `--check`, que solo lee. Sus [pruebas](CANDIDATO_1.0.3.md) no incluyen todavía una partida real. La protección del juego cubre las tres rutas de cierre descritas en [Funcionamiento](FUNCIONAMIENTO.md).
 
 **No hay copia de seguridad automática.** Para recuperar el original, verifica los archivos del juego desde Steam o reinstálalo. Los hashes esperados están en [Transparencia](TRANSPARENCIA.md#archivos-admitidos).
 
@@ -43,12 +45,12 @@ El archivo analizado y publicado tiene SHA256:
 986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3
 ```
 
-Recompilamos el código del commit de entrega `26c6c46` en un directorio aislado, usando el compilador de .NET Framework con firma válida de Microsoft. Comprobamos:
+Recompilamos el código del commit de entrega `26c6c46` en un directorio aislado, usando el compilador de .NET Framework de Microsoft. Comprobamos:
 
 - Coincidencia de los 57 métodos inspeccionados, sus instrucciones IL, las seis referencias a bibliotecas .NET y los cinco recursos incrustados.
 - Tras reproducir los saltos de línea del manifiesto, el mismo tamaño y únicamente 47 bytes distintos, correspondientes a la fecha del encabezado PE y los identificadores generados por el compilador. Todos los demás bytes coinciden.
 
-La comprobación relaciona el binario distribuido con ese código fuente. Se hizo en la misma máquina y no equivale a una auditoría externa de toda la cadena de compilación. Un hash identifica un archivo: por sí solo no demuestra que sea seguro. El EXE actual no está firmado con Authenticode.
+La comprobación relaciona el binario **publicado v1.0.0** con ese código fuente. Se hizo en la misma máquina y no equivale a una auditoría externa de toda la cadena de compilación. Un hash identifica un archivo: por sí solo no demuestra que sea seguro. El candidato 1.0.3.0 tiene [otra comparación y otro hash](CANDIDATO_1.0.3.md); los informes de este apartado no se transfieren a él.
 
 ## Qué significan las alertas observadas
 
@@ -60,9 +62,9 @@ Si un antivirus muestra una alerta sobre esta versión, puedes contrastarla con 
 | Descubrimiento de procesos (`DN032`) | `Process.GetProcessesByName`. | Exigir que Imperivm esté cerrado. |
 | Información del sistema (`DN021`) | Métodos de `DriveInfo`. | Buscar bibliotecas Steam en unidades fijas. Son unidades de almacenamiento, aunque el rótulo del servicio use la palabra «driver». |
 | Entropía elevada (`H000`) | Datos con una distribución de bytes similar a contenido comprimido. | Hay imágenes comprimidas incrustadas. El banner ocupa 2.145.191 de los 2.400.256 bytes del EXE. Es una explicación plausible de esta señal. |
-| Posible contenido empaquetado (`SIGG017`) | Ejecutable sin firma y datos de alta entropía. | La compilación revisada no usa un empaquetador u ofuscador; incrusta recursos gráficos y la receta. La regla por sí sola no prueba que haya una carga maliciosa. |
+| Posible contenido empaquetado (`SIGG017`) | Regla estática asociada a datos de alta entropía. | La compilación revisada no usa un empaquetador u ofuscador; incrusta recursos gráficos y la receta. La regla por sí sola no prueba que haya una carga maliciosa. |
 
-**No quitamos comprobaciones de integridad o de juego cerrado para reducir alertas.** Cumplen una función de protección. Tampoco se ha demostrado que modificar las imágenes o firmar el programa elimine las detecciones de los motores antivirus.
+**No quitamos comprobaciones de integridad o de juego cerrado para reducir alertas.** Cumplen una función de protección. Tampoco se ha demostrado que modificar las imágenes elimine las detecciones de los motores antivirus.
 
 ## Resultados y límites de los informes
 
@@ -86,33 +88,24 @@ Malwarebytes describe [MachineLearning/Anomalous.100%](https://www.malwarebytes.
 | Gestión | Estado comprobado |
 | --- | --- |
 | Microsoft Security Intelligence | Solicitud enviada con el EXE publicado, su SHA256, el código y la revisión técnica. La última consulta muestra «No malware detected» en Cloud y Client; la determinación final sigue «Pending». |
-| Otros proveedores que detectan el archivo | Pendiente enviar solicitudes individuales. Los análisis de VirusTotal y MetaDefender ya realizados no equivalen a una reclamación ante cada motor. |
+| Otros proveedores que detectan el archivo | [Borradores por proveedor preparados](RECLAMACIONES_ANTIVIRUS.md); no enviados. Los análisis de VirusTotal y MetaDefender ya realizados no equivalen a una reclamación ante cada motor. |
 
 El resultado actual del expediente de Microsoft es posterior al análisis de VirusTotal y pertenece a otro servicio. Conservamos ambos resultados con su fecha; no presentamos la solicitud como una resolución final ni como la retirada de las demás alertas. Publicaremos las respuestas relevantes sin exponer datos privados del expediente.
 
-## Firma digital en tramitación
+## Próximas comprobaciones
 
-Estamos preparando la firma Authenticode de Syncrash mediante **Azure Artifact Signing**, para que los jugadores puedan identificar al editor y comprobar la integridad de la descarga. La organización solicitante es **PEYLETH SOLUTIONS SL**.
+1. Contrastar cada EXE con una compilación del código fuente y publicar su SHA256 junto con el alcance de las pruebas.
+2. Probar el aplicador y el `gbr.exe` reconstruido en una instalación legítima aislada, con protecciones activas. Registrar por separado cualquier aviso sobre ambos archivos y comprobar una partida.
+3. Analizar el **hash exacto** de cada candidato y continuar las reclamaciones justificadas a proveedores. Preparar una nueva entrega binaria solo tras verificar sus activos.
 
-**Estado comprobado el 24/09/2026:** cuenta de firma creada, acceso de verificación configurado y solicitud de identidad empresarial enviada. El paso de credenciales solicitado por Microsoft se completó y su pantalla confirma **«Verification successful!»**. Tras actualizar, la lista de Azure todavía muestra **«Action Required»** y el detalle «In Progress»: la aprobación final de la solicitud aún no está confirmada. El EXE de la entrega actual sigue sin firma; aún no se ha creado un perfil de certificado ni publicado un binario firmado.
-
-Próximos pasos:
-
-1. Completar las verificaciones o documentación que solicite Microsoft y obtener la aprobación de identidad.
-2. Crear el perfil de firma pública y configurar el acceso necesario para firmar.
-3. Firmar la entrega con sello de tiempo, comprobar la firma y repetir las comprobaciones necesarias del aplicador.
-4. Publicar el EXE firmado con su nuevo SHA256, ficha e informes correspondientes. La firma cambia el hash del aplicador; no añade por sí misma nuevas correcciones al juego.
-
-El sello de tiempo permite conservar la validez de la firma tras caducar el certificado, salvo revocación. Darse de baja del servicio no invalida por sí solo los archivos ya firmados. La firma identifica al editor y permite detectar alteraciones: **no es un veredicto antivirus ni garantiza eliminar inmediatamente el aviso de reputación de SmartScreen**.
-
-Referencias: [gestión de certificados y sello de tiempo](https://learn.microsoft.com/en-us/azure/artifact-signing/concept-certificate-management), [SmartScreen y baja del servicio](https://learn.microsoft.com/en-us/azure/artifact-signing/faq).
-
-Los datos de facturación, identificadores internos, documentación de identidad y enlaces privados de los trámites se conservan fuera de GitHub. Esta sección es la referencia pública del estado de ambas gestiones.
+La evidencia administrativa y los datos privados se conservan fuera del repositorio.
 
 ## Cómo comprobar una descarga y comunicar un problema
 
 Descarga desde la [release oficial](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest) y contrasta el archivo con el SHA256 de la [ficha de entrega](ENTREGA_ACTUAL.md) y `SHA256SUMS.txt`. Quien quiera revisar o compilar el código dispone de las instrucciones del [README](../README.md#compilar-y-conocer-el-proyecto).
 
-Si aparece una alerta, conserva el motor, la versión de firmas, el nombre de detección y el hash. No desactives el antivirus ni añadas exclusiones para forzar la ejecución. Puedes comunicar esos datos a `xtalvarotx` en Discord o abrir una incidencia sin datos privados.
+Syncrash no lleva firma digital Authenticode, por eso Windows puede mostrar «Editor desconocido». Una firma identificaría al editor, pero no sería un veredicto antivirus. El SHA256 es lo que confirma que tienes exactamente el archivo publicado.
+
+Si aparece una alerta, conserva el motor, la versión de sus definiciones, el nombre de la detección y el hash. No desactives el antivirus ni añadas exclusiones para forzar la ejecución. Puedes comunicar esos datos a `xtalvarotx` en Discord o abrir una incidencia sin datos privados.
 
 Publicaremos las respuestas de los proveedores y actualizaremos esta documentación si cambia el ejecutable. Cada informe corresponde al hash indicado; para otra versión publicaremos sus propias comprobaciones.

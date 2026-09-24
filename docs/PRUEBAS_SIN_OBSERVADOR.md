@@ -2,7 +2,7 @@
 
 Basta con el único `Syncrash.exe`. El observador es opcional y se reserva para investigaciones concretas.
 
-1. Todos los jugadores de la prueba cierran Imperivm, abren el mismo Syncrash y pulsan **Aplicar parche** con Steam vanilla seleccionado. Si ya estaba instalado, se reaplica. Debe terminar con el mensaje de éxito.
+1. Todos los jugadores de la prueba cierran Imperivm, abren el mismo Syncrash y pulsan **Aplicar parche** con Steam vanilla seleccionado. En la entrega v1.0.0, repetirlo reescribe V2; el candidato 1.0.3.0 responde «ya instalado» sin escribir. Registrar cuál se usó y el hash del aplicador.
 2. Abren el juego normalmente desde Steam e inician una partida nueva. Probad distintos mapas y facciones; guardar y recargar también sirve para ampliar la prueba.
 3. Al terminar, indicad duración aproximada y si hubo cierre, desync o algo extraño. Si todo fue bien, también interesa saberlo.
 

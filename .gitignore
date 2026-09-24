@@ -24,6 +24,24 @@
 !/src/Syncrash/assets/syncrash.ico
 !/src/Syncrash/assets/PROVENANCE.md
 
+# Synthetic test sources; generated fixtures and binaries remain ignored.
+!/tests/
+/tests/*
+!/tests/*.cs
+!/tests/*.ps1
+
+# Reviewed release tooling only; local outputs remain ignored.
+!/scripts/
+/scripts/*
+!/scripts/*.ps1
+
+# Reviewed CI only.
+!/.github/
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/ci.yml
+
 # Add a new source directory to this allowlist only after reviewing its files.
 
 !/LICENSE

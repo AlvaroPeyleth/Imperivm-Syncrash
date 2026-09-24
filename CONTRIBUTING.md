@@ -16,6 +16,8 @@ Las contribuciones de código propio se proponen bajo MIT. Identifica su procede
 
 Consulta el [plan de ejecución](docs/PLAN_DE_EJECUCION.md) antes de abordar una corrección nueva.
 
+Para cambios en el aplicador, consulta el [candidato 1.0.3.0](docs/CANDIDATO_1.0.3.md): build Windows fijado, pruebas sintéticas y comparación de dos compilaciones. No incluyas archivos del juego en fixtures ni ejecutes la aplicación real como parte de las pruebas predeterminadas.
+
 ## Mantener la documentación al día
 
 Cada trabajo debe incluir su documentación: qué cambia, evidencia, resultado y pendientes. Actualiza las explicaciones anteriores que hayan quedado obsoletas y revisa los documentos relacionados. Conserva las pruebas históricas con fecha y versión, sin presentarlas como resultados actuales.

@@ -232,10 +232,15 @@ internal sealed class SyncrashWindow : Form
             status.Text = await Task.Run(() => Syncrash.PatchGame(target));
             status.ForeColor = Color.FromArgb(34, 87, 58);
         }
+        catch (PatchBusyException error)
+        {
+            status.ForeColor = Crimson;
+            status.Text = error.Message;
+        }
         catch (UnauthorizedAccessException)
         {
             status.ForeColor = Crimson;
-            status.Text = "Sin permiso para escribir. Cierra Syncrash y ábrelo como administrador.";
+            status.Text = "Acceso denegado. Comprueba permisos, bloqueos y el aviso de seguridad de Windows. No se ha forzado la aplicación.";
         }
         catch (Exception error)
         {

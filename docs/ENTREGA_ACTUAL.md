@@ -2,6 +2,8 @@
 
 **Primera entrega pública experimental para Steam vanilla.** Fecha: 23/09/2026. Aplicador: **1.0.2.0**. La protección del juego conserva la guarda V2 de las pruebas privadas.
 
+Esta ficha identifica **solo la entrega publicada v1.0.0** y conserva su evidencia histórica. El [candidato local 1.0.3.0](CANDIDATO_1.0.3.md) tiene otro hash, otras pruebas y aún no es una release. El [estado vigente de las revisiones antivirus](SEGURIDAD.md) se actualiza por separado.
+
 [Descargar Syncrash.exe](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)
 
 | Dato | Valor |
@@ -10,7 +12,7 @@
 | Tamaño | 2.400.256 bytes |
 | SHA256 del aplicador | `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3` |
 | SHA256 de `gbr.exe` tras aplicar | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
-| Firma Authenticode | Sin firma digital. Verificación empresarial en curso para una futura entrega firmada; [estado](SEGURIDAD.md#firma-digital-en-tramitación). |
+| Firma digital | Sin firma Authenticode; Windows puede mostrar «Editor desconocido». |
 | VirusTotal | **7/71 motores detectan el archivo**, análisis del 24/09/2026. [Ver informe](https://www.virustotal.com/gui/file/986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3). Investigado; revisión de Microsoft enviada y resolución final pendiente. |
 
 ## Qué contiene
@@ -23,7 +25,7 @@ Esta v1 **no incorpora una corrección de desync Steam**. Community Mod permanec
 
 - Instalación y reinstalación del EXE final en una copia aislada: salida 0 y resultado V2 exacto. La reinstalación vuelve a escribir el archivo.
 - Ejecutable alterado y PAK incompatible: rechazo con salida 1, sin modificar `gbr.exe`.
-- Ningún respaldo ni temporal restante tras las pruebas.
+- Ninguna copia de seguridad ni temporal restante tras las pruebas.
 - Revisión del render nativo de la pantalla y de la ayuda desplegada. No equivale a verificar todas las resoluciones, escalados o interacciones en otros equipos.
 - Receta idéntica a la entrega privada: SHA256 `9388df692e9f0f0478f8060d625e643618cfc16dd28298c1cbe879aaa6bfc583`.
 
@@ -53,7 +55,7 @@ El análisis final muestra **7 detecciones entre 71 motores**, con estos nombres
 
 Hemos revisado nuestro aplicador y contrastado este EXE con el código publicado, sin encontrar código malicioso. Estas comprobaciones respaldan nuestra hipótesis de falsos positivos. Ya hemos enviado la solicitud a Microsoft; queda seguir su resolución y tramitar las solicitudes a los demás proveedores. Recomendamos posponer nuevas instalaciones hasta aclarar esas detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
 
-El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. La comparación con el código publicado ya se ha realizado y se resume a continuación. El estado de las solicitudes y de la firma digital se mantiene en [Seguridad](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores). El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.
+El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. La comparación con el código publicado ya se ha realizado y se resume a continuación. El estado de las solicitudes se mantiene en [Seguridad](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores). El informe puede cambiar con nuevas definiciones o análisis; esta tabla refleja el resultado observado en la fecha indicada.
 
 ## Revisión del aplicador
 

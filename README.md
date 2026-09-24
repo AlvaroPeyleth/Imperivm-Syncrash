@@ -17,17 +17,21 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
+La [entrega pública v1.0.0](docs/ENTREGA_ACTUAL.md) conserva su EXE y sus alertas conocidas. El código de este repositorio corresponde al [candidato local 1.0.3.0](docs/CANDIDATO_1.0.3.md), que añade controles al aplicador y todavía no se ha publicado.
+
 **Desarrollamos Syncrash y publicamos su código para que puedas comprobarlo.** Hemos contrastado el ejecutable distribuido con una recompilación y documentado los cambios que aplica. Consulta las comprobaciones y las alertas antivirus conocidas en [Seguridad y verificaciones](docs/SEGURIDAD.md).
 
 ## Descargar y jugar
 
 Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
 
+**Antes de descargar:** algunos antivirus detectan la entrega v1.0.0. Mientras se revisan, recomendamos posponer nuevas instalaciones. Consulta las [alertas conocidas](#por-qué-aparecen-alertas-antivirus).
+
 1. Cierra Imperivm y abre **Syncrash.exe**.
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
 3. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-Puedes volver a aplicarlo si ya lo tienes instalado. Para las pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
+En la entrega v1.0.0, repetir la aplicación reescribe el resultado. El candidato 1.0.3.0 detecta que ya está instalado y no lo reescribe. Para pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
 
 **Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
 
@@ -60,7 +64,7 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
 - **Solo sustituye `gbr.exe`.** No modifica mapas, guardados, PAK ni archivos de audio.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir Syncrash no modifica el juego: el parche se aplica al pulsar el botón.
+- Abrir la interfaz no modifica el juego; solo lo hace el botón **Aplicar parche**. El candidato 1.0.3.0 añade las órdenes `--check <ruta>`, que solo lee, y `--apply <ruta>`, que aplica. La entrega v1.0.0 tenía una orden antigua, `--test <ruta>`, que **sí aplicaba** el parche; el candidato la retira.
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
@@ -79,15 +83,13 @@ El parche se aplica de forma controlada: comprueba la identidad de los archivos 
 - **SHA256:** comprueba que los archivos y el resultado del parche sean los esperados.
 - **Consulta de procesos:** comprueba que Imperivm esté cerrado antes de modificarlo.
 - **Búsqueda de unidades:** localiza las bibliotecas de Steam.
-- **EXE sin firma y alta entropía:** el aplicador no tiene firma digital e incorpora imágenes comprimidas; estas son una explicación plausible de la señal de entropía.
+- **Alta entropía:** el EXE incorpora imágenes comprimidas. Es una explicación plausible de esta señal, no la causa demostrada de cada veredicto.
 
 El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. **Ya hemos enviado el ejecutable a Microsoft para su revisión**: la última consulta muestra «No malware detected» en Cloud y Client, con la resolución final todavía pendiente. Continuaremos las gestiones con los demás proveedores y publicaremos las respuestas recibidas.
 
-### Firma digital en preparación
+### Comprobación de la descarga
 
-**Estamos trabajando en una firma digital para reforzar la seguridad y la confianza de quienes descargan Syncrash.** Hemos iniciado la verificación de PEYLETH SOLUTIONS SL en Azure Artifact Signing; a 24/09/2026 el paso de credenciales se ha completado y seguimos pendientes de la aprobación final. La firma permitirá identificar al editor y comprobar que el archivo no ha sido modificado desde que lo firmamos.
-
-El EXE disponible **todavía no está firmado**. Cuando termine la verificación, prepararemos y comprobaremos una entrega firmada con sello de tiempo, y actualizaremos su hash e informes. La firma y la revisión antivirus son procesos distintos; firmar no garantiza que desaparezcan inmediatamente los avisos de SmartScreen. [Estado y próximos pasos](docs/SEGURIDAD.md#firma-digital-en-tramitación).
+Syncrash no lleva firma digital, por eso Windows puede mostrar «Editor desconocido» y SmartScreen puede advertir de una descarga poco habitual. Comprueba que el archivo procede de la release oficial y que su SHA256 coincide con la [ficha de entrega](docs/ENTREGA_ACTUAL.md). No desactives protecciones para ejecutarlo y comunícanos cualquier bloqueo.
 
 [Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
 
@@ -124,12 +126,14 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 ## Compilar y conocer el proyecto
 
-En Windows, con .NET Framework y su compilador disponibles:
+En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
 ```powershell
-& ./src/Syncrash/build.ps1
+& ./src/Syncrash/build.ps1 -OutputPath ./work/mi-candidato/Syncrash.exe
+& ./tests/run.ps1 -OutputDirectory ./work/mi-prueba
+& ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-Genera `Syncrash.exe` sin descargar dependencias. La licencia queda incrustada en el ejecutable. El compilador puede producir metadatos distintos entre compilaciones; el `gbr.exe` parcheado debe coincidir con el hash documentado.
+La compilación no sobrescribe un EXE existente e incrusta la licencia. En nuestra máquina, dos compilaciones del mismo código produjeron archivos idénticos. La [guía del candidato](docs/CANDIDATO_1.0.3.md) detalla los comandos, las pruebas y sus límites. Con cualquier compilación, el `gbr.exe` parcheado debe coincidir con el hash documentado.
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

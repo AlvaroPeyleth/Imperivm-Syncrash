@@ -1,0 +1,22 @@
+name: Windows build and synthetic tests
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.400
+      - name: Synthetic and CLI tests
+        shell: pwsh
+        run: ./tests/run.ps1 -OutputDirectory (Join-Path $env:RUNNER_TEMP 'syncrash-tests')
+      - name: Compare two builds
+        shell: pwsh
+        run: ./scripts/compare-builds.ps1 -OutputDirectory (Join-Path $env:RUNNER_TEMP 'syncrash-build-compare')

@@ -1,22 +1,32 @@
 # Historial de versiones
 
-## Documentación y distribución — 24 de septiembre de 2026
+## Candidato local 1.0.3.0 · 24 de septiembre de 2026
+
+- `--test` ya no aplica el parche. `--check` solo lee y `--apply` es la única orden de aplicación por línea de comandos; cada resultado tiene su propio código de salida.
+- Si el parche exacto ya está instalado, no se reescribe `gbr.exe`. Syncrash impide dos aplicaciones simultáneas sobre el mismo juego y vuelve a comprobar los archivos justo antes de sustituirlos.
+- Mensajes de error más claros y eliminación del temporal propio. Ante un acceso denegado ya no se recomienda abrir el programa como administrador.
+- Compilación determinista con .NET SDK 8.0.400, 12 pruebas sintéticas en Windows, integración continua de solo lectura y empaquetado local verificado.
+- Misma versión en ensamblado, archivo y manifiesto; los metadatos indican la empresa editora. La receta y los hashes del juego no cambian.
+
+**No publicado.** El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge su hash, las pruebas y lo que falta. El 24/09/2026 se aplicó el EXE a una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak` y no volvió a escribir al repetir. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
+
+## Documentación y distribución · 24 de septiembre de 2026
 
 - Captura de la interfaz actual publicada en el README.
-- Solicitud de revisión antivirus enviada a Microsoft; resolución final pendiente en la última consulta.
-- Verificación empresarial de Azure Artifact Signing iniciada para firmar futuras entregas. El EXE publicado continúa sin firma.
+- Solicitud de revisión antivirus enviada a Microsoft; la resolución final seguía pendiente en la última consulta.
+- Se preparó la firma digital Authenticode con Azure Artifact Signing y se descartó el mismo día, sin firmar ningún EXE. Syncrash se distribuye sin firma y cada ficha de entrega publica el SHA256 del archivo.
 - Reglas de mantenimiento documental y separación entre documentación pública y archivo interno en `AGENTS.md`.
 
 Estos avances no cambian el binario, la protección ni la versión de la entrega v1.
 
-## Syncrash v1 — 23 de septiembre de 2026
+## Syncrash v1 · 23 de septiembre de 2026
 
 Primera entrega pública experimental para Steam vanilla. Versión del aplicador: **1.0.2.0**.
 
 - Un solo `Syncrash.exe`, con búsqueda de la instalación y aplicación mediante botón.
 - Protección de tres llamadas mediante comprobación del tipo de objeto; misma guarda V2 de las pruebas privadas.
 - Validación de `gbr.exe`, `Packs/data.pak` y resultado por SHA256.
-- Reaplicación de la versión exacta ya instalada, sin crear respaldo.
+- Reaplicación de la versión exacta ya instalada, sin crear copia de seguridad.
 - Ayuda integrada sin conexión, enlace al código y a la última descarga.
 - Icono e ilustración propios, licencia MIT y créditos.
 

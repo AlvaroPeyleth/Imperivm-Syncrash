@@ -1,4 +1,4 @@
-# Revisión de detecciones antivirus — 24/09/2026
+# Revisión de detecciones antivirus · 24/09/2026
 
 ## Resultado
 
@@ -7,7 +7,7 @@
 ## Evidencia
 
 - Archivo publicado/analizado: SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`, 2.400.256 bytes.
-- Recompilación desde el commit de entrega `26c6c46`, en directorio aislado, con el compilador de .NET Framework cuya firma Microsoft Windows es válida.
+- Recompilación desde el commit de entrega `26c6c46`, en directorio aislado, con el compilador de .NET Framework de Microsoft.
 - Coinciden los 57 métodos inspeccionados (IL), las seis referencias a bibliotecas .NET y los cinco recursos incrustados. Se usó carga de reflexión sin ejecución del programa inspeccionado.
 - La primera recompilación difería además en los saltos de línea del manifiesto nativo. Al reproducir sus finales de línea LF, ambos EXE tienen el mismo tamaño y solo difieren en 47 bytes: timestamp PE (dentro de 0x88–0x8B), GUID del nombre generado por el compilador (0x22C44C–0x22C46F) y GUID de módulo (0x22E8C4–0x22E8D3). Todos los demás bytes coinciden.
 - El código revisado solo lee rutas/recursos Steam, valida hashes y sustituye el gbr.exe admitido a petición del jugador. Los únicos Process.Start abren enlaces fijos de GitHub al pulsarlos. No contiene descarga de cargas, persistencia, robo de credenciales, inyección de procesos ni rutinas para desactivar antivirus.
@@ -17,13 +17,13 @@
 
 ## Interpretación
 
-Malwarebytes documenta MachineLearning/Anomalous.100% como una detección genérica de su clasificador, no como una identificación manual de una familia concreta. Un aplicador que incorpora cambios binarios y sustituye otro EXE podría activar heurísticas; es una hipótesis, no una causa demostrada. La falta de firma tampoco prueba la causa ni garantiza que firmarlo resuelva las detecciones.
+Malwarebytes documenta MachineLearning/Anomalous.100% como una detección genérica de su clasificador, no como una identificación manual de una familia concreta. Un aplicador que incorpora cambios binarios y sustituye otro EXE podría activar heurísticas; es una hipótesis, no una causa demostrada.
 
 La revisión vincula el archivo distribuido con el código público. No equivale a una auditoría independiente ni a una confirmación del proveedor de antivirus. El compilador y sistema usados para recompilar son los de esta misma máquina.
 
 ## Siguiente paso
 
-Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. La firma digital está en tramitación y se documenta por separado en [Seguridad](SEGURIDAD.md#firma-digital-en-tramitación).
+Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. El [estado actual](SEGURIDAD.md) distingue las pruebas del candidato de los análisis del EXE publicado.
 
 Fuentes:
 - https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100
@@ -58,8 +58,12 @@ Las cinco alertas sospechosas desplegadas se fundamentan en:
 | DN032 | Process.GetProcessesByName | Se consulta gbr para exigir que el juego esté cerrado. |
 | DN021 | DriveInfo.GetDrives, DriveType, IsReady, RootDirectory | Búsqueda de bibliotecas Steam en unidades fijas. El rótulo inglés dice driver, pero las API mostradas corresponden a unidades de almacenamiento. |
 | H000 | Entropía .text 7.98047971725 y .rsrc 7.95666837692 | El EXE contiene PNG comprimidos: el banner ocupa 2.145.191 bytes de los 2.400.256 del aplicador, además del icono. Es una explicación plausible de la entropía, no una demostración del motivo de los otros motores. |
-| SIGG017 | Ejecutable sin firma con datos de alta entropía interpretados como posible payload empaquetado | No se utiliza un empaquetador en la compilación revisada; hay recursos gráficos y una receta incrustados. |
+| SIGG017 | Regla estática asociada a datos de alta entropía interpretados como posible payload empaquetado | No se utiliza un empaquetador en la compilación revisada; hay recursos gráficos y una receta incrustados. |
 
 Los IOC visibles incluyen dominios extraídos de archivos como cert.ssl.com, creativecommons.org e iptc.org; las IP mostradas figuran como DOMAIN_RESOLVE/EXTRACTED_FILE. No son por sí solos conexiones realizadas por Syncrash. El informe señala Emulation Data 0 y «No emulation data available for this file», por lo que no permite concluir que haya ejecutado y observado todas sus rutas.
 
 Estas evidencias explican las reglas estáticas concretas de este informe, no la causa interna de cada detección antivirus. No se recomienda quitar verificaciones de hash o de juego cerrado para reducir contadores de sospecha.
+
+## Candidato local 1.0.3.0 · 24/09/2026
+
+El [candidato técnico](CANDIDATO_1.0.3.md) tiene SHA256 `1407eddc96743a90a669257acb21146bc2ee99f28ba155d08d853f2a7910d812`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 12 pruebas sintéticas en Windows y se comprobó el parche en una copia aislada de archivos reales admitidos. **No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre este hash, ni se publicó.** Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.

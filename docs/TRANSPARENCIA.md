@@ -9,8 +9,8 @@ Al abrir, muestra información y busca instalaciones de Steam mediante sus rutas
 Al aplicar:
 
 1. Lee y comprueba `gbr.exe` y `Packs/data.pak`, y exige que el juego esté cerrado.
-2. Reconstruye en memoria el ejecutable parcheado usando las diferencias incrustadas en el EXE. Si ya hay V2 exacta, vuelve a escribir esa misma imagen verificada.
-3. Escribe un temporal en la carpeta del juego, verifica el resultado y sustituye únicamente `gbr.exe`. El temporal se elimina. No se guarda respaldo.
+2. Reconstruye en memoria el ejecutable parcheado usando las diferencias incrustadas en el EXE. El candidato 1.0.3.0 reconoce V2 exacta y termina sin reescritura; la entrega v1.0.0 la reescribía.
+3. Escribe un temporal en la carpeta del juego, verifica el resultado y sustituye únicamente `gbr.exe`. El temporal se elimina. No se guarda copia de seguridad.
 4. Comprueba el hash final y muestra el resultado.
 
 No modifica PAK, mapas, guardados, configuración ni archivos de audio. No instala un observador, servicios, tareas programadas, actualizadores ni controladores. No envía Logs ni otros datos por red. Los enlaces de código y descargas abren GitHub en el navegador cuando el usuario los pulsa. La ayuda integrada se puede leer sin conexión.
@@ -29,7 +29,7 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta cont
 
 Consulta [Seguridad y verificaciones](SEGURIDAD.md) para conocer las medidas del aplicador, la comparación entre código y EXE y la explicación de las alertas antivirus conocidas.
 
-La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. El ejecutable actual no lleva firma digital Authenticode. La compilación puede generar un hash distinto por los metadatos del compilador; el hash de `gbr.exe` resultante sí debe ser exactamente el indicado.
+La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. La recompilación histórica de la [entrega v1.0.0](ENTREGA_ACTUAL.md) podía diferir en metadatos; dos builds del [candidato local 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El hash de `gbr.exe` resultante debe ser exactamente el indicado.
 
 Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.
 

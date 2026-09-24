@@ -13,15 +13,15 @@ Todo trabajo debe quedar documentado antes de darlo por terminado: cambios de c�
 
 - `README.md`: presentación, uso y resumen del estado público.
 - `docs/ENTREGA_ACTUAL.md`: versión distribuida, hashes y comprobaciones de esa entrega.
-- `docs/SEGURIDAD.md`: estado actual de firma digital y gestiones antivirus; `docs/REVISION_ANTIVIRUS.md`: evidencia técnica fechada.
+- `docs/SEGURIDAD.md`: estado actual de las verificaciones y alertas antivirus; `docs/REVISION_ANTIVIRUS.md`: evidencia técnica fechada.
 - `docs/PLAN_DE_EJECUCION.md` y `docs/ROADMAP.md`: próximos pasos y alcance.
 - `CHANGELOG.md`: cambios relevantes para usuarios y colaboradores.
 - `work/`: registro interno, trámites, evidencias originales, ensayos y datos de jugadores. Permanece excluido de Git.
 
-Documentar no implica publicar. Antes de subir archivos, revisar el contenido y el diff preparado. Publicar solo información útil, comprobada y adecuada para el repositorio público. No subir credenciales, facturación, documentos de identidad, direcciones privadas, identificadores internos de Azure, expedientes privados, logs o dumps de jugadores ni archivos completos del juego. Publicar resúmenes anonimizados cuando aporten valor.
+Documentar no implica publicar. Antes de subir archivos, revisar el contenido y el diff preparado. Publicar solo información útil, comprobada y adecuada para el repositorio público. No subir credenciales, facturación, documentos de identidad, direcciones privadas, identificadores internos de servicios externos, expedientes privados, logs o dumps de jugadores ni archivos completos del juego. Publicar resúmenes anonimizados cuando aporten valor.
 
 Mantener la lista de archivos permitidos de `.gitignore`; no usar `git add -f` para sortearla. Añadir rutas públicas solo después de revisarlas. No cambiar visibilidad, publicar comunicaciones ni conceder permisos sin la autorización correspondiente.
 
 ## Exactitud del estado
 
-Distinguir entre planificado, enviado, en revisión y completado. Vincular cada análisis a su hash y cada conclusión a su evidencia. Una solicitud de revisión no es una aprobación del antivirus; una firma identifica al editor y protege la integridad, pero no garantiza que desaparezca SmartScreen. Al firmar una entrega, actualizar hash, ficha, informes y archivos de la release de forma coherente.
+Distinguir entre planificado, enviado, en revisión y completado. Vincular cada análisis a su hash y cada conclusión a su evidencia. Una solicitud de revisión no es una aprobación del antivirus. Al cambiar una entrega, actualizar hash, ficha, informes y archivos de la release de forma coherente.

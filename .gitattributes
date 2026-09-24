@@ -1,4 +1,6 @@
 # The embedded recipe is checked byte-for-byte by SHA256.
 src/Syncrash/recipe.json -text
+src/Syncrash/app.manifest text eol=lf
+LICENSE text eol=lf
 src/Syncrash/assets/*.png binary
 src/Syncrash/assets/*.ico binary
