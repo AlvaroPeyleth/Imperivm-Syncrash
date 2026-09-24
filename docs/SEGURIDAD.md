@@ -1,8 +1,8 @@
 # Seguridad y verificaciones de Syncrash
 
-**El propósito de abrir el código es que el comportamiento del parche pueda comprobarse.** Esta página explica las medidas de protección, la revisión del ejecutable y las alertas conocidas de Syncrash v1.
+**Desarrollamos Syncrash para aplicar nuestras correcciones a Imperivm de forma controlada y verificable.** Publicamos el código, los cambios exactos del parche y las instrucciones para compilarlo. Aquí explicamos qué hace el programa, cómo comprobamos el ejecutable y qué alertas puedes encontrar.
 
-**La revisión del aplicador no ha encontrado código malicioso y ha contrastado el EXE distribuido con el código público.** Estas comprobaciones respaldan la hipótesis de falsos positivos. A continuación se documentan las operaciones del programa, la comparación del binario y las alertas examinadas.
+Hemos revisado las operaciones del aplicador y contrastado el EXE distribuido con una recompilación del código publicado. No encontramos código malicioso. También hemos relacionado varias reglas del analizador con funciones legítimas del programa; estas comprobaciones respaldan nuestra hipótesis de falsos positivos.
 
 ## Revisa, modifica o compila tu propia versión
 
@@ -25,7 +25,7 @@ Estas medidas hacen que la aplicación sea repetible y permiten rechazar archivo
 
 ## Alcance de los accesos
 
-En el código revisado:
+Hemos diseñado el aplicador con este alcance:
 
 - Los accesos a Steam sirven para localizar el juego y verificar su versión.
 - No hay funciones de descarga automática, telemetría, lectura de credenciales, instalación al arrancar, inyección en procesos ni desactivación de antivirus.
@@ -33,7 +33,7 @@ En el código revisado:
 - Los recursos incrustados son la receta de cambios, el banner, el icono, la marca gráfica y la licencia. Las imágenes se usan en la interfaz.
 - Los mapas, guardados, PAK y archivos de audio no se modifican durante la aplicación del parche.
 
-Estas afirmaciones describen el aplicador revisado. El cambio aplicado al juego tiene su propio [alcance técnico y límites](FUNCIONAMIENTO.md), y su validación multijugador continúa.
+El cambio que aplicamos al juego está explicado en [Funcionamiento](FUNCIONAMIENTO.md), junto con su alcance y las pruebas multijugador pendientes.
 
 ## Cómo contrastamos el EXE con el código
 
@@ -43,7 +43,7 @@ El archivo analizado y publicado tiene SHA256:
 986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3
 ```
 
-Se recompiló el código del commit de entrega `26c6c46` en un directorio aislado, usando el compilador de .NET Framework con firma válida de Microsoft. La comparación encontró:
+Recompilamos el código del commit de entrega `26c6c46` en un directorio aislado, usando el compilador de .NET Framework con firma válida de Microsoft. Comprobamos:
 
 - Coincidencia de los 57 métodos inspeccionados, sus instrucciones IL, las seis referencias a bibliotecas .NET y los cinco recursos incrustados.
 - Tras reproducir los saltos de línea del manifiesto, el mismo tamaño y únicamente 47 bytes distintos, correspondientes a la fecha del encabezado PE y los identificadores generados por el compilador. Todos los demás bytes coinciden.
@@ -52,7 +52,7 @@ La comprobación relaciona el binario distribuido con ese código fuente. Se hiz
 
 ## Qué significan las alertas observadas
 
-Una herramienta de análisis puede señalar funciones o características que también tienen usos legítimos. Para interpretarlas hay que examinar dónde y para qué se usan.
+Si un antivirus muestra una alerta sobre esta versión, puedes contrastarla con los informes que publicamos. Hemos examinado las reglas detalladas de MetaDefender y localizado las funciones a las que se refieren. Esta tabla explica su uso en Syncrash; los veredictos individuales de los motores antivirus se recogen después.
 
 | Regla de MetaDefender | Qué detectó | Uso comprobado en Syncrash |
 | --- | --- | --- |
@@ -81,7 +81,7 @@ Malwarebytes describe [MachineLearning/Anomalous.100%](https://www.malwarebytes.
 
 ### Estado de la revisión con los proveedores
 
-La hipótesis de falsos positivos es la valoración del proyecto basada en las comprobaciones descritas. Sigue pendiente solicitar y obtener una revisión de los proveedores que detectan el archivo. Mientras se aclaran esas detecciones, mantenemos la recomendación de posponer nuevas instalaciones.
+Nuestras comprobaciones respaldan la hipótesis de falsos positivos. Vamos a solicitar la revisión a los proveedores que detectan el archivo, aportando el ejecutable, su hash, el código y la comparación de la compilación. La solicitud y sus respuestas están pendientes. Mientras se aclaran esas detecciones, mantenemos la recomendación de posponer nuevas instalaciones.
 
 ## Cómo comprobar una descarga y comunicar un problema
 
@@ -89,4 +89,4 @@ Descarga desde la [release oficial](https://github.com/AlvaroPeyleth/Imperivm-Sy
 
 Si aparece una alerta, conserva el motor, la versión de firmas, el nombre de detección y el hash. No desactives el antivirus ni añadas exclusiones para forzar la ejecución. Puedes comunicar esos datos a `xtalvarotx` en Discord o abrir una incidencia sin datos privados.
 
-La revisión de posibles falsos positivos con los proveedores sigue pendiente. Se actualizará la documentación con sus conclusiones y con cualquier cambio del ejecutable; un informe corresponde a un hash concreto y no debe reutilizarse como garantía para otra versión.
+Publicaremos las respuestas de los proveedores y actualizaremos esta documentación si cambia el ejecutable. Cada informe corresponde al hash indicado; para otra versión publicaremos sus propias comprobaciones.

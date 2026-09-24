@@ -2,7 +2,7 @@
 
 ## Resultado
 
-**La revisión no ha encontrado código malicioso en el aplicador y ha contrastado el EXE distribuido con el código público.** Estas comprobaciones respaldan la hipótesis de falsos positivos. La revisión de los proveedores sigue pendiente; no se conoce la regla o característica concreta que activó cada motor.
+**Hemos revisado el aplicador que desarrollamos y contrastado el EXE distribuido con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. Sigue pendiente solicitar y obtener la revisión de los proveedores; todavía no conocemos la regla o característica concreta que activó cada motor.
 
 ## Evidencia
 

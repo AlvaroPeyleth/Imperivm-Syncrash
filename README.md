@@ -17,7 +17,7 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-**Código público y ejecutable revisado.** La revisión no encontró comportamiento malicioso y contrastó el EXE con una recompilación del código publicado. Los resultados antivirus y el estado de su revisión están disponibles en [Seguridad y verificaciones](docs/SEGURIDAD.md).
+**Desarrollamos Syncrash y publicamos su código para que puedas comprobarlo.** Hemos contrastado el ejecutable distribuido con una recompilación y documentado los cambios que aplica. Consulta las comprobaciones y las alertas antivirus conocidas en [Seguridad y verificaciones](docs/SEGURIDAD.md).
 
 ## Descargar y jugar
 
@@ -60,7 +60,7 @@ El aplicador contiene las diferencias necesarias, **no el ejecutable completo de
 
 ## Seguridad y código verificable
 
-**La revisión del aplicador no ha encontrado código malicioso.** Publicamos el código, la receta de cambios y las instrucciones de compilación en [`src/Syncrash`](src/Syncrash) para que puedas comprobar qué hace. Puedes revisarlo, modificarlo y generar tu propio aplicador bajo la licencia MIT.
+**Syncrash es una herramienta legítima que desarrollamos para aplicar nuestras correcciones a Imperivm.** Su funcionamiento está documentado y su código es público: el aplicador, la receta de cambios y la compilación están en [`src/Syncrash`](src/Syncrash). Puedes comprobar cada operación, modificar el proyecto y generar tu propio aplicador bajo la licencia MIT.
 
 También contrastamos el EXE distribuido con una recompilación: coinciden las instrucciones de los 57 métodos inspeccionados y todos los recursos incrustados. Al reproducir el manifiesto, únicamente difieren 47 bytes de metadatos generados por el compilador. El [informe técnico](docs/REVISION_ANTIVIRUS.md) explica cómo se comprobó.
 
@@ -68,9 +68,14 @@ El parche se aplica de forma controlada: comprueba la identidad de los archivos 
 
 ### ¿Por qué aparecen alertas antivirus?
 
-En el informe detallado de MetaDefender, algunas reglas señalan precisamente las funciones SHA256, la consulta del proceso del juego y la búsqueda de unidades de Steam. Hemos relacionado esas reglas con su uso legítimo en el código. Otras señalan un EXE sin firma y datos de alta entropía, para los que las imágenes comprimidas incrustadas son una explicación plausible.
+**Algunos antivirus pueden mostrar una alerta al descargar o abrir esta versión.** Publicamos los informes para que sepas cuáles son y cómo las hemos investigado. En MetaDefender hemos identificado reglas que señalan funciones necesarias del aplicador:
 
-La revisión respalda la hipótesis de falsos positivos. El 24/09/2026 observamos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. La explicación de las reglas identificadas, los informes completos y la revisión pendiente con los proveedores se recogen en la documentación de seguridad.
+- **SHA256:** comprueba que los archivos y el resultado del parche sean los esperados.
+- **Consulta de procesos:** comprueba que Imperivm esté cerrado antes de modificarlo.
+- **Búsqueda de unidades:** localiza las bibliotecas de Steam.
+- **EXE sin firma y alta entropía:** el aplicador no tiene firma digital e incorpora imágenes comprimidas; estas son una explicación plausible de la señal de entropía.
+
+El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. El siguiente paso es solicitar a los proveedores que revisen esas clasificaciones; publicaremos sus respuestas. Los motivos identificados y lo que queda por aclarar están detallados en la documentación de seguridad.
 
 [Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
 

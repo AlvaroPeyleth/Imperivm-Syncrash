@@ -51,12 +51,12 @@ El análisis final muestra **7 detecciones entre 71 motores**, con estos nombres
 | SecureAge | Malicious |
 | Trapmine | Suspicious.low.ml.score |
 
-La revisión del aplicador no encontró código malicioso y respalda la hipótesis de falsos positivos. Sigue pendiente la revisión de los proveedores que detectan el archivo. Recomendamos posponer nuevas instalaciones hasta aclarar esas detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
+Hemos revisado nuestro aplicador y contrastado este EXE con el código publicado, sin encontrar código malicioso. Estas comprobaciones respaldan nuestra hipótesis de falsos positivos. Vamos a solicitar la revisión de los proveedores que detectan el archivo y publicar sus respuestas. Recomendamos posponer nuevas instalaciones hasta aclarar esas detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
 
 El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. La comparación con el código publicado ya se ha realizado y se resume a continuación. Sigue pendiente solicitar y obtener la revisión de los proveedores que lo detectan. El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.
 
 ## Revisión del aplicador
 
-La [revisión del 24/09/2026](REVISION_ANTIVIRUS.md) vincula el EXE publicado con el código de la entrega: coinciden el código compilado y los recursos; al igualar los saltos de línea del manifiesto solo cambian metadatos generados por el compilador. No se ha encontrado comportamiento malicioso en el aplicador revisado. La causa exacta de las detecciones y su posible condición de falsos positivos siguen pendientes de revisión por los proveedores.
+En nuestra [revisión del 24/09/2026](REVISION_ANTIVIRUS.md) comprobamos la correspondencia entre el EXE publicado y el código de la entrega: coinciden las instrucciones de los métodos inspeccionados y los recursos; al igualar los saltos de línea del manifiesto solo cambian metadatos generados por el compilador. Publicamos el procedimiento para que puedas contrastarlo y compilar tu propia versión. La causa exacta de cada detección sigue pendiente de aclaración con los proveedores.
 
 La [explicación de seguridad](SEGURIDAD.md) reúne las comprobaciones y los resultados de VirusTotal y MetaDefender con sus límites.
