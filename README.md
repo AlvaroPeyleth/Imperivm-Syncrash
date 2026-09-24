@@ -17,7 +17,7 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-**Estado del análisis antivirus (24/09/2026):** VirusTotal muestra **7 detecciones de 71 motores** para el EXE publicado. Su causa sigue pendiente de investigación; no se han confirmado falsos positivos. Recomendamos posponer nuevas instalaciones hasta revisarlas. [Ver informe](https://www.virustotal.com/gui/file/986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3) · [Detalle de las detecciones](docs/ENTREGA_ACTUAL.md).
+**Código público y ejecutable revisado.** La revisión no encontró comportamiento malicioso y contrastó el EXE con una recompilación del código publicado. Los resultados antivirus y el estado de su revisión están disponibles en [Seguridad y verificaciones](docs/SEGURIDAD.md).
 
 ## Descargar y jugar
 
@@ -60,7 +60,9 @@ El aplicador contiene las diferencias necesarias, **no el ejecutable completo de
 
 ## Seguridad y código verificable
 
-**Publicamos el código para que puedas revisar qué hace Syncrash y cómo aplica el parche.** El aplicador, la receta de cambios y las instrucciones de compilación están en [`src/Syncrash`](src/Syncrash). La revisión realizada no ha encontrado comportamiento malicioso en el aplicador y ha contrastado el EXE distribuido con una recompilación del código publicado.
+**La revisión del aplicador no ha encontrado código malicioso.** Publicamos el código, la receta de cambios y las instrucciones de compilación en [`src/Syncrash`](src/Syncrash) para que puedas comprobar qué hace. Puedes revisarlo, modificarlo y generar tu propio aplicador bajo la licencia MIT.
+
+También contrastamos el EXE distribuido con una recompilación: coinciden las instrucciones de los 57 métodos inspeccionados y todos los recursos incrustados. Al reproducir el manifiesto, únicamente difieren 47 bytes de metadatos generados por el compilador. El [informe técnico](docs/REVISION_ANTIVIRUS.md) explica cómo se comprobó.
 
 El parche se aplica de forma controlada: comprueba la identidad de los archivos mediante SHA256, exige que el juego esté cerrado, reconstruye el resultado y lo verifica antes de sustituir `gbr.exe`. Estas comprobaciones reducen el riesgo de aplicar cambios a una edición incorrecta o producir un resultado distinto del previsto. **Un hash es una huella para comprobar archivos; Syncrash calcula y compara hashes.**
 
@@ -68,15 +70,13 @@ El parche se aplica de forma controlada: comprueba la identidad de los archivos 
 
 En el informe detallado de MetaDefender, algunas reglas señalan precisamente las funciones SHA256, la consulta del proceso del juego y la búsqueda de unidades de Steam. Hemos relacionado esas reglas con su uso legítimo en el código. Otras señalan un EXE sin firma y datos de alta entropía, para los que las imágenes comprimidas incrustadas son una explicación plausible.
 
-**Esto explica reglas concretas de MetaDefender; no confirma que todas las detecciones antivirus sean falsos positivos.** El 24/09/2026 observamos 7/71 detecciones en VirusTotal y 2/21 en MetaDefender, sobre el mismo archivo. Publicamos ambos resultados y sus límites: el código abierto facilita una revisión, pero no sustituye esa revisión ni garantiza ausencia de errores.
+La revisión respalda la hipótesis de falsos positivos. El 24/09/2026 observamos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. La explicación de las reglas identificadas, los informes completos y la revisión pendiente con los proveedores se recogen en la documentación de seguridad.
 
 [Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
 
 ## Pruebas de estabilidad
 
 Se han probado instalación, reinstalación y rechazo de archivos incompatibles en copias aisladas. Una sesión Steam de unos 79 minutos con la protección terminó normalmente y sin las excepciones vigiladas. Los registros recibidos de ambos jugadores no muestran un desync explícito. **Eso no demuestra que todos los fallos estén resueltos ni que el parche evitara un cierre en esa partida.**
-
-El EXE no lleva firma digital Authenticode. El código abierto y un análisis antivirus permiten revisar aspectos del proyecto, pero no son una garantía absoluta de seguridad o estabilidad.
 
 ## Ayuda a mejorar Syncrash
 

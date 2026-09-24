@@ -2,7 +2,7 @@
 
 ## Resultado
 
-La revisión no ha encontrado comportamiento malicioso en el aplicador. La hipótesis de trabajo es una posible clasificación errónea, pendiente de revisión por los proveedores. No se conoce la regla o característica concreta que activó cada motor.
+**La revisión no ha encontrado código malicioso en el aplicador y ha contrastado el EXE distribuido con el código público.** Estas comprobaciones respaldan la hipótesis de falsos positivos. La revisión de los proveedores sigue pendiente; no se conoce la regla o característica concreta que activó cada motor.
 
 ## Evidencia
 

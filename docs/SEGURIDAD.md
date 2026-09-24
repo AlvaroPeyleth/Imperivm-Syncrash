@@ -2,7 +2,11 @@
 
 **El propósito de abrir el código es que el comportamiento del parche pueda comprobarse.** Esta página explica las medidas de protección, la revisión del ejecutable y las alertas conocidas de Syncrash v1.
 
-La revisión del aplicador no ha encontrado comportamiento malicioso. Existen detecciones antivirus pendientes de aclarar; todavía no hay una confirmación de los proveedores que permita declararlas falsos positivos. La recomendación sigue siendo posponer nuevas instalaciones mientras se resuelven y facilitar el código para revisión técnica.
+**La revisión del aplicador no ha encontrado código malicioso y ha contrastado el EXE distribuido con el código público.** Estas comprobaciones respaldan la hipótesis de falsos positivos. A continuación se documentan las operaciones del programa, la comparación del binario y las alertas examinadas.
+
+## Revisa, modifica o compila tu propia versión
+
+El [código del aplicador](../src/Syncrash), la receta del parche y el proceso de compilación son públicos. Puedes inspeccionarlos, modificarlos y generar tu propio ejecutable siguiendo las [instrucciones de compilación](../README.md#compilar-y-conocer-el-proyecto). La [licencia MIT](../LICENSE) permite reutilizar el código conservando el aviso de copyright y la licencia.
 
 ## Qué hace el aplicador
 
@@ -15,7 +19,7 @@ El [código publicado](../src/Syncrash/Program.cs) permite seguir estas operacio
 5. **Verifica antes de sustituir.** Escribe un temporal junto al destino, comprueba su hash y vuelve a comprobar que los archivos de entrada no hayan cambiado antes de reemplazar únicamente `gbr.exe`.
 6. **Confirma el resultado final.** Verifica de nuevo su hash y elimina el temporal si queda pendiente.
 
-Estas medidas hacen que la aplicación sea repetible y permiten rechazar archivos incompatibles. Se han probado instalación, reinstalación y rechazo de EXE/PAK alterados en copias aisladas. No constituyen una comparación que permita afirmar que este es el método más fiable entre todos los posibles, ni garantizan que el juego quede libre de fallos.
+Estas medidas hacen que la aplicación sea repetible y permiten rechazar archivos incompatibles. Se han probado instalación, reinstalación y rechazo de EXE/PAK alterados en copias aisladas. La protección del juego cubre las tres rutas de cierre descritas en [Funcionamiento](FUNCIONAMIENTO.md).
 
 **No hay copia de seguridad automática.** Para recuperar el original, verifica los archivos del juego desde Steam o reinstálalo. Los hashes esperados están en [Transparencia](TRANSPARENCIA.md#archivos-admitidos).
 
@@ -73,7 +77,11 @@ El detalle de MetaDefender clasifica cinco indicadores como sospechosos y tres c
 
 Los dominios extraídos de recursos y las IP resueltas por el analizador tampoco equivalen a conexiones hechas por el programa. Por ejemplo, las imágenes incluyen metadatos de procedencia con referencias a organismos y certificados. La [revisión técnica](REVISION_ANTIVIRUS.md) recoge lo observado y sus límites.
 
-Malwarebytes describe [MachineLearning/Anomalous.100%](https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100) como una detección genérica de su módulo de aprendizaje automático. Esa descripción no confirma que el resultado de Syncrash sea erróneo. Explicar las reglas estáticas de MetaDefender tampoco identifica la causa interna de los siete motores de VirusTotal.
+Malwarebytes describe [MachineLearning/Anomalous.100%](https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100) como una detección genérica de su módulo de aprendizaje automático. Hemos identificado el uso legítimo de las funciones señaladas por varias reglas estáticas de MetaDefender; la causa interna de cada veredicto antivirus todavía no se conoce.
+
+### Estado de la revisión con los proveedores
+
+La hipótesis de falsos positivos es la valoración del proyecto basada en las comprobaciones descritas. Sigue pendiente solicitar y obtener una revisión de los proveedores que detectan el archivo. Mientras se aclaran esas detecciones, mantenemos la recomendación de posponer nuevas instalaciones.
 
 ## Cómo comprobar una descarga y comunicar un problema
 

@@ -51,7 +51,7 @@ El análisis final muestra **7 detecciones entre 71 motores**, con estos nombres
 | SecureAge | Malicious |
 | Trapmine | Suspicious.low.ml.score |
 
-No se ha confirmado que sean falsos positivos ni se ha establecido su causa. El resultado no se presenta como un sello de seguridad. Recomendamos posponer nuevas instalaciones hasta revisar las detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
+La revisión del aplicador no encontró código malicioso y respalda la hipótesis de falsos positivos. Sigue pendiente la revisión de los proveedores que detectan el archivo. Recomendamos posponer nuevas instalaciones hasta aclarar esas detecciones; no desactives el antivirus ni añadas exclusiones para ejecutar el archivo.
 
 El ejecutable publicado no se ha sustituido: el informe analiza exactamente esa entrega. La comparación con el código publicado ya se ha realizado y se resume a continuación. Sigue pendiente solicitar y obtener la revisión de los proveedores que lo detectan. El informe puede cambiar con nuevas firmas o análisis; esta tabla refleja el resultado observado en la fecha indicada.
 
