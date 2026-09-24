@@ -2,9 +2,9 @@
 
 **Desarrollamos Syncrash para aplicar nuestras correcciones a Imperivm de forma controlada y verificable.** Publicamos el código, los cambios exactos del parche y las instrucciones para compilarlo. Aquí explicamos qué hace el programa, cómo comprobamos el ejecutable y qué alertas puedes encontrar.
 
-Hemos revisado las operaciones del aplicador y contrastado el EXE distribuido con una recompilación del código publicado. No encontramos código malicioso. También hemos relacionado varias reglas del analizador con funciones legítimas del programa; estas comprobaciones respaldan nuestra hipótesis de falsos positivos.
+Hemos revisado las operaciones del aplicador. En la revisión histórica de v1.0.0 contrastamos su EXE con una recompilación del código publicado y no encontramos código malicioso. También relacionamos varias reglas del analizador con funciones legítimas del programa; estas comprobaciones respaldan nuestra hipótesis de falsos positivos para aquel hash.
 
-**Estado a 24/09/2026:** los análisis publicados corresponden a la entrega v1.0.0. El código actual genera el [candidato local 1.0.3.0](CANDIDATO_1.0.3.md), todavía sin publicar ni analizar por antivirus. Ya se aplicó con éxito a una copia de archivos reales del juego; falta probar una partida con él.
+**Estado a 24/09/2026:** la [entrega actual v1.0.3](ENTREGA_ACTUAL.md), aplicador 1.0.3.0, está publicada como experimental. Su EXE se recompiló de forma idéntica y se aplicó con éxito a una copia de archivos reales; faltan una partida y un análisis antivirus de su hash. Los análisis y la solicitud a Microsoft documentados aquí corresponden exclusivamente a v1.0.0 y no se transfieren a la nueva entrega.
 
 ## Revisa, modifica o compila tu propia versión
 
@@ -21,7 +21,7 @@ El [código publicado](../src/Syncrash/Program.cs) permite seguir estas operacio
 5. **Verifica antes de sustituir.** Escribe un temporal junto al destino, comprueba su hash y vuelve a comprobar que los archivos de entrada no hayan cambiado antes de reemplazar únicamente `gbr.exe`.
 6. **Confirma el resultado final.** Verifica de nuevo su hash y elimina el temporal si queda pendiente.
 
-La entrega v1.0.0 se probó en copias aisladas: instalación, reinstalación y rechazo de un EXE o PAK alterado. Esa versión reescribe el resultado si ya está instalado. El candidato 1.0.3.0 responde «ya instalado» sin reescribir, impide dos aplicaciones simultáneas y añade `--check`, que solo lee. Sus [pruebas](CANDIDATO_1.0.3.md) no incluyen todavía una partida real. La protección del juego cubre las tres rutas de cierre descritas en [Funcionamiento](FUNCIONAMIENTO.md).
+La entrega v1.0.0 se probó en copias aisladas: instalación, reinstalación y rechazo de un EXE o PAK alterado. Esa versión reescribe el resultado si ya está instalado. El aplicador 1.0.3.0 responde «ya instalado» sin reescribir, impide dos aplicaciones simultáneas y añade `--check`, que solo lee. Sus [pruebas](CANDIDATO_1.0.3.md) no incluyen todavía una partida real. La protección del juego cubre las tres rutas de cierre descritas en [Funcionamiento](FUNCIONAMIENTO.md).
 
 **No hay copia de seguridad automática.** Para recuperar el original, verifica los archivos del juego desde Steam o reinstálalo. Los hashes esperados están en [Transparencia](TRANSPARENCIA.md#archivos-admitidos).
 
@@ -39,7 +39,7 @@ El cambio que aplicamos al juego está explicado en [Funcionamiento](FUNCIONAMIE
 
 ## Cómo contrastamos el EXE con el código
 
-El archivo analizado y publicado tiene SHA256:
+El archivo histórico v1.0.0 analizado en este apartado tiene SHA256:
 
 ```text
 986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3
@@ -50,11 +50,11 @@ Recompilamos el código del commit de entrega `26c6c46` en un directorio aislado
 - Coincidencia de los 57 métodos inspeccionados, sus instrucciones IL, las seis referencias a bibliotecas .NET y los cinco recursos incrustados.
 - Tras reproducir los saltos de línea del manifiesto, el mismo tamaño y únicamente 47 bytes distintos, correspondientes a la fecha del encabezado PE y los identificadores generados por el compilador. Todos los demás bytes coinciden.
 
-La comprobación relaciona el binario **publicado v1.0.0** con ese código fuente. Se hizo en la misma máquina y no equivale a una auditoría externa de toda la cadena de compilación. Un hash identifica un archivo: por sí solo no demuestra que sea seguro. El candidato 1.0.3.0 tiene [otra comparación y otro hash](CANDIDATO_1.0.3.md); los informes de este apartado no se transfieren a él.
+La comprobación relaciona el binario **publicado v1.0.0** con ese código fuente. Se hizo en la misma máquina y no equivale a una auditoría externa de toda la cadena de compilación. Un hash identifica un archivo: por sí solo no demuestra que sea seguro. El aplicador 1.0.3.0 tiene [otra comparación y otro hash](CANDIDATO_1.0.3.md); los informes de este apartado no se transfieren a él.
 
 ## Qué significan las alertas observadas
 
-Si un antivirus muestra una alerta sobre esta versión, puedes contrastarla con los informes que publicamos. Hemos examinado las reglas detalladas de MetaDefender y localizado las funciones a las que se refieren. Esta tabla explica su uso en Syncrash; los veredictos individuales de los motores antivirus se recogen después.
+Los informes de este apartado describen las alertas de v1.0.0. No atribuyen un veredicto al nuevo hash de v1.0.3. Hemos examinado las reglas detalladas de MetaDefender y localizado las funciones a las que se refieren. Esta tabla explica su uso en Syncrash; los veredictos individuales de los motores antivirus se recogen después.
 
 | Regla de MetaDefender | Qué detectó | Uso comprobado en Syncrash |
 | --- | --- | --- |

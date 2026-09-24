@@ -22,7 +22,7 @@ Las reconstrucciones y ensayos locales sirven de evidencia para este mecanismo. 
 
 ## Aplicación al archivo
 
-El aplicador verifica la base Steam y los recursos, reconstruye el resultado en memoria y prepara un temporal junto a `gbr.exe`. Comprueba de nuevo los archivos y que el juego esté cerrado antes de sustituirlo. No crea copia de seguridad. En el [candidato 1.0.3.0](CANDIDATO_1.0.3.md), si el resultado exacto ya está instalado, lo comunica sin crear temporal ni reescribir. La entrega pública v1.0.0 sí reescribía el resultado al repetir la aplicación.
+El aplicador verifica la base Steam y los recursos, reconstruye el resultado en memoria y prepara un temporal junto a `gbr.exe`. Comprueba de nuevo los archivos y que el juego esté cerrado antes de sustituirlo. No crea copia de seguridad. En el [aplicador 1.0.3.0](CANDIDATO_1.0.3.md), si el resultado exacto ya está instalado, lo comunica sin crear temporal ni reescribir. La entrega pública v1.0.0 sí reescribía el resultado al repetir la aplicación.
 
 Se distribuyen cambios parciales, no una copia completa de Imperivm. Los bytes de referencia del juego se incluyen para identificar y aplicar el cambio; la licencia MIT del trabajo propio no altera los derechos de sus titulares.
 

@@ -2,7 +2,7 @@
 
 ## Resultado
 
-**Hemos revisado el aplicador que desarrollamos y contrastado el EXE distribuido con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. La solicitud a Microsoft ya está enviada, con resolución final pendiente; las solicitudes a otros proveedores siguen pendientes. Todavía no conocemos la regla o característica concreta que activó cada motor. El [estado de las gestiones](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores) se mantiene en la documentación de seguridad.
+**Hemos revisado el aplicador que desarrollamos y contrastado el EXE histórico v1.0.0 con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. La solicitud a Microsoft ya está enviada, con resolución final pendiente; las solicitudes a otros proveedores siguen pendientes. Todavía no conocemos la regla o característica concreta que activó cada motor. El [estado de las gestiones](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores) se mantiene en la documentación de seguridad.
 
 ## Evidencia
 
@@ -23,7 +23,7 @@ La revisión vincula el archivo distribuido con el código público. No equivale
 
 ## Siguiente paso
 
-Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. El [estado actual](SEGURIDAD.md) distingue las pruebas del candidato de los análisis del EXE publicado.
+Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. El [estado actual](SEGURIDAD.md) distingue las pruebas de 1.0.3.0 de los análisis del EXE histórico v1.0.0.
 
 Fuentes:
 - https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100
@@ -64,10 +64,10 @@ Los IOC visibles incluyen dominios extraídos de archivos como cert.ssl.com, cre
 
 Estas evidencias explican las reglas estáticas concretas de este informe, no la causa interna de cada detección antivirus. No se recomienda quitar verificaciones de hash o de juego cerrado para reducir contadores de sospecha.
 
-## Candidato local 1.0.3.0 · 24/09/2026
+## Aplicador 1.0.3.0, publicado como v1.0.3 · 24/09/2026
 
-El [candidato técnico actual](CANDIDATO_1.0.3.md), tras los ajustes de auditoría, tiene **2.403.840 bytes** y SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 14 pruebas con Windows PowerShell 5.1 y se repitió el ensayo sobre una copia aislada de archivos reales admitidos con este EXE: resultado V2 exacto, PAK intacto, reaplicación sin escritura y original conservado ante acceso denegado. La evidencia actual está en `work/audit-final-20260924/`, fuera de Git.
+El [aplicador actual](CANDIDATO_1.0.3.md), tras los ajustes de auditoría, tiene **2.403.840 bytes** y SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 14 pruebas con Windows PowerShell 5.1 y se repitió el ensayo sobre una copia aislada de archivos reales admitidos con este EXE: resultado V2 exacto, PAK intacto, reaplicación sin escritura y original conservado ante acceso denegado. La evidencia actual está en `work/audit-final-20260924/`, fuera de Git.
 
 La comprobación anterior de 12 pruebas y copia real corresponde históricamente al SHA256 `1407eddc96743a90a669257acb21146bc2ee99f28ba155d08d853f2a7910d812` (2.403.328 bytes), conservado en `work/codex-verification-20260924/`; no identifica el nuevo ejecutable.
 
-**No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre ninguno de esos dos hashes de 1.0.3.0, ni se publicó el candidato.** Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.
+**No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre ninguno de esos dos hashes de 1.0.3.0.** La entrega v1.0.3 se publicó posteriormente el mismo día con el hash final ya comprobado, sin atribuirle nuevos veredictos antivirus. Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.

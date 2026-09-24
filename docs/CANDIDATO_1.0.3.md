@@ -1,6 +1,6 @@
-# Syncrash 1.0.3.0: candidato local y comprobaciones
+# Syncrash 1.0.3.0: comprobaciones y cierre de la entrega
 
-**Estado a 24/09/2026: candidato local, todavía sin publicar.** La [entrega pública v1.0.0](ENTREGA_ACTUAL.md) es otro archivo, con su propio hash. Este documento es la fuente principal de las pruebas del candidato.
+**Estado a 24/09/2026: publicado como v1.0.3 experimental para recoger feedback.** El binario mantiene el hash probado durante la auditoría. La [ficha de entrega](ENTREGA_ACTUAL.md) identifica la descarga actual y conserva v1.0.0 como histórica. Este documento sigue siendo la fuente principal de las pruebas de 1.0.3.0.
 
 ## Identidad y alcance
 
@@ -28,7 +28,7 @@ El candidato conserva la receta, los hashes admitidos, el banner y las tres corr
 - La interfaz detecta accesos denegados internos, también en errores agrupados de aplicación y limpieza, y añade la ayuda de permisos conservando el estado del archivo que informa el motor.
 - El preparador obtiene la versión de `AssemblyInfo.cs` y la utiliza también en las instrucciones y el nombre del ZIP. CI ejecuta `push` solo en `main` y mantiene `pull_request`.
 
-El 24/09/2026 se comprobaron las últimas releases oficiales: [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) y [setup-dotnet v6.0.0](https://github.com/actions/setup-dotnet/releases/tag/v6.0.0). El workflow usa sus mayores `@v7` y `@v6`; ambos declaran Node.js 24 en sus manifiestos. La ejecución remota de este workflow queda pendiente del push autorizado.
+El 24/09/2026 se comprobaron las últimas releases oficiales: [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) y [setup-dotnet v6.0.0](https://github.com/actions/setup-dotnet/releases/tag/v6.0.0). El workflow usa sus mayores `@v7` y `@v6`; ambos declaran Node.js 24 en sus manifiestos. La [ejecución remota del commit de código](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36040682980) terminó correctamente, incluidas las pruebas y la comparación de builds.
 
 Códigos de salida de la línea de comandos:
 
@@ -44,7 +44,9 @@ El mutex no protege frente a Steam, otros programas, enlaces a la misma ruta ni 
 
 ## Verificación final del 24/09/2026
 
-Con **Windows PowerShell 5.1.26100.9444** se ejecutaron `tests/run.ps1` y `scripts/compare-builds.ps1` sobre los cambios locales posteriores a `2dd79aa`, todavía sin commit. Pasaron las **14 pruebas sintéticas y de línea de comandos**: reconstrucción, entradas y receta inválidas, salida incorrecta, juego abierto o consulta de procesos fallida, comprobación de solo lectura, repetición sin escritura, fallos antes y después de sustituir, reemplazo denegado, concurrencia, mensajes de permisos con causas internas y salida redirigida sin consola. Dos compilaciones del mismo código fueron idénticas byte a byte, con el SHA256 de la tabla, también idéntico al EXE usado en las pruebas. Son resultados de una sola máquina, no una reproducción independiente.
+La comprobación posterior en GitHub Actions también pasó 14/14 pruebas y produjo dos builds idénticos entre sí, con SHA256 `ab97764cc3d02ff0ff587218b194de69c89aabc59c78c9acd16e549dd089ce51`. **Ese hash difiere del EXE local publicado.** La reproducibilidad byte a byte está comprobada dentro de cada entorno, no entre la máquina local y el runner Windows 2022. No se ha determinado la causa de la diferencia; normalizar los finales de línea de C# en una copia local no la reprodujo. La release distribuye únicamente el EXE local de la tabla, recompilado desde el commit limpio y probado sobre archivos reales. Evidencia remota conservada en `work/audit-final-20260924/ci-code.log`.
+
+Con **Windows PowerShell 5.1.26100.9444** se ejecutaron `tests/run.ps1` y `scripts/compare-builds.ps1` sobre los cambios locales posteriores a `2dd79aa`, todavía sin commit en el momento de aquella prueba. Pasaron las **14 pruebas sintéticas y de línea de comandos**: reconstrucción, entradas y receta inválidas, salida incorrecta, juego abierto o consulta de procesos fallida, comprobación de solo lectura, repetición sin escritura, fallos antes y después de sustituir, reemplazo denegado, concurrencia, mensajes de permisos con causas internas y salida redirigida sin consola. Dos compilaciones del mismo código fueron idénticas byte a byte, con el SHA256 de la tabla, también idéntico al EXE usado en las pruebas. Son resultados de una sola máquina, no una reproducción independiente.
 
 Después se copiaron **archivos reales ya admitidos** a una carpeta local, fuera de Git. Los hashes iniciales eran `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473` para `gbr.exe` y `6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50` para `Packs/data.pak`. Con el EXE de la tabla:
 
@@ -82,11 +84,15 @@ La compilación no sobrescribe un EXE existente. El preparador exige un commit s
 
 El ZIP local no es una release ni sustituye a v1.0.0. Registra su hash al crearlo: el hash de un ZIP anterior no identifica uno nuevo.
 
-Se verificaron la sintaxis y el BOM de los scripts en PowerShell 5.1, la lectura de la versión actual, el rechazo cuando `AssemblyInfo.cs` declara otra versión o carece de ella, y el rechazo del árbol con cambios sin crear paquete. El recorrido completo del preparador con este candidato queda pendiente del commit revisado y del árbol limpio. No se ha creado un paquete final ni se ha hecho commit o push durante esta auditoría.
+Se verificaron la sintaxis y el BOM de los scripts en PowerShell 5.1, la lectura de la versión actual, el rechazo cuando `AssemblyInfo.cs` declara otra versión o carece de ella, y el rechazo del árbol con cambios sin crear paquete.
 
-## Pendiente antes de distribuir el binario
+Tras la autorización de cierre y publicación, se creó el commit `848ffbbad3fd1851334272af2a8314cf205bdf8c` y se ejecutó el recorrido completo del preparador con Windows PowerShell 5.1 sobre el árbol limpio. La recompilación coincidió con el EXE probado. El ZIP local `Syncrash-1.0.3.0-candidato.zip` tiene SHA256 `41572e4d30531b9d6ae2dc94b56728d729218388147b7b6c0c5200d051e2b660`; conserva su manifiesto del momento de preparación, anterior a la publicación. Evidencia en `work/audit-final-20260924/prepare-release-final.log`.
 
-Hay que probar el EXE exacto y el juego reconstruido en una instalación legítima aislada, con las protecciones activas:
+Se subió el código a `main` y se publicó [v1.0.3](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.3) con el EXE exacto, sus sumas y la licencia. El ZIP de preparación permanece local; no se distribuyen archivos del juego ni datos de jugadores. Las actualizaciones documentales posteriores no cambian la versión ni los bytes del EXE.
+
+## Verificaciones pendientes tras la publicación experimental
+
+La publicación para recoger feedback no da por realizadas estas pruebas. Hay que probar el EXE exacto y el juego reconstruido en una instalación legítima aislada, con las protecciones activas:
 
 1. Abrir la interfaz y aplicar el parche como usuario normal.
 2. Arrancar el juego desde Steam, jugar una partida, guardar, cargar y salir.

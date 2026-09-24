@@ -17,7 +17,7 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-La [entrega pública v1.0.0](docs/ENTREGA_ACTUAL.md) conserva su EXE y sus alertas conocidas. El código de este repositorio corresponde al [candidato local 1.0.3.0](docs/CANDIDATO_1.0.3.md), que añade controles al aplicador y todavía no se ha publicado.
+La [entrega actual v1.0.3](docs/ENTREGA_ACTUAL.md) incluye el aplicador **1.0.3.0**, con comprobación sin escritura, reaplicación sin cambios y mejoras en los mensajes. Sus [pruebas técnicas](docs/CANDIDATO_1.0.3.md) están documentadas; faltan pruebas de partida y un análisis antivirus de su hash. La entrega histórica v1.0.0 conserva su EXE y sus alertas conocidas.
 
 **Desarrollamos Syncrash y publicamos su código para que puedas comprobarlo.** Hemos contrastado el ejecutable distribuido con una recompilación y documentado los cambios que aplica. Consulta las comprobaciones y las alertas antivirus conocidas en [Seguridad y verificaciones](docs/SEGURIDAD.md).
 
@@ -25,13 +25,13 @@ La [entrega pública v1.0.0](docs/ENTREGA_ACTUAL.md) conserva su EXE y sus alert
 
 Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
 
-**Antes de descargar:** algunos antivirus detectan la entrega v1.0.0. Mientras se revisan, recomendamos posponer nuevas instalaciones. Consulta las [alertas conocidas](#por-qué-aparecen-alertas-antivirus).
+**Antes de descargar:** v1.0.3 es experimental y su hash aún no tiene un análisis antivirus nuevo. Las [alertas conocidas](#por-qué-aparecen-alertas-antivirus) corresponden a v1.0.0; no demuestran el resultado de esta entrega.
 
 1. Cierra Imperivm y abre **Syncrash.exe**.
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
 3. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-En la entrega v1.0.0, repetir la aplicación reescribe el resultado. El candidato 1.0.3.0 detecta que ya está instalado y no lo reescribe. Para pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
+El aplicador 1.0.3.0 detecta que ya está instalado y no lo reescribe. La entrega histórica v1.0.0 sí reescribía el resultado. Para pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
 
 **Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
 
@@ -64,7 +64,7 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
 - **Solo sustituye `gbr.exe`.** No modifica mapas, guardados, PAK ni archivos de audio.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir la interfaz no modifica el juego; solo lo hace el botón **Aplicar parche**. El candidato 1.0.3.0 añade las órdenes `--check <ruta>`, que solo lee, y `--apply <ruta>`, que aplica. La entrega v1.0.0 tenía una orden antigua, `--test <ruta>`, que **sí aplicaba** el parche; el candidato la retira.
+- Abrir la interfaz no modifica el juego; solo lo hace el botón **Aplicar parche**. El aplicador 1.0.3.0 incluye las órdenes `--check <ruta>`, que solo lee, y `--apply <ruta>`, que aplica. La entrega v1.0.0 tenía una orden antigua, `--test <ruta>`, que **sí aplicaba** el parche; 1.0.3.0 la retira.
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
@@ -72,20 +72,20 @@ El aplicador contiene las diferencias necesarias, **no el ejecutable completo de
 
 **Syncrash es una herramienta legítima que desarrollamos para aplicar nuestras correcciones a Imperivm.** Su funcionamiento está documentado y su código es público: el aplicador, la receta de cambios y la compilación están en [`src/Syncrash`](src/Syncrash). Puedes comprobar cada operación, modificar el proyecto y generar tu propio aplicador bajo la licencia MIT.
 
-También contrastamos el EXE distribuido con una recompilación: coinciden las instrucciones de los 57 métodos inspeccionados y todos los recursos incrustados. Al reproducir el manifiesto, únicamente difieren 47 bytes de metadatos generados por el compilador. El [informe técnico](docs/REVISION_ANTIVIRUS.md) explica cómo se comprobó.
+El EXE 1.0.3.0 coincide byte a byte con la recompilación del commit limpio. En la revisión histórica de v1.0.0 coincidían los 57 métodos inspeccionados y los recursos; solo diferían 47 bytes de metadatos al reproducir el manifiesto. El [informe técnico](docs/REVISION_ANTIVIRUS.md) distingue ambos hashes y sus comprobaciones.
 
 El parche se aplica de forma controlada: comprueba la identidad de los archivos mediante SHA256, exige que el juego esté cerrado, reconstruye el resultado y lo verifica antes de sustituir `gbr.exe`. Estas comprobaciones reducen el riesgo de aplicar cambios a una edición incorrecta o producir un resultado distinto del previsto. **Un hash es una huella para comprobar archivos; Syncrash calcula y compara hashes.**
 
 ### ¿Por qué aparecen alertas antivirus?
 
-**Algunos antivirus pueden mostrar una alerta al descargar o abrir esta versión.** Publicamos los informes para que sepas cuáles son y cómo las hemos investigado. En MetaDefender hemos identificado reglas que señalan funciones necesarias del aplicador:
+**Algunos antivirus pueden mostrar una alerta al descargar o abrir Syncrash.** Los informes siguientes son históricos de v1.0.0; no se ha analizado el nuevo hash de v1.0.3. En MetaDefender identificamos reglas que señalan funciones necesarias del aplicador:
 
 - **SHA256:** comprueba que los archivos y el resultado del parche sean los esperados.
 - **Consulta de procesos:** comprueba que Imperivm esté cerrado antes de modificarlo.
 - **Búsqueda de unidades:** localiza las bibliotecas de Steam.
 - **Alta entropía:** el EXE incorpora imágenes comprimidas. Es una explicación plausible de esta señal, no la causa demostrada de cada veredicto.
 
-El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el mismo archivo. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. **Ya hemos enviado el ejecutable a Microsoft para su revisión**: la última consulta muestra «No malware detected» en Cloud y Client, con la resolución final todavía pendiente. Continuaremos las gestiones con los demás proveedores y publicaremos las respuestas recibidas.
+El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el EXE de v1.0.0. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. **Se envió ese ejecutable a Microsoft para su revisión**: la última consulta muestra «No malware detected» en Cloud y Client, con la resolución final todavía pendiente. Esos resultados y esa solicitud no cubren v1.0.3.
 
 ### Comprobación de la descarga
 

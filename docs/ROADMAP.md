@@ -6,13 +6,13 @@ Syncrash es **un único producto con perfiles para las ediciones compatibles**. 
 
 ## Steam v1: primera entrega pública experimental
 
-La [entrega pública v1.0.0](ENTREGA_ACTUAL.md) es un único ejecutable con bienvenida, ayuda integrada y enlaces al código y a las descargas, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. Reaplica la misma V2 si ya estaba instalada. No crea copia de seguridad ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam. El [candidato local 1.0.3.0](CANDIDATO_1.0.3.md) ya no reescribe V2 al repetir.
+La [entrega actual v1.0.3](ENTREGA_ACTUAL.md) es un único ejecutable con bienvenida, ayuda integrada y enlaces al código y a las descargas, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. El [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) no reescribe V2 al repetir; la entrega histórica v1.0.0 sí lo hacía. No crea copia de seguridad ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam.
 
 La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
 
 ## Distribución y revisión antivirus
 
-El reporte a Microsoft se envió para el hash de v1.0.0 y su resolución final sigue pendiente según la última evidencia disponible. El candidato 1.0.3.0 ya se comprobó sobre una copia de archivos reales admitidos; falta probar el juego y una partida con ese EXE. Las revisiones de posibles falsos positivos continúan por separado. El [estado y los criterios de publicación](SEGURIDAD.md) se mantienen en Seguridad. Esto no cambia el alcance de las correcciones de v1.
+El reporte a Microsoft se envió para el hash de v1.0.0 y su resolución final sigue pendiente según la última evidencia disponible. El aplicador 1.0.3.0 se publicó como experimental tras comprobarlo sobre una copia de archivos reales admitidos y superar CI; falta probar el juego y una partida con ese EXE, además de analizar su hash con antivirus. La siguiente prioridad es recoger feedback identificado por versión y hash. El [estado de las verificaciones](SEGURIDAD.md) se mantiene en Seguridad. Esto no cambia el alcance de las correcciones de v1.
 
 ## Siguientes versiones de Steam
 

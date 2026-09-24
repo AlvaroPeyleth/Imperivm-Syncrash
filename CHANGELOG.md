@@ -1,6 +1,6 @@
 # Historial de versiones
 
-## Candidato local 1.0.3.0 · 24 de septiembre de 2026
+## v1.0.3 · Aplicador 1.0.3.0 · 24 de septiembre de 2026
 
 - `--test` ya no aplica el parche. `--check` solo lee y `--apply` es la única orden de aplicación por línea de comandos; cada resultado tiene su propio código de salida.
 - Si el parche exacto ya está instalado, no se reescribe `gbr.exe`. Syncrash impide dos aplicaciones simultáneas sobre el mismo juego y vuelve a comprobar los archivos justo antes de sustituirlos.
@@ -10,7 +10,7 @@
 - El preparador lee la versión de `AssemblyInfo.cs`, también para las instrucciones y el ZIP. CI limita `push` a `main` y actualiza a `actions/checkout@v7` y `actions/setup-dotnet@v6` (últimas releases comprobadas: v7.0.1 y v6.0.0, con Node.js 24).
 - Misma versión en ensamblado, archivo y manifiesto; los metadatos indican la empresa editora. La receta y los hashes del juego no cambian.
 
-**No publicado.** EXE final local tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Pendientes el commit revisado, el empaquetado desde árbol limpio, CI remoto y las comprobaciones de juego y antivirus del hash exacto antes de distribuir. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
+**Publicado como entrega experimental v1.0.3.** EXE final tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Código confirmado en main, empaquetado desde árbol limpio y CI remoto correctos. Se publicaron el EXE, sus sumas y la licencia para recoger feedback; siguen pendientes las comprobaciones de partida y antivirus del hash exacto. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
 
 ## Documentación y distribución · 24 de septiembre de 2026
 

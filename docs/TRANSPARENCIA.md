@@ -29,7 +29,7 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta cont
 
 Consulta [Seguridad y verificaciones](SEGURIDAD.md) para conocer las medidas del aplicador, la comparación entre código y EXE y la explicación de las alertas antivirus conocidas.
 
-La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. La recompilación histórica de la [entrega v1.0.0](ENTREGA_ACTUAL.md) podía diferir en metadatos; dos builds del [candidato local 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El hash de `gbr.exe` resultante debe ser exactamente el indicado.
+La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. La recompilación histórica de la [entrega v1.0.0](ENTREGA_ACTUAL.md) podía diferir en metadatos; dos builds del [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El hash de `gbr.exe` resultante debe ser exactamente el indicado.
 
 Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.
 
