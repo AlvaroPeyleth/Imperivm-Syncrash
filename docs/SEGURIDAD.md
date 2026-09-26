@@ -8,6 +8,8 @@ Hemos revisado las operaciones del aplicador. En la revisión histórica de v1.0
 
 ## Revisa, modifica o compila tu propia versión
 
+El [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), en desarrollo desde el 26/09/2026, no está publicado ni tiene análisis antivirus propio. Su hash y sus pruebas se mantienen separados de la entrega pública.
+
 El [código del aplicador](../src/Syncrash), la receta del parche y el proceso de compilación son públicos. Puedes inspeccionarlos, modificarlos y generar tu propio ejecutable siguiendo las [instrucciones de compilación](../README.md#compilar-y-conocer-el-proyecto). La [licencia MIT](../LICENSE) permite reutilizar el código conservando el aviso de copyright y la licencia.
 
 ## Qué hace el aplicador

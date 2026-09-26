@@ -10,15 +10,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-internal enum PatchStatus { OriginalAdmitted, AlreadyInstalled, Applied }
+internal enum PatchStatus { OriginalAdmitted, AlreadyInstalled, Applied, UpgradeAdmitted }
 
 internal sealed class PatchSpec
 {
     internal readonly string SourceHash, ResultHash, PakHash, RecipeHash;
     internal readonly int SourceBytes, ResultBytes;
+    internal readonly bool IsUpgrade;
 
     internal PatchSpec(string sourceHash, string resultHash, string pakHash,
-        string recipeHash, int sourceBytes, int resultBytes)
+        string recipeHash, int sourceBytes, int resultBytes, bool isUpgrade = false)
     {
         SourceHash = sourceHash;
         ResultHash = resultHash;
@@ -26,6 +27,7 @@ internal sealed class PatchSpec
         RecipeHash = recipeHash;
         SourceBytes = sourceBytes;
         ResultBytes = resultBytes;
+        IsUpgrade = isUpgrade;
     }
 }
 
@@ -44,24 +46,40 @@ internal static class PatchEngine
     // Production values are deliberately fixed. Synthetic tests call Check/Apply with a separate spec.
     private static readonly PatchSpec Production = new PatchSpec(
         "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
-        "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+        "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
         "6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50",
-        "9388df692e9f0f0478f8060d625e643618cfc16dd28298c1cbe879aaa6bfc583",
+        "bf2e6f23a25be0cbc093cdb2d08b120093790bc5b19fa9df81a45c5a4bdc0f08",
         4456448, 4460544);
+
+    private static readonly PatchSpec UpgradeV2 = new PatchSpec(
+        "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+        Production.ResultHash, Production.PakHash,
+        "4d46f367ba1a248c13fbddf42c87cd213e88be6294dbb6a7008d5b65e3b94865",
+        4460544, 4460544, true);
+
+    internal static PatchSpec SelectSpec(string currentHash, PatchSpec original, PatchSpec upgrade)
+    {
+        return currentHash == upgrade.SourceHash ? upgrade : original;
+    }
 
     internal static PatchStatus CheckGame(string path)
     {
-        return Check(path, Production, LoadEmbeddedRecipe(), RequireGameClosed);
+        string target = TargetPath(path);
+        PatchSpec spec = SelectSpec(HashFile(target), Production, UpgradeV2);
+        return Check(target, spec, LoadEmbeddedRecipe(spec.IsUpgrade), RequireGameClosed);
     }
 
     internal static PatchStatus ApplyGame(string path)
     {
-        return Apply(path, Production, LoadEmbeddedRecipe(), RequireGameClosed, null, null);
+        string target = TargetPath(path);
+        PatchSpec spec = SelectSpec(HashFile(target), Production, UpgradeV2);
+        // Apply checks the selected source again inside its mutex and before replacement.
+        return Apply(target, spec, LoadEmbeddedRecipe(spec.IsUpgrade), RequireGameClosed, null, null);
     }
 
-    private static byte[] LoadEmbeddedRecipe()
+    private static byte[] LoadEmbeddedRecipe(bool upgrade)
     {
-        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Syncrash.Recipe"))
+        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(upgrade ? "Syncrash.UpgradeV2" : "Syncrash.Recipe"))
         {
             if (stream == null) throw new InvalidDataException("Falta la receta interna de Syncrash.");
             using (var memory = new MemoryStream())
@@ -119,7 +137,7 @@ internal static class PatchEngine
     internal static byte[] BuildImage(byte[] source, Recipe recipe, PatchSpec spec)
     {
         if (source.Length != spec.SourceBytes || HashBytes(source) != spec.SourceHash)
-            throw new InvalidDataException("El ejecutable no es el Steam original admitido.");
+            throw new InvalidDataException("El ejecutable no coincide con el archivo de entrada admitido.");
         if (recipe.ResultBytes < source.Length || recipe.ResultBytes != spec.ResultBytes)
             throw new InvalidDataException("Longitud de salida inválida.");
         var result = new byte[recipe.ResultBytes];
@@ -179,11 +197,12 @@ internal static class PatchEngine
         gameClosed();
         string current = HashFile(target);
         if (current != spec.SourceHash && current != spec.ResultHash)
-            throw new InvalidOperationException("gbr.exe no coincide con el Steam original o el resultado admitido. No se ha parcheado nada.");
+            throw new InvalidOperationException("gbr.exe no coincide con el Steam original, Syncrash anterior o el resultado admitido. No se ha parcheado nada.");
         Recipe recipe = ReadRecipe(rawRecipe, spec);
         if (current == spec.SourceHash)
             BuildImage(File.ReadAllBytes(target), recipe, spec);
-        return current == spec.ResultHash ? PatchStatus.AlreadyInstalled : PatchStatus.OriginalAdmitted;
+        return current == spec.ResultHash ? PatchStatus.AlreadyInstalled :
+            spec.IsUpgrade ? PatchStatus.UpgradeAdmitted : PatchStatus.OriginalAdmitted;
     }
 
     internal static PatchStatus Check(string path, PatchSpec spec, byte[] rawRecipe, Action gameClosed)
@@ -202,7 +221,7 @@ internal static class PatchEngine
         try
         {
             string current = HashFile(target);
-            if (current == spec.SourceHash) return "El original sigue intacto.";
+            if (current == spec.SourceHash) return spec.IsUpgrade ? "La versión anterior sigue intacta." : "El original sigue intacto.";
             if (current == spec.ResultHash) return "El resultado parece instalado, pero hubo un error: comprueba el archivo antes de jugar.";
         }
         catch (Exception) { }

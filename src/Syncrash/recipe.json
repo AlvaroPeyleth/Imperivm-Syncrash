@@ -1,8 +1,8 @@
 {
   "schema": "syncrash-exact-delta-v1",
-  "component": "Syncrash Steam v1 crash protection",
+  "component": "Syncrash Steam crash protection V2 and Large Address Aware",
   "source_sha256": "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
-  "result_sha256": "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+  "result_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
   "source_bytes": 4456448,
   "result_bytes": 4460544,
   "patches": [
@@ -10,6 +10,11 @@
       "offset": 310,
       "before": "05",
       "after": "06"
+    },
+    {
+      "offset": 326,
+      "before": "0f",
+      "after": "2f"
     },
     {
       "offset": 333,
@@ -23,8 +28,8 @@
     },
     {
       "offset": 392,
-      "before": "000000",
-      "after": "69cc44"
+      "before": "00000000",
+      "after": "89cc4400"
     },
     {
       "offset": 752,

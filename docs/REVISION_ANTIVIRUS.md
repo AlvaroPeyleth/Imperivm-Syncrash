@@ -1,5 +1,9 @@
 # Revisión de detecciones antivirus · 24/09/2026
 
+## Candidato local 1.0.4.0 · 26/09/2026
+
+EXE local de **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`, sin publicar ni análisis antivirus nuevo. Las verificaciones de compilación y aplicación figuran en su [ficha](CANDIDATO_1.0.4.md). Los informes y trámites históricos siguientes no cubren este hash; las pruebas funcionales no son un análisis antivirus.
+
 ## Resultado
 
 **Hemos revisado el aplicador que desarrollamos y contrastado el EXE histórico v1.0.0 con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. La solicitud a Microsoft ya está enviada, con resolución final pendiente; las solicitudes a otros proveedores siguen pendientes. Todavía no conocemos la regla o característica concreta que activó cada motor. El [estado de las gestiones](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores) se mantiene en la documentación de seguridad.

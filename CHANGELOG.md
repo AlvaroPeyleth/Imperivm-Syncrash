@@ -1,5 +1,15 @@
 # Historial de versiones
 
+## En pruebas locales · Aplicador 1.0.4.0 · 26 de septiembre de 2026
+
+- Candidato con Large Address Aware para el juego en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
+- Actualización desde el V2 exacto anterior, además de instalación desde el original; mensajes que distinguen ambos estados y 16 pruebas superadas.
+- Aplicador local: **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`. Dos compilaciones locales idénticas; aplicación sobre instalación real comprobada y feedback favorable de una partida básica con LAA a 1920×1080. Faltan pruebas exigentes y multijugador.
+- Ensayo de 3440×1440 retirado tras un cierre al entrar a jugar y por interfaz demasiado pequeña. PAK y resolución originales restaurados; se investiga escalado manteniendo el escritorio nativo. La corrección de pantalla todavía no forma parte del aplicador.
+- Ensayo local de arranque desde Steam con escalado: el usuario confirma monitor correcto, imagen estable, barra inferior completa, clics y Alt+Tab. Se preserva el perfil favorable; siguen pendientes su integración opcional, adaptación a otros monitores y mejora de filtrado. Detalles y límites en la ficha del candidato.
+
+**Sin publicar.** La [ficha del candidato](docs/CANDIDATO_1.0.4.md) distingue hashes, ensayos y límites. La entrega pública continúa siendo v1.0.3.
+
 ## v1.0.3 · Aplicador 1.0.3.0 · 24 de septiembre de 2026
 
 - `--test` ya no aplica el parche. `--check` solo lee y `--apply` es la única orden de aplicación por línea de comandos; cada resultado tiene su propio código de salida.

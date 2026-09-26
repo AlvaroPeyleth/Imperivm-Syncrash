@@ -4,5 +4,5 @@ using System.Reflection;
 [assembly: AssemblyProduct("Syncrash")]
 [assembly: AssemblyCompany("PEYLETH SOLUTIONS SL")]
 [assembly: AssemblyCopyright("Copyright (c) 2026 AlvaroPeyleth (Discord: xtalvarotx)")]
-[assembly: AssemblyVersion("1.0.3.0")]
-[assembly: AssemblyFileVersion("1.0.3.0")]
+[assembly: AssemblyVersion("1.0.4.0")]
+[assembly: AssemblyFileVersion("1.0.4.0")]

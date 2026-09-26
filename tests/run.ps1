@@ -14,6 +14,7 @@ if (-not (Test-Path -LiteralPath $compiler)) { throw 'No se encuentra el compila
 $sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $source $_ }
 & $compiler /nologo /target:exe /platform:anycpu /optimize+ /main:SyncrashTests ("/out:$tests") `
     ("/resource:$(Join-Path $source 'recipe.json'),Syncrash.Recipe") `
+    ("/resource:$(Join-Path $source 'upgrade-v2.json'),Syncrash.UpgradeV2") `
     /r:System.Windows.Forms.dll /r:System.Drawing.dll /r:System.Runtime.Serialization.dll `
     $sources (Join-Path $PSScriptRoot 'SyncrashTests.cs')
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar el arnés de pruebas.' }

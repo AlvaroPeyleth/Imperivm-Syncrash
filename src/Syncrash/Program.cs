@@ -45,7 +45,9 @@ internal static class Syncrash
                 Console.WriteLine(result == PatchStatus.AlreadyInstalled
                     ? "Syncrash ya está instalado; no se ha modificado ningún archivo."
                     : args[0] == "--check"
-                        ? "Instalación Steam original admitida; no se ha modificado ningún archivo."
+                        ? result == PatchStatus.UpgradeAdmitted
+                            ? "Syncrash anterior admitido para actualizar; no se ha modificado ningún archivo."
+                            : "Instalación Steam original admitida; no se ha modificado ningún archivo."
                         : "Syncrash aplicado. Ya puedes abrir Imperivm desde Steam.");
                 return result == PatchStatus.AlreadyInstalled ? 3 : 0;
             }

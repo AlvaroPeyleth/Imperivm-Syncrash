@@ -19,6 +19,8 @@ internal static class SyncrashTests
         Run("synthetic reconstruction and exact output", Reconstruction);
         Run("read-only check and installed check", ReadOnlyCheck);
         Run("apply and idempotence without writes", ApplyAndIdempotence);
+        Run("upgrade routing, check, application and idempotence", Upgrade);
+        Run("upgrade failure and source changes preserve actual state", UpgradeFailures);
         Run("bad source and PAK rejected", BadInputs);
         Run("truncated and out-of-range recipe rejected", BadRecipe);
         Run("wrong expected output rejected", BadOutput);
@@ -146,6 +148,58 @@ internal static class SyncrashTests
             File.SetLastWriteTimeUtc(f.Target, old);
             Assert(f.Apply() == PatchStatus.AlreadyInstalled, "not idempotent");
             Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "reapply wrote files");
+        }
+    }
+
+    private static PatchSpec UpgradeSpec(Fixture f)
+    {
+        return new PatchSpec(f.Spec.SourceHash, f.Spec.ResultHash, f.Spec.PakHash,
+            f.Spec.RecipeHash, f.Spec.SourceBytes, f.Spec.ResultBytes, true);
+    }
+
+    private static void Upgrade()
+    {
+        using (var f = new Fixture())
+        {
+            PatchSpec upgrade = UpgradeSpec(f);
+            var original = new PatchSpec("different-original", upgrade.ResultHash, upgrade.PakHash,
+                upgrade.RecipeHash, 3, upgrade.ResultBytes);
+            Assert(PatchEngine.SelectSpec(upgrade.SourceHash, original, upgrade) == upgrade, "upgrade not selected");
+            Assert(PatchEngine.SelectSpec(original.SourceHash, original, upgrade) == original, "original not selected");
+            Assert(PatchEngine.SelectSpec(upgrade.ResultHash, original, upgrade) == original, "installed route");
+            DateTime old = File.GetLastWriteTimeUtc(f.Target);
+            Assert(PatchEngine.Check(f.Target, upgrade, f.Raw, delegate { }) == PatchStatus.UpgradeAdmitted, "upgrade check");
+            Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "upgrade check wrote");
+            Assert(PatchEngine.Apply(f.Target, upgrade, f.Raw, delegate { }, null, null) == PatchStatus.Applied, "upgrade apply");
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(f.Result), "upgrade output");
+            old = File.GetLastWriteTimeUtc(f.Target);
+            Assert(PatchEngine.Apply(f.Target, upgrade, f.Raw, delegate { }, null, null) == PatchStatus.AlreadyInstalled, "upgrade repeated");
+            Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "repeated upgrade wrote");
+        }
+    }
+
+    private static void UpgradeFailures()
+    {
+        using (var f = new Fixture())
+        {
+            PatchSpec upgrade = UpgradeSpec(f);
+            PatchOperationException error = Throws<PatchOperationException>(delegate {
+                PatchEngine.Apply(f.Target, upgrade, f.Raw, delegate { },
+                    delegate { throw new UnauthorizedAccessException("denied"); }, null);
+            });
+            Assert(error.Message.Contains("versión anterior sigue intacta") &&
+                SyncrashWindow.DescribeApplyError(error).Contains("Acceso denegado"), "upgrade lost state/advice");
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(f.Source) && f.Stages() == 0, "failed upgrade wrote");
+            byte[] changed = { 8, 2, 3, 4 };
+            Throws<PatchOperationException>(delegate {
+                PatchEngine.Apply(f.Target, upgrade, f.Raw, delegate { },
+                    delegate { File.WriteAllBytes(f.Target, changed); }, null);
+            });
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(changed) && f.Stages() == 0, "changed source overwritten");
+            Throws<InvalidOperationException>(delegate {
+                PatchEngine.Apply(f.Target, upgrade, f.Raw, delegate { }, null, null);
+            });
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(changed) && f.Stages() == 0, "unknown upgrade wrote");
         }
     }
 

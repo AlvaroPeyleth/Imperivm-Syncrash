@@ -1,0 +1,21 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Syncrash V2 to V2 with Large Address Aware",
+  "source_sha256": "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+  "result_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+  "source_bytes": 4460544,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 326,
+      "before": "0f",
+      "after": "2f"
+    },
+    {
+      "offset": 392,
+      "before": "69cc4400",
+      "after": "89cc4400"
+    }
+  ],
+  "append_nonzero": []
+}

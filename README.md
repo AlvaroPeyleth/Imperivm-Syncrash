@@ -126,6 +126,8 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 ## Compilar y conocer el proyecto
 
+El código en desarrollo prepara el [candidato local 1.0.4.0](docs/CANDIDATO_1.0.4.md), con LAA y verificaciones de pantalla en curso. La descarga pública continúa siendo v1.0.3. Consulta la ficha de cada versión para sus hashes y límites.
+
 En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
 ```powershell

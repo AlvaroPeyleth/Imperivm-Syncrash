@@ -23,7 +23,7 @@ internal sealed class SyncrashWindow : Form
 
     internal SyncrashWindow()
     {
-        Text = "Syncrash v1 · Imperivm";
+        Text = "Syncrash 1.0.4 · Prueba local";
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         Font = new Font("Segoe UI", 9F);
@@ -66,7 +66,7 @@ internal sealed class SyncrashWindow : Form
         body.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         scroll.Controls.Add(body);
         frame.Controls.Add(scroll, 0, 1);
-        AddRow(body, Copy("Protección de cierres disponible. Desyncs en desarrollo.", 10F));
+        AddRow(body, Copy("Protección de cierres y ampliación de memoria en prueba.", 10F));
 
         var editions = new TableLayoutPanel { Dock = DockStyle.Top, AutoSize = true, ColumnCount = 2, Margin = new Padding(0, 12, 0, 12) };
         editions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
@@ -111,7 +111,7 @@ internal sealed class SyncrashWindow : Form
         links.Controls.Add(help);
         links.Controls.Add(download);
         AddRow(body, links);
-        var details = Copy("Syncrash v1 incorpora protección para tres rutas de cierre identificadas.\nNo corrige todavía las desincronizaciones de Steam.\n\nComprueba gbr.exe y Packs/data.pak; solo sustituye gbr.exe.\nNo instala observadores ni servicios. No descarga mods ni envía datos.\nCommunity Mod aún no está disponible.\n\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nCódigo propio bajo licencia MIT; conserva la licencia y la autoría.\nLicencia incluida en el ejecutable y disponible en GitHub.", 9F);
+        var details = Copy("Syncrash v1 incorpora protección para tres rutas de cierre identificadas.\nAñade acceso a hasta 4 GB de memoria virtual en Windows de 64 bits.\nEsta ampliación está en prueba; no garantiza más FPS ni corrige fugas.\nNo corrige todavía las desincronizaciones de Steam.\n\nComprueba gbr.exe y Packs/data.pak; solo sustituye gbr.exe.\nNo instala observadores ni servicios. No descarga mods ni envía datos.\nCommunity Mod aún no está disponible.\n\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nCódigo propio bajo licencia MIT; conserva la licencia y la autoría.\nLicencia incluida en el ejecutable y disponible en GitHub.", 9F);
         details.Margin = new Padding(0, 12, 0, 8);
         details.Visible = false;
         AddRow(body, details);
