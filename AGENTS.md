@@ -9,6 +9,13 @@ Todo trabajo debe quedar documentado antes de darlo por terminado: cambios de c�
 - Mantener una fuente principal por tema y enlazarla desde los resúmenes. No crear documentos duplicados para cada sesión.
 - Revisar los documentos relacionados y sus enlaces antes de cerrar un cambio. Actualizar el historial sin inventar una nueva versión del ejecutable por un cambio de documentación.
 
+### Antes de cada commit o push
+
+- Revisar y actualizar **toda la documentación afectada**, no solo el changelog: uso, estado, decisiones, pruebas, límites, pendientes y, si cambia una entrega, versión, tamaño y hashes. Corregir contradicciones y enlaces obsoletos antes de confirmar o subir cambios.
+- Mantenerla breve, clara y agrupada por tema. Al incorporar cambios, resumir y consolidar explicaciones repetidas; sustituir el estado anterior en vez de acumular notas de sesión. Los resúmenes deben enlazar a una única fuente principal por tema.
+- Conservar la evidencia histórica útil con su fecha, versión y hash, separada del estado vigente; mantener los detalles extensos y privados en `work/`. Resumir no debe borrar resultados, límites ni pendientes relevantes.
+- Comprobar de nuevo la coherencia documental del diff preparado justo antes del commit o push. Esta revisión no autoriza publicar: el push sigue requiriendo la autorización correspondiente.
+
 ## Organización y publicación
 
 - `README.md`: presentación, uso y resumen del estado público.

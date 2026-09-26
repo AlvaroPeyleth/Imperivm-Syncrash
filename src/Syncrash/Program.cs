@@ -36,34 +36,72 @@ internal static class Syncrash
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
         }
         if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) &&
-            (args[0] == "--check" || args[0] == "--apply"))
+            args[0] == "--export-screen-sources")
+        {
+            try { ScreenCompatibility.ExportScreenSources(args[1]); Console.WriteLine("Licencias y fuentes guardadas."); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
+        }
+        if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) &&
+            (args[0] == "--check" || args[0] == "--check-screen" || args[0] == "--apply" ||
+             args[0] == "--apply-with-screen" || args[0] == "--apply-with-smoothing" || args[0] == "--remove-screen"))
         {
             try
             {
-                PatchStatus result = args[0] == "--check"
-                    ? PatchEngine.CheckGame(args[1]) : PatchEngine.ApplyGame(args[1]);
-                Console.WriteLine(result == PatchStatus.AlreadyInstalled
-                    ? "Syncrash ya está instalado; no se ha modificado ningún archivo."
-                    : args[0] == "--check"
-                        ? result == PatchStatus.UpgradeAdmitted
-                            ? "Syncrash anterior admitido para actualizar; no se ha modificado ningún archivo."
-                            : "Instalación Steam original admitida; no se ha modificado ningún archivo."
-                        : "Syncrash aplicado. Ya puedes abrir Imperivm desde Steam.");
-                return result == PatchStatus.AlreadyInstalled ? 3 : 0;
+                if (args[0] == "--remove-screen")
+                {
+                    Console.WriteLine(ScreenCompatibility.RemoveGame(args[1]));
+                    return 0;
+                }
+                if (args[0] == "--check")
+                {
+                    PatchStatus state = PatchEngine.CheckGame(args[1]);
+                    Console.WriteLine(state == PatchStatus.AlreadyInstalled ? "Parche de memoria y cierres instalado. No se ha modificado ningún archivo." :
+                        state == PatchStatus.UpgradeAdmitted ? "Syncrash anterior admitido para actualizar. No se ha modificado ningún archivo." :
+                        "Instalación Steam original admitida. No se ha modificado ningún archivo.");
+                    return state == PatchStatus.AlreadyInstalled ? 3 : 0;
+                }
+                if (args[0] == "--check-screen")
+                {
+                    bool complete;
+                    Console.WriteLine(ScreenCompatibility.CheckGame(args[1], out complete));
+                    return complete ? 3 : 0;
+                }
+                bool changed;
+                Console.WriteLine(PatchGame(args[1], args[0] == "--apply-with-screen" || args[0] == "--apply-with-smoothing", args[0] == "--apply-with-smoothing", out changed));
+                return changed ? 0 : 3;
             }
             catch (PatchBusyException error) { Console.Error.WriteLine(error.Message); return 4; }
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
         }
-        Console.Error.WriteLine("Uso: Syncrash.exe [--detect-only | --check <gbr.exe> | --apply <gbr.exe>]. --test ya no aplica el parche.");
+        Console.Error.WriteLine("Uso: Syncrash.exe [--detect-only | --check <gbr.exe> | --apply <gbr.exe> | --apply-with-screen <gbr.exe> | --apply-with-smoothing <gbr.exe> | --check-screen <gbr.exe> | --remove-screen <gbr.exe> | --export-screen-sources <nuevo.zip>]. --apply instala solo memoria y cierres; --apply-with-screen añade pantalla adaptable. --test ya no aplica el parche.");
         return 2;
     }
 
-    internal static string PatchGame(string exePath)
+    internal static string PatchGame(string exePath, bool adaptiveScreen)
     {
-        PatchStatus result = PatchEngine.ApplyGame(exePath);
-        return result == PatchStatus.AlreadyInstalled
-            ? "Syncrash ya está instalado. No se ha modificado gbr.exe."
-            : "Syncrash aplicado. Ya puedes abrir Imperivm desde Steam.";
+        bool changed;
+        return PatchGame(exePath, adaptiveScreen, out changed);
+    }
+
+    internal static string PatchGame(string exePath, bool adaptiveScreen, bool smooth)
+    {
+        bool changed;
+        return PatchGame(exePath, adaptiveScreen, smooth, out changed);
+    }
+
+    internal static string PatchGame(string exePath, bool adaptiveScreen, out bool changed)
+    {
+        return PatchGame(exePath, adaptiveScreen, false, out changed);
+    }
+
+    internal static string PatchGame(string exePath, bool adaptiveScreen, bool smooth, out bool changed)
+    {
+        if (smooth && !adaptiveScreen) throw new ArgumentException("El suavizado necesita pantalla adaptable.");
+        if (adaptiveScreen) return ScreenCompatibility.ApplyGame(exePath, smooth, out changed);
+        // The base patch neither needs nor changes optional screen files, even if already installed.
+        changed = PatchEngine.ApplyGame(exePath) != PatchStatus.AlreadyInstalled;
+        return (changed ? "Parche de memoria y cierres instalado." : "El parche de memoria y cierres ya está instalado.") +
+            " La configuración de pantalla no se ha cambiado.";
     }
 
     private static string VdfValue(string text, string key)

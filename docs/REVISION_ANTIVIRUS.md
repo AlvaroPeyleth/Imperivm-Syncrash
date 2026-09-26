@@ -1,8 +1,18 @@
 # Revisión de detecciones antivirus · 24/09/2026
 
-## Candidato local 1.0.4.0 · 26/09/2026
+## Candidato local 1.0.4.0 · 27/09/2026
 
-EXE local de **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`, sin publicar ni análisis antivirus nuevo. Las verificaciones de compilación y aplicación figuran en su [ficha](CANDIDATO_1.0.4.md). Los informes y trámites históricos siguientes no cubren este hash; las pruebas funcionales no son un análisis antivirus.
+EXE local actual de **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`, sin publicar ni análisis antivirus nuevo. Incluye componentes y fuentes de pantalla incrustados, con suavizado GPU incluido en la opción de pantalla, marcada por defecto. Sus hashes, fuentes y verificaciones figuran en la [ficha](CANDIDATO_1.0.4.md). Los informes/trámites históricos no cubren este EXE ni la DLL modificada; las pruebas funcionales no son un análisis antivirus.
+
+Histórico del EXE único con dos casillas: **18.362.880 bytes**, SHA256 `169914bf167de1eba0fc2eb23811bc3b61d0e47cd15f6e55630f91f8b2e691af`, sin análisis antivirus propio. El cambio de opciones no altera DLL ni perfiles.
+
+Histórico con pantalla opcional externa: **2.416.640 bytes**, SHA256 `b643aba1ef23254f9c30d91434de5b958503edb144d2f66c4f32e7a09692643c`, sin análisis propio. Las 23 pruebas y 18 operaciones en copias reales corresponden a ese hash; para el nuevo se repitieron 24 pruebas y 22 operaciones, sin atribuirle veredictos antivirus anteriores.
+
+Histórico con pantalla y márgenes negros obligatorios: EXE de **2.414.592 bytes**, SHA256 `9c63f1217837f78d6239dadf1367d26e7c54f8672c20287f72e0184ab2b36832`, sin análisis antivirus propio. Las DLL conservan sus hashes al hacer opcional su instalación; el aplicador sí cambia.
+
+Histórico con pantalla adaptable, antes de los márgenes negros: EXE de **2.414.592 bytes**, SHA256 `d704394587cbca8070d6626e74676157b8fa37c268b2336f798ba02aac055417`, sin análisis antivirus propio.
+
+Histórico de este mismo candidato antes de integrar pantalla: EXE de **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`, también sin análisis antivirus propio.
 
 ## Resultado
 

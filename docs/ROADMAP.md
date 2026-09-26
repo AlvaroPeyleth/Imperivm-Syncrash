@@ -16,7 +16,7 @@ El reporte a Microsoft se envió para el hash de v1.0.0 y su resolución final s
 
 ## Siguientes versiones de Steam
 
-El 26/09 se abrió el [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), con LAA. El ensayo a resolución nativa se retiró tras un cierre al entrar a jugar y por resultar demasiado pequeña la interfaz. Restaurados el PAK y la resolución originales, el usuario confirma una prueba básica favorable con LAA; faltan partidas exigentes y multijugador. Se investiga el escalado de una resolución interna compatible, todavía sin integrar en el aplicador. No sustituye la entrega pública. El audio se abordará después de estas verificaciones.
+El [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), actualizado el 27/09, reúne LAA y pantalla adaptable opcional, marcada por defecto con suavizado GPU, en un único EXE. Hay feedback favorable de imagen, fluidez y una sesión multijugador; faltan pruebas prolongadas, otros equipos y revisión de distribución. La ficha concentra hashes, evidencias y límites. No sustituye la entrega pública. La resolución interna superior a 1080p sigue pendiente tras un ensayo fallido; el audio se investigará después.
 
 1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
 2. Si aparece un desync, localizar la primera diferencia observada entre ambos estados y comprobar su causa en los recursos efectivos de Steam. Las herramientas locales de manifiestos sirven para comparar archivos, pero no prueban igualdad de la simulación.

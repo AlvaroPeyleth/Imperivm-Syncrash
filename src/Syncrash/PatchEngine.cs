@@ -90,7 +90,7 @@ internal static class PatchEngine
         }
     }
 
-    private static string HashFile(string path)
+    internal static string HashFile(string path)
     {
         using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
         using (var sha = SHA256.Create()) return Hex(sha.ComputeHash(stream));

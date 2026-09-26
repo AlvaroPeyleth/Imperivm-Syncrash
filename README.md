@@ -126,7 +126,7 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 ## Compilar y conocer el proyecto
 
-El código en desarrollo prepara el [candidato local 1.0.4.0](docs/CANDIDATO_1.0.4.md), con LAA y verificaciones de pantalla en curso. La descarga pública continúa siendo v1.0.3. Consulta la ficha de cada versión para sus hashes y límites.
+El código en desarrollo prepara el [candidato local 1.0.4.0](docs/CANDIDATO_1.0.4.md), con LAA y pantalla adaptable opcional, marcada por defecto, con suavizado incluido y todavía en pruebas. La descarga pública continúa siendo v1.0.3. Consulta la ficha de cada versión para sus hashes y límites.
 
 En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
@@ -135,6 +135,10 @@ En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.
 & ./tests/run.ps1 -OutputDirectory ./work/mi-prueba
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
+
+El candidato completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El filtro GPU tiene feedback favorable en un equipo, pendiente de pruebas más amplias; no añade texturas ni modos internos superiores a 1080p.
+
+Los comandos anteriores generan la base de desarrollo sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias. La distribución pública del candidato sigue pendiente. Consulta la [ficha actual](docs/CANDIDATO_1.0.4.md) para hashes, pruebas y recuperación.
 
 La compilación no sobrescribe un EXE existente e incrusta la licencia. En nuestra máquina, dos compilaciones del mismo código produjeron archivos idénticos. La [guía del candidato](docs/CANDIDATO_1.0.3.md) detalla los comandos, las pruebas y sus límites. Con cualquier compilación, el `gbr.exe` parcheado debe coincidir con el hash documentado.
 

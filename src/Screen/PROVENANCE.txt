@@ -1,0 +1,26 @@
+Syncrash screen compatibility LOCAL TEST, 2026-09-26. Not a public release.
+DxWnd 2.06.15 (gHO / DxWnd contributors), official build and corresponding source:
+https://sourceforge.net/projects/dxwnd/files/Latest%20build/v2_06_15_build.rar/
+https://sourceforge.net/projects/dxwnd/files/Sources/v2_06_15_src.rar/
+The original distribution supplies gpl-3.0.txt, preserved as Syncrash-screen-LICENSE.txt.
+These components are separate from the MIT-licensed C# applicator.
+Sources/dxwnd-2.06.15-source.rar contains the upstream source archive unchanged.
+Sources/proxy-source.zip contains the complete local proxy source and build command.
+Local changes (2026-09-26): current TARGETMAP ABI, tflags2, HookInit guard,
+per-window fullscreen shell hint, primary-monitor detection and 1080p fit geometry.
+No audio/timing function changes. Build: Visual Studio 2022 x86 tools, 14.41.34120,
+Windows SDK, static CRT. Extract proxy-source.zip and run build-proxy.cmd with a
+build directory alongside source/. The script runs geometry tests and a read-only
+display probe, then compiles winmm.dll. Full upstream source includes DxWnd projects.
+Public packaging, notices and third-party distribution review remain pending.
+Local margin trial: physical black strips on the primary monitor; foreground-only,
+non-activating helper windows, hidden on Alt+Tab and cleaned up on game exit.
+18 monitor/margin geometry cases tested; user confirmed margins, clicks, Alt+Tab and close on the test machine. Other machines and extended sessions remain unverified.
+New local native build, 2026-09-26: dxwnd.dll is now rebuilt from upstream with
+retained source and optional GPU bilinear presentation. All changed source files,
+complete build commands and tests are in Sources/syncrash-dxwnd-changes.zip.
+Apply it over the included upstream archive following BUILD-AND-CHANGES.txt.
+Original proxy sources and original GPL license remain included unchanged.
+Manual feedback on one PC: good menu image and fluid gameplay using mode2.
+CPU HALFTONE mode1 was rejected for lag; the applicator never selects mode1.
+Other PCs, extended gameplay and device-loss recovery still need validation.

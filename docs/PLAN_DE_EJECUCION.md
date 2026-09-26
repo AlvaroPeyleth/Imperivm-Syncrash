@@ -1,8 +1,8 @@
 # Syncrash: estado y siguiente ensayo
 
-**Actualizado: 26/09/2026.** Hay un solo producto Syncrash. Se empieza por Steam vanilla y se estudiará Community Mod después.
+**Actualizado: 27/09/2026.** Hay un solo producto Syncrash. Se empieza por Steam vanilla y se estudiará Community Mod después.
 
-Está en ensayo el [candidato local 1.0.4.0](CANDIDATO_1.0.4.md): LAA aplicado y verificado por hash en una instalación real. El ensayo a resolución nativa se retiró tras un cierre; con el PAK y la resolución originales el usuario confirma una prueba básica favorable. El ensayo de escalado con arranque desde Steam también tiene feedback favorable para monitor, imagen, barra inferior, clics y Alt+Tab. Quedan pruebas prolongadas, guardado/recarga con ese perfil, multijugador e integración opcional del escalado. Sus resultados y límites se registran en esa ficha. La entrega pública continúa siendo v1.0.3; el audio se investigará después.
+Está en ensayo el [candidato local 1.0.4.0](CANDIDATO_1.0.4.md): LAA aplicado y verificado por hash en una instalación real. El ensayo a resolución nativa se retiró tras un cierre; con el PAK y la resolución originales el usuario confirma una prueba básica favorable. El ensayo de escalado con arranque desde Steam también tiene feedback favorable para monitor, imagen, barra inferior, clics y Alt+Tab. El EXE único incorpora pantalla con suavizado GPU incluido como una opción marcada por defecto y desactivable. El usuario confirma buena imagen y fluidez con GPU tras descartar HALFTONE por lag. El 27/09 el usuario comunica una partida multijugador muy favorable con su hermano, ambos con el parche; hash remoto y duración no verificados. Quedan pruebas prolongadas, guardado/recarga, más multijugador y otros PC antes de publicar; la ficha vincula cada resultado a sus hashes. La entrega pública continúa siendo v1.0.3; el audio se investigará después.
 
 ## Evidencia disponible
 

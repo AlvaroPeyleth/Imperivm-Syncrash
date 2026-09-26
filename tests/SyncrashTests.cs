@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-internal static class SyncrashTests
+internal static partial class SyncrashTests
 {
     private static int passed;
     private static string appPath;
@@ -32,6 +32,14 @@ internal static class SyncrashTests
         Run("same-target concurrent application excluded", ConcurrentApply);
         Run("CLI --check and retired --test do not write", CliReadOnly);
         Run("CLI redirected streams without console", CliRedirected);
+        Run("screen install, idempotence and removal preserve game files", ScreenLifecycle);
+        Run("screen rejects foreign files and changed ownership before patching", ScreenForeignFiles);
+        Run("screen incomplete install resumes and can be removed", ScreenInterrupted);
+        Run("screen rejects altered payload and a running game", ScreenInvalidPayload);
+        Run("screen changed file prevents any removal", ScreenChangedRemoval);
+        Run("screen removal interruption retains ownership for recovery", ScreenInterruptedRemoval);
+        Run("screen concurrent install excluded", ScreenConcurrent);
+        Run("embedded sources export and no overwrite", EmbeddedSources);
         Console.WriteLine("PASS: " + passed + " synthetic/Windows tests");
         return 0;
     }
@@ -357,7 +365,14 @@ internal static class SyncrashTests
             string quoted = "\"" + f.Target + "\"";
             Assert(Cli("--test " + quoted) == 2, "--test accepted");
             Assert(Cli("--check " + quoted) == 1, "production check accepted synthetic input");
+            Assert(Cli("--check-screen " + quoted) == 1, "screen check accepted synthetic input or was not recognized");
+            Assert(Cli("--apply-with-screen " + quoted) == 1, "screen opt-in accepted synthetic input or was not recognized");
+            Assert(Cli("--apply-with-smoothing " + quoted) == 1, "smoothing accepted synthetic input or was not recognized");
             Assert(Cli("--apply") == 2, "ambiguous apply accepted");
+            Assert(Cli("--apply-with-screen") == 2, "ambiguous screen opt-in accepted");
+            Assert(Cli("--apply-with-smoothing") == 2, "ambiguous smoothing accepted");
+            Assert(Cli("--export-screen-sources") == 2, "missing export target accepted");
+            Assert(Cli("--apply " + quoted + " --screen") == 2, "unknown option accepted");
             Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "CLI wrote synthetic input");
         }
     }

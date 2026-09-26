@@ -1,12 +1,15 @@
 # Historial de versiones
 
-## En pruebas locales · Aplicador 1.0.4.0 · 26 de septiembre de 2026
+## En pruebas locales · Aplicador 1.0.4.0 · 27 de septiembre de 2026
 
-- Candidato con Large Address Aware para el juego en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
-- Actualización desde el V2 exacto anterior, además de instalación desde el original; mensajes que distinguen ambos estados y 16 pruebas superadas.
-- Aplicador local: **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`. Dos compilaciones locales idénticas; aplicación sobre instalación real comprobada y feedback favorable de una partida básica con LAA a 1920×1080. Faltan pruebas exigentes y multijugador.
-- Ensayo de 3440×1440 retirado tras un cierre al entrar a jugar y por interfaz demasiado pequeña. PAK y resolución originales restaurados; se investiga escalado manteniendo el escritorio nativo. La corrección de pantalla todavía no forma parte del aplicador.
-- Ensayo local de arranque desde Steam con escalado: el usuario confirma monitor correcto, imagen estable, barra inferior completa, clics y Alt+Tab. Se preserva el perfil favorable; siguen pendientes su integración opcional, adaptación a otros monitores y mejora de filtrado. Detalles y límites en la ficha del candidato.
+- LAA para el juego x86 en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
+- EXE único con componentes de pantalla y fuentes/licencias incrustados; ya no requiere una carpeta externa. Pantalla adaptable incluye suavizado GPU en una sola opción, marcada por defecto y desactivable. El juego se abre desde Steam.
+- Menú más legible con el filtro GPU: feedback favorable de imagen y fluidez en un equipo. El ensayo HALFTONE por CPU se descartó porque ralentizaba la partida. No se modifican texturas ni se ofrece resolución interna superior a 1080p.
+- Feedback multijugador favorable comunicado por dos jugadores con el paquete anterior; hash remoto y duración no verificados. Mismos componentes gráficos en el nuevo aplicador.
+- Interfaz simplificada con información desplegable y ayudas al pasar el ratón. Restauración de pantalla y exportación de fuentes accesibles desde el aplicador.
+- Aplicador local: **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`. Windows PowerShell 5.1: 24 pruebas, dos compilaciones completas idénticas y 22 operaciones CLI sobre copias reales. Históricos anteriores conservados en la ficha.
+- Instalación/retirada por hashes, incluida retirada de la pantalla histórica. Para cambiar una configuración existente, restaurar pantalla y volver a aplicar. Desmarcar conserva lo instalado. Márgenes negros, monitor principal y modo del escritorio conservados.
+- Ensayo nativo 3440×1440 retirado tras cierre en partida; PAK original conservado. Faltan partidas prolongadas y ampliar pruebas en otros equipos y multijugador.
 
 **Sin publicar.** La [ficha del candidato](docs/CANDIDATO_1.0.4.md) distingue hashes, ensayos y límites. La entrega pública continúa siendo v1.0.3.
 

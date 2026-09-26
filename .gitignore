@@ -44,6 +44,21 @@
 
 # Add a new source directory to this allowlist only after reviewing its files.
 
+# Reviewed native source archives (text source only), profiles and GPL notices.
+!/src/Screen/
+/src/Screen/*
+!/src/Screen/README.md
+!/src/Screen/LICENSE
+!/src/Screen/PROVENANCE.txt
+!/src/Screen/Sources/
+/src/Screen/Sources/*
+!/src/Screen/Sources/proxy-source.zip
+!/src/Screen/Sources/syncrash-dxwnd-changes.zip
+!/src/Screen/profiles/
+/src/Screen/profiles/*
+!/src/Screen/profiles/dxwnd.dxw
+!/src/Screen/profiles/dxwnd-smooth.dxw
+
 !/LICENSE
 !/CONTRIBUTING.md
 !/CHANGELOG.md

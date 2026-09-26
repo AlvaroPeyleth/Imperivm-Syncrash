@@ -1,4 +1,4 @@
-﻿param([string]$OutputPath = (Join-Path $PSScriptRoot '../../Syncrash.exe'))
+﻿param([string]$OutputPath = (Join-Path $PSScriptRoot '../../Syncrash.exe'), [string]$ScreenBundleDirectory)
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $sdkLine = dotnet --list-sdks | Where-Object { $_ -match '^8\.0\.400 \[(.+)\]$' } | Select-Object -First 1
@@ -18,13 +18,26 @@ $manifest = Join-Path $PSScriptRoot 'app.manifest'
 $icon = Join-Path $PSScriptRoot 'assets/syncrash.ico'
 $mark = Join-Path $PSScriptRoot 'assets/mark.png'
 $license = Join-Path $PSScriptRoot '../../LICENSE'
-$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
+$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
 $references = @('mscorlib', 'System', 'System.Core', 'System.Windows.Forms', 'System.Drawing', 'System.Runtime.Serialization', 'System.Xml') |
     ForEach-Object { '/r:' + (Join-Path $referenceRoot ($_.ToString() + '.dll')) }
+$screenResources = @()
+$resourceDirectory = Join-Path ([IO.Path]::GetTempPath()) ('syncrash-resources-' + [Guid]::NewGuid().ToString('N'))
+try {
+if ($ScreenBundleDirectory) {
+    $screenResources = @(& (Join-Path $PSScriptRoot 'screen-resources.ps1') -BundleDirectory $ScreenBundleDirectory -OutputDirectory $resourceDirectory)
+}
 & dotnet exec $compiler /nologo /target:winexe /platform:anycpu /optimize+ /deterministic+ /nostdlib+ /langversion:5 `
     ("/pathmap:$root=/_/syncrash") ("/out:$output") ("/win32manifest:$manifest") ("/win32icon:$icon") `
     ("/resource:$icon,Syncrash.Icon") ("/resource:$mark,Syncrash.Mark") ("/resource:$recipe,Syncrash.Recipe") `
     ("/resource:$upgrade,Syncrash.UpgradeV2") `
-    ("/resource:$banner,Syncrash.Banner") ("/resource:$license,Syncrash.License") $references $sources
+    ("/resource:$banner,Syncrash.Banner") ("/resource:$license,Syncrash.License") $screenResources $references $sources
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar Syncrash.' }
+} finally {
+    # Delete only files created here; never recursively delete a computed path.
+    if (Test-Path -LiteralPath $resourceDirectory) {
+        Get-ChildItem -LiteralPath $resourceDirectory -File | ForEach-Object { Remove-Item -LiteralPath $_.FullName }
+        Remove-Item -LiteralPath $resourceDirectory
+    }
+}
 Get-FileHash -Algorithm SHA256 -LiteralPath $output

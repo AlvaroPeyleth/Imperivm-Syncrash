@@ -1,6 +1,7 @@
 ﻿param(
     [Parameter(Mandatory = $true)][string]$ExePath,
-    [Parameter(Mandatory = $true)][string]$OutputDirectory
+    [Parameter(Mandatory = $true)][string]$OutputDirectory,
+    [string]$ScreenBundleDirectory
 )
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -18,6 +19,15 @@ $versionMatches = [regex]::Matches($assemblyInfo, '(?m)^\s*\[assembly:\s*Assembl
 if ($versionMatches.Count -ne 1) { throw 'No se pudo identificar una única AssemblyVersion en AssemblyInfo.cs.' }
 $expectedVersion = $versionMatches[0].Groups[1].Value
 if ($version -ne $expectedVersion) { throw "Versión de candidato inesperada: $version; se esperaba $expectedVersion." }
+if (-not $ScreenBundleDirectory) { throw 'Indica ScreenBundleDirectory con los componentes y fuentes revisados para reproducir el EXE completo.' }
+$ScreenBundleDirectory = [IO.Path]::GetFullPath($ScreenBundleDirectory)
+$screenFiles = @()
+foreach ($name in @('Syncrash-screen-LICENSE.txt','dxwnd.dxw','dxwnd-smooth.dxw','dxwnd.dll','winmm.dll','PROVENANCE.txt','Sources/dxwnd-2.06.15-source.rar','Sources/proxy-source.zip','Sources/syncrash-dxwnd-changes.zip')) {
+    $path = Join-Path $ScreenBundleDirectory $name
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Falta el componente o fuente: $name" }
+    $screenFiles += [pscustomobject]@{ file=$name; sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant(); bytes=(Get-Item -LiteralPath $path).Length }
+}
+# build.ps1 validates every bundled input against reviewed hashes and embeds its sources.
 $exeInfo = [ordered]@{
     file = [IO.Path]::GetFileName($exe)
     bytes = (Get-Item -LiteralPath $exe).Length
@@ -26,7 +36,7 @@ $exeInfo = [ordered]@{
 $rebuildDirectory = Join-Path ([IO.Path]::GetTempPath()) ('syncrash-release-check-' + [guid]::NewGuid().ToString('N'))
 $rebuild = Join-Path $rebuildDirectory 'Syncrash.exe'
 try {
-    & (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $rebuild | Out-Null
+    & (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $rebuild -ScreenBundleDirectory $ScreenBundleDirectory | Out-Null
     $sourceHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $rebuild).Hash.ToLowerInvariant()
     if ($sourceHash -ne $exeInfo.sha256) { throw 'El candidato no coincide con un build del commit fuente limpio.' }
 }
@@ -50,13 +60,16 @@ $manifest = [ordered]@{
     compiler = '.NET SDK 8.0.400 Roslyn; deterministic build'
     executable = $exeInfo
     package_exe_sha256 = $finalHash
+    embedded_screen_inputs = $screenFiles
 }
 $manifest | ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 (Join-Path $package 'release-manifest.json')
 ("$finalHash  Syncrash.exe`n") | Set-Content -Encoding ascii (Join-Path $package 'SHA256SUMS.txt')
 @"
-Syncrash ${version}: candidato local para pruebas. No es la entrega v1.0.0 publicada.
+Syncrash ${version}: candidato local para pruebas, sin publicar.
 Uso: cierra Imperivm, comprueba tu instalación Steam vanilla y aplica desde la interfaz.
-Recuperación: verifica los archivos del juego en Steam. No se crea copia de seguridad.
+Pantalla adaptable es opcional y está marcada por defecto, con suavizado GPU incluido. Sin marcar aplica solo memoria y cierres; conserva cualquier pantalla ya instalada.
+Syncrash.exe incluye pantalla y fuentes/licencias; no necesita una carpeta screen externa. Puedes desmarcar Pantalla adaptable para omitir pantalla y suavizado. Exporta las fuentes desde la interfaz o --export-screen-sources <nuevo.zip>.
+Recuperación: usa Restaurar pantalla original y después verifica los archivos del juego en Steam. No se crea copia de gbr.exe.
 El aplicador no lleva firma digital: comprueba su SHA256 con SHA256SUMS.txt y con la ficha de esta entrega.
 No desactives protecciones del sistema para ejecutar el aplicador.
 "@ | Set-Content -Encoding utf8 (Join-Path $package 'LEEME.txt')

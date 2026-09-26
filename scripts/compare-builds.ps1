@@ -1,4 +1,4 @@
-﻿param([string]$OutputDirectory = (Join-Path ([IO.Path]::GetTempPath()) ('syncrash-compare-' + [guid]::NewGuid().ToString('N'))))
+﻿param([string]$OutputDirectory = (Join-Path ([IO.Path]::GetTempPath()) ('syncrash-compare-' + [guid]::NewGuid().ToString('N'))), [string]$ScreenBundleDirectory)
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $output = [IO.Path]::GetFullPath($OutputDirectory)
@@ -6,8 +6,8 @@ if (Test-Path -LiteralPath $output) { throw "El directorio de informe ya existe:
 New-Item -ItemType Directory -Path $output | Out-Null
 $first = Join-Path $output 'first/Syncrash.exe'
 $second = Join-Path $output 'second/Syncrash.exe'
-& (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $first | Out-Null
-& (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $second | Out-Null
+& (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $first -ScreenBundleDirectory $ScreenBundleDirectory | Out-Null
+& (Join-Path $root 'src/Syncrash/build.ps1') -OutputPath $second -ScreenBundleDirectory $ScreenBundleDirectory | Out-Null
 $a = [IO.File]::ReadAllBytes($first)
 $b = [IO.File]::ReadAllBytes($second)
 $difference = $null
@@ -24,6 +24,7 @@ $report = [ordered]@{
     checked_at_utc = [DateTime]::UtcNow.ToString('o')
     source_commit = $commit.Trim()
     working_tree_clean = -not $dirty
+    screen_embedded = [bool]$ScreenBundleDirectory
     first = [ordered]@{ file = 'first/Syncrash.exe'; bytes = $a.Length; sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $first).Hash.ToLowerInvariant() }
     second = [ordered]@{ file = 'second/Syncrash.exe'; bytes = $b.Length; sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $second).Hash.ToLowerInvariant() }
     byte_identical = ($null -eq $difference)
