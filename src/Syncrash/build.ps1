@@ -17,8 +17,13 @@ $banner = Join-Path $PSScriptRoot 'assets/banner.png'
 $manifest = Join-Path $PSScriptRoot 'app.manifest'
 $icon = Join-Path $PSScriptRoot 'assets/syncrash.ico'
 $mark = Join-Path $PSScriptRoot 'assets/mark.png'
+$voiceMap = Join-Path $PSScriptRoot 'voice-map.json'
+$voicePin = [regex]::Match([IO.File]::ReadAllText((Join-Path $PSScriptRoot 'VoiceCompatibility.cs')), 'CatalogHash = "([0-9a-f]{64})"')
+if (-not $voicePin.Success -or (Get-FileHash -LiteralPath $voiceMap -Algorithm SHA256).Hash.ToLowerInvariant() -ne $voicePin.Groups[1].Value) {
+    throw 'El mapa de voces no coincide con el revisado.'
+}
 $license = Join-Path $PSScriptRoot '../../LICENSE'
-$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
+$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
 $references = @('mscorlib', 'System', 'System.Core', 'System.Windows.Forms', 'System.Drawing', 'System.Runtime.Serialization', 'System.Xml') |
     ForEach-Object { '/r:' + (Join-Path $referenceRoot ($_.ToString() + '.dll')) }
 $screenResources = @()
@@ -30,7 +35,7 @@ if ($ScreenBundleDirectory) {
 & dotnet exec $compiler /nologo /target:winexe /platform:anycpu /optimize+ /deterministic+ /nostdlib+ /langversion:5 `
     ("/pathmap:$root=/_/syncrash") ("/out:$output") ("/win32manifest:$manifest") ("/win32icon:$icon") `
     ("/resource:$icon,Syncrash.Icon") ("/resource:$mark,Syncrash.Mark") ("/resource:$recipe,Syncrash.Recipe") `
-    ("/resource:$upgrade,Syncrash.UpgradeV2") `
+    ("/resource:$upgrade,Syncrash.UpgradeV2") ("/resource:$(Join-Path $PSScriptRoot 'voice-map.json'),Syncrash.Voices") `
     ("/resource:$banner,Syncrash.Banner") ("/resource:$license,Syncrash.License") $screenResources $references $sources
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar Syncrash.' }
 } finally {

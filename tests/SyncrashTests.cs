@@ -40,6 +40,18 @@ internal static partial class SyncrashTests
         Run("screen removal interruption retains ownership for recovery", ScreenInterruptedRemoval);
         Run("screen concurrent install excluded", ScreenConcurrent);
         Run("embedded sources export and no overwrite", EmbeddedSources);
+        Run("voice three-language lifecycle and idempotence", VoiceLifecycle);
+        Run("voice collisions preserve foreign and edited files", VoiceForeign);
+        Run("voice interruptions recover across language switches and removal", VoiceRecovery);
+        Run("voice missing files repair and changed pending files survive", VoiceMissingAndModifiedPending);
+        Run("voice migration from private prototype", VoiceLegacyMigration);
+        Run("voice invalid records and traversal refused", VoiceBadRecord);
+        Run("voice running game and concurrent operations refused", VoiceClosedAndConcurrent);
+        Run("voice language detection and unsupported settings", VoiceSettings);
+        Run("voice PAK extraction validates hashes and bounds", VoicePakValidation);
+        Run("voice embedded catalog and read-only CLI", VoiceEmbeddedCatalog);
+        Run("voice junction targets and late collisions preserved", VoiceJunctionAndRace);
+        Run("voice base failure occurs before audio writes", VoiceBaseFailure);
         Console.WriteLine("PASS: " + passed + " synthetic/Windows tests");
         return 0;
     }

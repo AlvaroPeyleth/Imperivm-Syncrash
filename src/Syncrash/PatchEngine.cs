@@ -167,7 +167,7 @@ internal static class PatchEngine
         return result;
     }
 
-    private static void RequireGameClosed()
+    internal static void RequireGameClosed()
     {
         Process[] processes;
         try { processes = Process.GetProcessesByName("gbr"); }

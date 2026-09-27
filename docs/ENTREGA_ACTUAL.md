@@ -1,6 +1,19 @@
 # Syncrash · Ficha de entrega
 
-## Entrega actual: v1.0.4 · 27/09/2026
+## v1.0.5 · Publicación en preparación · 27/09/2026
+
+**Publicación autorizada. Syncrash v1 es experimental y esperamos feedback de los usuarios.** Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
+
+| Dato | Valor |
+| --- | --- |
+| Aplicador | 1.0.5.0 · `Syncrash.exe` |
+| Tamaño | 18.579.968 bytes |
+| SHA256 del EXE | `187d62824b609385f2dc1371ffd873a25d0f2cb70e0a6292f7f72dd2c57a4118` |
+| SHA256 de `gbr.exe` V2 + LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+
+La [ficha técnica](CANDIDATO_1.0.5.md) concentra el uso, pruebas, recursos y recuperación. La escucha completa en italiano/inglés y el multijugador con voces siguen pendientes. [Cómo dar feedback](../README.md#ayuda-a-mejorar-syncrash).
+
+## Última entrega publicada: v1.0.4 · 27/09/2026
 
 **Publicada como experimental para Steam vanilla.** [Descargar Syncrash v1.0.4](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.4).
 

@@ -4,14 +4,15 @@
 
 Syncrash es **un único producto con perfiles para las ediciones compatibles**. Steam vanilla es la primera base, fijada por hashes. Las siguientes correcciones de cierres o desincronizaciones se incorporarán a nuevas versiones de Syncrash Steam, sin repartir parches independientes. Community Mod tendrá después una variante del mismo producto; sus actualizaciones exigirán identificar y probar de nuevo sus recursos. Otros mods podrán añadirse con perfiles propios.
 
-## Entrega pública
+## Entrega y feedback
 
-La [versión v1.0.4](ENTREGA_ACTUAL.md) reúne protección V2 de cierres, LAA y pantalla adaptable opcional con suavizado GPU, marcada por defecto. El juego se abre desde Steam y el escritorio conserva su resolución. El EXE incluye componentes y fuentes; la pantalla puede retirarse desde el aplicador.
+La [v1.0.5](ENTREGA_ACTUAL.md), autorizada y en preparación, reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Syncrash v1 es experimental: esperamos feedback de los usuarios.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre desde Steam.
 
-Hay pruebas automáticas, preparación desde commit limpio, CI correcto y una sesión de más de una hora sin incidencias comunicada por dos jugadores con Steam vanilla y la misma versión. La [ficha técnica](CANDIDATO_1.0.4.md) recoge hashes, resultados y límites. La prioridad es recopilar feedback; no se exigen análisis antivirus periódicos.
-## Siguientes versiones de Steam
+La [ficha técnica](CANDIDATO_1.0.5.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
 
-Con 1.0.4 publicada, se ampliará la compatibilidad a partir de incidencias concretas. La resolución interna superior a 1080p sigue fuera de la entrega tras un ensayo fallido. Audio y Community Mod se estudiarán después; la base actual es Steam vanilla.
+## Siguientes pasos de Steam
+
+Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar PAK; reaplicar adapta el idioma y desmarcar/aplicar retira los WAV registrados. Quedan ampliar la escucha en los tres idiomas y comprobar multijugador con voces. La resolución interna superior a 1080p permanece fuera de la entrega tras un ensayo fallido.
 
 1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
 2. Si aparece un desync, localizar la primera diferencia observada entre ambos estados y comprobar su causa en los recursos efectivos de Steam. Las herramientas locales de manifiestos sirven para comparar archivos, pero no prueban igualdad de la simulación.

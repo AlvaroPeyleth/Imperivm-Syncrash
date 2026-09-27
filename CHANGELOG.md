@@ -1,5 +1,15 @@
 # Historial de versiones
 
+## v1.0.5 · Aplicador 1.0.5.0 · 27 de septiembre de 2026
+
+**v1 experimental: esperamos feedback de los usuarios. Publicación autorizada y en preparación.**
+
+- Nueva opción **Reparar voces de unidades**, marcada por defecto y desactivable. Recupera 188 rutas españolas, 188 italianas o 393 inglesas desde los PAK locales, sin modificarlos ni distribuir audios.
+- Reaplicar después de cambiar de idioma sustituye las voces propias; desmarcar y aplicar las retira. Migración del ensayo anterior, protección de archivos ajenos/modificados y recuperación de operaciones interrumpidas.
+- Mantiene memoria, protección y pantalla de v1.0.4. Escucha completa en italiano/inglés y multijugador con voces pendientes; las pruebas de archivos no se presentan como partidas. [Ficha, hashes y límites](docs/CANDIDATO_1.0.5.md).
+- Directorio de [proyectos de la comunidad](docs/PROYECTOS_COMUNIDAD.md) con fichas breves de autor, enlace, utilidad y enfoque. Primera referencia: ImperivmVoicesPatch de Upercat. El detalle de revisión queda en la investigación interna.
+- Se conserva la investigación inicial y la corrección del recuento inglés: sus WAV estaban fuera del prefijo examinado.
+
 ## v1.0.4 · Aplicador 1.0.4.0 · 27 de septiembre de 2026
 
 - LAA para el juego x86 en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.

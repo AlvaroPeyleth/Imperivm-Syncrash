@@ -15,9 +15,9 @@
 
 Syncrash es un proyecto independiente para investigar y reducir cierres y desincronizaciones en **Imperivm RTC: HD Edition — Great Battles of Rome**. Todas las mejoras se reúnen en un mismo producto, empezando por **Steam vanilla**.
 
-**Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
+**Syncrash v1 es experimental y esperamos tu feedback.** Queremos saber cómo te funciona: voces, cierres, desincronizaciones y cualquier comportamiento extraño. No es una solución definitiva a todos los fallos. Incorpora protección para tres rutas de cierre identificadas; las correcciones de desincronización siguen en investigación.
 
-La [entrega actual v1.0.4](docs/ENTREGA_ACTUAL.md) añade LAA y pantalla adaptable opcional con suavizado GPU, activada por defecto. Mantiene la resolución del escritorio y permite seguir abriendo el juego desde Steam. Todo va incluido en un único **Syncrash.exe**.
+**v1.0.5 preparada para publicación:** reúne memoria ampliada, protección de cierres, pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces son opciones independientes, **marcadas por defecto y desactivables**. Todo va en un único **Syncrash.exe**; el juego sigue abriéndose desde Steam. [Estado, pruebas y límites](docs/ENTREGA_ACTUAL.md).
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
@@ -27,18 +27,20 @@ Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPey
 
 1. Cierra Imperivm y abre **Syncrash.exe**.
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
-3. Deja marcada **Añadir pantalla adaptable** para incluir adaptación y suavizado, o desmárcala para aplicar solo memoria y cierres.
+3. Elige las opciones: **Añadir pantalla adaptable** y **Reparar voces de unidades** están marcadas por defecto. Puedes desmarcarlas; memoria y protección de cierres se incluyen siempre.
 4. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
 El aplicador admite Steam original y actualiza el parche V2 anterior. Si el resultado exacto ya está instalado, no lo reescribe. Para multijugador, utiliza la misma versión del parche y los mismos recursos en ambos equipos.
 
-**Para quitarlo:** pulsa **Restaurar pantalla original** y después verifica los archivos del juego desde Steam para recuperar también `gbr.exe`. Desmarcar la casilla conserva una pantalla ya instalada; para cambiar de variante, restáurala antes de volver a aplicar. Syncrash no crea copia de `gbr.exe`.
+**Si cambias de idioma:** cierra el juego y vuelve a aplicar Syncrash antes de jugar para actualizar las voces.
+
+**Para quitarlo:** desmarca **Reparar voces de unidades** y aplica; pulsa **Restaurar pantalla original** y después verifica archivos en Steam para recuperar también `gbr.exe`. Desmarcar pantalla conserva la instalada; su botón de restauración la retira. Steam no elimina por sí solo los WAV añadidos. Syncrash no crea copia de `gbr.exe`.
 
 ## ¿Puedo jugar con alguien que no tiene Syncrash?
 
 Se han realizado pruebas entre jugadores con Syncrash y sin él, sin problemas comunicados, aunque la compatibilidad sigue en evaluación. La protección se aplica únicamente al equipo donde está instalado: no evita los cierres de otros jugadores ni garantiza que la partida continúe si alguien se desconecta. Que otro jugador no lo tenga no desactiva tu protección.
 
-Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixtas son históricas de V2; la sesión comunicada con pantalla adaptable usó el parche en ambos equipos.
+Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixtas son históricas de V2; la sesión comunicada con pantalla adaptable corresponde a 1.0.4. La comprobación multijugador con las nuevas voces sigue pendiente.
 
 ## Compatibilidad y alcance
 
@@ -48,6 +50,7 @@ Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixta
 | Protección de cierres | Comprueba el tipo de objeto antes de tres llamadas concretas. No cubre todos los posibles cierres. |
 | Memoria | LAA amplía el espacio de direcciones disponible para el juego x86 en Windows de 64 bits. |
 | Pantalla adaptable | Opcional, con suavizado GPU y márgenes negros; conserva el escritorio. |
+| Voces de unidades | Opcional, en español, italiano e inglés, desde los PAK del jugador sin modificarlos. Cobertura auditiva todavía en ampliación. |
 | Desincronizaciones | En investigación; v1 no incorpora una corrección de desync. |
 | Community Mod | Próximamente. La opción está desactivada. |
 | Otros mods | Sin compatibilidad validada. |
@@ -57,25 +60,29 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 ## Qué cambia en tu equipo
 
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
-- Sustituye `gbr.exe`. Si eliges pantalla adaptable, instala también sus componentes y registro junto al juego. No modifica mapas, guardados, PAK ni audio.
+- Sustituye `gbr.exe`. Si eliges pantalla adaptable, instala también sus componentes y registro junto al juego. Con voces marcadas, extrae WAV a rutas sueltas y registra su propiedad. No modifica mapas, guardados ni PAK.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir la interfaz no modifica el juego. La aplicación, retirada de pantalla y exportación se realizan al pulsar sus acciones. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.4.md).
+- Abrir la interfaz no modifica el juego. La aplicación, retirada de voces/pantalla y exportación se realizan al pulsar sus acciones. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.5.md).
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
 ## Pruebas de estabilidad
 
-La versión 1.0.4 supera 24 pruebas locales, dos builds completos idénticos y 22 operaciones sobre copias reales. El usuario comunica más de una hora de multijugador sin incidencias en dos equipos Steam vanilla con la misma versión y los mismos componentes gráficos. Es compatibilidad observada; no una corrección causal de todos los cierres o desyncs. [Evidencia y alcance](docs/CANDIDATO_1.0.4.md).
+v1.0.5 se comprueba con pruebas automáticas, copias reales del juego y comparación de compilaciones. El prototipo español recibió feedback favorable; **la escucha completa en italiano/inglés y el multijugador con voces siguen pendientes**. Las partidas históricas de 1.0.4 no se presentan como nuevas pruebas de esta entrega. [Evidencia y alcance](docs/CANDIDATO_1.0.5.md).
 
 ## Ayuda a mejorar Syncrash
 
-Las partidas normales también ayudan. Cuéntanos la versión, duración aproximada, mapa y si observaste un cierre, desync o anomalía. Si todo fue bien, también interesa saberlo.
+**Tu feedback es parte de esta v1.** Cuéntanos la versión, idioma, opciones activadas, duración aproximada, mapa y si las voces sonaron correctamente o hubo cierres, desyncs o anomalías. **Si todo fue bien, también queremos saberlo.** No necesitas instalar un observador para participar.
 
 Ante un fallo, conserva los **Logs de ambos jugadores antes de volver a abrir el juego**. Puedes enviarlos mediante el **[formulario de recopilación de logs](https://forms.gle/QAGziVvHk6peHPor9)** o por mensaje privado a **`xtalvarotx` en Discord**. Si no tienes Discord, utiliza el formulario. Los registros pueden contener IP y datos personales: no los publiques en incidencias de GitHub ni en canales públicos. [Guía de pruebas sencilla](docs/PRUEBAS_SIN_OBSERVADOR.md).
 
 ¿Buscas comunidad? Únete a **[Imperivm III Editores en Discord](https://discord.gg/YmWHktysx)**, un punto de encuentro para jugadores y modders, donde encontrarás Community Mod y otros proyectos de Imperivm.
 
 Puedes abrir una [incidencia](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/issues) con una descripción sin datos privados. Consulta [cómo colaborar](CONTRIBUTING.md).
+
+## Otros proyectos de la comunidad
+
+Descubre otros proyectos para ampliar o mejorar Imperivm en el [directorio de mods y herramientas de la comunidad](docs/PROYECTOS_COMUNIDAD.md).
 
 ## Autoría y reutilización
 
@@ -96,7 +103,7 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 ## Compilar y conocer el proyecto
 
-La [versión 1.0.4.0](docs/CANDIDATO_1.0.4.md) y sus fuentes están publicadas. Las fuentes y licencias de pantalla también pueden exportarse desde el EXE; el código propio conserva MIT y los componentes de terceros sus licencias respectivas.
+El código propio conserva MIT; los componentes de pantalla mantienen sus licencias y fuentes exportables. La [ficha de 1.0.5](docs/CANDIDATO_1.0.5.md) identifica la compilación, sus pruebas y límites.
 
 En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
@@ -106,10 +113,6 @@ En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-El EXE completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El usuario comunica una sesión de más de una hora con dos equipos Steam vanilla y la misma versión, sin incidencias. No añade texturas ni modos internos superiores a 1080p.
-
-Los comandos anteriores generan la base de desarrollo sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias. Consulta la [ficha actual](docs/CANDIDATO_1.0.4.md) para hashes, pruebas y recuperación.
-
-La compilación no sobrescribe un EXE existente e incrusta la licencia. En nuestra máquina, dos compilaciones del mismo código produjeron archivos idénticos. La [ficha técnica](docs/CANDIDATO_1.0.4.md) detalla los comandos, las pruebas y sus límites. Con cualquier compilación, el `gbr.exe` parcheado debe coincidir con el hash documentado.
+Los comandos anteriores generan la base de desarrollo con voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Compilación, hashes y recuperación](docs/CANDIDATO_1.0.5.md).
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

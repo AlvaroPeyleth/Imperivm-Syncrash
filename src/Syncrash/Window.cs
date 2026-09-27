@@ -18,6 +18,7 @@ internal sealed class SyncrashWindow : Form
     private readonly Button apply = new Button();
     private readonly Button restoreScreen = new Button();
     private readonly CheckBox adaptiveScreen = new CheckBox();
+    private readonly CheckBox repairVoices = new CheckBox();
     private readonly Label status = new Label();
     private readonly ToolTip tips = new ToolTip { AutoPopDelay = 15000, InitialDelay = 350, ReshowDelay = 100 };
     private readonly bool screenAvailable = ScreenCompatibility.HasEmbeddedScreen();
@@ -27,20 +28,20 @@ internal sealed class SyncrashWindow : Form
 
     internal SyncrashWindow()
     {
-        Text = "Syncrash 1.0.4 · Prueba local";
+        Text = "Syncrash 1.0.5 · v1 experimental";
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         Font = new Font("Segoe UI", 9F);
         ForeColor = Ink;
         BackColor = Paper;
-        ClientSize = new Size(780, 566);
+        ClientSize = new Size(780, 666);
         MinimumSize = new Size(710, 520);
         StartPosition = FormStartPosition.CenterScreen;
 
         var frame = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3, Margin = Padding.Empty };
         frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 128));
         frame.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 76));
+        frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
         Controls.Add(frame);
 
         var hero = new BannerPanel { Dock = DockStyle.Fill, Margin = Padding.Empty, BackColor = Color.FromArgb(30, 27, 24) };
@@ -59,7 +60,7 @@ internal sealed class SyncrashWindow : Form
         }
         var mark = new PictureBox { Image = brand, BackColor = Color.Transparent, SizeMode = PictureBoxSizeMode.Zoom, Location = new Point(26, 36), Size = new Size(52, 52), TabStop = false };
         var title = new Label { Text = "Syncrash", Font = new Font("Georgia", 28F), ForeColor = Color.FromArgb(248, 242, 229), BackColor = Color.Transparent, AutoSize = true, Location = new Point(90, 28) };
-        var subtitle = new Label { Text = "Estabilidad para Imperivm", Font = new Font("Segoe UI", 10F), ForeColor = Color.FromArgb(235, 227, 213), BackColor = Color.Transparent, AutoSize = true, Location = new Point(94, 78) };
+        var subtitle = new Label { Text = "Estabilidad para Imperivm · v1 experimental", Font = new Font("Segoe UI", 10F), ForeColor = Color.FromArgb(235, 227, 213), BackColor = Color.Transparent, AutoSize = true, Location = new Point(94, 78) };
         hero.Controls.Add(mark);
         hero.Controls.Add(title);
         hero.Controls.Add(subtitle);
@@ -111,6 +112,19 @@ internal sealed class SyncrashWindow : Form
         restoreScreen.Click += async delegate { await ApplyAsync(true); };
         AddRow(body, restoreScreen);
 
+        repairVoices.Text = "Reparar voces de unidades";
+        repairVoices.AccessibleName = "Reparar voces de unidades, opcional";
+        repairVoices.Checked = true;
+        repairVoices.AutoSize = true;
+        repairVoices.Anchor = AnchorStyles.Left;
+        repairVoices.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+        repairVoices.Margin = new Padding(0, 0, 0, 5);
+        AddRow(body, repairVoices);
+        var voiceHelp = Copy("Español, italiano e inglés, según el idioma del juego.\nSi la desmarcas y aplicas, se retira la reparación de voces.", 9F);
+        voiceHelp.Margin = new Padding(0, 0, 0, 12);
+        AddRow(body, voiceHelp);
+        tips.SetToolTip(repairVoices, "Recupera voces desde tus archivos del juego. Si cambias de idioma, cierra el juego y vuelve a aplicar Syncrash antes de jugar. Desmarcar y aplicar retira solo las voces registradas, conservando archivos ajenos o modificados.");
+
         var repo = new LinkLabel { Text = "Proyecto y código", AutoSize = true, LinkColor = Crimson, ActiveLinkColor = Ink, VisitedLinkColor = Crimson, Margin = new Padding(0, 0, 20, 0), AccessibleName = "Abrir repositorio de Syncrash" };
         repo.LinkClicked += delegate
         {
@@ -124,7 +138,7 @@ internal sealed class SyncrashWindow : Form
         links.Controls.Add(repo);
         links.Controls.Add(sourceLink);
         AddRow(body, links);
-        var details = Copy("MEMORIA Y CIERRES\nProtección para tres rutas de cierre identificadas. Hasta 4 GB de memoria virtual en Windows de 64 bits; no garantiza más FPS ni corrige fugas. No corrige todavía las desincronizaciones.\n\nPANTALLA ADAPTABLE\nHasta 1080p internos, ampliados al monitor principal con márgenes negros. Conserva el modo del escritorio. Los componentes se incluyen en este EXE y se instalan junto al juego. No necesitas abrir Syncrash para jugar. Desmarcar la opción conserva una instalación anterior; para quitarla usa Restaurar pantalla original.\n\nSUAVIZADO INCLUIDO\nPantalla adaptable está marcada por defecto y es opcional. Incluye el filtro de GPU para la imagen ampliada. No cambia texturas ni añade resolución interna. Si no está disponible, utiliza la presentación sin filtro. Para cambiar una configuración de pantalla ya instalada, restaura la pantalla y vuelve a aplicar.\n\nRECUPERACIÓN\nPara quitar todo el parche, restaura primero la pantalla y después verifica los archivos en Steam. No se crea copia de gbr.exe. Solo se admiten los archivos originales o resultados de Syncrash reconocidos. Community Mod no está disponible.\n\nLICENCIAS\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nAplicador MIT; pantalla con licencia independiente incluida. El enlace de fuentes guarda una copia local de su licencia y código. No descarga mods ni envía datos.", 9F);
+        var details = Copy("MEMORIA Y CIERRES\nProtección para tres rutas de cierre identificadas. Hasta 4 GB de memoria virtual en Windows de 64 bits; no garantiza más FPS ni corrige fugas. No corrige todavía las desincronizaciones.\n\nPANTALLA ADAPTABLE\nHasta 1080p internos, ampliados al monitor principal con márgenes negros. Conserva el modo del escritorio. Los componentes se incluyen en este EXE y se instalan junto al juego. No necesitas abrir Syncrash para jugar. Desmarcar la opción conserva una instalación anterior; para quitarla usa Restaurar pantalla original.\n\nSUAVIZADO INCLUIDO\nPantalla adaptable está marcada por defecto y es opcional. Incluye el filtro de GPU para la imagen ampliada. No cambia texturas ni añade resolución interna. Si no está disponible, utiliza la presentación sin filtro. Para cambiar una configuración de pantalla ya instalada, restaura la pantalla y vuelve a aplicar.\n\nVOCES DE UNIDADES\nOpcional y marcada por defecto. Utiliza las grabaciones de tu instalación en español, italiano o inglés. Si cambias el idioma del juego, ciérralo y vuelve a aplicar Syncrash antes de jugar. Para retirar esta reparación, desmarca Reparar voces de unidades y pulsa Aplicar parche.\n\nRECUPERACIÓN\nPara quitar todo el parche, retira primero las voces, restaura la pantalla y después verifica los archivos en Steam. No se crea copia de gbr.exe. Solo se admiten los archivos originales o resultados de Syncrash reconocidos. Community Mod no está disponible.\n\nLICENCIAS\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nAplicador MIT; pantalla con licencia independiente incluida. El enlace de fuentes guarda una copia local de su licencia y código. No descarga mods ni envía datos.", 9F);
         details.Margin = new Padding(0, 12, 0, 8);
         details.Visible = false;
         AddRow(body, details);
@@ -135,7 +149,7 @@ internal sealed class SyncrashWindow : Form
             if (details.Visible) scroll.ScrollControlIntoView(details);
         };
         tips.SetToolTip(help, "Memoria, pantalla y cómo retirar el parche. Pulsa para leer la información completa.");
-        tips.SetToolTip(adaptiveScreen, "Encaja el juego con márgenes negros y suavizado mediante la GPU, sin cambiar el escritorio. Puedes desmarcarla para aplicar solo memoria y cierres. Desmarcar no retira una instalación anterior.");
+        tips.SetToolTip(adaptiveScreen, "Encaja el juego con márgenes negros y suavizado mediante la GPU, sin cambiar el escritorio. Puedes desmarcarla para omitir la pantalla. Desmarcar no retira una instalación anterior.");
         tips.SetToolTip(included, "Hasta 4 GB de memoria virtual en Windows de 64 bits. No garantiza más FPS ni elimina todos los cierres.");
         tips.SetToolTip(restoreScreen, "Retira solo los archivos de pantalla registrados por Syncrash. Conserva memoria y protección de cierres.");
         sourceLink.LinkClicked += delegate { ExportScreenSources(); };
@@ -256,14 +270,16 @@ internal sealed class SyncrashWindow : Form
         if (string.IsNullOrWhiteSpace(path.Text) && !PickGame()) return;
         string target = path.Text;
         bool includeScreen = adaptiveScreen.Checked;
+        bool includeVoices = repairVoices.Checked;
         busy = true;
-        apply.Enabled = browse.Enabled = restoreScreen.Enabled = adaptiveScreen.Enabled = false;
+        apply.Enabled = browse.Enabled = restoreScreen.Enabled = adaptiveScreen.Enabled = repairVoices.Enabled = false;
         apply.Text = removeScreen ? "Restaurando…" : "Aplicando…";
         status.Text = removeScreen ? "Retirando la compatibilidad de pantalla…" : "Comprobando archivos y aplicando Syncrash…";
         status.ForeColor = Ink;
         try
         {
-            status.Text = await Task.Run(() => removeScreen ? ScreenCompatibility.RemoveGame(target) : Syncrash.PatchGame(target, includeScreen, includeScreen));
+            bool operationChanged = false;
+            status.Text = await Task.Run(() => removeScreen ? ScreenCompatibility.RemoveGame(target) : Syncrash.PatchGameWithVoices(target, includeScreen, includeVoices, out operationChanged));
             if (removeScreen) adaptiveScreen.Checked = false;
             status.ForeColor = Color.FromArgb(34, 87, 58);
         }
@@ -283,6 +299,7 @@ internal sealed class SyncrashWindow : Form
             busy = false;
             apply.Enabled = browse.Enabled = restoreScreen.Enabled = true;
             adaptiveScreen.Enabled = screenAvailable;
+            repairVoices.Enabled = true;
             apply.Text = "Aplicar parche";
         }
     }

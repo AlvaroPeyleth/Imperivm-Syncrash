@@ -36,6 +36,30 @@ internal static class Syncrash
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
         }
         if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) &&
+            (args[0] == "--check-voices" || args[0] == "--apply-voices" || args[0] == "--remove-voices" ||
+             args[0] == "--apply-with-voices" || args[0] == "--apply-all"))
+        {
+            try
+            {
+                bool changed;
+                if (args[0] == "--check-voices")
+                {
+                    bool complete;
+                    Console.WriteLine(VoiceCompatibility.CheckGame(args[1], out complete));
+                    return complete ? 3 : 0;
+                }
+                if (args[0] == "--apply-voices" || args[0] == "--remove-voices")
+                {
+                    if (args[0] == "--apply-voices") PatchEngine.CheckGame(args[1]);
+                    Console.WriteLine(VoiceCompatibility.ConfigureGame(args[1], args[0] == "--apply-voices", delegate { }, out changed));
+                }
+                else Console.WriteLine(PatchGameWithVoices(args[1], args[0] == "--apply-all", true, out changed));
+                return changed ? 0 : 3;
+            }
+            catch (PatchBusyException error) { Console.Error.WriteLine(error.Message); return 4; }
+            catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
+        }
+        if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) &&
             args[0] == "--export-screen-sources")
         {
             try { ScreenCompatibility.ExportScreenSources(args[1]); Console.WriteLine("Licencias y fuentes guardadas."); return 0; }
@@ -73,8 +97,29 @@ internal static class Syncrash
             catch (PatchBusyException error) { Console.Error.WriteLine(error.Message); return 4; }
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
         }
-        Console.Error.WriteLine("Uso: Syncrash.exe [--detect-only | --check <gbr.exe> | --apply <gbr.exe> | --apply-with-screen <gbr.exe> | --apply-with-smoothing <gbr.exe> | --check-screen <gbr.exe> | --remove-screen <gbr.exe> | --export-screen-sources <nuevo.zip>]. --apply instala solo memoria y cierres; --apply-with-screen añade pantalla adaptable. --test ya no aplica el parche.");
+        Console.Error.WriteLine("Uso: Syncrash.exe [--detect-only | --check <gbr.exe> | --apply <gbr.exe> | --apply-with-screen <gbr.exe> | --apply-with-smoothing <gbr.exe> | --apply-with-voices <gbr.exe> | --apply-all <gbr.exe> | --check-screen <gbr.exe> | --remove-screen <gbr.exe> | --check-voices <gbr.exe> | --apply-voices <gbr.exe> | --remove-voices <gbr.exe> | --export-screen-sources <nuevo.zip>]. --apply instala solo memoria y cierres; --apply-all incluye pantalla con suavizado y voces. --test ya no aplica el parche.");
         return 2;
+    }
+
+    internal static string PatchGameWithVoices(string exePath, bool screen, bool voices, out bool changed)
+    {
+        bool baseChanged = false, voiceChanged;
+        string baseResult = "";
+        string voiceResult;
+        try
+        {
+            // Voice collisions/resources are validated before touching the base patch.
+            voiceResult = VoiceCompatibility.ConfigureGame(exePath, voices, delegate {
+                baseResult = PatchGame(exePath, screen, screen, out baseChanged);
+            }, out voiceChanged);
+        }
+        catch (Exception error)
+        {
+            if (baseResult != "") throw new IOException(baseResult + "\nLa operación de voces no terminó: " + error.Message, error);
+            throw;
+        }
+        changed = baseChanged || voiceChanged;
+        return "Memoria y cierres listos." + (screen ? " Pantalla adaptable con suavizado lista." : " Pantalla sin cambios.") + "\n" + voiceResult;
     }
 
     internal static string PatchGame(string exePath, bool adaptiveScreen)

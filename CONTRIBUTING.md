@@ -16,7 +16,7 @@ Las contribuciones de código propio se proponen bajo MIT. Identifica su procede
 
 Consulta el [plan de ejecución](docs/PLAN_DE_EJECUCION.md) antes de abordar una corrección nueva.
 
-Para cambios en el aplicador, consulta el [candidato en desarrollo 1.0.4.0](docs/CANDIDATO_1.0.4.md) y los comandos de la [guía de compilación 1.0.3.0](docs/CANDIDATO_1.0.3.md): build Windows fijado, pruebas sintéticas y comparación de dos compilaciones. No incluyas archivos del juego en fixtures ni ejecutes la aplicación real como parte de las pruebas predeterminadas.
+Para cambios en el aplicador, consulta el [aplicador 1.0.5.0](docs/CANDIDATO_1.0.5.md) y los comandos de la [guía de compilación 1.0.3.0](docs/CANDIDATO_1.0.3.md): build Windows fijado, pruebas sintéticas y comparación de dos compilaciones. No incluyas archivos del juego en fixtures ni ejecutes la aplicación real como parte de las pruebas predeterminadas.
 
 ## Mantener la documentación al día
 

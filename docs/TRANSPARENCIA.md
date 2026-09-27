@@ -1,12 +1,14 @@
-# Qué hace Syncrash Steam v1.0.4
+# Qué hace Syncrash Steam v1.0.5
 
 Syncrash aplica la protección V2 de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. El [código y las fuentes](SEGURIDAD.md) son revisables.
+
+**v1 experimental: esperamos feedback.** La reparación opcional de voces añade WAV sueltos extraídos de los PAK locales y un registro para cambiar de idioma al reaplicar o retirarlos. La [ficha de voces](CANDIDATO_1.0.5.md) detalla archivos, retirada, pruebas y límites.
 
 ## Acceso a archivos
 
 La interfaz busca la instalación Steam y permite elegir `gbr.exe`. No modifica el juego al abrirse. Al aplicar, comprueba EXE y PAK, exige juego cerrado, reconstruye y verifica el resultado antes de sustituir `gbr.exe`. Si el resultado exacto ya está instalado, no lo reescribe.
 
-Con pantalla adaptable marcada, instala `winmm.dll`, `dxwnd.dll`, `dxwnd.dxw`, la licencia y el registro de propiedad junto al juego. Conserva las proporciones, añade márgenes negros y suaviza la ampliación mediante GPU. El juego sigue arrancando desde Steam. No se modifica el PAK, mapas, guardados ni audio; no se instala un servicio, observador o actualizador ni se envían Logs automáticamente.
+Con pantalla adaptable marcada, instala `winmm.dll`, `dxwnd.dll`, `dxwnd.dxw`, la licencia y el registro de propiedad junto al juego. Conserva las proporciones, añade márgenes negros y suaviza la ampliación mediante GPU. El juego sigue arrancando desde Steam. Con voces marcadas, se añaden WAV bajo `CurrentLang/voices/` y el registro `.syncrash-voices/manifest.json`; se conservan PAK, mapas y guardados; no se instala un servicio, observador o actualizador ni se envían Logs automáticamente.
 
 ## Archivos admitidos
 
@@ -21,9 +23,9 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544. La [ficha técnica](
 
 ## Retirada y límites
 
-Desmarcar pantalla conserva la que ya esté instalada. Para retirarla o cambiar de variante, pulsa **Restaurar pantalla original**. Esa acción conserva LAA; para recuperar también `gbr.exe`, verifica después los archivos del juego desde Steam. No se crea una copia de seguridad del ejecutable.
+Para retirar las voces, desmarca **Reparar voces de unidades** y aplica; Steam no elimina los WAV añadidos. Para adaptar las voces a otro idioma, cierra el juego y reaplica Syncrash. Desmarcar pantalla conserva la que ya esté instalada. Para retirarla o cambiar de variante, pulsa **Restaurar pantalla original**. Esa acción conserva LAA; para recuperar también `gbr.exe`, verifica después los archivos del juego desde Steam. No se crea una copia de seguridad del ejecutable.
 
-Las pruebas y la sesión multijugador comunicada están en la [ficha de entrega](ENTREGA_ACTUAL.md). No se incorpora una corrección causal de desync, resolución interna superior a 1080p ni texturas nuevas. Community Mod permanece desactivado y se estudiará después de Steam vanilla.
+La [ficha de entrega](ENTREGA_ACTUAL.md) separa pruebas de archivos y partidas: la sesión multijugador comunicada corresponde a 1.0.4; la comprobación con voces sigue pendiente. No se incorpora una corrección causal de desync, resolución interna superior a 1080p ni texturas nuevas. Community Mod permanece desactivado y se estudiará después de Steam vanilla.
 
 ## Licencias y privacidad
 

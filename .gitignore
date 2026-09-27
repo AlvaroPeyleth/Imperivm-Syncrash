@@ -34,6 +34,7 @@
 !/scripts/
 /scripts/*
 !/scripts/*.ps1
+!/scripts/build-voice-map.py
 
 # Reviewed CI only.
 !/.github/
