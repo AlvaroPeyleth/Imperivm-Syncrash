@@ -1,4 +1,4 @@
-# Qué hace Syncrash Steam v1.0.6 (candidato)
+# Qué hace Syncrash Steam v1.0.6
 
 Syncrash aplica la protección de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. El [código y las fuentes](SEGURIDAD.md) son revisables.
 

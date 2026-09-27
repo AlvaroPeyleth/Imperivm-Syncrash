@@ -1,8 +1,8 @@
 # Syncrash · Ficha de entrega
 
-## Candidato preparado: v1.0.6 · 28/09/2026
+## Entrega actual: v1.0.6 · 28/09/2026
 
-Casillas unificadas, enlaces al pie y correcciones de documentación. Conectividad sin implementar. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
+**Publicada como v1 experimental.** [Descargar Syncrash v1.0.6](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.6). Casillas unificadas, enlaces al pie y correcciones de documentación. Conectividad sin implementar. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
 
 | Dato | Valor |
 | --- | --- |
@@ -11,11 +11,9 @@ Casillas unificadas, enlaces al pie y correcciones de documentación. Conectivid
 | SHA256 del EXE | `c3be15d959263a69e32b4abd0623b9cc29e5d162695e4c65fa51977965d8eeb2` |
 | SHA256 de `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 
-38 pruebas automáticas y siete operaciones del manejador real de la interfaz en copia aislada. Dos builds completos idénticos en PowerShell 7.6.5. Pendiente de preparación desde commit limpio, CI y publicación; no se modifica la descarga anterior.
+38 pruebas automáticas y siete operaciones del manejador real de la interfaz en copia aislada. Dos builds completos idénticos en PowerShell 7.6.5. Reproducida desde commit limpio `c73edca69b05559a42234138f7b7d5ab12e50963` (tag `v1.0.6`), con [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36354762010). EXE, sumas y licencia descargados de GitHub y cotejados. Las entregas anteriores se conservan.
 
-## Entrega actual: v1.0.5 · 27/09/2026
-
-El [cambio local de casillas e interfaz del 28/09](FUNCIONAMIENTO.md#casillas-unificadas) todavía no está publicado. Esta ficha y sus hashes siguen describiendo la descarga v1.0.5.
+## Histórico: v1.0.5 · 27/09/2026
 
 **Publicada como experimental. Syncrash v1 necesita el feedback de los usuarios para seguir mejorando.** [Descargar Syncrash v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5). Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
 

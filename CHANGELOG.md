@@ -1,16 +1,16 @@
 # Historial de versiones
 
-## v1.0.6 · Aplicador 1.0.6.0 · 28 de septiembre de 2026 (preparada)
+## v1.0.6 · Aplicador 1.0.6.0 · 28 de septiembre de 2026
 
 - Pantalla y voces comparten el criterio de marcar/desmarcar y aplicar. Se retira el botón separado de restauración de pantalla, se atenúan las notas de retirada y los enlaces pasan al pie fijo.
-- Compilación local, 38 pruebas automáticas y siete acciones de Aplicar en copia aislada, con las cuatro combinaciones de casillas. [Funcionamiento, comprobaciones y límites](docs/FUNCIONAMIENTO.md#casillas-unificadas). Se prepara una nueva entrega con hash propio; no implementa conectividad.
+- Compilación local, 38 pruebas automáticas y siete acciones de Aplicar en copia aislada, con las cuatro combinaciones de casillas. [Funcionamiento, comprobaciones y límites](docs/FUNCIONAMIENTO.md#casillas-unificadas). Publicada desde commit limpio con CI correcto y descarga cotejada. SHA256: `c3be15d959263a69e32b4abd0623b9cc29e5d162695e4c65fa51977965d8eeb2`; 18.579.968 bytes. No implementa conectividad.
 
-## Sin publicar · Ajustes de texto y propuesta online · 27 de septiembre de 2026
+## Documentación · Ajustes de texto y propuesta online · 27 de septiembre de 2026
 
-- Corregidas las instrucciones de inicio: «versión Steam» identifica la edición compatible; se puede abrir Imperivm desde `gbr.exe` o el acceso directo habitual. Ajustado también el mensaje de instalación de pantalla en el código fuente; la corrección todavía no está en el EXE publicado. La prueba prevista de conexión online incluye el arranque directo del ejecutable.
+- Corregidas las instrucciones de inicio: «versión Steam» identifica la edición compatible; se puede abrir Imperivm desde `gbr.exe` o el acceso directo habitual. Ajustado también el mensaje de instalación de pantalla en el código fuente; la corrección se distribuye con v1.0.6. La prueba prevista de conexión online incluye el arranque directo del ejecutable.
 - Documentación pública unificada con nombres de funciones y versiones publicadas; se conservan fechas, hashes y resultados históricos. La propuesta online exige aplicar una vez y abrir Imperivm (versión Steam) sin navegador ni aplicador abiertos, con una prueba específica pendiente para ese flujo.
 - Preparada la [propuesta de conexión online automática](docs/CONEXION_ONLINE.md): futura casilla independiente, salas actuales, mapeos temporales y evaluación condicionada de la negociación NAT existente, sin nuevos servidores. Incluye fases, compatibilidad con pantalla/voces, retirada y matriz de pruebas.
-- Investigación de Upercat reconocida como referencia. No se ha implementado ni probado la función, incorporado código externo, cambiado la versión del EXE ni modificado la entrega v1.0.5.
+- Investigación de Upercat reconocida como referencia. La propuesta permanece sin implementar ni probar; no se incorpora código externo de conectividad.
 
 ## v1.0.5 · Aplicador 1.0.5.0 · 27 de septiembre de 2026
 

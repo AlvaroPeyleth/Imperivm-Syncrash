@@ -1,8 +1,8 @@
 # Syncrash: estado y próximos pasos
 
-**28/09/2026.** El alcance actual es **Steam vanilla**. v1.0.6 está preparada para publicación; la descarga vigente sigue siendo v1.0.5. **Es una v1 experimental y esperamos feedback de los jugadores.** Community Mod queda para después.
+**28/09/2026.** El alcance actual es **Steam vanilla**. v1.0.6 está publicada. **Es una v1 experimental y esperamos feedback de los jugadores.** Community Mod queda para después.
 
-## Versión 1.0.6.0 preparada
+## Versión 1.0.6.0 publicada
 
 Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado y reparación de voces son opciones independientes, marcadas por defecto y desactivables. El juego se abre normalmente, también desde `gbr.exe`. La [ficha técnica](CANDIDATO_1.0.6.md) concentra hashes, fuentes, pruebas, recuperación y límites.
 
@@ -10,7 +10,7 @@ Voces cubre español, italiano e inglés con WAV sueltos extraídos de los PAK i
 
 ## Siguiente paso
 
-Publicar el [candidato v1.0.6](CANDIDATO_1.0.6.md), tras preparación desde commit limpio y CI. Casillas unificadas, enlaces al pie y correcciones documentales probados; no incorpora conectividad.
+La [v1.0.6](CANDIDATO_1.0.6.md) ya reúne casillas unificadas, enlaces al pie y correcciones documentales. Entrega publicada desde commit limpio, CI correcto y descarga cotejada. No incorpora conectividad.
 
 Recopilar feedback de uso normal con versión, idioma, opciones activadas, duración y resultado, también cuando todo funciona. Guardar/recargar con el filtro final, otros GPU/DPI y cambios de monitor en caliente permanecen como cobertura adicional, sin repetir las pruebas ya completadas.
 

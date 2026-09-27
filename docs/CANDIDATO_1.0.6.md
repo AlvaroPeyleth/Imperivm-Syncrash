@@ -1,6 +1,6 @@
 # Syncrash v1.0.6 · Casillas unificadas
 
-**28/09/2026 · Candidato verificado; publicación en preparación.** Syncrash v1 sigue siendo experimental y esperamos feedback. El cambio online permanece como propuesta sin implementar.
+**28/09/2026 · Publicada como v1.0.6 experimental.** Syncrash v1 sigue siendo experimental y esperamos feedback. El cambio online permanece como propuesta sin implementar.
 
 ## Archivo y cambios
 
@@ -32,7 +32,7 @@ Compilación completa con PowerShell 7.6.5, Roslyn de .NET SDK 8.0.400, referenc
 
 El EXE identificado arriba superó **38 pruebas automáticas**, dos builds completos idénticos y **siete aplicaciones desde el manejador real de la interfaz en copia aislada**. Se cubren las cuatro combinaciones de pantalla/voces, repetición de retirada y reinstalación; verificados componentes de pantalla, 188 WAV españoles o su retirada, manifiestos y conservación de hashes de EXE ya parcheado, PAK e INI. Las pruebas automáticas cubren reconstrucción, errores, archivos ajenos/modificados, concurrencia, CLI, voces en tres idiomas y recuperación de interrupciones.
 
-Interfaz renderizada a 780×666 y 710×520. Estas comprobaciones no equivalen a partidas, validación de todos los DPI o lectores de pantalla. Los candidatos locales y ensayos históricos conservan sus propios hashes y alcance. La preparación desde commit limpio y la publicación se registrarán en la [ficha de entrega](ENTREGA_ACTUAL.md).
+Interfaz renderizada a 780×666 y 710×520. Estas comprobaciones no equivalen a partidas, validación de todos los DPI o lectores de pantalla. Los candidatos locales y ensayos históricos conservan sus propios hashes y alcance. El EXE se reprodujo desde el commit limpio `c73edca69b05559a42234138f7b7d5ab12e50963`, con [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36354762010). Se publicaron EXE, sumas y licencia; los tres archivos descargados coinciden con las copias verificadas. CI prueba la base sin bundle nativo; el EXE completo se comprobó localmente. [Ficha de entrega](ENTREGA_ACTUAL.md).
 
 No se modifica la simulación, el resultado del parche base ni el contenido de voces/pantalla. No se han repetido partidas; multijugador con voces y escucha completa italiana/inglesa siguen pendientes. No se añade corrección causal de desync, Community Mod ni conectividad automática. Base, pantalla y voces no forman una transacción atómica: ante interrupciones, conservar los registros y reaplicar con el juego cerrado.
 

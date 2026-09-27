@@ -17,13 +17,13 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es experimental y esperamos tu feedback.** Queremos saber cómo te funciona: voces, cierres, desincronizaciones y cualquier comportamiento extraño. No es una solución definitiva a todos los fallos. Incorpora protección para tres rutas de cierre identificadas; las correcciones de desincronización siguen en investigación.
 
-La [candidata v1.0.6](docs/ENTREGA_ACTUAL.md) reúne memoria ampliada, protección de cierres, pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces son opciones independientes, **marcadas por defecto y desactivables**. Todo va en un único **Syncrash.exe**; el juego se abre como siempre, también desde `gbr.exe`. [Estado, pruebas y límites](docs/ENTREGA_ACTUAL.md).
+La [entrega actual v1.0.6](docs/ENTREGA_ACTUAL.md) reúne memoria ampliada, protección de cierres, pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces son opciones independientes, **marcadas por defecto y desactivables**. Todo va en un único **Syncrash.exe**; el juego se abre como siempre, también desde `gbr.exe`. [Estado, pruebas y límites](docs/ENTREGA_ACTUAL.md).
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
 ## Descargar y jugar
 
-La v1.0.6 está preparada para publicar. Sus [casillas unificadas](docs/FUNCIONAMIENTO.md#casillas-unificadas) permiten retirar pantalla o voces desmarcando y aplicando. Hasta completar la publicación, la última descarga sigue siendo v1.0.5.
+Las [casillas unificadas](docs/FUNCIONAMIENTO.md#casillas-unificadas) permiten retirar pantalla o voces desmarcando y aplicando.
 
 Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
 

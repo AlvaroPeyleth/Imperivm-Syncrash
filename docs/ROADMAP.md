@@ -6,13 +6,13 @@ Syncrash es **un único producto con perfiles para las ediciones compatibles**. 
 
 ## Entrega y feedback
 
-La [v1.0.6 preparada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Syncrash v1 es experimental: esperamos feedback de los usuarios.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
+La [v1.0.6 publicada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Syncrash v1 es experimental: esperamos feedback de los usuarios.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
 
 La [ficha técnica](CANDIDATO_1.0.6.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
 
 ## Siguientes pasos de Steam
 
-El [ajuste de casillas e interfaz](FUNCIONAMIENTO.md#casillas-unificadas) está implementado y probado en el candidato v1.0.6, pendiente de publicar. Pantalla y voces se retiran al desmarcar y aplicar.
+El [ajuste de casillas e interfaz](FUNCIONAMIENTO.md#casillas-unificadas) está publicado en v1.0.6. Pantalla y voces se retiran al desmarcar y aplicar.
 
 Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar PAK; reaplicar adapta el idioma y desmarcar/aplicar retira los WAV registrados. Quedan ampliar la escucha en los tres idiomas y comprobar multijugador con voces. La resolución interna superior a 1080p permanece fuera de la entrega tras un ensayo fallido.
 

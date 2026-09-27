@@ -41,12 +41,12 @@ Esta v1 no incorpora una corrección causal validada de desync Steam. Las correc
 
 ## Casillas unificadas
 
-El candidato v1.0.6 usa ambas casillas como estado deseado: **marcar y aplicar instala; desmarcar y aplicar retira** la pantalla adaptable o la reparación de voces. Memoria y protección de cierres se conservan. Abrir Syncrash o cambiar una casilla no modifica archivos. Las dos siguen marcadas por defecto; el jugador elige qué conservar antes de aplicar.
+Desde v1.0.6, la interfaz usa ambas casillas como estado deseado: **marcar y aplicar instala; desmarcar y aplicar retira** la pantalla adaptable o la reparación de voces. Memoria y protección de cierres se conservan. Abrir Syncrash o cambiar una casilla no modifica archivos. Las dos siguen marcadas por defecto; el jugador elige qué conservar antes de aplicar.
 
 Se elimina el botón separado de restauración de pantalla. Cada opción tiene una nota de retirada en gris de contraste legible. Información, proyecto y fuentes pasan al pie fijo junto al estado y al botón de aplicación; el contenido central conserva desplazamiento en ventanas pequeñas.
 
 La retirada valida el registro y los hashes de todos los componentes de pantalla antes de aplicar el parche base o eliminar archivos. Conserva archivos ajenos o modificados y permite repetir una retirada interrumpida. La operación completa de pantalla y voces no es una transacción atómica: ante un error hay que leer el estado y reaplicar con el juego cerrado. Las órdenes CLI mantienen su alcance explícito: `--apply` y `--apply-with-voices` conservan pantalla; `--remove-screen` la retira. Una compilación de desarrollo sin componentes de pantalla mantiene esa opción deshabilitada y no la retira al aplicar voces.
 
-**Comprobado:** compilación completa; 38 pruebas automáticas, incluidas retirada repetida, conservación de archivos, errores y recuperación; siete acciones del manejador real de Aplicar sobre una copia aislada, cubriendo las cuatro combinaciones de casillas y reinstalación. Se verificaron 188 voces españolas, presencia/ausencia de componentes de pantalla y conservación de hashes de ejecutable, PAK e INI. Interfaz renderizada a 780×666 y 710×520, con enlaces del pie visibles y desplazamiento central en la menor. Esto no constituye una partida ni una validación de todos los DPI o lectores de pantalla.
+La [ficha de v1.0.6](CANDIDATO_1.0.6.md) identifica su binario y las pruebas de archivos e interfaz. No equivalen a una partida ni a validar todos los DPI o lectores de pantalla.
 
-El cambio se prepara como [v1.0.6](CANDIDATO_1.0.6.md). Hasta completar su publicación, la descarga v1.0.5 conserva el botón de restauración descrito en su ficha histórica. El trabajo online sigue pendiente.
+Disponible desde [v1.0.6](CANDIDATO_1.0.6.md), publicada el 28/09/2026. La ficha histórica de v1.0.5 conserva su anterior botón de restauración. El trabajo online sigue pendiente.
