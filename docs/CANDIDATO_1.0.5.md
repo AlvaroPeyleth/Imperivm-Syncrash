@@ -64,7 +64,7 @@ El [mapa público](../src/Syncrash/voice-map.json) contiene solo rutas, tamaños
 
 - **36 pruebas sintéticas/Windows** sobre el candidato final: incluye extracción PAK, tres idiomas, reaplicación, retirada, migración, archivos ajenos/modificados, interrupciones simuladas, concurrencia, rutas inseguras y regresiones de memoria/pantalla.
 - **31 operaciones CLI sobre copias reales**, cotejando todos los WAV instalados y la integridad de los PAK y EXE correspondientes; incluye cambios de idioma y conservación de pantalla.
-- **Dos compilaciones completas idénticas** con .NET SDK 8.0.400; el EXE de las pruebas coincide con ese mismo SHA256.
+- **Dos compilaciones completas idénticas** con PowerShell 7.6.5 (.NET 10.0.11) y .NET SDK 8.0.400; el EXE de las pruebas coincide con ese mismo SHA256.
 - **769 entradas de audio decodificadas** durante la preparación del mapa. No equivale a escucharlas en partida.
 - Manejador real de **Aplicar** probado en una copia con la casilla activada y desactivada; retirada y reactivación de controles comprobadas. Ventana renderizada y revisada a 780×666 y 710×520. Bloqueo entre el prototipo Python y el nuevo aplicador comprobado entre procesos.
 
@@ -92,7 +92,7 @@ El candidato `1.0.5-local` del 27/09 medía 18.579.968 bytes y tenía SHA256 `25
 
 Las órdenes anteriores `--apply`, `--apply-with-screen` y `--apply-with-smoothing` conservan su alcance y no gestionan voces. Código de salida `0`: cambio realizado o comprobación admisible; `3`: ya aplicado o nada que retirar; `1`: error; `4`: otra operación en curso. No ejecutes dos aplicadores a la vez.
 
-Las instrucciones de compilación del [README](../README.md#compilar-y-conocer-el-proyecto) y `tests/run.ps1` incorporan el módulo y mapa de voces. El mapa ya está incluido: regenerarlo no es necesario para compilar. Para reproducir su preparación, usa una ruta de salida nueva:
+Las instrucciones de compilación del [README](../README.md#compilar-y-conocer-el-proyecto) y `tests/run.ps1` incorporan el módulo y mapa de voces. El mapa ya está incluido: regenerarlo no es necesario para compilar. Para reproducir el hash del EXE completo de esta entrega se usa PowerShell 7.6.5 (.NET 10.0.11). Windows PowerShell 5.1 empaqueta el ZIP de fuentes incrustado con otro método: conserva los mismos archivos, pero produce un EXE de hash y tamaño diferentes. La comprobación de entrega rechaza esa diferencia; no se sustituye silenciosamente el binario validado. Para reproducir su preparación, usa una ruta de salida nueva:
 
 ```powershell
 python -B ./scripts/build-voice-map.py --game-root '<carpeta del juego>' --output '<mapa nuevo.json>' --ffmpeg ffmpeg

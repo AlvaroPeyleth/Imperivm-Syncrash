@@ -58,6 +58,7 @@ $manifest = [ordered]@{
     published = $false
     target = '.NET Framework 4.8; Windows WinForms; AnyCPU'
     compiler = '.NET SDK 8.0.400 Roslyn; deterministic build'
+    packaging_host = "PowerShell $($PSVersionTable.PSVersion); .NET $([Environment]::Version)"
     executable = $exeInfo
     package_exe_sha256 = $finalHash
     embedded_screen_inputs = $screenFiles

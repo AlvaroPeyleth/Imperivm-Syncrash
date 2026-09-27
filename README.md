@@ -105,7 +105,7 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 El código propio conserva MIT; los componentes de pantalla mantienen sus licencias y fuentes exportables. La [ficha de 1.0.5](docs/CANDIDATO_1.0.5.md) identifica la compilación, sus pruebas y límites.
 
-En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
+En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
 ```powershell
 & ./src/Syncrash/build.ps1 -OutputPath ./work/mi-candidato/Syncrash.exe
