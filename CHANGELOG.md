@@ -1,19 +1,19 @@
 # Historial de versiones
 
-## Preparado en local · Aplicador 1.0.4.0 · 27 de septiembre de 2026
+## v1.0.4 · Aplicador 1.0.4.0 · 27 de septiembre de 2026
 
 - LAA para el juego x86 en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
 - EXE único con componentes de pantalla y fuentes/licencias incrustados; ya no requiere una carpeta externa. Pantalla adaptable incluye suavizado GPU en una sola opción, marcada por defecto y desactivable. El juego se abre desde Steam.
 - Menú más legible con el filtro GPU: feedback favorable de imagen y fluidez en un equipo. El ensayo HALFTONE por CPU se descartó porque ralentizaba la partida. No se modifican texturas ni se ofrece resolución interna superior a 1080p.
 - Sesión de más de una hora sin incidencias comunicada por dos jugadores en Steam vanilla, con la misma versión del paquete anterior. Mismos componentes gráficos en el nuevo aplicador; no se recogió el hash remoto.
 - Interfaz simplificada con información desplegable y ayudas al pasar el ratón. Restauración de pantalla y exportación de fuentes accesibles desde el aplicador.
-- Aplicador local: **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`. Windows PowerShell 5.1: 24 pruebas, dos compilaciones completas idénticas y 22 operaciones CLI sobre copias reales. Históricos anteriores conservados en la ficha.
+- Aplicador publicado: **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`. Windows PowerShell 5.1: 24 pruebas, dos compilaciones completas idénticas y 22 operaciones CLI sobre copias reales. Históricos anteriores conservados en la ficha.
 - Instalación/retirada por hashes, incluida retirada de la pantalla histórica. Para cambiar una configuración existente, restaurar pantalla y volver a aplicar. Desmarcar conserva lo instalado. Márgenes negros, monitor principal y modo del escritorio conservados.
 - Ensayo nativo 3440×1440 retirado tras cierre en partida; PAK original conservado. Otras configuraciones de hardware quedan para ampliar feedback.
 
 - Entrega reproducida desde el commit limpio `ce2ff9d` con Windows PowerShell 5.1, conservando el EXE validado. Documentación de código y fuentes simplificada; antivirus histórico archivado y sin análisis periódicos como requisito.
 
-**Sin publicar.** La [ficha del candidato](docs/CANDIDATO_1.0.4.md) distingue hashes, ensayos y límites. La entrega pública continúa siendo v1.0.3.
+**Publicada como experimental.** Código en main, release v1.0.4 desde `30aecbc`, CI correcto y EXE idéntico al validado. La [ficha de entrega](docs/ENTREGA_ACTUAL.md) identifica los archivos; la [ficha técnica](docs/CANDIDATO_1.0.4.md) conserva ensayos y límites.
 
 ## v1.0.3 · Aplicador 1.0.3.0 · 24 de septiembre de 2026
 

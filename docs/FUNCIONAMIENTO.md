@@ -26,6 +26,11 @@ El aplicador verifica la base Steam y los recursos, reconstruye el resultado en 
 
 Se distribuyen cambios parciales, no una copia completa de Imperivm. Los bytes de referencia del juego se incluyen para identificar y aplicar el cambio; la licencia MIT del trabajo propio no altera los derechos de sus titulares.
 
+## Memoria y pantalla en 1.0.4
+
+LAA habilita hasta 4 GB de espacio de direcciones de usuario para el juego x86 en Windows de 64 bits; no reserva RAM ni convierte el juego a 64 bits. Se conserva V2 y se admite actualizar su resultado anterior.
+
+La pantalla adaptable opcional instala una capa de presentación junto al juego. Conserva una superficie original, amplía su imagen con suavizado GPU y añade márgenes negros sin cambiar el modo del escritorio. Se abre desde Steam y se retira desde Syncrash. La [ficha técnica](CANDIDATO_1.0.4.md) reúne componentes, fuentes, pruebas y límites.
 ## Desincronizaciones y otros mods
 
 Esta v1 no incorpora una corrección causal validada de desync Steam. Las correcciones de cierres y desincronizaciones que identifiquemos y validemos en otros mods podrán incorporarse a futuras versiones de Syncrash para ampliar su alcance más allá de Steam vanilla, con perfiles de compatibilidad comprobados.

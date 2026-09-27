@@ -1,6 +1,6 @@
 # Código y transparencia
 
-El código de Syncrash, las recetas del parche y las instrucciones de compilación están disponibles en el [repositorio público](https://github.com/AlvaroPeyleth/Imperivm-Syncrash). Puedes revisarlos y compilar tu propia versión. Los cambios del [candidato 1.0.4.0](CANDIDATO_1.0.4.md) siguen en local hasta su publicación.
+El código de Syncrash, las recetas del parche y las instrucciones de compilación están disponibles en el [repositorio público](https://github.com/AlvaroPeyleth/Imperivm-Syncrash). Puedes revisarlos y compilar tu propia versión. Las fuentes de la [versión 1.0.4.0](CANDIDATO_1.0.4.md) están publicadas junto con el aplicador.
 
 - [Aplicador y compilación](../src/Syncrash) · [Fuentes de pantalla y procedencia](../src/Screen/README.md).
 - [Qué modifica](TRANSPARENCIA.md) · [Versión pública y hashes](ENTREGA_ACTUAL.md).

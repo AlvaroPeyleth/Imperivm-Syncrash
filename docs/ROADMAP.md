@@ -4,19 +4,14 @@
 
 Syncrash es **un único producto con perfiles para las ediciones compatibles**. Steam vanilla es la primera base, fijada por hashes. Las siguientes correcciones de cierres o desincronizaciones se incorporarán a nuevas versiones de Syncrash Steam, sin repartir parches independientes. Community Mod tendrá después una variante del mismo producto; sus actualizaciones exigirán identificar y probar de nuevo sus recursos. Otros mods podrán añadirse con perfiles propios.
 
-## Steam v1: primera entrega pública experimental
+## Entrega pública
 
-La [entrega actual v1.0.3](ENTREGA_ACTUAL.md) es un único ejecutable con bienvenida, ayuda integrada y enlaces al código y a las descargas, Steam vanilla seleccionado y Community desactivado. Busca Imperivm Steam y espera al botón **Aplicar parche** para aplicar la guarda V2 para tres rutas de cierre, tras comprobar los hashes admitidos. Si no encuentra el juego, permite seleccionar `gbr.exe`. El [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) no reescribe V2 al repetir; la entrega histórica v1.0.0 sí lo hacía. No crea copia de seguridad ni tiene botón de restauración: para recuperar vanilla se descarga el juego de nuevo o se verifican sus archivos desde Steam.
+La [versión v1.0.4](ENTREGA_ACTUAL.md) reúne protección V2 de cierres, LAA y pantalla adaptable opcional con suavizado GPU, marcada por defecto. El juego se abre desde Steam y el escritorio conserva su resolución. El EXE incluye componentes y fuentes; la pantalla puede retirarse desde el aplicador.
 
-La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
-
-## Distribución
-
-La entrega pública continúa siendo v1.0.3. El código, las instrucciones de compilación y los hashes permiten revisar cada entrega. Los análisis anteriores se conservan como historial; no se exigen análisis antivirus periódicos. La prioridad es distribuir el candidato cuando se autorice y recoger feedback de Steam vanilla.
-
+Hay pruebas automáticas, preparación desde commit limpio, CI correcto y una sesión de más de una hora sin incidencias comunicada por dos jugadores con Steam vanilla y la misma versión. La [ficha técnica](CANDIDATO_1.0.4.md) recoge hashes, resultados y límites. La prioridad es recopilar feedback; no se exigen análisis antivirus periódicos.
 ## Siguientes versiones de Steam
 
-El [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), actualizado el 27/09, reúne LAA y pantalla adaptable opcional, marcada por defecto con suavizado GPU, en un único EXE. Está preparado desde commit limpio. El usuario comunica más de una hora sin incidencias con dos equipos Steam vanilla y la misma versión. Falta autorización para publicar; la cobertura en más hardware se ampliará con feedback. La resolución interna superior a 1080p sigue fuera del candidato tras un ensayo fallido; audio y Community se estudiarán después.
+Con 1.0.4 publicada, se ampliará la compatibilidad a partir de incidencias concretas. La resolución interna superior a 1080p sigue fuera de la entrega tras un ensayo fallido. Audio y Community Mod se estudiarán después; la base actual es Steam vanilla.
 
 1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
 2. Si aparece un desync, localizar la primera diferencia observada entre ambos estados y comprobar su causa en los recursos efectivos de Steam. Las herramientas locales de manifiestos sirven para comparar archivos, pero no prueban igualdad de la simulación.

@@ -17,7 +17,7 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-La [entrega actual v1.0.3](docs/ENTREGA_ACTUAL.md) incluye el aplicador **1.0.3.0**, con comprobación sin escritura, reaplicación sin cambios y mejoras en los mensajes. Sus [pruebas técnicas](docs/CANDIDATO_1.0.3.md) están documentadas. El candidato 1.0.4.0 sigue en local y todavía no sustituye esa descarga.
+La [entrega actual v1.0.4](docs/ENTREGA_ACTUAL.md) añade LAA y pantalla adaptable opcional con suavizado GPU, activada por defecto. Mantiene la resolución del escritorio y permite seguir abriendo el juego desde Steam. Todo va incluido en un único **Syncrash.exe**.
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
@@ -27,23 +27,18 @@ Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPey
 
 1. Cierra Imperivm y abre **Syncrash.exe**.
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
-3. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
+3. Deja marcada **Añadir pantalla adaptable** para incluir adaptación y suavizado, o desmárcala para aplicar solo memoria y cierres.
+4. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-El aplicador 1.0.3.0 detecta que ya está instalado y no lo reescribe. La entrega histórica v1.0.0 sí reescribía el resultado. Para pruebas multijugador recomendamos que todos utilicen la misma versión de Syncrash y los mismos recursos del juego.
+El aplicador admite Steam original y actualiza el parche V2 anterior. Si el resultado exacto ya está instalado, no lo reescribe. Para multijugador, utiliza la misma versión del parche y los mismos recursos en ambos equipos.
 
-**Para quitarlo:** verifica los archivos del juego desde Steam o reinstálalo. Syncrash **no crea una copia de seguridad**.
-
-### Así es Syncrash v1
-
-![Pantalla real de Syncrash v1: Steam vanilla seleccionado, Community Mod próximamente y botón Aplicar parche](docs/images/syncrash-v1-aplicador.png)
-
-Una sola ventana para seleccionar el juego y aplicar el parche. Esta captura muestra el aplicador actual; Community Mod permanece desactivado. Puedes consultar qué modifica y acceder al código desde la propia aplicación.
+**Para quitarlo:** pulsa **Restaurar pantalla original** y después verifica los archivos del juego desde Steam para recuperar también `gbr.exe`. Desmarcar la casilla conserva una pantalla ya instalada; para cambiar de variante, restáurala antes de volver a aplicar. Syncrash no crea copia de `gbr.exe`.
 
 ## ¿Puedo jugar con alguien que no tiene Syncrash?
 
 Se han realizado pruebas entre jugadores con Syncrash y sin él, sin problemas comunicados, aunque la compatibilidad sigue en evaluación. La protección se aplica únicamente al equipo donde está instalado: no evita los cierres de otros jugadores ni garantiza que la partida continúe si alguien se desconecta. Que otro jugador no lo tenga no desactiva tu protección.
 
-Recomendamos que todos utilicen la misma versión de Syncrash. Esta compatibilidad observada corresponde a **v1** y se revisará al incorporar nuevas correcciones.
+Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixtas son históricas de V2; la sesión comunicada con pantalla adaptable usó el parche en ambos equipos.
 
 ## Compatibilidad y alcance
 
@@ -51,6 +46,8 @@ Recomendamos que todos utilicen la misma versión de Syncrash. Esta compatibilid
 | --- | --- |
 | Steam vanilla | Disponible para los archivos exactos [identificados por SHA256](docs/TRANSPARENCIA.md#archivos-admitidos). |
 | Protección de cierres | Comprueba el tipo de objeto antes de tres llamadas concretas. No cubre todos los posibles cierres. |
+| Memoria | LAA amplía el espacio de direcciones disponible para el juego x86 en Windows de 64 bits. |
+| Pantalla adaptable | Opcional, con suavizado GPU y márgenes negros; conserva el escritorio. |
 | Desincronizaciones | En investigación; v1 no incorpora una corrección de desync. |
 | Community Mod | Próximamente. La opción está desactivada. |
 | Otros mods | Sin compatibilidad validada. |
@@ -60,15 +57,15 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 ## Qué cambia en tu equipo
 
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
-- **Solo sustituye `gbr.exe`.** No modifica mapas, guardados, PAK ni archivos de audio.
+- Sustituye `gbr.exe`. Si eliges pantalla adaptable, instala también sus componentes y registro junto al juego. No modifica mapas, guardados, PAK ni audio.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir la interfaz no modifica el juego; solo lo hace el botón **Aplicar parche**. El aplicador 1.0.3.0 incluye las órdenes `--check <ruta>`, que solo lee, y `--apply <ruta>`, que aplica. La entrega v1.0.0 tenía una orden antigua, `--test <ruta>`, que **sí aplicaba** el parche; 1.0.3.0 la retira.
+- Abrir la interfaz no modifica el juego. La aplicación, retirada de pantalla y exportación se realizan al pulsar sus acciones. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.4.md).
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
 ## Pruebas de estabilidad
 
-Se han probado instalación, reinstalación y rechazo de archivos incompatibles en copias aisladas. Una sesión Steam de unos 79 minutos con la protección terminó normalmente y sin las excepciones vigiladas. Los registros recibidos de ambos jugadores no muestran un desync explícito. **Eso no demuestra que todos los fallos estén resueltos ni que el parche evitara un cierre en esa partida.**
+La versión 1.0.4 supera 24 pruebas locales, dos builds completos idénticos y 22 operaciones sobre copias reales. El usuario comunica más de una hora de multijugador sin incidencias en dos equipos Steam vanilla con la misma versión y los mismos componentes gráficos. Es compatibilidad observada; no una corrección causal de todos los cierres o desyncs. [Evidencia y alcance](docs/CANDIDATO_1.0.4.md).
 
 ## Ayuda a mejorar Syncrash
 
@@ -99,7 +96,7 @@ Cada aportación ayuda a avanzar. Los [créditos](docs/CREDITOS.md) distinguen l
 
 ## Compilar y conocer el proyecto
 
-El código en desarrollo prepara el [candidato local 1.0.4.0](docs/CANDIDATO_1.0.4.md), con LAA y pantalla adaptable opcional, marcada por defecto, con suavizado incluido y todavía en pruebas. La descarga pública continúa siendo v1.0.3. Consulta la ficha de cada versión para sus hashes y límites.
+La [versión 1.0.4.0](docs/CANDIDATO_1.0.4.md) y sus fuentes están publicadas. Las fuentes y licencias de pantalla también pueden exportarse desde el EXE; el código propio conserva MIT y los componentes de terceros sus licencias respectivas.
 
 En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
@@ -109,10 +106,10 @@ En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-El candidato completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El usuario comunica una sesión de más de una hora con dos equipos Steam vanilla y la misma versión, sin incidencias. No añade texturas ni modos internos superiores a 1080p.
+El EXE completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El usuario comunica una sesión de más de una hora con dos equipos Steam vanilla y la misma versión, sin incidencias. No añade texturas ni modos internos superiores a 1080p.
 
-Los comandos anteriores generan la base de desarrollo sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias. La distribución pública del candidato sigue pendiente. Consulta la [ficha actual](docs/CANDIDATO_1.0.4.md) para hashes, pruebas y recuperación.
+Los comandos anteriores generan la base de desarrollo sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias. Consulta la [ficha actual](docs/CANDIDATO_1.0.4.md) para hashes, pruebas y recuperación.
 
-La compilación no sobrescribe un EXE existente e incrusta la licencia. En nuestra máquina, dos compilaciones del mismo código produjeron archivos idénticos. La [guía del candidato](docs/CANDIDATO_1.0.3.md) detalla los comandos, las pruebas y sus límites. Con cualquier compilación, el `gbr.exe` parcheado debe coincidir con el hash documentado.
+La compilación no sobrescribe un EXE existente e incrusta la licencia. En nuestra máquina, dos compilaciones del mismo código produjeron archivos idénticos. La [ficha técnica](docs/CANDIDATO_1.0.4.md) detalla los comandos, las pruebas y sus límites. Con cualquier compilación, el `gbr.exe` parcheado debe coincidir con el hash documentado.
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

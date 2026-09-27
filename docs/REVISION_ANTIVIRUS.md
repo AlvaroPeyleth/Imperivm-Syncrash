@@ -20,4 +20,4 @@ Varias reglas estáticas correspondían a comprobaciones de hashes, procesos, b�
 
 No se realizaron nuevos análisis para 1.0.3.0 ni 1.0.4.0. Sus compilaciones y pruebas funcionales constan en las fichas de [1.0.3](CANDIDATO_1.0.3.md) y [1.0.4](CANDIDATO_1.0.4.md).
 
-El candidato local 1.0.4.0 tiene **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`; los resultados de la tabla no se le atribuyen. La evidencia extensa y las versiones anteriores del informe se conservan en Git y en el archivo privado `work/`.
+El aplicador publicado 1.0.4.0 tiene **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`; los resultados de la tabla no se le atribuyen. La evidencia extensa y las versiones anteriores del informe se conservan en Git y en el archivo privado `work/`.

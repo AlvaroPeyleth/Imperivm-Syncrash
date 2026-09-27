@@ -1,6 +1,6 @@
-# Candidato local 1.0.4.0: memoria, pantalla y suavizado opcionales
+# Versión 1.0.4.0: memoria, pantalla y suavizado opcionales
 
-Estado al 27/09/2026: **entrega preparada en local, sin publicar**. La entrega pública sigue siendo [v1.0.3](ENTREGA_ACTUAL.md). El candidato se distribuye como **un único Syncrash.exe**, con componentes y fuentes de pantalla incrustados. «Añadir pantalla adaptable» es opcional y está marcada por defecto, con suavizado GPU incluido. Al desmarcarla se aplica solo memoria y cierres. No incluye resolución interna superior a 1080p ni cambios de texturas/audio.
+Estado al 27/09/2026: **publicada como v1.0.4 experimental para Steam vanilla**. La [ficha de entrega](ENTREGA_ACTUAL.md) identifica el EXE y la descarga. Un único Syncrash.exe incluye componentes y fuentes de pantalla. «Añadir pantalla adaptable» es opcional y está marcada por defecto, con suavizado GPU incluido. Al desmarcarla se aplica solo memoria y cierres. No incluye resolución interna superior a 1080p ni cambios de texturas/audio.
 
 ## Memoria
 
@@ -12,7 +12,7 @@ El aplicador admite el original Steam o el resultado V2 exacto de las entregas a
 
 | Archivo o estado | Bytes | SHA256 |
 | --- | ---: | --- |
-| Aplicador local 1.0.4.0, EXE único | 18.362.368 | `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c` |
+| Aplicador publicado 1.0.4.0, EXE único | 18.362.368 | `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c` |
 | gbr.exe original admitido | 4.456.448 | `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473` |
 | gbr.exe V2 anterior admitido para actualizar | 4.460.544 | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
 | gbr.exe V2 + LAA | 4.460.544 | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
@@ -58,7 +58,7 @@ CLI: `--apply` aplica la base; `--apply-with-screen` añade pantalla sin suaviza
 
 Para reproducir el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a `build.ps1`, `tests/run.ps1` y `compare-builds.ps1`. Cada entrada se fija por hash y el archivo de fuentes se crea con orden y fechas constantes. Sin ese parámetro se compila la base de desarrollo y las opciones de pantalla quedan deshabilitadas. El preparador de entrega exige el bundle para reconstruir y comparar; no lo copia como carpeta externa.
 
-**Preparación local completada:** el 27/09 el preparador recompiló desde el commit limpio `ce2ff9d786aea84664d61da2cbb7bce06ddab936` con Windows PowerShell 5.1 y reprodujo el EXE de la tabla. Se generó el paquete y su manifiesto; evidencia en `work/release-ready-20260927/clean-commit/`. No se han hecho nuevos análisis antivirus y no son un requisito de entrega. Falta autorizar la publicación. Guardado/recarga con el filtro final, otros GPU/DPI y cambios de monitor en caliente quedan como cobertura adicional no comprobada, no como nuevas pruebas obligatorias para este cierre.
+**Publicación completada:** el preparador reprodujo el EXE desde los commits limpios `ce2ff9d` y `30aecbc` con Windows PowerShell 5.1. La release v1.0.4 apunta a `30aecbce6e35d7a691b94b5f57f814c07ebdfbe5`; el código está en main y CI del commit pasó. El EXE publicado conserva los bytes de la tabla. Evidencia en `work/release-ready-20260927/`. No se han hecho nuevos análisis antivirus. Guardado/recarga con el filtro final, otros GPU/DPI y cambios de monitor en caliente quedan como cobertura adicional no comprobada.
 
 ## Prueba comunicada y cambio de opciones · 27/09/2026
 

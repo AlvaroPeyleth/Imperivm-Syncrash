@@ -1,48 +1,32 @@
-# Qué hace Syncrash Steam v1
+# Qué hace Syncrash Steam v1.0.4
 
-Syncrash es un proyecto experimental de estabilidad para Imperivm. Esta entrega aplica la guarda V2 de cierres; las correcciones de desync Steam siguen en investigación. El código y las versiones se publican en [GitHub](https://github.com/AlvaroPeyleth/Imperivm-Syncrash).
+Syncrash aplica la protección V2 de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. El [código y las fuentes](SEGURIDAD.md) son revisables.
 
 ## Acceso a archivos
 
-Al abrir, muestra información y busca instalaciones de Steam mediante sus rutas del registro, bibliotecas y manifiestos. El jugador puede seleccionar otra ruta. **No modifica el juego hasta pulsar Aplicar parche.**
+La interfaz busca la instalación Steam y permite elegir `gbr.exe`. No modifica el juego al abrirse. Al aplicar, comprueba EXE y PAK, exige juego cerrado, reconstruye y verifica el resultado antes de sustituir `gbr.exe`. Si el resultado exacto ya está instalado, no lo reescribe.
 
-Al aplicar:
-
-1. Lee y comprueba `gbr.exe` y `Packs/data.pak`, y exige que el juego esté cerrado.
-2. Reconstruye en memoria el ejecutable parcheado usando las diferencias incrustadas en el EXE. El candidato 1.0.3.0 reconoce V2 exacta y termina sin reescritura; la entrega v1.0.0 la reescribía.
-3. Escribe un temporal en la carpeta del juego, verifica el resultado y sustituye únicamente `gbr.exe`. El temporal se elimina. No se guarda copia de seguridad.
-4. Comprueba el hash final y muestra el resultado.
-
-No modifica PAK, mapas, guardados, configuración ni archivos de audio. No instala un observador, servicios, tareas programadas, actualizadores ni controladores. No envía Logs ni otros datos por red. Los enlaces de código y descargas abren GitHub en el navegador cuando el usuario los pulsa. La ayuda integrada se puede leer sin conexión.
+Con pantalla adaptable marcada, instala `winmm.dll`, `dxwnd.dll`, `dxwnd.dxw`, la licencia y el registro de propiedad junto al juego. Conserva las proporciones, añade márgenes negros y suaviza la ampliación mediante GPU. El juego sigue arrancando desde Steam. No se modifica el PAK, mapas, guardados ni audio; no se instala un servicio, observador o actualizador ni se envían Logs automáticamente.
 
 ## Archivos admitidos
 
 | Archivo | SHA256 |
 | --- | --- |
 | Steam original `gbr.exe` | `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473` |
-| Resultado V2 `gbr.exe` | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
+| V2 anterior admitido para actualizar | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
+| Resultado V2 + LAA `gbr.exe` | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 | `Packs/data.pak` vanilla | `6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50` |
 
-El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta contiene cambios en cabeceras del ejecutable, tres llamadas y la sección añadida con la guarda. Solo se distribuyen el aplicador y esas diferencias; el jugador aporta su instalación de Steam.
+El original ocupa 4.456.448 bytes y el resultado 4.460.544. La [ficha técnica](CANDIDATO_1.0.4.md) identifica también cada componente de pantalla. Solo se distribuyen el aplicador, las diferencias y componentes propios/de terceros; necesitas tu instalación del juego.
 
-## Confianza y límites
+## Retirada y límites
 
-El [código y las instrucciones de compilación](SEGURIDAD.md) permiten revisar cómo funciona el aplicador. Los resultados técnicos se vinculan a la versión y hash de cada entrega.
+Desmarcar pantalla conserva la que ya esté instalada. Para retirarla o cambiar de variante, pulsa **Restaurar pantalla original**. Esa acción conserva LAA; para recuperar también `gbr.exe`, verifica después los archivos del juego desde Steam. No se crea una copia de seguridad del ejecutable.
 
-Dos builds del [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El [candidato 1.0.4.0](CANDIDATO_1.0.4.md) tiene sus propias comprobaciones y todavía no sustituye la descarga pública.
+Las pruebas y la sesión multijugador comunicada están en la [ficha de entrega](ENTREGA_ACTUAL.md). No se incorpora una corrección causal de desync, resolución interna superior a 1080p ni texturas nuevas. Community Mod permanece desactivado y se estudiará después de Steam vanilla.
 
-Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.
+## Licencias y privacidad
 
-Para quitar Syncrash, reinstala Imperivm o verifica sus archivos desde Steam. Si Steam restaura `gbr.exe`, será necesario volver a aplicar Syncrash para usarlo.
+Código propio bajo [MIT](../LICENSE); pantalla con sus [licencias y procedencia](../src/Screen/README.md), exportables junto a las fuentes completas desde el EXE. Los derechos de Imperivm pertenecen a sus titulares.
 
-## Community Mod
-
-Su opción está desactivada. La futura variante de Syncrash se aplicará **después de instalar Community Mod por sus propios canales**. No se incluye, descarga ni redistribuye el mod de su creador. Se admitirán únicamente versiones del mod identificadas y probadas.
-
-## Licencia y privacidad
-
-El código propio se ofrece bajo [MIT](../LICENSE), con autoría de AlvaroPeyleth (Discord: xtalvarotx). Consulta los [créditos](CREDITOS.md) y el [funcionamiento técnico](FUNCIONAMIENTO.md). No se conceden derechos sobre el código original de Imperivm.
-
-La [ficha de entrega](ENTREGA_ACTUAL.md) identifica el EXE publicado y su SHA256.
-
-Los logs y dumps de jugadores permanecen fuera del repositorio, incluido su historial revisado. Las incidencias públicas deben describir el problema sin adjuntar datos personales. El historial conserva la identidad y el correo profesional del autor por decisión expresa suya.
+Logs, dumps y datos de jugadores permanecen fuera del repositorio. Las incidencias públicas deben describir el problema sin adjuntar datos personales.
