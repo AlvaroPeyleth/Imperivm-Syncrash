@@ -20,7 +20,7 @@ El candidato conserva la receta, los hashes admitidos, el banner y las tres corr
 
 - `--test <ruta>` ya no aplica el parche: devuelve uso inválido, código 2. Para escribir hace falta `--apply <ruta>` o pulsar «Aplicar parche» en la interfaz.
 - `--check <ruta>` valida los archivos y reconstruye el resultado en memoria, sin escribir. `--detect-only` enumera las instalaciones encontradas.
-- Si la V2 exacta ya está instalada, responde «ya instalado» sin reescribir ni crear un temporal.
+- Si el resultado exacto del parche ya está instalado, responde «ya instalado» sin reescribir ni crear un temporal.
 - Un mutex por ruta impide que dos ejecuciones de Syncrash apliquen el parche a la vez sobre el mismo juego. Justo antes de sustituir `gbr.exe` se comprueban de nuevo el proceso y los hashes.
 - Los errores indican el estado del archivo que se pudo verificar. El temporal propio se elimina al terminar.
 - Ensamblado, archivo y manifiesto comparten versión. La compilación usa herramientas fijadas y se compara byte a byte.
@@ -54,7 +54,7 @@ Después se copiaron **archivos reales ya admitidos** a una carpeta local, fuera
 | --- | --- | --- |
 | `--check` original | 0 | Hash y fecha de `gbr.exe` intactos; ningún temporal |
 | `--apply` con la copia marcada como solo lectura | 1 | Reemplazo denegado; original intacto y sin temporal; se conserva el estado en el error |
-| `--apply` original | 0 | `gbr.exe` pasó exactamente al hash V2 esperado |
+| `--apply` original | 0 | `gbr.exe` pasó exactamente al hash esperado del juego parcheado |
 | `--check` ya instalado | 3 | Sin cambios de hash, fecha ni temporales |
 | `--apply` de nuevo | 3 | Sin cambios de hash, fecha ni temporales |
 
@@ -95,7 +95,7 @@ Se subió el código a `main` y se publicó [v1.0.3](https://github.com/AlvaroPe
 La publicación para recoger feedback no da por realizadas estas pruebas. Hay que probar el EXE exacto y el juego reconstruido en una instalación legítima aislada, con las protecciones activas:
 
 1. Abrir la interfaz y aplicar el parche como usuario normal.
-2. Arrancar el juego desde Steam, jugar una partida, guardar, cargar y salir.
+2. Arrancar Imperivm (versión Steam), jugar una partida, guardar, cargar y salir.
 3. Repetir la aplicación para confirmar que no reescribe, y comprobar que Steam restaura el original.
 4. Registrar por separado cualquier alerta sobre el aplicador y sobre el juego, con versiones y hashes.
 

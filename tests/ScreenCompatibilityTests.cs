@@ -59,6 +59,52 @@ internal static partial class SyncrashTests
         }
     }
 
+    private static void ScreenDeselection()
+    {
+        using (var f = new Fixture())
+        {
+            ScreenFile[] files = ScreenFixture();
+            Assert(ScreenCompatibility.Remove(f.Root, files, delegate { }, null, () => f.Apply()), "base not applied without screen");
+            Assert(!ScreenCompatibility.Remove(f.Root, files, delegate { }, null, () => f.Apply()), "unchecked repeat changed files");
+            ScreenCompatibility.Install(f.Root, files, () => f.Apply(), delegate { }, null);
+            string voices = Path.Combine(f.Root, "CurrentLang", "voices");
+            Directory.CreateDirectory(voices);
+            File.WriteAllText(Path.Combine(voices, "owned.wav"), "voices remain");
+            File.WriteAllText(Path.Combine(f.Root, "unrelated.txt"), "user file");
+            Assert(ScreenCompatibility.Remove(f.Root, files, delegate { }, null, () => f.Apply()), "screen not removed");
+            Assert(!ScreenCompatibility.Remove(f.Root, files, delegate { }, null, () => f.Apply()), "removed twice");
+            foreach (ScreenFile file in files) Assert(!File.Exists(Path.Combine(f.Root, file.Name)), "screen residue");
+            Assert(!File.Exists(Path.Combine(f.Root, ScreenCompatibility.MarkerName)), "ownership residue");
+            Assert(File.ReadAllText(Path.Combine(voices, "owned.wav")) == "voices remain", "voices changed");
+            Assert(File.ReadAllText(Path.Combine(f.Root, "unrelated.txt")) == "user file", "unrelated changed");
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(f.Result) && Hex(File.ReadAllBytes(f.Pak)) == Hex(f.PakData), "base or PAK changed");
+            Assert(ScreenCompatibility.Install(f.Root, files, () => f.Apply(), delegate { }, null), "cannot enable again");
+        }
+    }
+
+    private static void ScreenDeselectionFailure()
+    {
+        using (var f = new Fixture())
+        {
+            ScreenFile[] files = ScreenFixture();
+            File.WriteAllBytes(Path.Combine(f.Root, "winmm.dll"), files[3].Data);
+            bool patched = false;
+            Throws<IOException>(() => ScreenCompatibility.Remove(f.Root, files, delegate { }, null,
+                () => { patched = true; return f.Apply(); }));
+            Assert(!patched && Hex(File.ReadAllBytes(f.Target)) == Hex(f.Source), "foreign screen patched base");
+            File.Delete(Path.Combine(f.Root, "winmm.dll"));
+            ScreenCompatibility.Install(f.Root, files, () => f.Apply(), delegate { }, null);
+            Throws<IOException>(() => ScreenCompatibility.Remove(f.Root, files, delegate { }, null,
+                () => { throw new IOException("base rejected"); }));
+            Assert(ScreenCompatibility.Inspect(f.Root, files), "base failure removed screen");
+            File.WriteAllText(Path.Combine(f.Root, "dxwnd.dxw"), "edited");
+            Throws<IOException>(() => ScreenCompatibility.Remove(f.Root, files, delegate { }, null,
+                () => { patched = true; return f.Apply(); }));
+            Assert(!patched, "changed screen patched base");
+            foreach (ScreenFile file in files) Assert(File.Exists(Path.Combine(f.Root, file.Name)), "partial removal");
+        }
+    }
+
     private static void ScreenForeignFiles()
     {
         using (var f = new Fixture())

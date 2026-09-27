@@ -1,6 +1,21 @@
 # Syncrash · Ficha de entrega
 
+## Candidato preparado: v1.0.6 · 28/09/2026
+
+Casillas unificadas, enlaces al pie y correcciones de documentación. Conectividad sin implementar. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
+
+| Dato | Valor |
+| --- | --- |
+| Aplicador | 1.0.6.0 · `Syncrash.exe` |
+| Tamaño | 18.579.968 bytes |
+| SHA256 del EXE | `c3be15d959263a69e32b4abd0623b9cc29e5d162695e4c65fa51977965d8eeb2` |
+| SHA256 de `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+
+38 pruebas automáticas y siete operaciones del manejador real de la interfaz en copia aislada. Dos builds completos idénticos en PowerShell 7.6.5. Pendiente de preparación desde commit limpio, CI y publicación; no se modifica la descarga anterior.
+
 ## Entrega actual: v1.0.5 · 27/09/2026
+
+El [cambio local de casillas e interfaz del 28/09](FUNCIONAMIENTO.md#casillas-unificadas) todavía no está publicado. Esta ficha y sus hashes siguen describiendo la descarga v1.0.5.
 
 **Publicada como experimental. Syncrash v1 necesita el feedback de los usuarios para seguir mejorando.** [Descargar Syncrash v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5). Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
 
@@ -9,7 +24,7 @@
 | Aplicador | 1.0.5.0 · `Syncrash.exe` |
 | Tamaño | 18.579.968 bytes |
 | SHA256 del EXE | `187d62824b609385f2dc1371ffd873a25d0f2cb70e0a6292f7f72dd2c57a4118` |
-| SHA256 de `gbr.exe` V2 + LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+| SHA256 de `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 
 **Fuente y comprobaciones:** tag y commit de compilación `6260bc848a0e1b70c6fbdd84c69c27e0dd19ac70`; 36 pruebas locales, 31 operaciones sobre copias reales, acciones de la interfaz y dos builds completos idénticos. El preparador recompiló desde el commit limpio con PowerShell 7.6.5. [CI del commit](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36350599727) superó pruebas y comparación de la base; el EXE completo se comprobó localmente. Se descargaron y cotejaron los tres archivos publicados: EXE, `SHA256SUMS.txt` y licencia.
 
@@ -24,10 +39,10 @@ La [ficha técnica](CANDIDATO_1.0.5.md) concentra el uso, pruebas, recursos y re
 | Aplicador | 1.0.4.0 · `Syncrash.exe` |
 | Tamaño | 18.362.368 bytes |
 | SHA256 del EXE | `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c` |
-| SHA256 de `gbr.exe` V2 + LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+| SHA256 de `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 | Commit de compilación y tag | `30aecbce6e35d7a691b94b5f57f814c07ebdfbe5` |
 
-La release incluye el EXE, `SHA256SUMS.txt` y la licencia del aplicador. Pantalla adaptable y suavizado GPU forman una opción marcada por defecto; sus componentes, fuentes completas y licencias están incrustados. No hace falta un launcher ni una carpeta externa. El juego se abre desde Steam.
+La release incluye el EXE, `SHA256SUMS.txt` y la licencia del aplicador. Pantalla adaptable y suavizado GPU forman una opción marcada por defecto; sus componentes, fuentes completas y licencias están incrustados. No hace falta un launcher ni una carpeta externa. El juego se abre normalmente, también desde `gbr.exe`.
 
 **Comprobaciones:** 24 pruebas locales, dos EXE completos idénticos, 22 operaciones sobre copias reales y recompilación desde commit limpio con Windows PowerShell 5.1. [CI del commit publicado](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36282247853) superó pruebas y comparación de builds de la base sin componentes; el EXE completo se validó localmente. Se descargaron de GitHub los tres archivos publicados y sus SHA256 coinciden con las copias locales. El usuario comunica más de una hora sin incidencias en dos equipos Steam vanilla con los mismos componentes gráficos.
 
@@ -54,6 +69,6 @@ Esta ficha conserva los resultados de v1.0.3; no atribuye a ese EXE las partidas
 
 ## Histórico: v1.0.0 · 23/09/2026
 
-[Primera entrega experimental](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.0): aplicador 1.0.2.0, 2.400.256 bytes, SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`. Producía el mismo `gbr.exe` V2 que v1.0.3 y reescribía al repetir. Se comprobaron aplicación, reaplicación y rechazo de archivos desconocidos en copias aisladas, sin PAK modificado ni temporales restantes.
+[Primera entrega experimental](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.0): aplicador 1.0.2.0, 2.400.256 bytes, SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`. Producía el mismo `gbr.exe` parcheado que v1.0.3 y reescribía al repetir. Se comprobaron aplicación, reaplicación y rechazo de archivos desconocidos en copias aisladas, sin PAK modificado ni temporales restantes.
 
 La sesión registrada de unos 79 minutos corresponde a esa protección del juego, antes del cambio de interfaz. Los [análisis antivirus de 24/09](REVISION_ANTIVIRUS.md) se conservan en un único historial, sin atribuirlos a versiones posteriores. El EXE histórico no se ha sustituido.

@@ -31,7 +31,7 @@ Memoria, protección de cierres y componentes de pantalla mantienen el resultado
 
 1. Cierra Imperivm y abre Syncrash. Selecciona su `gbr.exe` si no se detecta.
 2. Deja marcada **Reparar voces de unidades** y pulsa **Aplicar parche**. Pantalla adaptable conserva su casilla independiente, también marcada por defecto.
-3. Abre el juego desde Steam. No necesitas dejar abierto Syncrash.
+3. Abre Imperivm (versión Steam), también puedes usar `gbr.exe` directamente. No necesitas dejar abierto Syncrash.
 4. **Si cambias el idioma del juego, ciérralo y vuelve a aplicar Syncrash antes de jugar.** Comprueba que el resultado indica el idioma elegido. Los destinos son comunes: el aplicador sustituye las copias registradas del idioma anterior y elimina las que sobran.
 5. Para retirar las voces, **desmarca Reparar voces de unidades y pulsa Aplicar parche**. No basta con cerrar la ventana ni con verificar archivos en Steam. Para quitar también pantalla y protección, restaura después la pantalla y verifica los archivos del juego en Steam.
 
@@ -56,7 +56,7 @@ La casilla de voces expresa el estado deseado al aplicar: desmarcarla retira la 
 | `local/spanish.pak` | `22fcebb4b0846420bac911812bd66f42c43c54fc6f5575a4319c6aaf993c76e2` |
 | `local/italian.pak` | `a5f11c3013ec5beef25ae22768eeb3ce96145f95bfd1906bb26f280ea5c971de` |
 | `local/english.pak` | `a2b6ce5281a84824a25f42aed592974785b538830e6d38ce0e3bcca8d0bd17f3` |
-| Resultado `gbr.exe` V2 + LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+| Resultado `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 
 El [mapa público](../src/Syncrash/voice-map.json) contiene solo rutas, tamaños y hashes. [Su generador](../scripts/build-voice-map.py) lo reconstruye desde los PAK locales identificados; opcionalmente verifica la decodificación mediante FFmpeg. El aplicador usa únicamente .NET Framework 4.8: Python y FFmpeg son herramientas de preparación, no requisitos para el jugador.
 

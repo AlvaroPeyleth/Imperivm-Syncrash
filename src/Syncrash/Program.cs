@@ -103,6 +103,16 @@ internal static class Syncrash
 
     internal static string PatchGameWithVoices(string exePath, bool screen, bool voices, out bool changed)
     {
+        return PatchGameWithVoices(exePath, screen, voices, false, out changed);
+    }
+
+    internal static string ConfigureOptions(string exePath, bool screen, bool voices, out bool changed)
+    {
+        return PatchGameWithVoices(exePath, screen, voices, true, out changed);
+    }
+
+    private static string PatchGameWithVoices(string exePath, bool screen, bool voices, bool configureScreen, out bool changed)
+    {
         bool baseChanged = false, voiceChanged;
         string baseResult = "";
         string voiceResult;
@@ -110,7 +120,8 @@ internal static class Syncrash
         {
             // Voice collisions/resources are validated before touching the base patch.
             voiceResult = VoiceCompatibility.ConfigureGame(exePath, voices, delegate {
-                baseResult = PatchGame(exePath, screen, screen, out baseChanged);
+                baseResult = configureScreen ? ScreenCompatibility.ConfigureGame(exePath, screen, out baseChanged)
+                    : PatchGame(exePath, screen, screen, out baseChanged);
             }, out voiceChanged);
         }
         catch (Exception error)
@@ -119,7 +130,8 @@ internal static class Syncrash
             throw;
         }
         changed = baseChanged || voiceChanged;
-        return "Memoria y cierres listos." + (screen ? " Pantalla adaptable con suavizado lista." : " Pantalla sin cambios.") + "\n" + voiceResult;
+        return "Memoria y cierres listos." + (screen ? " Pantalla adaptable con suavizado lista." :
+            configureScreen ? " Pantalla adaptable desactivada." : " Pantalla sin cambios.") + "\n" + voiceResult;
     }
 
     internal static string PatchGame(string exePath, bool adaptiveScreen)

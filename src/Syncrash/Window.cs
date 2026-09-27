@@ -16,7 +16,6 @@ internal sealed class SyncrashWindow : Form
     private readonly TextBox path = new TextBox();
     private readonly Button browse = new Button();
     private readonly Button apply = new Button();
-    private readonly Button restoreScreen = new Button();
     private readonly CheckBox adaptiveScreen = new CheckBox();
     private readonly CheckBox repairVoices = new CheckBox();
     private readonly Label status = new Label();
@@ -28,7 +27,7 @@ internal sealed class SyncrashWindow : Form
 
     internal SyncrashWindow()
     {
-        Text = "Syncrash 1.0.5 · v1 experimental";
+        Text = "Syncrash 1.0.6 · v1 experimental";
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         Font = new Font("Segoe UI", 9F);
@@ -41,7 +40,7 @@ internal sealed class SyncrashWindow : Form
         var frame = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3, Margin = Padding.Empty };
         frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 128));
         frame.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+        frame.RowStyles.Add(new RowStyle(SizeType.Absolute, 116));
         Controls.Add(frame);
 
         var hero = new BannerPanel { Dock = DockStyle.Fill, Margin = Padding.Empty, BackColor = Color.FromArgb(30, 27, 24) };
@@ -104,13 +103,11 @@ internal sealed class SyncrashWindow : Form
         AddRow(body, adaptiveScreen);
         AddRow(body, Copy(screenAvailable ? "Incluye suavizado de imagen. Mantiene la resolución del escritorio." :
             "Esta compilación de desarrollo no incluye los componentes de pantalla.", 9F));
-        restoreScreen.Text = "Restaurar pantalla original";
-        restoreScreen.AutoSize = true;
-        restoreScreen.Anchor = AnchorStyles.Left;
-        restoreScreen.Margin = new Padding(0, 12, 0, 16);
-        restoreScreen.AccessibleName = "Retirar la compatibilidad de pantalla conservando el parche de memoria y cierres";
-        restoreScreen.Click += async delegate { await ApplyAsync(true); };
-        AddRow(body, restoreScreen);
+        var screenRemoval = Copy("Si la desmarcas y aplicas, se retira la pantalla adaptable.", 9F);
+        screenRemoval.ForeColor = Color.FromArgb(102, 98, 92);
+        screenRemoval.Margin = new Padding(0, 0, 0, 20);
+        screenRemoval.Visible = screenAvailable;
+        AddRow(body, screenRemoval);
 
         repairVoices.Text = "Reparar voces de unidades";
         repairVoices.AccessibleName = "Reparar voces de unidades, opcional";
@@ -120,7 +117,9 @@ internal sealed class SyncrashWindow : Form
         repairVoices.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
         repairVoices.Margin = new Padding(0, 0, 0, 5);
         AddRow(body, repairVoices);
-        var voiceHelp = Copy("Español, italiano e inglés, según el idioma del juego.\nSi la desmarcas y aplicas, se retira la reparación de voces.", 9F);
+        AddRow(body, Copy("Español, italiano e inglés, según el idioma del juego.", 9F));
+        var voiceHelp = Copy("Si la desmarcas y aplicas, se retira la reparación de voces.", 9F);
+        voiceHelp.ForeColor = Color.FromArgb(102, 98, 92);
         voiceHelp.Margin = new Padding(0, 0, 0, 12);
         AddRow(body, voiceHelp);
         tips.SetToolTip(repairVoices, "Recupera voces desde tus archivos del juego. Si cambias de idioma, cierra el juego y vuelve a aplicar Syncrash antes de jugar. Desmarcar y aplicar retira solo las voces registradas, conservando archivos ajenos o modificados.");
@@ -131,14 +130,13 @@ internal sealed class SyncrashWindow : Form
             try { Process.Start(new ProcessStartInfo(Repository) { UseShellExecute = true }); }
             catch (Exception) { status.Text = "No se pudo abrir el navegador. El enlace está en el README del proyecto."; }
         };
-        var links = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Top, Margin = new Padding(0, 6, 0, 0) };
+        var links = new FlowLayoutPanel { AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, Dock = DockStyle.Fill, Margin = new Padding(0, 6, 0, 0) };
         var help = new LinkLabel { Text = "Información", AutoSize = true, LinkColor = Crimson, Margin = new Padding(0, 0, 20, 0), AccessibleName = "Mostrar información y recuperación del parche" };
         var sourceLink = new LinkLabel { Text = "Licencias y fuentes de pantalla", AutoSize = true, LinkColor = Crimson, Margin = Padding.Empty, Visible = screenAvailable };
         links.Controls.Add(help);
         links.Controls.Add(repo);
         links.Controls.Add(sourceLink);
-        AddRow(body, links);
-        var details = Copy("MEMORIA Y CIERRES\nProtección para tres rutas de cierre identificadas. Hasta 4 GB de memoria virtual en Windows de 64 bits; no garantiza más FPS ni corrige fugas. No corrige todavía las desincronizaciones.\n\nPANTALLA ADAPTABLE\nHasta 1080p internos, ampliados al monitor principal con márgenes negros. Conserva el modo del escritorio. Los componentes se incluyen en este EXE y se instalan junto al juego. No necesitas abrir Syncrash para jugar. Desmarcar la opción conserva una instalación anterior; para quitarla usa Restaurar pantalla original.\n\nSUAVIZADO INCLUIDO\nPantalla adaptable está marcada por defecto y es opcional. Incluye el filtro de GPU para la imagen ampliada. No cambia texturas ni añade resolución interna. Si no está disponible, utiliza la presentación sin filtro. Para cambiar una configuración de pantalla ya instalada, restaura la pantalla y vuelve a aplicar.\n\nVOCES DE UNIDADES\nOpcional y marcada por defecto. Utiliza las grabaciones de tu instalación en español, italiano o inglés. Si cambias el idioma del juego, ciérralo y vuelve a aplicar Syncrash antes de jugar. Para retirar esta reparación, desmarca Reparar voces de unidades y pulsa Aplicar parche.\n\nRECUPERACIÓN\nPara quitar todo el parche, retira primero las voces, restaura la pantalla y después verifica los archivos en Steam. No se crea copia de gbr.exe. Solo se admiten los archivos originales o resultados de Syncrash reconocidos. Community Mod no está disponible.\n\nLICENCIAS\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nAplicador MIT; pantalla con licencia independiente incluida. El enlace de fuentes guarda una copia local de su licencia y código. No descarga mods ni envía datos.", 9F);
+        var details = Copy("MEMORIA Y CIERRES\nProtección para tres rutas de cierre identificadas. Hasta 4 GB de memoria virtual en Windows de 64 bits; no garantiza más FPS ni corrige fugas. No corrige todavía las desincronizaciones.\n\nPANTALLA ADAPTABLE\nHasta 1080p internos, ampliados al monitor principal con márgenes negros. Conserva el modo del escritorio. Los componentes se incluyen en este EXE y se instalan junto al juego. No necesitas abrir Syncrash para jugar. Para retirarla, desmarca Añadir pantalla adaptable y pulsa Aplicar parche.\n\nSUAVIZADO INCLUIDO\nPantalla adaptable está marcada por defecto y es opcional. Incluye el filtro de GPU para la imagen ampliada. No cambia texturas ni añade resolución interna. Si no está disponible, utiliza la presentación sin filtro. Para cambiar una configuración de pantalla ya instalada, desmarca pantalla y aplica; después márcala y vuelve a aplicar.\n\nVOCES DE UNIDADES\nOpcional y marcada por defecto. Utiliza las grabaciones de tu instalación en español, italiano o inglés. Si cambias el idioma del juego, ciérralo y vuelve a aplicar Syncrash antes de jugar. Para retirar esta reparación, desmarca Reparar voces de unidades y pulsa Aplicar parche.\n\nRECUPERACIÓN\nPara quitar todo el parche, desmarca pantalla y voces, aplica y después verifica los archivos en Steam. No se crea copia de gbr.exe. Solo se admiten los archivos originales o resultados de Syncrash reconocidos. Community Mod no está disponible.\n\nLICENCIAS\nCreado por AlvaroPeyleth · Discord: xtalvarotx\nAplicador MIT; pantalla con licencia independiente incluida. El enlace de fuentes guarda una copia local de su licencia y código. No descarga mods ni envía datos.", 9F);
         details.Margin = new Padding(0, 12, 0, 8);
         details.Visible = false;
         AddRow(body, details);
@@ -149,22 +147,27 @@ internal sealed class SyncrashWindow : Form
             if (details.Visible) scroll.ScrollControlIntoView(details);
         };
         tips.SetToolTip(help, "Memoria, pantalla y cómo retirar el parche. Pulsa para leer la información completa.");
-        tips.SetToolTip(adaptiveScreen, "Encaja el juego con márgenes negros y suavizado mediante la GPU, sin cambiar el escritorio. Puedes desmarcarla para omitir la pantalla. Desmarcar no retira una instalación anterior.");
+        tips.SetToolTip(adaptiveScreen, "Encaja el juego con márgenes negros y suavizado mediante la GPU, sin cambiar el escritorio. Desmarcar y aplicar retira la pantalla adaptable instalada por Syncrash, conservando memoria y protección de cierres.");
         tips.SetToolTip(included, "Hasta 4 GB de memoria virtual en Windows de 64 bits. No garantiza más FPS ni elimina todos los cierres.");
-        tips.SetToolTip(restoreScreen, "Retira solo los archivos de pantalla registrados por Syncrash. Conserva memoria y protección de cierres.");
         sourceLink.LinkClicked += delegate { ExportScreenSources(); };
 
-        var footer = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, BackColor = Color.FromArgb(236, 234, 229), Padding = new Padding(28, 16, 28, 16), Margin = Padding.Empty };
+        var footer = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 1, BackColor = Color.FromArgb(236, 234, 229), Padding = new Padding(28, 16, 28, 16), Margin = Padding.Empty };
+        footer.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         footer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         footer.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186));
+        var footerInfo = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2, Margin = new Padding(0, 0, 16, 0) };
+        footerInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        footerInfo.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        footerInfo.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         status.Dock = DockStyle.Fill;
         status.Text = "Cierra el juego antes de continuar.";
         status.TextAlign = ContentAlignment.MiddleLeft;
-        status.Margin = new Padding(0, 0, 16, 0);
+        status.Margin = Padding.Empty;
         status.AccessibleName = "Estado del parche";
         apply.Text = "Aplicar parche";
         apply.AccessibleName = "Aplicar parche Steam vanilla";
-        apply.Dock = DockStyle.Fill;
+        apply.Anchor = AnchorStyles.Right;
+        apply.Size = new Size(186, 48);
         apply.Margin = Padding.Empty;
         apply.BackColor = Crimson;
         apply.ForeColor = Color.White;
@@ -172,7 +175,9 @@ internal sealed class SyncrashWindow : Form
         apply.FlatStyle = FlatStyle.Flat;
         apply.FlatAppearance.BorderSize = 0;
         apply.Click += async delegate { await ApplyAsync(); };
-        footer.Controls.Add(status, 0, 0);
+        footerInfo.Controls.Add(status, 0, 0);
+        footerInfo.Controls.Add(links, 0, 1);
+        footer.Controls.Add(footerInfo, 0, 0);
         footer.Controls.Add(apply, 1, 0);
         frame.Controls.Add(footer, 0, 2);
         Shown += delegate
@@ -264,7 +269,7 @@ internal sealed class SyncrashWindow : Form
             : error.Message;
     }
 
-    private async Task ApplyAsync(bool removeScreen = false)
+    private async Task ApplyAsync()
     {
         if (busy) return;
         if (string.IsNullOrWhiteSpace(path.Text) && !PickGame()) return;
@@ -272,15 +277,16 @@ internal sealed class SyncrashWindow : Form
         bool includeScreen = adaptiveScreen.Checked;
         bool includeVoices = repairVoices.Checked;
         busy = true;
-        apply.Enabled = browse.Enabled = restoreScreen.Enabled = adaptiveScreen.Enabled = repairVoices.Enabled = false;
-        apply.Text = removeScreen ? "Restaurando…" : "Aplicando…";
-        status.Text = removeScreen ? "Retirando la compatibilidad de pantalla…" : "Comprobando archivos y aplicando Syncrash…";
+        apply.Enabled = browse.Enabled = adaptiveScreen.Enabled = repairVoices.Enabled = false;
+        apply.Text = "Aplicando…";
+        status.Text = "Comprobando archivos y aplicando las opciones…";
         status.ForeColor = Ink;
         try
         {
             bool operationChanged = false;
-            status.Text = await Task.Run(() => removeScreen ? ScreenCompatibility.RemoveGame(target) : Syncrash.PatchGameWithVoices(target, includeScreen, includeVoices, out operationChanged));
-            if (removeScreen) adaptiveScreen.Checked = false;
+            status.Text = await Task.Run(() => screenAvailable
+                ? Syncrash.ConfigureOptions(target, includeScreen, includeVoices, out operationChanged)
+                : Syncrash.PatchGameWithVoices(target, false, includeVoices, out operationChanged));
             status.ForeColor = Color.FromArgb(34, 87, 58);
         }
         catch (PatchBusyException error)
@@ -292,12 +298,12 @@ internal sealed class SyncrashWindow : Form
         {
             status.ForeColor = Crimson;
             status.Text = DescribeApplyError(error);
-            MessageBox.Show(this, status.Text, removeScreen ? "No se pudo restaurar la pantalla" : "No se pudo aplicar Syncrash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, status.Text, "No se pudo aplicar Syncrash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         finally
         {
             busy = false;
-            apply.Enabled = browse.Enabled = restoreScreen.Enabled = true;
+            apply.Enabled = browse.Enabled = true;
             adaptiveScreen.Enabled = screenAvailable;
             repairVoices.Enabled = true;
             apply.Text = "Aplicar parche";

@@ -1,5 +1,17 @@
 # Historial de versiones
 
+## v1.0.6 · Aplicador 1.0.6.0 · 28 de septiembre de 2026 (preparada)
+
+- Pantalla y voces comparten el criterio de marcar/desmarcar y aplicar. Se retira el botón separado de restauración de pantalla, se atenúan las notas de retirada y los enlaces pasan al pie fijo.
+- Compilación local, 38 pruebas automáticas y siete acciones de Aplicar en copia aislada, con las cuatro combinaciones de casillas. [Funcionamiento, comprobaciones y límites](docs/FUNCIONAMIENTO.md#casillas-unificadas). Se prepara una nueva entrega con hash propio; no implementa conectividad.
+
+## Sin publicar · Ajustes de texto y propuesta online · 27 de septiembre de 2026
+
+- Corregidas las instrucciones de inicio: «versión Steam» identifica la edición compatible; se puede abrir Imperivm desde `gbr.exe` o el acceso directo habitual. Ajustado también el mensaje de instalación de pantalla en el código fuente; la corrección todavía no está en el EXE publicado. La prueba prevista de conexión online incluye el arranque directo del ejecutable.
+- Documentación pública unificada con nombres de funciones y versiones publicadas; se conservan fechas, hashes y resultados históricos. La propuesta online exige aplicar una vez y abrir Imperivm (versión Steam) sin navegador ni aplicador abiertos, con una prueba específica pendiente para ese flujo.
+- Preparada la [propuesta de conexión online automática](docs/CONEXION_ONLINE.md): futura casilla independiente, salas actuales, mapeos temporales y evaluación condicionada de la negociación NAT existente, sin nuevos servidores. Incluye fases, compatibilidad con pantalla/voces, retirada y matriz de pruebas.
+- Investigación de Upercat reconocida como referencia. No se ha implementado ni probado la función, incorporado código externo, cambiado la versión del EXE ni modificado la entrega v1.0.5.
+
 ## v1.0.5 · Aplicador 1.0.5.0 · 27 de septiembre de 2026
 
 **v1 experimental: esperamos feedback de los usuarios. Publicada el 27/09/2026.**
@@ -13,8 +25,8 @@
 
 ## v1.0.4 · Aplicador 1.0.4.0 · 27 de septiembre de 2026
 
-- LAA para el juego x86 en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
-- EXE único con componentes de pantalla y fuentes/licencias incrustados; ya no requiere una carpeta externa. Pantalla adaptable incluye suavizado GPU en una sola opción, marcada por defecto y desactivable. El juego se abre desde Steam.
+- LAA para el juego x86 en Windows de 64 bits, conservando la protección de cierres. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
+- EXE único con componentes de pantalla y fuentes/licencias incrustados; ya no requiere una carpeta externa. Pantalla adaptable incluye suavizado GPU en una sola opción, marcada por defecto y desactivable. El juego se abre normalmente, también desde `gbr.exe`.
 - Menú más legible con el filtro GPU: feedback favorable de imagen y fluidez en un equipo. El ensayo HALFTONE por CPU se descartó porque ralentizaba la partida. No se modifican texturas ni se ofrece resolución interna superior a 1080p.
 - Sesión de más de una hora sin incidencias comunicada por dos jugadores en Steam vanilla, con la misma versión del paquete anterior. Mismos componentes gráficos en el nuevo aplicador; no se recogió el hash remoto.
 - Interfaz simplificada con información desplegable y ayudas al pasar el ratón. Restauración de pantalla y exportación de fuentes accesibles desde el aplicador.
@@ -36,7 +48,7 @@
 - El preparador lee la versión de `AssemblyInfo.cs`, también para las instrucciones y el ZIP. CI limita `push` a `main` y actualiza a `actions/checkout@v7` y `actions/setup-dotnet@v6` (últimas releases comprobadas: v7.0.1 y v6.0.0, con Node.js 24).
 - Misma versión en ensamblado, archivo y manifiesto; los metadatos indican la empresa editora. La receta y los hashes del juego no cambian.
 
-**Publicado como entrega experimental v1.0.3.** EXE final tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Código confirmado en main, empaquetado desde árbol limpio y CI remoto correctos. Se publicaron el EXE, sus sumas y la licencia para recoger feedback; en aquel cierre quedaron sin realizar las comprobaciones de partida y antivirus del hash exacto. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
+**Publicado como entrega experimental v1.0.3.** EXE final tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash esperado del juego parcheado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Código confirmado en main, empaquetado desde árbol limpio y CI remoto correctos. Se publicaron el EXE, sus sumas y la licencia para recoger feedback; en aquel cierre quedaron sin realizar las comprobaciones de partida y antivirus del hash exacto. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
 
 ## Documentación y distribución · 24 de septiembre de 2026
 
@@ -52,7 +64,7 @@ Estos avances no cambian el binario, la protección ni la versión de la entrega
 Primera entrega pública experimental para Steam vanilla. Versión del aplicador: **1.0.2.0**.
 
 - Un solo `Syncrash.exe`, con búsqueda de la instalación y aplicación mediante botón.
-- Protección de tres llamadas mediante comprobación del tipo de objeto; misma guarda V2 de las pruebas privadas.
+- Protección de tres llamadas mediante comprobación del tipo de objeto; la misma protección validada en las pruebas privadas.
 - Validación de `gbr.exe`, `Packs/data.pak` y resultado por SHA256.
 - Reaplicación de la versión exacta ya instalada, sin crear copia de seguridad.
 - Ayuda integrada sin conexión, enlace al código y a la última descarga.
@@ -60,4 +72,4 @@ Primera entrega pública experimental para Steam vanilla. Versión del aplicador
 
 **No incluye correcciones de desync Steam. Community Mod sigue desactivado.** Para recuperar vanilla, verifica los archivos desde Steam o reinstala el juego.
 
-Las denominaciones V1/V2 de investigación anteriores identifican versiones internas de la guarda; no son paquetes públicos adicionales.
+Los ensayos privados previos se conservan en el archivo de investigación.

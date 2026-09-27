@@ -68,10 +68,10 @@ $manifest | ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 (Join-Path $pac
 @"
 Syncrash ${version}: candidato local para pruebas, sin publicar.
 Uso: cierra Imperivm, comprueba tu instalación Steam vanilla y aplica desde la interfaz.
-Pantalla adaptable y Reparar voces de unidades son opcionales y están marcadas por defecto. Pantalla incluye suavizado GPU; desmarcarla conserva cualquier pantalla ya instalada.
+Pantalla adaptable y Reparar voces de unidades son opcionales y están marcadas por defecto. Marcar y aplicar instala cada función; desmarcar y aplicar la retira. Pantalla incluye suavizado GPU.
 Voces admite español, italiano e inglés según Settings.ini. Extrae WAV de tus PAK locales sin modificarlos. Si cambias de idioma, cierra el juego y vuelve a aplicar Syncrash antes de jugar. Desmarcar voces y aplicar retira los archivos registrados; conserva archivos ajenos o modificados y avisa si impiden completar la retirada.
-Syncrash.exe incluye pantalla y fuentes/licencias; no necesita una carpeta screen externa. Puedes desmarcar Pantalla adaptable para omitir pantalla y suavizado. Exporta las fuentes desde la interfaz o --export-screen-sources <nuevo.zip>.
-Recuperación: desmarca Reparar voces de unidades y aplica, usa Restaurar pantalla original y después verifica los archivos del juego en Steam. Steam no retira por sí solo los WAV añadidos. No se crea copia de gbr.exe.
+Syncrash.exe incluye pantalla y fuentes/licencias; no necesita una carpeta screen externa. Tras aplicar, cierra Syncrash y abre Imperivm (versión Steam), también directamente desde gbr.exe. Exporta las fuentes desde el pie de la interfaz o --export-screen-sources <nuevo.zip>.
+Recuperación: desmarca pantalla y voces, aplica y después verifica los archivos del juego en Steam. Steam no retira por sí solo los WAV añadidos. No se crea copia de gbr.exe.
 Código, recetas y compilación: https://github.com/AlvaroPeyleth/Imperivm-Syncrash. Fuentes de pantalla exportables desde el EXE.
 SHA256SUMS.txt identifica el ejecutable de esta entrega.
 "@ | Set-Content -Encoding utf8 (Join-Path $package 'LEEME.txt')

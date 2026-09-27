@@ -33,6 +33,8 @@ internal static partial class SyncrashTests
         Run("CLI --check and retired --test do not write", CliReadOnly);
         Run("CLI redirected streams without console", CliRedirected);
         Run("screen install, idempotence and removal preserve game files", ScreenLifecycle);
+        Run("screen deselection applies base, removes owned files and is idempotent", ScreenDeselection);
+        Run("screen deselection validates before patch and preserves files on base failure", ScreenDeselectionFailure);
         Run("screen rejects foreign files and changed ownership before patching", ScreenForeignFiles);
         Run("screen incomplete install resumes and can be removed", ScreenInterrupted);
         Run("screen rejects altered payload and a running game", ScreenInvalidPayload);

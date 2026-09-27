@@ -74,7 +74,7 @@ internal static class ScreenCompatibility
         string marker = Path.Combine(directory, MarkerName);
         bool owned = Exists(marker);
         if (owned && PatchEngine.HashFile(marker) != PatchEngine.HashBytes(Marker(files)))
-                throw new IOException("Hay otra configuración de pantalla instalada. Usa Restaurar pantalla original y después aplica las nuevas opciones. Los archivos se han conservado.");
+                throw new IOException("Hay otra configuración de pantalla instalada. Desmarca pantalla y aplica para retirarla; después marca y aplica las nuevas opciones. Los archivos se han conservado.");
         bool complete = owned;
         foreach (ScreenFile file in files)
         {
@@ -181,7 +181,7 @@ internal static class ScreenCompatibility
         LoadBundle(files); // Validate the complete bundle before patching the executable.
         changed = Install(GameDirectory(path), files, () => PatchEngine.ApplyGame(path),
             () => PatchEngine.CheckGame(path), null);
-        return changed ? "Syncrash y pantalla adaptable instalados" + (smooth ? " con suavizado" : "") + ". Abre el juego desde Steam."
+        return changed ? "Syncrash y pantalla adaptable instalados" + (smooth ? " con suavizado" : "") + ". Abre Imperivm."
             : "Syncrash y pantalla adaptable ya están instalados. No se han modificado archivos.";
     }
 
@@ -204,6 +204,16 @@ internal static class ScreenCompatibility
         string directory = GameDirectory(path);
         Remove(directory, InstalledFiles(directory), () => PatchEngine.CheckGame(path), null);
         return "Archivos de pantalla retirados. Se conserva el parche de memoria y cierres; el juego recupera su modo de pantalla original.";
+    }
+
+    internal static string ConfigureGame(string path, bool enabled, out bool changed)
+    {
+        if (enabled) return ApplyGame(path, true, out changed);
+        PatchEngine.CheckGame(path);
+        string directory = GameDirectory(path);
+        changed = Remove(directory, InstalledFiles(directory), () => PatchEngine.CheckGame(path), null,
+            () => PatchEngine.ApplyGame(path));
+        return "Memoria y cierres listos. Pantalla adaptable desactivada.";
     }
 
     // Explicit dependencies are used by synthetic tests; public entry points use fixed hashes.
@@ -241,14 +251,15 @@ internal static class ScreenCompatibility
                 catch (Exception error)
                 {
                     throw new IOException("El parche del ejecutable quedó instalado, pero la pantalla no se completó. " +
-                        "Vuelve a aplicar o usa Restaurar pantalla original para retirar los archivos registrados. Detalle: " + error.Message, error);
+                        "Vuelve a aplicar o desmarca pantalla y aplica para retirar los archivos registrados. Detalle: " + error.Message, error);
                 }
             }
             finally { mutex.ReleaseMutex(); }
         }
     }
 
-    internal static void Remove(string directory, ScreenFile[] files, Action gameClosed, Action<int> beforeDelete)
+    internal static bool Remove(string directory, ScreenFile[] files, Action gameClosed, Action<int> beforeDelete,
+        Func<PatchStatus> patch = null)
     {
         using (Mutex mutex = Lock(directory))
         {
@@ -258,7 +269,9 @@ internal static class ScreenCompatibility
                 gameClosed();
                 Inspect(directory, files); // Validate ALL files before removing ANY of them.
                 string marker = Path.Combine(directory, MarkerName);
-                if (!Exists(marker)) return;
+                bool owned = Exists(marker);
+                bool patched = patch != null && patch() != PatchStatus.AlreadyInstalled;
+                if (!owned) return patched;
                 try
                 {
                     // Remove the loading proxy first. Keep ownership until every file is gone.
@@ -272,6 +285,7 @@ internal static class ScreenCompatibility
                     }
                     Inspect(directory, files);
                     File.Delete(marker);
+                    return true;
                 }
                 catch (Exception error)
                 {

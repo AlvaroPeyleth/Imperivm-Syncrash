@@ -16,6 +16,7 @@ Aportar un registro ayuda a investigar; no atribuye automáticamente el descubri
 
 ## Referencias y terceros
 
+- **Upercat · investigación de conectividad:** referencia para la [propuesta de conexión online automática](CONEXION_ONLINE.md). Agradecemos su aportación al estudio del transporte del juego. Esta preparación no incorpora código suyo ni certifica una función disponible.
 - **AlexiusItaly / ImperivmLauncher:** referencia revisada y posible colaboración futura. Esta entrega no incorpora código de ese proyecto.
 - **Community Mod:** proyecto independiente que se instala por sus propios canales. Su compatibilidad con Syncrash está pendiente; no se redistribuye con el parche.
 - **Imperivm:** el juego, sus marcas y su código original pertenecen a sus titulares. La licencia de Syncrash no concede derechos sobre ellos.

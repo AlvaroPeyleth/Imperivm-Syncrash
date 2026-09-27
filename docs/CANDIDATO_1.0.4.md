@@ -6,23 +6,23 @@ Estado al 27/09/2026: **publicada como v1.0.4 experimental para Steam vanilla**.
 
 El ejecutable del juego sigue siendo x86. Se activa `IMAGE_FILE_LARGE_ADDRESS_AWARE`: en Windows de 64 bits permite hasta 4 GB de espacio de direcciones de usuario. No reserva 4 GB de RAM, no convierte el juego a 64 bits y no demuestra por sí solo mejoras de FPS o estabilidad. La sesión comunicada se recoge debajo; no se ha medido el uso de direcciones superiores a 2 GB. [Referencia de Microsoft](https://learn.microsoft.com/en-us/windows/win32/memory/memory-limits-for-windows-releases).
 
-Se conserva la guarda V2. Respecto a su resultado anterior solo cambian dos bytes: el indicador LAA en el desplazamiento 326 (`0f` a `2f`) y el checksum PE en el 392 (`69` a `89`). El checksum se calculó y contrastó con `MapFileAndCheckSumW`. No cambia el tamaño del juego ni se tocan sus instrucciones de simulación.
+Se conserva la protección de cierres. Respecto a su resultado anterior solo cambian dos bytes: el indicador LAA en el desplazamiento 326 (`0f` a `2f`) y el checksum PE en el 392 (`69` a `89`). El checksum se calculó y contrastó con `MapFileAndCheckSumW`. No cambia el tamaño del juego ni se tocan sus instrucciones de simulación.
 
-El aplicador admite el original Steam o el resultado V2 exacto de las entregas anteriores. Ambas rutas producen el mismo resultado. Conserva validación de PAK, reconstrucción por hashes, exclusión entre instancias, comprobación de juego cerrado y sustitución mediante archivo temporal. La comprobación distingue una actualización de una instalación original; los errores conservan el estado de la versión anterior.
+El aplicador admite el original Steam o el ejecutable parcheado exacto de las entregas anteriores. Ambas rutas producen el mismo resultado. Conserva validación de PAK, reconstrucción por hashes, exclusión entre instancias, comprobación de juego cerrado y sustitución mediante archivo temporal. La comprobación distingue una actualización de una instalación original; los errores conservan el estado de la versión anterior.
 
 | Archivo o estado | Bytes | SHA256 |
 | --- | ---: | --- |
 | Aplicador publicado 1.0.4.0, EXE único | 18.362.368 | `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c` |
 | gbr.exe original admitido | 4.456.448 | `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473` |
-| gbr.exe V2 anterior admitido para actualizar | 4.460.544 | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
-| gbr.exe V2 + LAA | 4.460.544 | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+| gbr.exe de las entregas anteriores admitido para actualizar | 4.460.544 | `752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc` |
+| gbr.exe con protección de cierres y LAA | 4.460.544 | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 | Packs/data.pak admitido por el aplicador | 2.518.522 | `6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50` |
 
 ## Comprobaciones del EXE actual · 27/09/2026
 
 - Windows PowerShell 5.1: `tests/run.ps1`, **24 pruebas superadas**, con el EXE completo. La compilación base sin componentes superó esas pruebas con el candidato anterior del 26/09. Incluye protección de archivos, recuperación, concurrencia, CLI y exportación de fuentes sin sobrescribir un destino existente.
 - `scripts/compare-builds.ps1`: dos EXE completos idénticos byte a byte, SHA256 de la tabla. Fuentes locales sobre `2f8f86f`, con cambios sin confirmar. Esta repetibilidad corresponde al aplicador C# con entradas nativas fijadas por hash; no demuestra builds nativos idénticos entre toolchains.
-- **22 operaciones CLI sobre copias reales** del original y de V2: EXE aislado sin carpeta `screen`, parche base, ambas variantes de pantalla, idempotencia, retirada, rechazo de cambios de configuración sin retirada previa, retirada de la variante histórica, rechazo de archivos alterados/ajenos y exportación de las cinco entradas de fuentes verificadas. Ambas rutas producen `gbr.exe` LAA exacto y conservan el PAK. El juego no se ejecutó en estas copias.
+- **22 operaciones CLI sobre copias reales** del original y del ejecutable parcheado anterior: EXE aislado sin carpeta `screen`, parche base, ambas variantes de pantalla, idempotencia, retirada, rechazo de cambios de configuración sin retirada previa, retirada de la variante histórica, rechazo de archivos alterados/ajenos y exportación de las cinco entradas de fuentes verificadas. Ambas rutas producen `gbr.exe` LAA exacto y conservan el PAK. El juego no se ejecutó en estas copias.
 - Interfaz simplificada, renderizada a 780×566 y 710×520: ruta, funciones incluidas, una casilla marcada con suavizado incluido, retirada visible y acción principal fija. Información mediante ayuda al pasar el ratón y panel desplegable accesible por clic/teclado. No equivale a validar todos los DPI ni lectores de pantalla.
 - Evidencia nativa del 26/09, con los mismos hashes actuales: las fuentes nativas completas se reconstruyeron en un directorio nuevo desde upstream más el archivo de cambios incluido. Compilación x86 correcta. Pruebas de superficie: 400 presentaciones, fuente intacta, repintados parciales, cambio de modo y limpieza GDI. Pruebas GPU: colores, alineación 1:1, interpolación, bordes, fuente intacta, dimensiones inválidas, recreaciones y conservación del control FPU.
 - Prueba manual inicial del filtro GPU: buena imagen y fluidez en menú y partida. La traza confirmó GPU activa, entrada 1920×1080 y salida 2560×1440. La sesión multijugador posterior se registra debajo; no se midieron FPS.
@@ -48,7 +48,7 @@ Los botones ya llegan dibujados en el bitmap del juego observado. No se han extr
 
 ## Uso, recuperación y fuentes
 
-Sin opciones: memoria y protección de cierres; conserva una pantalla ya instalada. Pantalla adaptable: amplía el juego hasta encajar en el monitor principal, con proporciones y márgenes negros, manteniendo el escritorio. La casilla está marcada por defecto e incluye el filtro GPU sobre esa imagen. Se abre siempre desde Steam, sin launcher adicional.
+Sin opciones: memoria y protección de cierres; conserva una pantalla ya instalada. Pantalla adaptable: amplía el juego hasta encajar en el monitor principal, con proporciones y márgenes negros, manteniendo el escritorio. La casilla está marcada por defecto e incluye el filtro GPU sobre esa imagen. Abre Imperivm (versión Steam) normalmente, también desde `gbr.exe`, sin launcher adicional.
 
 La instalación escribe cuatro archivos de pantalla y su registro junto al juego; el usuario solo necesita descargar el EXE. No sobrescribe archivos ajenos ni adopta un ensayo sin registro. Para cambiar una variante ya instalada, pulsa **Restaurar pantalla original** y vuelve a aplicar las opciones deseadas. La retirada valida todos los archivos, quita primero el proxy y conserva LAA; admite también el paquete histórico de márgenes negros. Para retirar todo, restaura pantalla y después verifica el juego en Steam.
 
@@ -74,10 +74,10 @@ Estos resultados pertenecen a candidatos anteriores; no sustituyen las comprobac
 
 | Aplicador anterior (SHA256) | Bytes | Evidencia histórica |
 | --- | ---: | --- |
-| `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7` | 2.405.888 | LAA: 16 pruebas y dos builds idénticos. Actualización real desde V2 conservando el PAK; feedback favorable de partida, guardado/recarga y Alt+Tab, con el escritorio todavía ampliado. |
+| `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7` | 2.405.888 | LAA: 16 pruebas y dos builds idénticos. Actualización real desde el parche anterior conservando el PAK; feedback favorable de partida, guardado/recarga y Alt+Tab, con el escritorio todavía ampliado. |
 | `d704394587cbca8070d6626e74676157b8fa37c268b2336f798ba02aac055417` | 2.414.592 | Instalación y retirada de pantalla en copia real; evidencias anteriores a los márgenes negros. |
 | `9c63f1217837f78d6239dadf1367d26e7c54f8672c20287f72e0184ab2b36832` | 2.414.592 | Siete operaciones en copia real. Instalación autorizada a las 20:31 UTC y respuesta favorable a las 20:33 sobre márgenes negros, barra inferior, clics, Alt+Tab y cierre. |
-| `b643aba1ef23254f9c30d91434de5b958503edb144d2f66c4f32e7a09692643c` | 2.416.640 | Pantalla opcional con bundle externo: 23 pruebas, dos builds idénticos y 18 operaciones CLI en copias reales desde original/V2. |
+| `b643aba1ef23254f9c30d91434de5b958503edb144d2f66c4f32e7a09692643c` | 2.416.640 | Pantalla opcional con bundle externo: 23 pruebas, dos builds idénticos y 18 operaciones CLI en copias reales desde el original y el parche anterior. |
 
 **Resolución nativa descartada.** El juego cambiaba el monitor principal de 3440×1440 a 1920×1080 y restauraba el modo al cerrar. Se ensayó sustituir una entrada de `DATA/CONST.INI` por 3440×1440 (PAK `067ce32095a3a5478925d1a4d0b8b9794f34dd8654a3c3350847b5558d83511f`): interfaz demasiado pequeña y cierre al entrar en partida, con `std::bad_alloc`. No demuestra falta de RAM física ni una causa única. Tras restaurar PAK y 1920×1080, conservando LAA, una partida normal funcionó; no consta igualdad de mapa/configuración entre intentos. Ese PAK nunca se integró y el aplicador lo rechaza.
 
