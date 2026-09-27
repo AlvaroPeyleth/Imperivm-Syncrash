@@ -17,7 +17,7 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es experimental y esperamos tu feedback.** Queremos saber cómo te funciona: voces, cierres, desincronizaciones y cualquier comportamiento extraño. No es una solución definitiva a todos los fallos. Incorpora protección para tres rutas de cierre identificadas; las correcciones de desincronización siguen en investigación.
 
-**v1.0.5 preparada para publicación:** reúne memoria ampliada, protección de cierres, pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces son opciones independientes, **marcadas por defecto y desactivables**. Todo va en un único **Syncrash.exe**; el juego sigue abriéndose desde Steam. [Estado, pruebas y límites](docs/ENTREGA_ACTUAL.md).
+La [entrega actual v1.0.5](docs/ENTREGA_ACTUAL.md) reúne memoria ampliada, protección de cierres, pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces son opciones independientes, **marcadas por defecto y desactivables**. Todo va en un único **Syncrash.exe**; el juego sigue abriéndose desde Steam. [Estado, pruebas y límites](docs/ENTREGA_ACTUAL.md).
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 

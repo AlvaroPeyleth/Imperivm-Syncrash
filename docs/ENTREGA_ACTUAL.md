@@ -1,8 +1,8 @@
 # Syncrash · Ficha de entrega
 
-## v1.0.5 · Publicación en preparación · 27/09/2026
+## Entrega actual: v1.0.5 · 27/09/2026
 
-**Publicación autorizada. Syncrash v1 es experimental y esperamos feedback de los usuarios.** Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
+**Publicada como experimental. Syncrash v1 necesita el feedback de los usuarios para seguir mejorando.** [Descargar Syncrash v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5). Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
 
 | Dato | Valor |
 | --- | --- |
@@ -11,9 +11,11 @@
 | SHA256 del EXE | `187d62824b609385f2dc1371ffd873a25d0f2cb70e0a6292f7f72dd2c57a4118` |
 | SHA256 de `gbr.exe` V2 + LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
 
+**Fuente y comprobaciones:** tag y commit de compilación `6260bc848a0e1b70c6fbdd84c69c27e0dd19ac70`; 36 pruebas locales, 31 operaciones sobre copias reales, acciones de la interfaz y dos builds completos idénticos. El preparador recompiló desde el commit limpio con PowerShell 7.6.5. [CI del commit](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36350599727) superó pruebas y comparación de la base; el EXE completo se comprobó localmente. Se descargaron y cotejaron los tres archivos publicados: EXE, `SHA256SUMS.txt` y licencia.
+
 La [ficha técnica](CANDIDATO_1.0.5.md) concentra el uso, pruebas, recursos y recuperación. La escucha completa en italiano/inglés y el multijugador con voces siguen pendientes. [Cómo dar feedback](../README.md#ayuda-a-mejorar-syncrash).
 
-## Última entrega publicada: v1.0.4 · 27/09/2026
+## Histórico: v1.0.4 · 27/09/2026
 
 **Publicada como experimental para Steam vanilla.** [Descargar Syncrash v1.0.4](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.4).
 

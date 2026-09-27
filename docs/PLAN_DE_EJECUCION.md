@@ -1,8 +1,8 @@
 # Syncrash: estado y próximos pasos
 
-**27/09/2026.** El alcance actual es **Steam vanilla**. La publicación de v1.0.5 está autorizada y en preparación. **Es una v1 experimental y esperamos feedback de los jugadores.** Community Mod queda para después.
+**27/09/2026.** El alcance actual es **Steam vanilla**. v1.0.5 está publicada. **Es una v1 experimental y esperamos feedback de los jugadores.** Community Mod queda para después.
 
-## Versión 1.0.5.0
+## Versión 1.0.5.0 publicada
 
 Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado y reparación de voces son opciones independientes, marcadas por defecto y desactivables. El juego se abre desde Steam. La [ficha técnica](CANDIDATO_1.0.5.md) concentra hashes, fuentes, pruebas, recuperación y límites.
 

@@ -6,7 +6,7 @@ Syncrash es **un único producto con perfiles para las ediciones compatibles**. 
 
 ## Entrega y feedback
 
-La [v1.0.5](ENTREGA_ACTUAL.md), autorizada y en preparación, reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Syncrash v1 es experimental: esperamos feedback de los usuarios.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre desde Steam.
+La [v1.0.5 publicada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Syncrash v1 es experimental: esperamos feedback de los usuarios.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre desde Steam.
 
 La [ficha técnica](CANDIDATO_1.0.5.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
 

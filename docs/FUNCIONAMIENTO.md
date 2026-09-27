@@ -33,7 +33,7 @@ LAA habilita hasta 4 GB de espacio de direcciones de usuario para el juego x86 e
 La pantalla adaptable opcional instala una capa de presentación junto al juego. Conserva una superficie original, amplía su imagen con suavizado GPU y añade márgenes negros sin cambiar el modo del escritorio. Se abre desde Steam y se retira desde Syncrash. La [ficha técnica](CANDIDATO_1.0.4.md) reúne componentes, fuentes, pruebas y límites.
 ## Voces opcionales en 1.0.5
 
-La nueva opción extrae grabaciones de los PAK identificados y crea las rutas sueltas que solicita el juego, sin escribir en esos paquetes. El aplicador registra sus archivos para cambiar de idioma al reaplicar o retirarlos al desmarcar la casilla. El [diseño y la validación de voces](CANDIDATO_1.0.5.md) distinguen las pruebas de archivos de la reproducción pendiente en partida. La ficha de entrega identifica el estado de publicación de esta v1 experimental.
+La nueva opción extrae grabaciones de los PAK identificados y crea las rutas sueltas que solicita el juego, sin escribir en esos paquetes. El aplicador registra sus archivos para cambiar de idioma al reaplicar o retirarlos al desmarcar la casilla. El [diseño y la validación de voces](CANDIDATO_1.0.5.md) distinguen las pruebas de archivos de la reproducción pendiente en partida. La ficha de entrega identifica el EXE publicado de esta v1 experimental.
 
 ## Desincronizaciones y otros mods
 

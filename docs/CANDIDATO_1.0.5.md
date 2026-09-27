@@ -1,15 +1,15 @@
 # Syncrash 1.0.5 · v1 experimental con voces opcionales
 
-**27/09/2026: publicación autorizada, en preparación. Syncrash v1 es experimental y esperamos feedback de los jugadores.** Esta ficha concentra uso, cambios, pruebas y límites. La autorización para lanzar no equivale a nuevas pruebas en partida; las partidas del prototipo no se atribuyen al nuevo ejecutable.
+**27/09/2026: publicada como v1.0.5. Syncrash v1 es experimental y esperamos feedback de los jugadores.** Esta ficha concentra uso, cambios, pruebas y límites. La autorización para lanzar no equivale a nuevas pruebas en partida; las partidas del prototipo no se atribuyen al nuevo ejecutable.
 
-## Binario preparado
+## Binario publicado
 
 | Dato | Valor |
 | --- | --- |
 | Aplicador | `1.0.5.0` · `1.0.5` |
 | Tamaño del EXE completo | 18.579.968 bytes |
 | SHA256 | `187d62824b609385f2dc1371ffd873a25d0f2cb70e0a6292f7f72dd2c57a4118` |
-| Estado de fuentes | Preparación de commit y release en curso. |
+| Estado de fuentes | Commit de compilación y tag: `6260bc848a0e1b70c6fbdd84c69c27e0dd19ac70`. |
 
 El EXE incluye pantalla, fuentes/licencias y el mapa de voces. Las grabaciones se extraen de la instalación del jugador, no se distribuyen. El nombre de archivo de esta ficha se conserva para mantener sus enlaces.
 
@@ -62,19 +62,19 @@ El [mapa público](../src/Syncrash/voice-map.json) contiene solo rutas, tamaños
 
 ## Verificación y pendientes
 
-- **36 pruebas sintéticas/Windows** sobre el candidato final: incluye extracción PAK, tres idiomas, reaplicación, retirada, migración, archivos ajenos/modificados, interrupciones simuladas, concurrencia, rutas inseguras y regresiones de memoria/pantalla.
+- **36 pruebas sintéticas/Windows** sobre el ejecutable publicado: incluye extracción PAK, tres idiomas, reaplicación, retirada, migración, archivos ajenos/modificados, interrupciones simuladas, concurrencia, rutas inseguras y regresiones de memoria/pantalla.
 - **31 operaciones CLI sobre copias reales**, cotejando todos los WAV instalados y la integridad de los PAK y EXE correspondientes; incluye cambios de idioma y conservación de pantalla.
 - **Dos compilaciones completas idénticas** con PowerShell 7.6.5 (.NET 10.0.11) y .NET SDK 8.0.400; el EXE de las pruebas coincide con ese mismo SHA256.
 - **769 entradas de audio decodificadas** durante la preparación del mapa. No equivale a escucharlas en partida.
 - Manejador real de **Aplicar** probado en una copia con la casilla activada y desactivada; retirada y reactivación de controles comprobadas. Ventana renderizada y revisada a 780×666 y 710×520. Bloqueo entre el prototipo Python y el nuevo aplicador comprobado entre procesos.
 
-La evidencia privada del lanzamiento se conserva en `work/release-1.0.5-20260927/`; la investigación y el candidato anterior permanecen en `work/audio-voices-20260927/README.md`, con sus fechas, informes y hashes. Los resultados anteriores se mantienen separados de los del candidato final.
+La evidencia privada del lanzamiento se conserva en `work/release-1.0.5-20260927/`; la investigación y el candidato anterior permanecen en `work/audio-voices-20260927/README.md`, con sus fechas, informes y hashes. Los resultados anteriores se mantienen separados de los del ejecutable publicado.
 
 La validación auditiva anterior del usuario corresponde al prototipo español; la captura del 27/09 observó 20 rutas reparadas de seis unidades abiertas correctamente, sin errores DirectMusic en el log final. Una sesión anterior tuvo dos errores sin recurso identificado y un retraso inicial no explicado. No se han escuchado individualmente todas las rutas ni validado partidas en italiano/inglés con el candidato.
 
 **Feedback y pruebas pendientes:** validar la versión desde la interfaz en español, italiano e inglés, volver a español y comprobar la retirada con la casilla. Probar voces de héroe, arquero y sacerdote/sacerdotisa, además de las unidades afectadas disponibles de otras facciones; confirmar que el idioma y la variedad son correctos. Completar la comprobación multijugador. Si reaparece el retraso inicial, conservar el log de esa sesión e investigarlo sin atribuirle una causa aún no demostrada.
 
-La publicación experimental fue autorizada el 27/09; se prepara desde commit limpio y se comprobarán CI y archivos descargados. No se atribuyen a esta versión análisis antivirus de otros ejecutables. Para dar feedback, sigue la [guía del README](../README.md#ayuda-a-mejorar-syncrash): idioma, opciones, unidades probadas y resultado, también cuando todo funcione.
+La [release v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5) se publicó el 27/09 tras reproducir el EXE desde el commit limpio `6260bc8`, con [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36350599727). Los tres archivos descargados de GitHub coinciden con las copias locales. CI prueba y compara la base sin componentes gráficos; el EXE completo se verificó localmente. No se atribuyen a esta versión análisis antivirus de otros ejecutables. Para dar feedback, sigue la [guía del README](../README.md#ayuda-a-mejorar-syncrash): idioma, opciones, unidades probadas y resultado, también cuando todo funcione.
 
 ## Historial del candidato local
 
