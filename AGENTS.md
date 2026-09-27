@@ -20,7 +20,7 @@ Todo trabajo debe quedar documentado antes de darlo por terminado: cambios de c�
 
 - `README.md`: presentación, uso y resumen del estado público.
 - `docs/ENTREGA_ACTUAL.md`: versión distribuida, hashes y comprobaciones de esa entrega.
-- `docs/SEGURIDAD.md`: estado actual de las verificaciones y alertas antivirus; `docs/REVISION_ANTIVIRUS.md`: evidencia técnica fechada.
+- `docs/SEGURIDAD.md`: resumen breve de código, fuentes y compilación; `docs/REVISION_ANTIVIRUS.md`: historial de análisis anteriores. No exigir nuevos análisis antivirus ni trámites periódicos salvo petición expresa; conservar las comprobaciones de integridad y funcionamiento.
 - `docs/PLAN_DE_EJECUCION.md` y `docs/ROADMAP.md`: próximos pasos y alcance.
 - `CHANGELOG.md`: cambios relevantes para usuarios y colaboradores.
 - `work/`: registro interno, trámites, evidencias originales, ensayos y datos de jugadores. Permanece excluido de Git.

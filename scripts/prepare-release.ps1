@@ -70,8 +70,8 @@ Uso: cierra Imperivm, comprueba tu instalación Steam vanilla y aplica desde la 
 Pantalla adaptable es opcional y está marcada por defecto, con suavizado GPU incluido. Sin marcar aplica solo memoria y cierres; conserva cualquier pantalla ya instalada.
 Syncrash.exe incluye pantalla y fuentes/licencias; no necesita una carpeta screen externa. Puedes desmarcar Pantalla adaptable para omitir pantalla y suavizado. Exporta las fuentes desde la interfaz o --export-screen-sources <nuevo.zip>.
 Recuperación: usa Restaurar pantalla original y después verifica los archivos del juego en Steam. No se crea copia de gbr.exe.
-El aplicador no lleva firma digital: comprueba su SHA256 con SHA256SUMS.txt y con la ficha de esta entrega.
-No desactives protecciones del sistema para ejecutar el aplicador.
+Código, recetas y compilación: https://github.com/AlvaroPeyleth/Imperivm-Syncrash. Fuentes de pantalla exportables desde el EXE.
+SHA256SUMS.txt identifica el ejecutable de esta entrega.
 "@ | Set-Content -Encoding utf8 (Join-Path $package 'LEEME.txt')
 $zipName = "Syncrash-$version-candidato.zip"
 $zip = Join-Path $output $zipName

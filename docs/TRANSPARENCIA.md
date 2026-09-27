@@ -27,9 +27,9 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544 bytes. La receta cont
 
 ## Confianza y límites
 
-Consulta [Seguridad y verificaciones](SEGURIDAD.md) para conocer las medidas del aplicador, la comparación entre código y EXE y la explicación de las alertas antivirus conocidas.
+El [código y las instrucciones de compilación](SEGURIDAD.md) permiten revisar cómo funciona el aplicador. Los resultados técnicos se vinculan a la versión y hash de cada entrega.
 
-La pantalla de bienvenida no demuestra que un binario sea seguro. El código revisable, las instrucciones de compilación y el hash del archivo distribuido permiten comprobar su procedencia. La recompilación histórica de la [entrega v1.0.0](ENTREGA_ACTUAL.md) podía diferir en metadatos; dos builds del [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El hash de `gbr.exe` resultante debe ser exactamente el indicado.
+Dos builds del [aplicador 1.0.3.0](CANDIDATO_1.0.3.md) fueron idénticos en esta máquina. El [candidato 1.0.4.0](CANDIDATO_1.0.4.md) tiene sus propias comprobaciones y todavía no sustituye la descarga pública.
 
 Se han probado instalación, reinstalación y rechazo de archivos no admitidos en copias aisladas. La sesión de unos 79 minutos con V2 terminó normalmente, sin excepciones capturadas. Falta más prueba con distintos jugadores. No se promete corregir todos los cierres o desyncs ni se atribuye la anomalía de niebla observada a una causa aún no demostrada.
 
@@ -39,10 +39,10 @@ Para quitar Syncrash, reinstala Imperivm o verifica sus archivos desde Steam. Si
 
 Su opción está desactivada. La futura variante de Syncrash se aplicará **después de instalar Community Mod por sus propios canales**. No se incluye, descarga ni redistribuye el mod de su creador. Se admitirán únicamente versiones del mod identificadas y probadas.
 
-## Licencia, privacidad y análisis
+## Licencia y privacidad
 
 El código propio se ofrece bajo [MIT](../LICENSE), con autoría de AlvaroPeyleth (Discord: xtalvarotx). Consulta los [créditos](CREDITOS.md) y el [funcionamiento técnico](FUNCIONAMIENTO.md). No se conceden derechos sobre el código original de Imperivm.
 
-La [ficha de entrega](ENTREGA_ACTUAL.md) identifica el binario y el estado de VirusTotal. Un hash permite identificar el archivo; un análisis antivirus no certifica que sea infalible o inocuo. No aconsejamos desactivar el antivirus para ejecutarlo.
+La [ficha de entrega](ENTREGA_ACTUAL.md) identifica el EXE publicado y su SHA256.
 
 Los logs y dumps de jugadores permanecen fuera del repositorio, incluido su historial revisado. Las incidencias públicas deben describir el problema sin adjuntar datos personales. El historial conserva la identidad y el correo profesional del autor por decisión expresa suya.

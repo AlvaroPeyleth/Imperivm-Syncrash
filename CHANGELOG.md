@@ -1,15 +1,17 @@
 # Historial de versiones
 
-## En pruebas locales · Aplicador 1.0.4.0 · 27 de septiembre de 2026
+## Preparado en local · Aplicador 1.0.4.0 · 27 de septiembre de 2026
 
 - LAA para el juego x86 en Windows de 64 bits, conservando la guarda V2. No se atribuyen mejoras de FPS ni correcciones de desync a este cambio.
 - EXE único con componentes de pantalla y fuentes/licencias incrustados; ya no requiere una carpeta externa. Pantalla adaptable incluye suavizado GPU en una sola opción, marcada por defecto y desactivable. El juego se abre desde Steam.
 - Menú más legible con el filtro GPU: feedback favorable de imagen y fluidez en un equipo. El ensayo HALFTONE por CPU se descartó porque ralentizaba la partida. No se modifican texturas ni se ofrece resolución interna superior a 1080p.
-- Feedback multijugador favorable comunicado por dos jugadores con el paquete anterior; hash remoto y duración no verificados. Mismos componentes gráficos en el nuevo aplicador.
+- Sesión de más de una hora sin incidencias comunicada por dos jugadores en Steam vanilla, con la misma versión del paquete anterior. Mismos componentes gráficos en el nuevo aplicador; no se recogió el hash remoto.
 - Interfaz simplificada con información desplegable y ayudas al pasar el ratón. Restauración de pantalla y exportación de fuentes accesibles desde el aplicador.
 - Aplicador local: **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`. Windows PowerShell 5.1: 24 pruebas, dos compilaciones completas idénticas y 22 operaciones CLI sobre copias reales. Históricos anteriores conservados en la ficha.
 - Instalación/retirada por hashes, incluida retirada de la pantalla histórica. Para cambiar una configuración existente, restaurar pantalla y volver a aplicar. Desmarcar conserva lo instalado. Márgenes negros, monitor principal y modo del escritorio conservados.
-- Ensayo nativo 3440×1440 retirado tras cierre en partida; PAK original conservado. Faltan partidas prolongadas y ampliar pruebas en otros equipos y multijugador.
+- Ensayo nativo 3440×1440 retirado tras cierre en partida; PAK original conservado. Otras configuraciones de hardware quedan para ampliar feedback.
+
+- Entrega reproducida desde el commit limpio `ce2ff9d` con Windows PowerShell 5.1, conservando el EXE validado. Documentación de código y fuentes simplificada; antivirus histórico archivado y sin análisis periódicos como requisito.
 
 **Sin publicar.** La [ficha del candidato](docs/CANDIDATO_1.0.4.md) distingue hashes, ensayos y límites. La entrega pública continúa siendo v1.0.3.
 
@@ -23,7 +25,7 @@
 - El preparador lee la versión de `AssemblyInfo.cs`, también para las instrucciones y el ZIP. CI limita `push` a `main` y actualiza a `actions/checkout@v7` y `actions/setup-dotnet@v6` (últimas releases comprobadas: v7.0.1 y v6.0.0, con Node.js 24).
 - Misma versión en ensamblado, archivo y manifiesto; los metadatos indican la empresa editora. La receta y los hashes del juego no cambian.
 
-**Publicado como entrega experimental v1.0.3.** EXE final tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Código confirmado en main, empaquetado desde árbol limpio y CI remoto correctos. Se publicaron el EXE, sus sumas y la licencia para recoger feedback; siguen pendientes las comprobaciones de partida y antivirus del hash exacto. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
+**Publicado como entrega experimental v1.0.3.** EXE final tras la auditoría: **2.403.840 bytes**, SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. El [informe del candidato](docs/CANDIDATO_1.0.3.md) recoge las pruebas y lo que falta. El 24/09/2026 se repitió el ensayo con este EXE en una copia aislada de archivos reales admitidos: produjo el hash V2 esperado, no tocó `data.pak`, no volvió a escribir al repetir y conservó el original ante un reemplazo denegado. La verificación anterior del hash `1407eddc…910d812` se conserva como histórica. Código confirmado en main, empaquetado desde árbol limpio y CI remoto correctos. Se publicaron el EXE, sus sumas y la licencia para recoger feedback; en aquel cierre quedaron sin realizar las comprobaciones de partida y antivirus del hash exacto. Estos cambios no alteran la entrega v1.0.0 ni añaden correcciones de desync.
 
 ## Documentación y distribución · 24 de septiembre de 2026
 

@@ -10,13 +10,13 @@ La [entrega actual v1.0.3](ENTREGA_ACTUAL.md) es un único ejecutable con bienve
 
 La reconstrucción y aplicación pasaron pruebas en copias. El observador registró una sesión real de unos 79 minutos con V2, 2.328 muestras sin errores y salida con código 0. Se recibieron Logs de ambos jugadores, sin desync explícito y con 329 registros de generación del mapa idénticos. Falta verificar el hash del segundo PC y ampliar las pruebas a más parejas. **Esta v1 no corrige desyncs Steam vanilla.** Una partida sin desync solo acredita compatibilidad observada en ese escenario.
 
-## Distribución y revisión antivirus
+## Distribución
 
-El reporte a Microsoft se envió para el hash de v1.0.0 y su resolución final sigue pendiente según la última evidencia disponible. El aplicador 1.0.3.0 se publicó como experimental tras comprobarlo sobre una copia de archivos reales admitidos y superar CI; falta probar el juego y una partida con ese EXE, además de analizar su hash con antivirus. La siguiente prioridad es recoger feedback identificado por versión y hash. El [estado de las verificaciones](SEGURIDAD.md) se mantiene en Seguridad. Esto no cambia el alcance de las correcciones de v1.
+La entrega pública continúa siendo v1.0.3. El código, las instrucciones de compilación y los hashes permiten revisar cada entrega. Los análisis anteriores se conservan como historial; no se exigen análisis antivirus periódicos. La prioridad es distribuir el candidato cuando se autorice y recoger feedback de Steam vanilla.
 
 ## Siguientes versiones de Steam
 
-El [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), actualizado el 27/09, reúne LAA y pantalla adaptable opcional, marcada por defecto con suavizado GPU, en un único EXE. Hay feedback favorable de imagen, fluidez y una sesión multijugador; faltan pruebas prolongadas, otros equipos y revisión de distribución. La ficha concentra hashes, evidencias y límites. No sustituye la entrega pública. La resolución interna superior a 1080p sigue pendiente tras un ensayo fallido; el audio se investigará después.
+El [candidato local 1.0.4.0](CANDIDATO_1.0.4.md), actualizado el 27/09, reúne LAA y pantalla adaptable opcional, marcada por defecto con suavizado GPU, en un único EXE. Está preparado desde commit limpio. El usuario comunica más de una hora sin incidencias con dos equipos Steam vanilla y la misma versión. Falta autorización para publicar; la cobertura en más hardware se ampliará con feedback. La resolución interna superior a 1080p sigue fuera del candidato tras un ensayo fallido; audio y Community se estudiarán después.
 
 1. Ampliar la prueba a 2–3 parejas con el mismo EXE. No se exige instalar el observador: basta aplicar Syncrash, jugar y conservar los Logs de ambos ante un incidente. Registrar mapa, configuración, anfitrión y si la partida es nueva; incluir guardado y recarga.
 2. Si aparece un desync, localizar la primera diferencia observada entre ambos estados y comprobar su causa en los recursos efectivos de Steam. Las herramientas locales de manifiestos sirven para comparar archivos, pero no prueban igualdad de la simulación.

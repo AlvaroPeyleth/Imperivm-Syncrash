@@ -1,87 +1,23 @@
-# Revisión de detecciones antivirus · 24/09/2026
+# Historial de análisis antivirus
 
-## Candidato local 1.0.4.0 · 27/09/2026
+Resumen consolidado el 27/09/2026. Desde esa fecha los análisis periódicos y las gestiones con proveedores dejan de ser requisitos de entrega. La información para revisar el código está en [Código y transparencia](SEGURIDAD.md).
 
-EXE local actual de **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`, sin publicar ni análisis antivirus nuevo. Incluye componentes y fuentes de pantalla incrustados, con suavizado GPU incluido en la opción de pantalla, marcada por defecto. Sus hashes, fuentes y verificaciones figuran en la [ficha](CANDIDATO_1.0.4.md). Los informes/trámites históricos no cubren este EXE ni la DLL modificada; las pruebas funcionales no son un análisis antivirus.
+## Muestra analizada · 24/09/2026
 
-Histórico del EXE único con dos casillas: **18.362.880 bytes**, SHA256 `169914bf167de1eba0fc2eb23811bc3b61d0e47cd15f6e55630f91f8b2e691af`, sin análisis antivirus propio. El cambio de opciones no altera DLL ni perfiles.
+Solo se analizaron estos bytes: v1.0.0, aplicador 1.0.2.0, **2.400.256 bytes**, SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`.
 
-Histórico con pantalla opcional externa: **2.416.640 bytes**, SHA256 `b643aba1ef23254f9c30d91434de5b958503edb144d2f66c4f32e7a09692643c`, sin análisis propio. Las 23 pruebas y 18 operaciones en copias reales corresponden a ese hash; para el nuevo se repitieron 24 pruebas y 22 operaciones, sin atribuirle veredictos antivirus anteriores.
+| Comprobación | Resultado histórico |
+| --- | --- |
+| [VirusTotal](https://www.virustotal.com/gui/file/986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3) | 7/71 detecciones: Arctic Wolf, DeepInstinct, Malwarebytes, MaxSecure, Microsoft, SecureAge y Trapmine. |
+| [MetaDefender](https://metadefender.com/results/file/bzI2MDkyMzNHZWtQYUEzd2VWQklzTDJCaDY3_mdaas/overview) | 2/21: Aurora y Webroot SMD. Resumen «Suspicious» y apartado Adaptive Sandbox «Low Risk», sin datos de emulación. |
+| Contraste con el código | Coincidieron 57 métodos inspeccionados y los recursos. Tras igualar el manifiesto, quedaron 47 bytes distintos de metadatos generados por el compilador. |
+| Microsoft | Solicitud enviada. Última consulta registrada: Cloud y Client «No malware detected»; determinación final «Pending». No se ha comprobado una resolución posterior. |
+| Otros proveedores | Borradores preparados, no enviados. [Registro histórico](RECLAMACIONES_ANTIVIRUS.md). |
 
-Histórico con pantalla y márgenes negros obligatorios: EXE de **2.414.592 bytes**, SHA256 `9c63f1217837f78d6239dadf1367d26e7c54f8672c20287f72e0184ab2b36832`, sin análisis antivirus propio. Las DLL conservan sus hashes al hacer opcional su instalación; el aplicador sí cambia.
+Varias reglas estáticas correspondían a comprobaciones de hashes, procesos, búsqueda de Steam y recursos comprimidos. Esto apoyó la hipótesis de falsos positivos, pero no identificó la causa interna de cada veredicto ni confirmó su retirada. La revisión se hizo en la misma máquina, sin auditoría independiente. No se obtuvo un análisis de Defender local ni de Filescan.io.
 
-Histórico con pantalla adaptable, antes de los márgenes negros: EXE de **2.414.592 bytes**, SHA256 `d704394587cbca8070d6626e74676157b8fa37c268b2336f798ba02aac055417`, sin análisis antivirus propio.
+## Versiones posteriores
 
-Histórico de este mismo candidato antes de integrar pantalla: EXE de **2.405.888 bytes**, SHA256 `9545acebf3d2136aa7da2d84c9794e0460cf52f5b36f0e9e936a749836b79df7`, también sin análisis antivirus propio.
+No se realizaron nuevos análisis para 1.0.3.0 ni 1.0.4.0. Sus compilaciones y pruebas funcionales constan en las fichas de [1.0.3](CANDIDATO_1.0.3.md) y [1.0.4](CANDIDATO_1.0.4.md).
 
-## Resultado
-
-**Hemos revisado el aplicador que desarrollamos y contrastado el EXE histórico v1.0.0 con nuestro código público.** No encontramos código malicioso. Documentamos a continuación las comprobaciones que respaldan nuestra hipótesis de falsos positivos. La solicitud a Microsoft ya está enviada, con resolución final pendiente; las solicitudes a otros proveedores siguen pendientes. Todavía no conocemos la regla o característica concreta que activó cada motor. El [estado de las gestiones](SEGURIDAD.md#estado-de-la-revisión-con-los-proveedores) se mantiene en la documentación de seguridad.
-
-## Evidencia
-
-- Archivo publicado/analizado: SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`, 2.400.256 bytes.
-- Recompilación desde el commit de entrega `26c6c46`, en directorio aislado, con el compilador de .NET Framework de Microsoft.
-- Coinciden los 57 métodos inspeccionados (IL), las seis referencias a bibliotecas .NET y los cinco recursos incrustados. Se usó carga de reflexión sin ejecución del programa inspeccionado.
-- La primera recompilación difería además en los saltos de línea del manifiesto nativo. Al reproducir sus finales de línea LF, ambos EXE tienen el mismo tamaño y solo difieren en 47 bytes: timestamp PE (dentro de 0x88–0x8B), GUID del nombre generado por el compilador (0x22C44C–0x22C46F) y GUID de módulo (0x22E8C4–0x22E8D3). Todos los demás bytes coinciden.
-- El código revisado solo lee rutas/recursos Steam, valida hashes y sustituye el gbr.exe admitido a petición del jugador. Los únicos Process.Start abren enlaces fijos de GitHub al pulsarlos. No contiene descarga de cargas, persistencia, robo de credenciales, inyección de procesos ni rutinas para desactivar antivirus.
-- VirusTotal muestra 7/71 detecciones. El resumen de comportamiento disponible no mostraba comunicaciones de red, archivos depositados ni detecciones de sandbox; Zenbox seguía pendiente. Esto no cubre todas las rutas de uso: el sandbox puede no disponer del juego ni pulsar Aplicar parche.
-- CAPA muestra etiquetas de referencias a cadenas anti-VM/analysis y «obfuscated». Son resultados automáticos de capacidades; en el código y build revisados no hay comprobaciones de VM ni un paso de ofuscación. No se ha localizado la cadena exacta que disparó esas etiquetas.
-- No se obtuvo estado/escaneo de Defender local: la consulta CIM devolvió acceso no disponible. No se han cambiado protecciones ni añadido exclusiones.
-
-## Interpretación
-
-Malwarebytes documenta MachineLearning/Anomalous.100% como una detección genérica de su clasificador, no como una identificación manual de una familia concreta. Un aplicador que incorpora cambios binarios y sustituye otro EXE podría activar heurísticas; es una hipótesis, no una causa demostrada.
-
-La revisión vincula el archivo distribuido con el código público. No equivale a una auditoría independiente ni a una confirmación del proveedor de antivirus. El compilador y sistema usados para recompilar son los de esta misma máquina.
-
-## Siguiente paso
-
-Seguir la solicitud ya enviada a Microsoft y tramitar las de otros proveedores, incluido Malwarebytes, aportando el EXE exacto, el hash, el código y este contraste. No alterar el EXE para intentar eludir los clasificadores. Mantener visible el resultado del análisis mientras se resuelve. El [estado actual](SEGURIDAD.md) distingue las pruebas de 1.0.3.0 de los análisis del EXE histórico v1.0.0.
-
-Fuentes:
-- https://www.malwarebytes.com/blog/detections/machinelearning-anomalous-100
-- https://www.microsoft.com/security/portal/submit.aspx/
-- https://help.malwarebytes.com/hc/en-us/articles/31589211404571-Report-a-false-positive-to-Malwarebytes-Support
-
-## Segundo servicio: MetaDefender Cloud
-
-Consulta del 24/09/2026 sobre el mismo SHA256 publicado, sin modificar el EXE:
-
-https://metadefender.com/results/file/bzI2MDkyMzNHZWtQYUEzd2VWQklzTDJCaDY3_mdaas/overview
-
-- Metascan: 2/21 motores señalan el archivo.
-- Aurora: Malware_-10.
-- Webroot SMD: Malware_52.2.
-- Adaptive Sandbox: Suspicious; 60 indicadores de compromiso, 8 indicadores de amenaza, 2 reglas YARA, 16 archivos extraídos y 911 cadenas extraídas. Etiquetas visibles: packed, reconnaissance, peexe, dotnet_pe, html.
-- Esos contadores no equivalen a comunicaciones o archivos maliciosos ejecutados: el detalle no está disponible en la vista anónima y no se ha comprobado qué elementos los originan.
-- La vista indica que hace falta iniciar sesión para el informe detallado. No se contrató ningún servicio.
-- El resultado no confirma falsos positivos ni explica por sí mismo las detecciones de VirusTotal. Los conjuntos de motores son distintos; 2/21 no puede interpretarse como que se han resuelto cinco detecciones del 7/71 anterior.
-
-Se intentó la selección de archivos en Filescan.io, pero no abrió el selector con los controles disponibles; no se completó ni se atribuye un análisis de ese servicio.
-
-## Detalle autenticado de MetaDefender · 24/09/2026
-
-La sesión iniciada permitió consultar el informe existente del mismo hash, sin una segunda subida. El resumen general mantiene 2/21 motores y «Suspicious»; la sección Adaptive Sandbox Summary muestra «Low Risk». La tabla tiene 0 indicadores Malicious, 0 Likely Malicious, 5 Suspicious y 3 Other. Esto no cambia los veredictos de Aurora/Webroot ni los de VirusTotal.
-
-Las cinco alertas sospechosas desplegadas se fundamentan en:
-
-| Regla | Evidencia del servicio | Correspondencia en el proyecto |
-| --- | --- | --- |
-| DN023 | SHA256.Create y HashAlgorithm.ComputeHash | Comprobación de identidad e integridad de archivos y receta. |
-| DN032 | Process.GetProcessesByName | Se consulta gbr para exigir que el juego esté cerrado. |
-| DN021 | DriveInfo.GetDrives, DriveType, IsReady, RootDirectory | Búsqueda de bibliotecas Steam en unidades fijas. El rótulo inglés dice driver, pero las API mostradas corresponden a unidades de almacenamiento. |
-| H000 | Entropía .text 7.98047971725 y .rsrc 7.95666837692 | El EXE contiene PNG comprimidos: el banner ocupa 2.145.191 bytes de los 2.400.256 del aplicador, además del icono. Es una explicación plausible de la entropía, no una demostración del motivo de los otros motores. |
-| SIGG017 | Regla estática asociada a datos de alta entropía interpretados como posible payload empaquetado | No se utiliza un empaquetador en la compilación revisada; hay recursos gráficos y una receta incrustados. |
-
-Los IOC visibles incluyen dominios extraídos de archivos como cert.ssl.com, creativecommons.org e iptc.org; las IP mostradas figuran como DOMAIN_RESOLVE/EXTRACTED_FILE. No son por sí solos conexiones realizadas por Syncrash. El informe señala Emulation Data 0 y «No emulation data available for this file», por lo que no permite concluir que haya ejecutado y observado todas sus rutas.
-
-Estas evidencias explican las reglas estáticas concretas de este informe, no la causa interna de cada detección antivirus. No se recomienda quitar verificaciones de hash o de juego cerrado para reducir contadores de sospecha.
-
-## Aplicador 1.0.3.0, publicado como v1.0.3 · 24/09/2026
-
-El [aplicador actual](CANDIDATO_1.0.3.md), tras los ajustes de auditoría, tiene **2.403.840 bytes** y SHA256 `251c92e0cc17dec527086349d7e065705b33f9373e9b1a907485f4716f07d50c`. Dos compilaciones en esta misma máquina fueron idénticas byte a byte, pasaron 14 pruebas con Windows PowerShell 5.1 y se repitió el ensayo sobre una copia aislada de archivos reales admitidos con este EXE: resultado V2 exacto, PAK intacto, reaplicación sin escritura y original conservado ante acceso denegado. La evidencia actual está en `work/audit-final-20260924/`, fuera de Git.
-
-La comprobación anterior de 12 pruebas y copia real corresponde históricamente al SHA256 `1407eddc96743a90a669257acb21146bc2ee99f28ba155d08d853f2a7910d812` (2.403.328 bytes), conservado en `work/codex-verification-20260924/`; no identifica el nuevo ejecutable.
-
-**No se ejecutó un análisis nuevo en VirusTotal, MetaDefender ni un antivirus local sobre ninguno de esos dos hashes de 1.0.3.0.** La entrega v1.0.3 se publicó posteriormente el mismo día con el hash final ya comprobado, sin atribuirle nuevos veredictos antivirus. Los veredictos anteriores corresponden únicamente a `986141c1…fa47ed3`. Los [borradores por proveedor](RECLAMACIONES_ANTIVIRUS.md) conservan esa relación; a 24/09/2026 solo se había enviado la solicitud a Microsoft.
+El candidato local 1.0.4.0 tiene **18.362.368 bytes**, SHA256 `88814908bccdee383c8d1c6d9e374a31c7a2f450b3d970941944fbc1a101fa3c`; los resultados de la tabla no se le atribuyen. La evidencia extensa y las versiones anteriores del informe se conservan en Git y en el archivo privado `work/`.

@@ -6,7 +6,7 @@
 <p align="center">
   <a href="https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest">Descargar Syncrash</a> ·
   <a href="docs/TRANSPARENCIA.md">Qué modifica</a> ·
-  <a href="docs/SEGURIDAD.md">Seguridad y verificaciones</a> ·
+  <a href="docs/SEGURIDAD.md">Código y transparencia</a> ·
   <a href="docs/ENTREGA_ACTUAL.md">Verificar la descarga</a> ·
   <a href="docs/CREDITOS.md">Créditos</a>
 </p>
@@ -17,15 +17,13 @@ Syncrash es un proyecto independiente para investigar y reducir cierres y desinc
 
 **Syncrash v1 es una versión experimental para ampliar las pruebas con jugadores.** Incorpora protección para tres rutas de cierre identificadas. Las correcciones de desincronización siguen en investigación y **no están incluidas en esta versión**.
 
-La [entrega actual v1.0.3](docs/ENTREGA_ACTUAL.md) incluye el aplicador **1.0.3.0**, con comprobación sin escritura, reaplicación sin cambios y mejoras en los mensajes. Sus [pruebas técnicas](docs/CANDIDATO_1.0.3.md) están documentadas; faltan pruebas de partida y un análisis antivirus de su hash. La entrega histórica v1.0.0 conserva su EXE y sus alertas conocidas.
+La [entrega actual v1.0.3](docs/ENTREGA_ACTUAL.md) incluye el aplicador **1.0.3.0**, con comprobación sin escritura, reaplicación sin cambios y mejoras en los mensajes. Sus [pruebas técnicas](docs/CANDIDATO_1.0.3.md) están documentadas. El candidato 1.0.4.0 sigue en local y todavía no sustituye esa descarga.
 
-**Desarrollamos Syncrash y publicamos su código para que puedas comprobarlo.** Hemos contrastado el ejecutable distribuido con una recompilación y documentado los cambios que aplica. Consulta las comprobaciones y las alertas antivirus conocidas en [Seguridad y verificaciones](docs/SEGURIDAD.md).
+**El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
 ## Descargar y jugar
 
 Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/latest)**. No necesitas PowerShell ni instalar una herramienta de seguimiento.
-
-**Antes de descargar:** v1.0.3 es experimental y su hash aún no tiene un análisis antivirus nuevo. Las [alertas conocidas](#por-qué-aparecen-alertas-antivirus) corresponden a v1.0.0; no demuestran el resultado de esta entrega.
 
 1. Cierra Imperivm y abre **Syncrash.exe**.
 2. Mantén **Steam vanilla**. Si no encuentra el juego, pulsa **Elegir…** y selecciona `gbr.exe`.
@@ -67,31 +65,6 @@ Cuando llegue Community, Syncrash se aplicará **después de instalar el mod por
 - Abrir la interfaz no modifica el juego; solo lo hace el botón **Aplicar parche**. El aplicador 1.0.3.0 incluye las órdenes `--check <ruta>`, que solo lee, y `--apply <ruta>`, que aplica. La entrega v1.0.0 tenía una orden antigua, `--test <ruta>`, que **sí aplicaba** el parche; 1.0.3.0 la retira.
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
-
-## Seguridad y código verificable
-
-**Syncrash es una herramienta legítima que desarrollamos para aplicar nuestras correcciones a Imperivm.** Su funcionamiento está documentado y su código es público: el aplicador, la receta de cambios y la compilación están en [`src/Syncrash`](src/Syncrash). Puedes comprobar cada operación, modificar el proyecto y generar tu propio aplicador bajo la licencia MIT.
-
-El EXE 1.0.3.0 coincide byte a byte con la recompilación del commit limpio. En la revisión histórica de v1.0.0 coincidían los 57 métodos inspeccionados y los recursos; solo diferían 47 bytes de metadatos al reproducir el manifiesto. El [informe técnico](docs/REVISION_ANTIVIRUS.md) distingue ambos hashes y sus comprobaciones.
-
-El parche se aplica de forma controlada: comprueba la identidad de los archivos mediante SHA256, exige que el juego esté cerrado, reconstruye el resultado y lo verifica antes de sustituir `gbr.exe`. Estas comprobaciones reducen el riesgo de aplicar cambios a una edición incorrecta o producir un resultado distinto del previsto. **Un hash es una huella para comprobar archivos; Syncrash calcula y compara hashes.**
-
-### ¿Por qué aparecen alertas antivirus?
-
-**Algunos antivirus pueden mostrar una alerta al descargar o abrir Syncrash.** Los informes siguientes son históricos de v1.0.0; no se ha analizado el nuevo hash de v1.0.3. En MetaDefender identificamos reglas que señalan funciones necesarias del aplicador:
-
-- **SHA256:** comprueba que los archivos y el resultado del parche sean los esperados.
-- **Consulta de procesos:** comprueba que Imperivm esté cerrado antes de modificarlo.
-- **Búsqueda de unidades:** localiza las bibliotecas de Steam.
-- **Alta entropía:** el EXE incorpora imágenes comprimidas. Es una explicación plausible de esta señal, no la causa demostrada de cada veredicto.
-
-El 24/09/2026 registramos **7/71 detecciones en VirusTotal y 2/21 en MetaDefender** para el EXE de v1.0.0. Nuestras comprobaciones respaldan la hipótesis de falsos positivos. **Se envió ese ejecutable a Microsoft para su revisión**: la última consulta muestra «No malware detected» en Cloud y Client, con la resolución final todavía pendiente. Esos resultados y esa solicitud no cubren v1.0.3.
-
-### Comprobación de la descarga
-
-Syncrash no lleva firma digital, por eso Windows puede mostrar «Editor desconocido» y SmartScreen puede advertir de una descarga poco habitual. Comprueba que el archivo procede de la release oficial y que su SHA256 coincide con la [ficha de entrega](docs/ENTREGA_ACTUAL.md). No desactives protecciones para ejecutarlo y comunícanos cualquier bloqueo.
-
-[Leer la explicación de seguridad](docs/SEGURIDAD.md) · [Revisión técnica y evidencia](docs/REVISION_ANTIVIRUS.md) · [Hashes e informes](docs/ENTREGA_ACTUAL.md)
 
 ## Pruebas de estabilidad
 
@@ -136,7 +109,7 @@ En Windows PowerShell, con .NET SDK `8.0.400` y referencias de .NET Framework 4.
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-El candidato completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El filtro GPU tiene feedback favorable en un equipo, pendiente de pruebas más amplias; no añade texturas ni modos internos superiores a 1080p.
+El candidato completo 1.0.4 incorpora pantalla adaptable con suavizado GPU incluido como una sola opción, marcada por defecto y desactivable. Basta descargar `Syncrash.exe`; las DLL se instalan en el juego automáticamente y este se sigue abriendo desde Steam. Las fuentes/licencias se exportan desde la interfaz. Desmarcar conserva una pantalla instalada: usa Restaurar pantalla original para retirarla o cambiar de configuración. El usuario comunica una sesión de más de una hora con dos equipos Steam vanilla y la misma versión, sin incidencias. No añade texturas ni modos internos superiores a 1080p.
 
 Los comandos anteriores generan la base de desarrollo sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias. La distribución pública del candidato sigue pendiente. Consulta la [ficha actual](docs/CANDIDATO_1.0.4.md) para hashes, pruebas y recuperación.
 
