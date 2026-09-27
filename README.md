@@ -30,7 +30,7 @@ Descarga **[Syncrash.exe desde la última versión](https://github.com/AlvaroPey
 3. Elige las opciones: **Añadir pantalla adaptable** y **Reparar voces de unidades** están marcadas por defecto. Puedes desmarcarlas; memoria y protección de cierres se incluyen siempre.
 4. Pulsa **Aplicar parche**. Al terminar, abre Imperivm desde Steam y juega.
 
-El aplicador admite Steam original y actualiza el parche V2 anterior. Si el resultado exacto ya está instalado, no lo reescribe. Para multijugador, utiliza la misma versión del parche y los mismos recursos en ambos equipos.
+El aplicador admite Steam original y actualiza el parche anterior. Si el resultado exacto ya está instalado, no lo reescribe. Para multijugador, utiliza la misma versión del parche y los mismos recursos en ambos equipos.
 
 **Si cambias de idioma:** cierra el juego y vuelve a aplicar Syncrash antes de jugar para actualizar las voces.
 
