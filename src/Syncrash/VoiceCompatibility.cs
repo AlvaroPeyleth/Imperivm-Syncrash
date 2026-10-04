@@ -135,7 +135,7 @@ internal static class VoiceCompatibility
         return selected;
     }
 
-    // FileShare.Read keeps the inspected PAK immutable while extracting all payloads.
+    // Allow other readers, but block writes to the PAK during extraction.
     internal static void LoadAudio(string directory, VoiceLanguage language, string dataHash)
     {
         if (PatchEngine.HashFile(SafePath(directory, "Packs/data.pak")) != dataHash)
@@ -239,7 +239,7 @@ internal static class VoiceCompatibility
         return false;
     }
 
-    // Validate the ENTIRE union before writing, deleting, or invoking the base patch.
+    // Check installed and requested files before any write, deletion, or base patch.
     private static bool Inspect(string directory, VoiceCatalog catalog, VoiceRecord record, VoiceLanguage target)
     {
         var owned = Files(catalog, record == null ? new string[0] : record.Languages.ToArray());
@@ -284,7 +284,7 @@ internal static class VoiceCompatibility
         finally { if (created && File.Exists(stage)) File.Delete(stage); }
     }
 
-    // Hooks/catalog injection exist for isolated tests. Production uses fixed embedded metadata.
+    // Tests supply their own catalog and failure hooks; production uses the embedded catalog.
     internal static bool Configure(string directory, VoiceCatalog catalog, VoiceLanguage target,
         Action checkClosed, Action applyBase, Action<int> afterWrite)
     {
@@ -339,7 +339,7 @@ internal static class VoiceCompatibility
                     if (target == null) File.Delete(SafePath(directory, Marker));
                     else
                     {
-                        // No success marker until every desired file has the correct bytes.
+                        // Mark the installation complete only after checking every requested file.
                         foreach (VoiceFile file in target.Files)
                             if (PatchEngine.HashFile(SafePath(directory, file.Destination)) != file.Hash) throw new IOException("Verificación final de voces fallida.");
                         Publish(directory, Marker, Json(new VoiceRecord { Owner = Owner, Status = "installed", Languages = new List<string> { target.Language }, Target = target.Language }), true);
@@ -378,7 +378,7 @@ internal static class VoiceCompatibility
         };
         changed = Configure(directory, catalog, target, validate, applyBase, null);
         return enabled ? "Voces reparadas: " + DisplayLanguage(selected) + ". Si cambias de idioma, vuelve a aplicar Syncrash antes de jugar." :
-            "Reparación de voces desactivada; no quedan voces registradas instaladas.";
+            "Reparación de voces desactivada. Se han retirado los archivos registrados por Syncrash.";
     }
 
     private static string DisplayLanguage(string value)

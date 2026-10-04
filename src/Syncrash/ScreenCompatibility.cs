@@ -19,7 +19,7 @@ internal static class ScreenCompatibility
 
     private static ScreenFile[] ProductionFiles(bool smooth = false)
     {
-        // The proxy is published LAST: the game cannot load a half-installed dependency set.
+        // Install the loading proxy last so the game loads only after its dependencies are in place.
         var files = new[] {
             new ScreenFile("Syncrash-screen-LICENSE.txt", "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"),
             new ScreenFile("dxwnd.dxw", "94bfff55becb095ed0730e2e65e5598cecdb02c0704a2c7165dcbd458eebb8b5"),
@@ -67,8 +67,8 @@ internal static class ScreenCompatibility
         return true;
     }
 
-    // Missing owned files are a recoverable interrupted install/remove. Changed or unowned
-    // files are never adopted, overwritten or deleted, even if their names match.
+    // Missing registered files may come from an interrupted install or removal.
+    // Preserve changed or unregistered files, even when their names match.
     internal static bool Inspect(string directory, ScreenFile[] files)
     {
         string marker = Path.Combine(directory, MarkerName);
@@ -193,7 +193,7 @@ internal static class ScreenCompatibility
         bool screen = Inspect(directory, files);
         complete = status == PatchStatus.AlreadyInstalled && screen;
         string game = status == PatchStatus.AlreadyInstalled ? "Parche LAA instalado." :
-            status == PatchStatus.UpgradeAdmitted ? "Syncrash anterior admitido para actualizar." : "Instalación Steam original admitida.";
+            status == PatchStatus.UpgradeAdmitted ? "Puedes actualizar esta versión anterior de Syncrash." : "La instalación original de Steam es compatible.";
         return game + (screen ? " Pantalla adaptable instalada" + (files[1].Hash == SmoothProfileHash ? " con suavizado." : ".") : " Pantalla adaptable opcional no instalada o incompleta.") +
             " No se ha modificado ningún archivo.";
     }
@@ -213,10 +213,10 @@ internal static class ScreenCompatibility
         string directory = GameDirectory(path);
         changed = Remove(directory, InstalledFiles(directory), () => PatchEngine.CheckGame(path), null,
             () => PatchEngine.ApplyGame(path));
-        return "Memoria y cierres listos. Pantalla adaptable desactivada.";
+        return "Ampliación de memoria y protección de cierres instaladas. Pantalla adaptable desactivada.";
     }
 
-    // Explicit dependencies are used by synthetic tests; public entry points use fixed hashes.
+    // Tests pass fixture files; production uses the pinned hashes.
     internal static bool Install(string directory, ScreenFile[] files, Func<PatchStatus> patch,
         Action gameClosed, Action<int> beforePublish)
     {
@@ -267,14 +267,14 @@ internal static class ScreenCompatibility
             try
             {
                 gameClosed();
-                Inspect(directory, files); // Validate ALL files before removing ANY of them.
+                Inspect(directory, files); // Check the whole file set before deleting the first file.
                 string marker = Path.Combine(directory, MarkerName);
                 bool owned = Exists(marker);
                 bool patched = patch != null && patch() != PatchStatus.AlreadyInstalled;
                 if (!owned) return patched;
                 try
                 {
-                    // Remove the loading proxy first. Keep ownership until every file is gone.
+                    // Remove the loading proxy first; keep the record until removal finishes.
                     for (int i = files.Length - 1; i >= 0; i--)
                     {
                         if (beforeDelete != null) beforeDelete(i);

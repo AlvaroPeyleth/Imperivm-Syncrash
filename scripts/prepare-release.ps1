@@ -27,7 +27,7 @@ foreach ($name in @('Syncrash-screen-LICENSE.txt','dxwnd.dxw','dxwnd-smooth.dxw'
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Falta el componente o fuente: $name" }
     $screenFiles += [pscustomobject]@{ file=$name; sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant(); bytes=(Get-Item -LiteralPath $path).Length }
 }
-# build.ps1 validates every bundled input against reviewed hashes and embeds its sources.
+# build.ps1 checks the bundle hashes and includes the corresponding sources.
 $exeInfo = [ordered]@{
     file = [IO.Path]::GetFileName($exe)
     bytes = (Get-Item -LiteralPath $exe).Length

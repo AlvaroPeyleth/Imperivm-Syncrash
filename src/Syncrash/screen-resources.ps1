@@ -1,4 +1,4 @@
-# Builds a deterministic, reviewed resource set. No downloads or recursive bundling.
+# Package the listed resources in a fixed order; read them from the local bundle.
 param(
     [Parameter(Mandatory=$true)][string]$BundleDirectory,
     [Parameter(Mandatory=$true)][string]$OutputDirectory
@@ -11,7 +11,7 @@ $specs = [regex]::Matches([IO.File]::ReadAllText((Join-Path $PSScriptRoot 'Scree
 if ($specs.Count -ne 4) { throw 'Review the screen component list.' }
 $inputs = @{}
 foreach ($spec in $specs) { $inputs[$spec.Groups[1].Value] = $spec.Groups[2].Value }
-# Pins refer to the reviewed local source bundle and its native binaries.
+# Expected hashes for the reviewed sources and native binaries.
 $inputs['PROVENANCE.txt'] = '1095b341d5465642cc88fd4c3959b3fb4100953a2f8f1609910521af9bb868ad'
 $inputs['Sources/dxwnd-2.06.15-source.rar'] = 'c0f7632332c5389a1876b0c561286b82594729c192d72e5b9d815f1828f70d38'
 $inputs['Sources/proxy-source.zip'] = '9ff1a14853c56f5d97102486e844e5e7184b9077b857c10f0e715a990d60f2d8'

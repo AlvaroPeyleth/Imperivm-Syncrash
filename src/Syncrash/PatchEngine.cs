@@ -43,7 +43,7 @@ internal sealed class PatchOperationException : IOException
 
 internal static class PatchEngine
 {
-    // Production values are deliberately fixed. Synthetic tests call Check/Apply with a separate spec.
+    // Keep production hashes fixed; tests pass their own spec to Check/Apply.
     private static readonly PatchSpec Production = new PatchSpec(
         "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
         "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
@@ -228,7 +228,7 @@ internal static class PatchEngine
         return "No se pudo confirmar el estado de gbr.exe. Compruébalo y, si es necesario, restaura los archivos con Steam.";
     }
 
-    // Hooks are for synthetic fault/concurrency tests; shipped entry points always pass null.
+    // Tests use these hooks to simulate failures and concurrent writes. Production passes null.
     internal static PatchStatus Apply(string path, PatchSpec spec, byte[] rawRecipe,
         Action gameClosed, Action beforeReplace, Action afterReplace)
     {

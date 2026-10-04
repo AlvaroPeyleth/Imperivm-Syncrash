@@ -2,7 +2,9 @@
 
 ## Entrega actual: v1.0.6 · 28/09/2026
 
-**Publicada como v1 experimental.** [Descargar Syncrash v1.0.6](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.6). Casillas unificadas, enlaces al pie y correcciones de documentación. Conectividad sin implementar. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
+La [revisión de textos del 04/10/2026](../CHANGELOG.md#revisión-de-textos--4-de-octubre-de-2026) cambia la documentación y los mensajes en el código fuente. El EXE descargable sigue siendo el publicado el 28/09; su versión y sus hashes se mantienen.
+
+**Publicada como v1 experimental.** [Descargar Syncrash v1.0.6](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.6). Pantalla y voces se instalan o retiran desde sus casillas. Los enlaces están al pie de la ventana. Incluye correcciones de documentación; la conexión online automática sigue pendiente. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
 
 | Dato | Valor |
 | --- | --- |
@@ -15,7 +17,7 @@
 
 ## Histórico: v1.0.5 · 27/09/2026
 
-**Publicada como experimental. Syncrash v1 necesita el feedback de los usuarios para seguir mejorando.** [Descargar Syncrash v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5). Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
+**Publicada como experimental.** [Descargar Syncrash v1.0.5](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.5). Incorpora reparación de voces opcional en español, italiano e inglés, marcada por defecto y desactivable. Se conservan las funciones de memoria, cierres y pantalla de 1.0.4.
 
 | Dato | Valor |
 | --- | --- |
@@ -26,7 +28,7 @@
 
 **Fuente y comprobaciones:** tag y commit de compilación `6260bc848a0e1b70c6fbdd84c69c27e0dd19ac70`; 36 pruebas locales, 31 operaciones sobre copias reales, acciones de la interfaz y dos builds completos idénticos. El preparador recompiló desde el commit limpio con PowerShell 7.6.5. [CI del commit](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36350599727) superó pruebas y comparación de la base; el EXE completo se comprobó localmente. Se descargaron y cotejaron los tres archivos publicados: EXE, `SHA256SUMS.txt` y licencia.
 
-La [ficha técnica](CANDIDATO_1.0.5.md) concentra el uso, pruebas, recursos y recuperación. La escucha completa en italiano/inglés y el multijugador con voces siguen pendientes. [Cómo dar feedback](../README.md#ayuda-a-mejorar-syncrash).
+La [ficha técnica](CANDIDATO_1.0.5.md) explica el uso, las pruebas y cómo retirar o recuperar el parche. La escucha completa en italiano/inglés y el multijugador con voces siguen pendientes. [Cómo dar feedback](../README.md#ayuda-a-mejorar-syncrash).
 
 ## Histórico: v1.0.4 · 27/09/2026
 
@@ -44,7 +46,7 @@ La release incluye el EXE, `SHA256SUMS.txt` y la licencia del aplicador. Pantall
 
 **Comprobaciones:** 24 pruebas locales, dos EXE completos idénticos, 22 operaciones sobre copias reales y recompilación desde commit limpio con Windows PowerShell 5.1. [CI del commit publicado](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/36282247853) superó pruebas y comparación de builds de la base sin componentes; el EXE completo se validó localmente. Se descargaron de GitHub los tres archivos publicados y sus SHA256 coinciden con las copias locales. El usuario comunica más de una hora sin incidencias en dos equipos Steam vanilla con los mismos componentes gráficos.
 
-Para retirar pantalla, usa **Restaurar pantalla original**. Para recuperar también el ejecutable del juego, verifica después los archivos en Steam. Desmarcar la casilla no retira una pantalla instalada. La [ficha técnica](CANDIDATO_1.0.4.md) concentra fuentes, historial y límites. No incluye Community Mod ni una corrección causal de desync.
+Para retirar pantalla, usa **Restaurar pantalla original**. Para recuperar también el ejecutable del juego, verifica después los archivos en Steam. Desmarcar la casilla no retira una pantalla instalada. Consulta las fuentes, el historial y los límites en la [ficha técnica](CANDIDATO_1.0.4.md). Esta versión no admite Community Mod ni corrige las desincronizaciones.
 ## Histórico: v1.0.3 · 24/09/2026
 
 **Entrega experimental para Steam vanilla y recopilación de feedback.** Aplicador **1.0.3.0**, compilado desde el commit `848ffbbad3fd1851334272af2a8314cf205bdf8c`.

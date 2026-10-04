@@ -4,7 +4,7 @@ Resumen consolidado el 27/09/2026. Desde esa fecha los análisis periódicos y l
 
 ## Muestra analizada · 24/09/2026
 
-Solo se analizaron estos bytes: v1.0.0, aplicador 1.0.2.0, **2.400.256 bytes**, SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`.
+El archivo analizado fue: v1.0.0, aplicador 1.0.2.0, **2.400.256 bytes**, SHA256 `986141c161fb4e024ced0be7a174663eebb01f18d17270bc4862c9bdbfa47ed3`.
 
 | Comprobación | Resultado histórico |
 | --- | --- |
@@ -14,7 +14,7 @@ Solo se analizaron estos bytes: v1.0.0, aplicador 1.0.2.0, **2.400.256 bytes**, 
 | Microsoft | Solicitud enviada. Última consulta registrada: Cloud y Client «No malware detected»; determinación final «Pending». No se ha comprobado una resolución posterior. |
 | Otros proveedores | Borradores preparados, no enviados. [Registro histórico](RECLAMACIONES_ANTIVIRUS.md). |
 
-Varias reglas estáticas correspondían a comprobaciones de hashes, procesos, búsqueda de Steam y recursos comprimidos. Esto apoyó la hipótesis de falsos positivos, pero no identificó la causa interna de cada veredicto ni confirmó su retirada. La revisión se hizo en la misma máquina, sin auditoría independiente. No se obtuvo un análisis de Defender local ni de Filescan.io.
+Varias reglas estáticas correspondían a comprobaciones de hashes, procesos, búsqueda de Steam y recursos comprimidos. Esto apoyó la hipótesis de falsos positivos, pero no explicó cada detección ni confirmó que los proveedores la hubieran retirado. La revisión se hizo en la misma máquina, sin auditoría independiente. No se obtuvo un análisis de Defender local ni de Filescan.io.
 
 ## Versiones posteriores
 

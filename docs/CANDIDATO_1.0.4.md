@@ -26,11 +26,11 @@ El aplicador admite el original Steam o el ejecutable parcheado exacto de las en
 - Interfaz simplificada, renderizada a 780×566 y 710×520: ruta, funciones incluidas, una casilla marcada con suavizado incluido, retirada visible y acción principal fija. Información mediante ayuda al pasar el ratón y panel desplegable accesible por clic/teclado. No equivale a validar todos los DPI ni lectores de pantalla.
 - Evidencia nativa del 26/09, con los mismos hashes actuales: las fuentes nativas completas se reconstruyeron en un directorio nuevo desde upstream más el archivo de cambios incluido. Compilación x86 correcta. Pruebas de superficie: 400 presentaciones, fuente intacta, repintados parciales, cambio de modo y limpieza GDI. Pruebas GPU: colores, alineación 1:1, interpolación, bordes, fuente intacta, dimensiones inválidas, recreaciones y conservación del control FPU.
 - Prueba manual inicial del filtro GPU: buena imagen y fluidez en menú y partida. La traza confirmó GPU activa, entrada 1920×1080 y salida 2560×1440. La sesión multijugador posterior se registra debajo; no se midieron FPS.
-- El EXE anterior del 26/09 instaló y comprobó en la copia de uso las mismas DLL/perfil GPU ya ensayados, ahora con registro de propiedad para retirada. EXE del juego y PAK conservan los hashes de la tabla. No se atribuye otro ensayo manual a esta operación administrativa.
+- El EXE anterior del 26/09 instaló y comprobó en la copia de uso las mismas DLL/perfil GPU ya ensayados, ahora con registro de propiedad para retirada. EXE del juego y PAK conservan los hashes de la tabla. Esta instalación no incluyó otra prueba manual del juego.
 
 Evidencia actual en `work/screen-default-20260927/`; evidencia anterior en `work/embedded-screen-20260926/`, `work/menu-sharpness-20260926/`, `work/menu-filter-20260926/` y `work/menu-gpu-20260926/`. No se publican datos de jugadores ni archivos del juego.
 
-## Nitidez y rendimiento: resultado vigente
+## Nitidez y rendimiento
 
 Se conserva una superficie original independiente a resolución interna, sin volver a copiar la ventana ampliada sobre ella. El filtro opcional sube esa superficie a una textura dinámica y la presenta con interpolación bilineal por D3D9 en ventana. No solicita un cambio de modo del monitor, no cambia texturas, y usa `D3DCREATE_FPU_PRESERVE`. Si la presentación acelerada falla, recurre a la salida sin filtro. Recuperación tras pérdida real de dispositivo, GPU distintas y monitores en caliente siguen pendientes.
 
@@ -58,7 +58,7 @@ CLI: `--apply` aplica la base; `--apply-with-screen` añade pantalla sin suaviza
 
 Para reproducir el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a `build.ps1`, `tests/run.ps1` y `compare-builds.ps1`. Cada entrada se fija por hash y el archivo de fuentes se crea con orden y fechas constantes. Sin ese parámetro se compila la base de desarrollo y las opciones de pantalla quedan deshabilitadas. El preparador de entrega exige el bundle para reconstruir y comparar; no lo copia como carpeta externa.
 
-**Publicación completada:** el preparador reprodujo el EXE desde los commits limpios `ce2ff9d` y `30aecbc` con Windows PowerShell 5.1. La release v1.0.4 apunta a `30aecbce6e35d7a691b94b5f57f814c07ebdfbe5`; el código está en main y CI del commit pasó. El EXE publicado conserva los bytes de la tabla. Evidencia en `work/release-ready-20260927/`. No se han hecho nuevos análisis antivirus. Guardado/recarga con el filtro final, otros GPU/DPI y cambios de monitor en caliente quedan como cobertura adicional no comprobada.
+**Publicación completada:** el preparador reprodujo el EXE desde los commits limpios `ce2ff9d` y `30aecbc` con Windows PowerShell 5.1. La release v1.0.4 apunta a `30aecbce6e35d7a691b94b5f57f814c07ebdfbe5`; el código está en main y CI del commit pasó. El EXE publicado conserva los bytes de la tabla. Evidencia en `work/release-ready-20260927/`. No se han hecho nuevos análisis antivirus. Guardado/recarga con el filtro final, otros GPU/DPI y cambios de monitor en caliente siguen sin comprobarse.
 
 ## Prueba comunicada y cambio de opciones · 27/09/2026
 

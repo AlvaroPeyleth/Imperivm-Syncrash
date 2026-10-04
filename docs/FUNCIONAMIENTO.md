@@ -2,7 +2,7 @@
 
 ## La protección de cierres
 
-La guarda actual procede de la investigación local de un fallo de tipo de objeto: una ruta obtenía un puntero a partir de un identificador y lo utilizaba como objeto de mapa sin comprobar que lo fuera. En los casos reconstruidos, esto podía acabar en una llamada incompatible y un desequilibrio de pila.
+La protección nació al investigar un fallo de tipo de objeto: una ruta obtenía un puntero a partir de un identificador y lo utilizaba como objeto de mapa sin comprobar que lo fuera. En los casos reconstruidos, esto podía acabar en una llamada incompatible y un desequilibrio de pila.
 
 Syncrash redirige tres puntos de llamada a un helper de **42 bytes** que utiliza la comprobación nativa del juego para `CVXMapObj`. Para un objeto compatible, conserva la llamada al predicado con el puntero ajustado. Para un tipo incompatible, devuelve el resultado de rechazo para que continúe la rama existente del llamador.
 
@@ -30,22 +30,22 @@ Se distribuyen cambios parciales, no una copia completa de Imperivm. Los bytes d
 
 LAA habilita hasta 4 GB de espacio de direcciones de usuario para el juego x86 en Windows de 64 bits; no reserva RAM ni convierte el juego a 64 bits. Se conserva la protección de cierres y se admite actualizar el resultado de las entregas anteriores.
 
-La pantalla adaptable opcional instala una capa de presentación junto al juego. Conserva una superficie original, amplía su imagen con suavizado GPU y añade márgenes negros sin cambiar el modo del escritorio. El juego se abre normalmente; la pantalla adaptable se retira desde Syncrash. La [ficha técnica](CANDIDATO_1.0.4.md) reúne componentes, fuentes, pruebas y límites.
+La pantalla adaptable opcional instala una capa de presentación junto al juego. Conserva una superficie original, amplía su imagen con suavizado GPU y añade márgenes negros sin cambiar el modo del escritorio. El juego se abre normalmente; la pantalla adaptable se retira desde Syncrash. Los componentes, fuentes y pruebas están en la [ficha técnica](CANDIDATO_1.0.4.md).
 ## Voces opcionales en 1.0.5
 
-La nueva opción extrae grabaciones de los PAK identificados y crea las rutas sueltas que solicita el juego, sin escribir en esos paquetes. El aplicador registra sus archivos para cambiar de idioma al reaplicar o retirarlos al desmarcar la casilla. El [diseño y la validación de voces](CANDIDATO_1.0.5.md) distinguen las pruebas de archivos de la reproducción pendiente en partida. La ficha de entrega identifica el EXE publicado de esta v1 experimental.
+La nueva opción extrae grabaciones de los PAK identificados y crea las rutas sueltas que solicita el juego, sin escribir en esos paquetes. El aplicador registra sus archivos para cambiar de idioma al reaplicar o retirarlos al desmarcar la casilla. La [ficha de voces](CANDIDATO_1.0.5.md) recoge las pruebas de archivos y lo que falta escuchar en partida. La ficha de entrega identifica el EXE publicado de esta v1 experimental.
 
 ## Desincronizaciones y otros mods
 
-Esta v1 no incorpora una corrección causal validada de desync Steam. Las correcciones de cierres y desincronizaciones que identifiquemos y validemos en otros mods podrán incorporarse a futuras versiones de Syncrash para ampliar su alcance más allá de Steam vanilla, con perfiles de compatibilidad comprobados.
+Esta v1 todavía no corrige las desincronizaciones de Steam. Las correcciones de cierres y desincronizaciones que identifiquemos y validemos en otros mods podrán incorporarse a futuras versiones de Syncrash para ampliar su alcance más allá de Steam vanilla, con perfiles de compatibilidad comprobados.
 
 ## Casillas unificadas
 
-Desde v1.0.6, la interfaz usa ambas casillas como estado deseado: **marcar y aplicar instala; desmarcar y aplicar retira** la pantalla adaptable o la reparación de voces. Memoria y protección de cierres se conservan. Abrir Syncrash o cambiar una casilla no modifica archivos. Las dos siguen marcadas por defecto; el jugador elige qué conservar antes de aplicar.
+Desde v1.0.6, las dos casillas funcionan igual: **marcar y aplicar instala; desmarcar y aplicar retira** la pantalla adaptable o la reparación de voces. Memoria y protección de cierres se conservan. Abrir Syncrash o cambiar una casilla no modifica archivos. Las dos siguen marcadas por defecto; el jugador elige qué conservar antes de aplicar.
 
-Se elimina el botón separado de restauración de pantalla. Cada opción tiene una nota de retirada en gris de contraste legible. Información, proyecto y fuentes pasan al pie fijo junto al estado y al botón de aplicación; el contenido central conserva desplazamiento en ventanas pequeñas.
+Ya no hay un botón separado para restaurar la pantalla: se retira desde su casilla. Los enlaces de información, proyecto y fuentes están al pie, junto al estado y al botón de aplicación. En ventanas pequeñas puedes desplazarte por el contenido central.
 
-La retirada valida el registro y los hashes de todos los componentes de pantalla antes de aplicar el parche base o eliminar archivos. Conserva archivos ajenos o modificados y permite repetir una retirada interrumpida. La operación completa de pantalla y voces no es una transacción atómica: ante un error hay que leer el estado y reaplicar con el juego cerrado. Las órdenes CLI mantienen su alcance explícito: `--apply` y `--apply-with-voices` conservan pantalla; `--remove-screen` la retira. Una compilación de desarrollo sin componentes de pantalla mantiene esa opción deshabilitada y no la retira al aplicar voces.
+La retirada valida el registro y los hashes de todos los componentes de pantalla antes de aplicar el parche base o eliminar archivos. Conserva archivos ajenos o modificados y permite repetir una retirada interrumpida. Si ocurre un error, una opción puede haber terminado y la otra quedar pendiente. Lee el mensaje y vuelve a aplicar con el juego cerrado. Las órdenes CLI mantienen su alcance explícito: `--apply` y `--apply-with-voices` conservan pantalla; `--remove-screen` la retira. Una compilación de desarrollo sin componentes de pantalla mantiene esa opción deshabilitada y no la retira al aplicar voces.
 
 La [ficha de v1.0.6](CANDIDATO_1.0.6.md) identifica su binario y las pruebas de archivos e interfaz. No equivalen a una partida ni a validar todos los DPI o lectores de pantalla.
 

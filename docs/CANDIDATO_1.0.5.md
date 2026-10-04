@@ -1,6 +1,6 @@
 # Syncrash 1.0.5 · v1 experimental con voces opcionales
 
-**27/09/2026: publicada como v1.0.5. Syncrash v1 es experimental y esperamos feedback de los jugadores.** Esta ficha concentra uso, cambios, pruebas y límites. La autorización para lanzar no equivale a nuevas pruebas en partida; las partidas del prototipo no se atribuyen al nuevo ejecutable.
+**27/09/2026: publicada como v1.0.5 experimental.** Esta ficha recoge el uso, los cambios y las pruebas de esa versión. Las partidas del prototipo corresponden a aquel ejecutable; no se repitieron con el publicado.
 
 ## Binario publicado
 
@@ -65,12 +65,12 @@ El [mapa público](../src/Syncrash/voice-map.json) contiene solo rutas, tamaños
 - **36 pruebas sintéticas/Windows** sobre el ejecutable publicado: incluye extracción PAK, tres idiomas, reaplicación, retirada, migración, archivos ajenos/modificados, interrupciones simuladas, concurrencia, rutas inseguras y regresiones de memoria/pantalla.
 - **31 operaciones CLI sobre copias reales**, cotejando todos los WAV instalados y la integridad de los PAK y EXE correspondientes; incluye cambios de idioma y conservación de pantalla.
 - **Dos compilaciones completas idénticas** con PowerShell 7.6.5 (.NET 10.0.11) y .NET SDK 8.0.400; el EXE de las pruebas coincide con ese mismo SHA256.
-- **769 entradas de audio decodificadas** durante la preparación del mapa. No equivale a escucharlas en partida.
+- **769 entradas de audio decodificadas** durante la preparación del mapa. Queda escucharlas en partida.
 - Manejador real de **Aplicar** probado en una copia con la casilla activada y desactivada; retirada y reactivación de controles comprobadas. Ventana renderizada y revisada a 780×666 y 710×520. Bloqueo entre el prototipo Python y el nuevo aplicador comprobado entre procesos.
 
 La evidencia privada del lanzamiento se conserva en `work/release-1.0.5-20260927/`; la investigación y el candidato anterior permanecen en `work/audio-voices-20260927/README.md`, con sus fechas, informes y hashes. Los resultados anteriores se mantienen separados de los del ejecutable publicado.
 
-La validación auditiva anterior del usuario corresponde al prototipo español; la captura del 27/09 observó 20 rutas reparadas de seis unidades abiertas correctamente, sin errores DirectMusic en el log final. Una sesión anterior tuvo dos errores sin recurso identificado y un retraso inicial no explicado. No se han escuchado individualmente todas las rutas ni validado partidas en italiano/inglés con el candidato.
+Las pruebas de escucha anteriores del usuario corresponden al prototipo español; la captura del 27/09 observó 20 rutas reparadas de seis unidades abiertas correctamente, sin errores DirectMusic en el log final. Una sesión anterior tuvo dos errores sin recurso identificado y un retraso inicial no explicado. No se han escuchado individualmente todas las rutas ni validado partidas en italiano/inglés con el candidato.
 
 **Feedback y pruebas pendientes:** validar la versión desde la interfaz en español, italiano e inglés, volver a español y comprobar la retirada con la casilla. Probar voces de héroe, arquero y sacerdote/sacerdotisa, además de las unidades afectadas disponibles de otras facciones; confirmar que el idioma y la variedad son correctos. Completar la comprobación multijugador. Si reaparece el retraso inicial, conservar el log de esa sesión e investigarlo sin atribuirle una causa aún no demostrada.
 

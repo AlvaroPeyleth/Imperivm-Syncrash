@@ -1,12 +1,12 @@
 # Propuesta: conexión online automática
 
-**27/09/2026 · Diseño preparado; implementación y pruebas de red pendientes.** La base vigente es [Syncrash v1.0.6](ENTREGA_ACTUAL.md). Esta función todavía no está en el aplicador ni en la descarga. Este documento concentra alcance, decisiones y criterios del piloto; no asigna una nueva versión.
+**27/09/2026 · Diseño preparado; implementación y pruebas de red pendientes.** La base vigente es [Syncrash v1.0.6](ENTREGA_ACTUAL.md). Esta función todavía no está en el aplicador ni en la descarga. Aquí se recoge lo que queremos probar y qué debe funcionar antes de ofrecer un piloto. Todavía no hay una nueva versión.
 
 ## Objetivo y límites
 
 Activar una opción en Syncrash, abrir Imperivm (versión Steam) y crear o entrar en las salas habituales sin configurar puertos manualmente, en las redes compatibles. Se conserva el servicio de salas existente; no se añaden VPN, cuentas, STUN público, coordinadores, relays ni telemetría externa. El control del router local forma parte de la propuesta.
 
-La apertura automática sí hace accesibles puertos del juego y tiene riesgo de exposición. No equivale a acceso automático a los archivos del PC, pero tampoco ofrece riesgo cero. CGNAT, doble NAT, políticas de firewall o falta de coordinación pueden impedir conectar. Mejorar el acceso a una partida no corrige por sí mismo cierres ni desincronizaciones. La cobertura se medirá; no hay porcentaje de éxito demostrado.
+Abrir puertos permite recibir conexiones desde fuera de la red y supone un riesgo de exposición. No equivale a acceso automático a los archivos del PC, pero tampoco ofrece riesgo cero. CGNAT, doble NAT, políticas de firewall o falta de coordinación pueden impedir conectar. Mejorar el acceso a una partida no corrige por sí mismo cierres ni desincronizaciones. Aún no sabemos en cuántas redes funcionará.
 
 ## Casilla y comportamiento previsto
 
@@ -17,7 +17,7 @@ La apertura automática sí hace accesibles puertos del juego y tiene riesgo de 
 - Después de aplicar, se cierra Syncrash y se abre Imperivm (versión Steam) como siempre, también directamente desde `gbr.exe`. No se requiere navegador, pestaña web, aplicador abierto, otro launcher ni un proceso o servicio auxiliar permanente. Solo se vuelve al aplicador para cambiar opciones, actualizar o retirar la función.
 - El juego carga automáticamente el componente instalado en su propio proceso en cada arranque; el trabajo de red se activa al usar el multijugador. Al salir, termina el componente y se retiran sus mapeos; ante un cierre inesperado, la concesión finita debe limitar su duración. Este ciclo es un requisito del prototipo pendiente de validar.
 - Desmarcar y aplicar desactiva y retira solo los componentes propios de red. Conserva la protección de cierres, LAA, voces y pantalla, incluidos los recursos de carga compartidos que aún necesiten otras opciones. Informar de cualquier limpieza de mapeos pendiente; no mostrar retirada completa si no se comprobó.
-- Si una vía no está disponible, terminar el intento adicional con tiempo y recursos acotados, conservar el comportamiento nativo y ofrecer un diagnóstico local. No exigir una nueva interacción en cada partida para repetir la configuración elegida.
+- Si una vía no está disponible, terminar el intento adicional con un límite de tiempo y recursos, conservar el comportamiento nativo y ofrecer un diagnóstico local. No exigir una nueva interacción en cada partida para repetir la configuración elegida.
 
 ## Secuencia que se investigará
 
@@ -48,7 +48,7 @@ Condiciones técnicas para el candidato:
 - Preservar la protección de cierres y LAA y el comportamiento de simulación, temporización, pantalla y audio. Archivos propios con hashes y registro de propiedad; instalación repetible y recuperación de interrupciones. No sobrescribir archivos ajenos o modificados.
 - Diagnóstico local limitado y exportable a petición, sin envío automático. IP, capturas y logs originales permanecen privados; los informes públicos solo incluyen resultados anonimizados.
 
-## Trabajo preparado y puertas de avance
+## Pasos y requisitos para avanzar
 
 | Fase | Entregable | Criterio para avanzar |
 | --- | --- | --- |
@@ -58,7 +58,7 @@ Condiciones técnicas para el candidato:
 | 3. Decisión sobre B | Evidencia del NatNeg efectivo y un diseño de coordinación con las salas actuales. | Solo implementar si existe una vía demostrada sin nuevos servicios; en caso contrario documentar el límite de A. |
 | 4. Candidato de entrega | Informe con éxitos y fallos, fuentes/licencias, manifiestos y recuperación. | Revisión de regresiones, build reproducible y pruebas de integración. Actualizar versión/hashes únicamente al existir un candidato real; publicar requiere decisión posterior. |
 
-**Siguiente trabajo concreto:** fase 0. La investigación documental no acredita que el juego o los servicios actuales negocien NAT correctamente. Ninguna fase de prototipo o ensayo se ha ejecutado para esta propuesta.
+**Siguiente trabajo concreto:** fase 0. Las referencias consultadas no bastan para saber si el juego y sus servicios actuales negocian NAT correctamente. Ninguna fase de prototipo o ensayo se ha ejecutado para esta propuesta.
 
 ## Matriz mínima de pruebas
 
@@ -67,7 +67,7 @@ Condiciones técnicas para el candidato:
 | Conexión nativa que ya funciona | Sin regresión al activar/desactivar; tiempos comparables de entrada y partida. |
 | Aplicación única y arranques posteriores del juego | Con Syncrash y el navegador cerrados, abrir directamente `gbr.exe`, comprobar la carga del componente dentro del juego y repetir tras reiniciar el PC sin reaplicar; al salir, no dejar procesos auxiliares y comprobar retirada o caducidad de mapeos. |
 | Router con control compatible | Canales realmente necesarios, puerto exterior concedido, renovación y retirada. |
-| Control deshabilitado, mapeo ocupado o concesión parcial | Fallo acotado, sin modificar recursos ajenos ni anunciar conexión conseguida. |
+| Control deshabilitado, mapeo ocupado o concesión parcial | Terminar el intento al llegar al límite previsto, sin modificar recursos ajenos ni anunciar una conexión que no se ha conseguido. |
 | Doble NAT, CGNAT y acceso móvil | Qué barrera sigue presente; éxitos y fallos reales sin atribuir el resultado solo a la etiqueta de red. |
 | Varios adaptadores y dos jugadores bajo una IP pública | Ruta correcta, identidad de cada jugador y puertos sin colisiones. |
 | Solo anfitrión, solo invitado y ambos con la opción | Cobertura real de instalación mixta; no prometer compatibilidad basándose en ensayos privados anteriores de la protección de cierres. |

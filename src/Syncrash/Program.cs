@@ -80,8 +80,8 @@ internal static class Syncrash
                 {
                     PatchStatus state = PatchEngine.CheckGame(args[1]);
                     Console.WriteLine(state == PatchStatus.AlreadyInstalled ? "Parche de memoria y cierres instalado. No se ha modificado ningún archivo." :
-                        state == PatchStatus.UpgradeAdmitted ? "Syncrash anterior admitido para actualizar. No se ha modificado ningún archivo." :
-                        "Instalación Steam original admitida. No se ha modificado ningún archivo.");
+                        state == PatchStatus.UpgradeAdmitted ? "Puedes actualizar esta versión anterior de Syncrash. No se ha modificado ningún archivo." :
+                        "La instalación original de Steam es compatible. No se ha modificado ningún archivo.");
                     return state == PatchStatus.AlreadyInstalled ? 3 : 0;
                 }
                 if (args[0] == "--check-screen")
@@ -118,7 +118,7 @@ internal static class Syncrash
         string voiceResult;
         try
         {
-            // Voice collisions/resources are validated before touching the base patch.
+            // Check voice sources and destination conflicts before applying the base patch.
             voiceResult = VoiceCompatibility.ConfigureGame(exePath, voices, delegate {
                 baseResult = configureScreen ? ScreenCompatibility.ConfigureGame(exePath, screen, out baseChanged)
                     : PatchGame(exePath, screen, screen, out baseChanged);
@@ -130,7 +130,7 @@ internal static class Syncrash
             throw;
         }
         changed = baseChanged || voiceChanged;
-        return "Memoria y cierres listos." + (screen ? " Pantalla adaptable con suavizado lista." :
+        return "Ampliación de memoria y protección de cierres instaladas." + (screen ? " Pantalla adaptable con suavizado instalada." :
             configureScreen ? " Pantalla adaptable desactivada." : " Pantalla sin cambios.") + "\n" + voiceResult;
     }
 
@@ -155,7 +155,7 @@ internal static class Syncrash
     {
         if (smooth && !adaptiveScreen) throw new ArgumentException("El suavizado necesita pantalla adaptable.");
         if (adaptiveScreen) return ScreenCompatibility.ApplyGame(exePath, smooth, out changed);
-        // The base patch neither needs nor changes optional screen files, even if already installed.
+        // Leave existing screen files in place when applying only the base patch.
         changed = PatchEngine.ApplyGame(exePath) != PatchStatus.AlreadyInstalled;
         return (changed ? "Parche de memoria y cierres instalado." : "El parche de memoria y cierres ya está instalado.") +
             " La configuración de pantalla no se ha cambiado.";

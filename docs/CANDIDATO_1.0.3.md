@@ -1,8 +1,8 @@
-# Syncrash 1.0.3.0: comprobaciones y cierre de la entrega
+# Syncrash 1.0.3.0: cambios y pruebas
 
 **Estado a 24/09/2026: publicado como v1.0.3 experimental para recoger feedback.** El binario mantiene el hash probado durante la auditoría. La [ficha de entrega](ENTREGA_ACTUAL.md) identifica la descarga actual y conserva v1.0.0 como histórica. Este documento sigue siendo la fuente principal de las pruebas de 1.0.3.0.
 
-## Identidad y alcance
+## Archivo y herramientas
 
 | Dato | Resultado |
 | --- | --- |
@@ -58,7 +58,7 @@ Después se copiaron **archivos reales ya admitidos** a una carpeta local, fuera
 | `--check` ya instalado | 3 | Sin cambios de hash, fecha ni temporales |
 | `--apply` de nuevo | 3 | Sin cambios de hash, fecha ni temporales |
 
-El hash de `data.pak` no cambió en ningún paso, ni los archivos fuente usados para crear la copia. Se capturaron los bytes de stdout y stderr y se decodificaron como UTF-8 estricto; los acentos de «Instalación» y «ya está instalado» se conservaron. La receta y los hashes admitidos siguen sin cambios. Las salidas, los binarios comparados y `real-copy-verification.json` se conservan en `work/audit-final-20260924/`, fuera de Git. Esta prueba cubre el aplicador sobre archivos reales en una copia. **No cubre arrancar el juego con el candidato, jugar una partida ni usar la interfaz en otro equipo.**
+El hash de `data.pak` no cambió en ningún paso, ni los archivos fuente usados para crear la copia. Se capturaron los bytes de stdout y stderr y se decodificaron como UTF-8 estricto; los acentos de «Instalación» y «ya está instalado» se conservaron. La receta y los hashes admitidos siguen sin cambios. Las salidas, los binarios comparados y `real-copy-verification.json` se conservan en `work/audit-final-20260924/`, fuera de Git. Se probó el aplicador sobre una copia de archivos reales del juego. **No cubre arrancar el juego con el candidato, jugar una partida ni usar la interfaz en otro equipo.**
 
 ### Evidencia histórica anterior de la misma versión
 

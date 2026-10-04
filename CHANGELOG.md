@@ -1,5 +1,16 @@
 # Historial de versiones
 
+## v1.0.7 · Aplicador 1.0.7.0 · Preparada el 4 de octubre de 2026
+
+- Lleva al EXE los mensajes y ayudas revisados. Se conservan las funciones, las recetas, las voces y los componentes de pantalla de v1.0.6.
+- 38 pruebas automáticas con el EXE completo, dos compilaciones idénticas y revisión de la interfaz en dos tamaños. [Archivo, pruebas y límites](docs/CANDIDATO_1.0.7.md). Publicación y descarga pendientes de comprobar.
+
+## Revisión de textos · 4 de octubre de 2026
+
+- README, guías y fichas técnicas con frases más directas y menos repeticiones. Se mantienen fechas, hashes, créditos, resultados históricos y pruebas pendientes. La guía de contribución enlaza ahora a la ficha y los comandos actuales.
+- Mensajes del aplicador y comentarios del código más claros. Solo cambian textos: la lógica del parche, las recetas y los recursos se conservan.
+- La compilación de desarrollo pasó las 38 pruebas automáticas existentes. Esta revisión no incluye nuevas partidas ni una nueva entrega: la descarga sigue siendo v1.0.6, con su EXE y hashes publicados. Los textos del código revisado llegarán al EXE en una futura entrega.
+
 ## v1.0.6 · Aplicador 1.0.6.0 · 28 de septiembre de 2026
 
 - Pantalla y voces comparten el criterio de marcar/desmarcar y aplicar. Se retira el botón separado de restauración de pantalla, se atenúan las notas de retirada y los enlaces pasan al pie fijo.

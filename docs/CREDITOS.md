@@ -8,15 +8,15 @@ Investigación, coordinación de pruebas y desarrollo del parche y su aplicador.
 
 ## Registros y pruebas
 
-Gracias a **Feronidas, Rubeneitor, Wini, Upercat y Osuka9 / Osquita** por aportar registros para la investigación. Se conserva «Osuka9 / Osquita» como atribución conjunta del envío, sin asumir si corresponde a uno o varios jugadores.
+Gracias a **Feronidas, Rubeneitor, Wini, Upercat y Osuka9 / Osquita** por aportar registros para la investigación. «Osuka9 / Osquita» figura tal como llegó en el envío; no sabemos si son uno o varios jugadores.
 
 Gracias también al hermano del autor por las partidas comparativas y los registros compartidos, y a quienes participan sin aparecer todavía en esta lista. Si falta tu alias o quieres corregir o retirar una mención, escribe a **xtalvarotx** en Discord.
 
-Aportar un registro ayuda a investigar; no atribuye automáticamente el descubrimiento de una causa o la autoría de una corrección. No publicamos los registros originales ni datos identificativos de las partidas.
+Esta lista agradece los registros y las pruebas; la autoría de las correcciones se indica por separado. No publicamos los registros originales ni datos identificativos de las partidas.
 
 ## Referencias y terceros
 
-- **Upercat · investigación de conectividad:** referencia para la [propuesta de conexión online automática](CONEXION_ONLINE.md). Agradecemos su aportación al estudio del transporte del juego. Esta preparación no incorpora código suyo ni certifica una función disponible.
+- **Upercat · investigación de conectividad:** referencia para la [propuesta de conexión online automática](CONEXION_ONLINE.md). Su trabajo ayudó a estudiar las conexiones del juego. La propuesta aún no está implementada y no incorpora código suyo.
 - **AlexiusItaly / ImperivmLauncher:** referencia revisada y posible colaboración futura. Esta entrega no incorpora código de ese proyecto.
 - **Community Mod:** proyecto independiente que se instala por sus propios canales. Su compatibilidad con Syncrash está pendiente; no se redistribuye con el parche.
 - **Imperivm:** el juego, sus marcas y su código original pertenecen a sus titulares. La licencia de Syncrash no concede derechos sobre ellos.

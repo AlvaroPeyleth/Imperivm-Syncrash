@@ -1,6 +1,6 @@
 # Fuentes de pantalla adaptable
 
-Instantánea del código nativo probado el 26/09/2026, conservada con el aplicador
+Código nativo probado el 26/09/2026 y conservado con el aplicador
 del 27/09. Los ZIP contienen únicamente fuentes de texto y comandos de
 compilación; no incluyen DLL, ejecutables del juego, partidas ni registros.
 Se conservan como archivos fuente para mantener los mismos bytes y hashes que
@@ -32,7 +32,7 @@ precompiladas a Git. Las herramientas Microsoft son requisitos externos.
 | syncrash-dxwnd-changes.zip | `a513116c3d82dc6a4d857b097f8ee23b10df3b341674c8cdd815c1e9620b6a26` |
 
 La reconstrucción desde upstream más estos cambios se comprobó localmente.
-Las compilaciones nativas no se declaran idénticas entre fechas o toolchains:
+No se ha comprobado que las compilaciones nativas sean idénticas con otras fechas o herramientas:
 el build del aplicador exige las DLL exactas fijadas por hash. La [ficha del
 candidato](../../docs/CANDIDATO_1.0.4.md) distingue esa limitación de la
 reproducibilidad del EXE C# con sus entradas nativas verificadas.

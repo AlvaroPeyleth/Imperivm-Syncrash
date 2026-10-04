@@ -6,7 +6,7 @@ Mods y herramientas de otros autores para ampliar o mejorar Imperivm. En cada re
 
 **[Ver repositorio e instrucciones](https://github.com/Upercat/ImperivmVoicesPatch)** · Autor: [Upercat](https://github.com/Upercat)
 
-Utilidad independiente para recuperar voces de unidades que no se reproducen por discrepancias en las rutas de los archivos de audio.
+Herramienta para recuperar voces de unidades que no suenan porque el juego las busca en rutas distintas.
 
 **Su enfoque:** corrige las rutas dentro de los PAK de idioma y ofrece copias de seguridad para restaurarlos. La reparación de voces de Syncrash utiliza WAV sueltos y conserva los PAK originales.
 

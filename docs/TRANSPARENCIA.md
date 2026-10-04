@@ -1,8 +1,8 @@
 # Qué hace Syncrash Steam v1.0.6
 
-Syncrash aplica la protección de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. El [código y las fuentes](SEGURIDAD.md) son revisables.
+Syncrash aplica la protección de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. Puedes revisar el [código y las fuentes](SEGURIDAD.md).
 
-**v1 experimental: esperamos feedback.** La reparación opcional de voces añade WAV sueltos extraídos de los PAK locales y un registro para cambiar de idioma al reaplicar o retirarlos. La [ficha de voces](CANDIDATO_1.0.6.md) detalla archivos, retirada, pruebas y límites.
+**Esta versión es experimental.** La reparación opcional de voces añade WAV sueltos extraídos de los PAK locales y un registro para cambiar de idioma al reaplicar o retirarlos. La [ficha de voces](CANDIDATO_1.0.6.md) detalla archivos, retirada, pruebas y límites.
 
 ## Acceso a archivos
 
@@ -25,7 +25,7 @@ El original ocupa 4.456.448 bytes y el resultado 4.460.544. La [ficha técnica](
 
 Para retirar pantalla o voces, desmarca su casilla y aplica. Para cambiar una variante de pantalla, retírala así y después marca/aplica la nueva. Se conserva LAA. Para adaptar las voces a otro idioma, cierra el juego y reaplica Syncrash. Steam no elimina los WAV añadidos; para recuperar también `gbr.exe`, verifica los archivos del juego desde Steam tras retirar las opciones. No se crea una copia de seguridad del ejecutable.
 
-La [ficha de entrega](ENTREGA_ACTUAL.md) separa pruebas de archivos y partidas: la sesión multijugador comunicada corresponde a 1.0.4; la comprobación con voces sigue pendiente. No se incorpora una corrección causal de desync, resolución interna superior a 1080p ni texturas nuevas. Community Mod permanece desactivado y se estudiará después de Steam vanilla.
+Consulta las pruebas en la [ficha de entrega](ENTREGA_ACTUAL.md): la sesión multijugador comunicada corresponde a 1.0.4; la comprobación con voces sigue pendiente. Todavía no corrige las desincronizaciones ni añade resolución interna superior a 1080p o texturas nuevas. Community Mod permanece desactivado y se estudiará después de Steam vanilla.
 
 ## Licencias y privacidad
 
