@@ -6,13 +6,13 @@ Empezamos por **Steam sin mods**, con los archivos identificados por sus hashes.
 
 ## Versión publicada
 
-La [v1.0.6 publicada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Sigue siendo experimental.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
+La [v1.0.7 publicada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Sigue siendo experimental.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
 
-La [ficha técnica](CANDIDATO_1.0.6.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
+La [ficha técnica](CANDIDATO_1.0.7.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
 
 ## Siguientes pasos de Steam
 
-El [ajuste de casillas e interfaz](FUNCIONAMIENTO.md#casillas-unificadas) está publicado en v1.0.6. Pantalla y voces se retiran al desmarcar y aplicar.
+El [ajuste de casillas e interfaz](FUNCIONAMIENTO.md#casillas-unificadas) está disponible desde v1.0.6. Pantalla y voces se retiran al desmarcar y aplicar.
 
 Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar PAK; reaplicar adapta el idioma y desmarcar/aplicar retira los WAV registrados. Falta ampliar las pruebas de escucha en los tres idiomas y comprobar el multijugador con voces. La resolución interna superior a 1080p permanece fuera de la entrega tras un ensayo fallido.
 
@@ -23,7 +23,7 @@ Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar P
 
 ## Conexión online automática · propuesta
 
-Preparar una tercera casilla independiente, desmarcada por defecto durante el piloto, para facilitar la entrada a las salas habituales. Primero se observará el fallo real y se probarán mapeos automáticos de duración limitada; después se evaluará la negociación NAT existente si permite coordinar los sockets sin añadir servidores. La [propuesta online](CONEXION_ONLINE.md) explica el diseño y las pruebas necesarias. **Todavía no está implementada ni incluida en v1.0.6.**
+Preparar una tercera casilla independiente, desmarcada por defecto durante el piloto, para facilitar la entrada a las salas habituales. Primero se observará el fallo real y se probarán mapeos automáticos de duración limitada; después se evaluará la negociación NAT existente si permite coordinar los sockets sin añadir servidores. La [propuesta online](CONEXION_ONLINE.md) explica el diseño y las pruebas necesarias. **Todavía no está implementada ni incluida en v1.0.7.**
 
 ## Community y otros mods
 

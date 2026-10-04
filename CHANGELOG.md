@@ -1,15 +1,15 @@
 # Historial de versiones
 
-## v1.0.7 · Aplicador 1.0.7.0 · Preparada el 4 de octubre de 2026
+## v1.0.7 · Aplicador 1.0.7.0 · 4 de octubre de 2026
 
 - Lleva al EXE los mensajes y ayudas revisados. Se conservan las funciones, las recetas, las voces y los componentes de pantalla de v1.0.6.
-- 38 pruebas automáticas con el EXE completo, dos compilaciones idénticas y revisión de la interfaz en dos tamaños. [Archivo, pruebas y límites](docs/CANDIDATO_1.0.7.md). Publicación y descarga pendientes de comprobar.
+- 38 pruebas automáticas con el EXE completo, dos compilaciones idénticas y revisión de la interfaz en dos tamaños. [Archivo, pruebas y límites](docs/CANDIDATO_1.0.7.md). Publicada desde el commit limpio `512e3cf`, con CI correcto y los tres archivos descargados cotejados. EXE: 18.579.968 bytes, SHA256 `af1d7d01b82d7488fef2eec44355d82b4a9fbc4bfd7b2ef21c160d874205c1a4`.
 
 ## Revisión de textos · 4 de octubre de 2026
 
 - README, guías y fichas técnicas con frases más directas y menos repeticiones. Se mantienen fechas, hashes, créditos, resultados históricos y pruebas pendientes. La guía de contribución enlaza ahora a la ficha y los comandos actuales.
 - Mensajes del aplicador y comentarios del código más claros. Solo cambian textos: la lógica del parche, las recetas y los recursos se conservan.
-- La compilación de desarrollo pasó las 38 pruebas automáticas existentes. Esta revisión no incluye nuevas partidas ni una nueva entrega: la descarga sigue siendo v1.0.6, con su EXE y hashes publicados. Los textos del código revisado llegarán al EXE en una futura entrega.
+- La compilación de desarrollo pasó las 38 pruebas automáticas existentes. La revisión inicial no incluyó nuevas partidas ni cambió el EXE publicado de v1.0.6. Los textos se distribuyeron después en v1.0.7, con las comprobaciones indicadas arriba.
 
 ## v1.0.6 · Aplicador 1.0.6.0 · 28 de septiembre de 2026
 

@@ -1,6 +1,6 @@
 # Propuesta: conexión online automática
 
-**27/09/2026 · Diseño preparado; implementación y pruebas de red pendientes.** La base vigente es [Syncrash v1.0.6](ENTREGA_ACTUAL.md). Esta función todavía no está en el aplicador ni en la descarga. Aquí se recoge lo que queremos probar y qué debe funcionar antes de ofrecer un piloto. Todavía no hay una nueva versión.
+**27/09/2026 · Diseño preparado; implementación y pruebas de red pendientes.** La base vigente es [Syncrash v1.0.7](ENTREGA_ACTUAL.md). Esta función todavía no está en el aplicador ni en la descarga. Aquí se recoge lo que queremos probar y qué debe funcionar antes de ofrecer un piloto. Todavía no hay una nueva versión.
 
 ## Objetivo y límites
 

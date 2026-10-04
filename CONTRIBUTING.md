@@ -16,7 +16,7 @@ Las contribuciones de código propio se proponen bajo MIT. Identifica su procede
 
 Consulta el [plan de ejecución](docs/PLAN_DE_EJECUCION.md) antes de abordar una corrección nueva.
 
-Para trabajar en el aplicador, consulta la [ficha de 1.0.6](docs/CANDIDATO_1.0.6.md) y los [comandos de compilación del README](README.md#compilar-y-conocer-el-proyecto). Usa las versiones de herramientas indicadas, ejecuta las pruebas y compara dos compilaciones. No incluyas archivos del juego en fixtures ni ejecutes la aplicación real como parte de las pruebas predeterminadas.
+Para trabajar en el aplicador, consulta la [ficha de 1.0.7](docs/CANDIDATO_1.0.7.md) y los [comandos de compilación del README](README.md#compilar-y-conocer-el-proyecto). Usa las versiones de herramientas indicadas, ejecuta las pruebas y compara dos compilaciones. No incluyas archivos del juego en fixtures ni ejecutes la aplicación real como parte de las pruebas predeterminadas.
 
 ## Mantener la documentación al día
 

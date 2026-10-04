@@ -1,8 +1,21 @@
 # Syncrash · Ficha de entrega
 
-## Entrega actual: v1.0.6 · 28/09/2026
+## Entrega actual: v1.0.7 · 04/10/2026
 
-La [revisión de textos del 04/10/2026](../CHANGELOG.md#revisión-de-textos--4-de-octubre-de-2026) cambia la documentación y los mensajes en el código fuente. El EXE descargable sigue siendo el publicado el 28/09; su versión y sus hashes se mantienen.
+**Publicada como v1 experimental.** [Descargar Syncrash v1.0.7](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.7). Mensajes y documentación más claros; mantiene las funciones y los componentes de v1.0.6. [Uso, pruebas y límites](CANDIDATO_1.0.7.md).
+
+| Dato | Valor |
+| --- | --- |
+| Aplicador | 1.0.7.0 · `Syncrash.exe` |
+| Tamaño | 18.579.968 bytes |
+| SHA256 del EXE | `af1d7d01b82d7488fef2eec44355d82b4a9fbc4bfd7b2ef21c160d874205c1a4` |
+| SHA256 de `gbr.exe` con protección de cierres y LAA | `af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965` |
+
+38 pruebas automáticas con el EXE completo, dos compilaciones idénticas y revisión de la interfaz a 780×666 y 710×520. El preparador reprodujo el archivo desde el commit limpio `512e3cfba3c109a4d22042bb652f8fc9269079ba`, que identifica el tag `v1.0.7`. [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/37222726535). EXE, sumas y licencia descargados de GitHub y comparados byte a byte con el paquete local. No se han repetido partidas; escucha completa italiana/inglesa y multijugador con voces pendientes. Las entregas anteriores se conservan.
+
+## Histórico: v1.0.6 · 28/09/2026
+
+El EXE de esta versión conserva los mensajes y hashes de su publicación. La revisión de textos posterior se distribuye en v1.0.7.
 
 **Publicada como v1 experimental.** [Descargar Syncrash v1.0.6](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.6). Pantalla y voces se instalan o retiran desde sus casillas. Los enlaces están al pie de la ventana. Incluye correcciones de documentación; la conexión online automática sigue pendiente. [Ficha técnica, uso y pruebas](CANDIDATO_1.0.6.md).
 

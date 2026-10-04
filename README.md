@@ -17,7 +17,7 @@ Syncrash es un parche independiente para **Imperivm RTC: HD Edition — Great Ba
 
 **Es experimental.** Protege frente a tres casos de cierre identificados, pero no evita todos los fallos ni corrige todavía las desincronizaciones. Si lo pruebas, cuéntanos cómo te va.
 
-La [versión actual, v1.0.6](docs/ENTREGA_ACTUAL.md), amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
+La [versión actual, v1.0.7](docs/ENTREGA_ACTUAL.md), amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
@@ -54,7 +54,7 @@ Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixta
 | Pantalla adaptable | Opcional, con suavizado GPU y márgenes negros; conserva el escritorio. |
 | Voces de unidades | Opcional, en español, italiano e inglés, desde los PAK del jugador sin modificarlos. Falta escuchar todas las voces en partida. |
 | Desincronizaciones | En investigación; v1 no incorpora una corrección de desync. |
-| Conexión online automática | [Propuesta y pruebas planificadas](docs/CONEXION_ONLINE.md) para una futura casilla opcional. No incluida en v1.0.6. |
+| Conexión online automática | [Propuesta y pruebas planificadas](docs/CONEXION_ONLINE.md) para una futura casilla opcional. No incluida en v1.0.7. |
 | Community Mod | Próximamente. La opción está desactivada. |
 | Otros mods | Sin compatibilidad validada. |
 
@@ -65,13 +65,13 @@ Cuando haya soporte para Community, tendrás que **instalar primero el mod por s
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
 - Sustituye `gbr.exe`. Si eliges pantalla adaptable, instala también sus componentes y registro junto al juego. Si marcas voces, extrae archivos WAV y guarda una lista para poder retirarlos después. No modifica mapas, guardados ni PAK.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir la interfaz no modifica el juego. Los archivos solo cambian cuando aplicas las opciones o exportas las fuentes. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.6.md).
+- Abrir la interfaz no modifica el juego. Los archivos solo cambian cuando aplicas las opciones o exportas las fuentes. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.7.md).
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
 ## Pruebas de estabilidad
 
-v1.0.6 pasó pruebas automáticas y de instalación sobre copias reales del juego; también se compararon dos compilaciones. El prototipo de voces en español recibió comentarios favorables. **Falta escuchar todas las voces en italiano e inglés y probar el multijugador con voces.** Las partidas registradas con 1.0.4 corresponden a aquella versión. [Evidencia y alcance](docs/CANDIDATO_1.0.6.md).
+v1.0.7 pasó 38 pruebas automáticas con el EXE completo; también se compararon dos compilaciones. Las pruebas sobre copias reales del juego de v1.0.6 y las partidas de v1.0.4 conservan sus resultados históricos. El prototipo de voces en español recibió comentarios favorables. **Falta escuchar todas las voces en italiano e inglés y probar el multijugador con voces.** [Evidencia y alcance](docs/CANDIDATO_1.0.7.md).
 
 ## Ayuda a mejorar Syncrash
 
@@ -106,9 +106,9 @@ En los [créditos](docs/CREDITOS.md) puedes ver quién ha aportado registros, pr
 
 ## Compilar y conocer el proyecto
 
-Los mensajes del código fuente se [revisaron el 04/10/2026](CHANGELOG.md#revisión-de-textos--4-de-octubre-de-2026). Si compilas esta revisión, verás esos textos nuevos; la descarga v1.0.6 conserva los de su publicación.
+La [revisión de textos del 04/10/2026](CHANGELOG.md#revisión-de-textos--4-de-octubre-de-2026) está incluida en la descarga v1.0.7.
 
-El código propio usa MIT. Los componentes de pantalla tienen sus propias licencias; puedes exportar sus fuentes desde el aplicador. Consulta los detalles y las pruebas en la [ficha de 1.0.6](docs/CANDIDATO_1.0.6.md).
+El código propio usa MIT. Los componentes de pantalla tienen sus propias licencias; puedes exportar sus fuentes desde el aplicador. Consulta los detalles y las pruebas en la [ficha de 1.0.7](docs/CANDIDATO_1.0.7.md).
 
 En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
@@ -118,6 +118,6 @@ En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias 
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-Los comandos anteriores generan la base de desarrollo con voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Compilación, hashes y recuperación](docs/CANDIDATO_1.0.6.md).
+Los comandos anteriores generan la base de desarrollo con voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Compilación, hashes y recuperación](docs/CANDIDATO_1.0.7.md).
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

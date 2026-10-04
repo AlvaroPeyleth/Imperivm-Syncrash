@@ -1,6 +1,6 @@
 # Syncrash v1.0.7 · Textos más claros
 
-**04/10/2026 · Preparada para publicación.** Esta versión lleva al aplicador la revisión de textos del repositorio. Sigue siendo experimental; conserva las funciones de v1.0.6 y sus pruebas pendientes en partida.
+**04/10/2026 · Publicada como v1.0.7 experimental.** Esta versión lleva al aplicador la revisión de textos del repositorio. Sigue siendo experimental; conserva las funciones de v1.0.6 y sus pruebas pendientes en partida.
 
 ## Archivo y cambios
 
@@ -30,7 +30,7 @@ Se compila con PowerShell 7.6.5, Roslyn de .NET SDK 8.0.400, referencias de .NET
 - Interfaz dibujada y revisada a 780×666 y 710×520, con pantalla y voces disponibles. Los enlaces y el botón permanecen al pie; el contenido central se desplaza en la ventana pequeña.
 - Documentación y enlaces locales revisados antes de publicar. Los resultados históricos mantienen sus fechas, versiones y hashes.
 
-El preparador debe reproducir el EXE desde un commit limpio antes de subirlo. El estado de publicación y las comprobaciones de descarga se registrarán en la [ficha de entrega](ENTREGA_ACTUAL.md).
+El preparador reprodujo el EXE desde el commit limpio `512e3cfba3c109a4d22042bb652f8fc9269079ba`. [GitHub Actions](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/37222726535) pasó las pruebas y la comparación de la base sin componentes nativos; el EXE completo se comprobó localmente. Se publicó [v1.0.7](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.7) y se descargaron EXE, sumas y licencia: los tres coinciden byte a byte con los archivos preparados. [Ficha de entrega](ENTREGA_ACTUAL.md).
 
 Estas pruebas no incluyen nuevas partidas, otros DPI ni lectores de pantalla. La escucha completa en italiano e inglés y el multijugador con voces siguen pendientes. No se añade una corrección de desincronizaciones, soporte Community Mod ni conexión online automática. Ante una operación interrumpida, conserva los registros y vuelve a aplicar con el juego cerrado.
 
