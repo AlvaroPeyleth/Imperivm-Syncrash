@@ -1,6 +1,6 @@
 # Syncrash: estado y próximos pasos
 
-**04/10/2026.** El alcance actual es **Steam vanilla**. v1.0.7 está publicada. **Sigue siendo experimental.** Community Mod queda para después.
+**05/10/2026.** El alcance de la entrega actual es **Steam vanilla**. v1.0.7 está publicada. **Sigue siendo experimental.** La compatibilidad con Community Mod queda para después.
 
 ## Versión 1.0.7.0 publicada
 
@@ -9,6 +9,8 @@ Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado
 Voces cubre español, italiano e inglés con WAV sueltos extraídos de los PAK identificados; el cambio de idioma se realiza al reaplicar. Las pruebas históricas y la sesión multijugador de 1.0.4 siguen en su [ficha](CANDIDATO_1.0.4.md): no se atribuyen al nuevo aplicador ni a las voces. No se exigen nuevos análisis antivirus; se mantienen comprobaciones de integridad y funcionamiento.
 
 ## Siguiente paso
+
+**Integración local del 09/10:** la [protección al retirar maldición](MALDICION_EXPERIMENTAL.md) forma parte del flujo normal de `1.0.8`, con actualización desde las bases admitidas y retirada individual exacta. El usuario decidió incluirla mientras se investiga el origen. Sigue pendiente caducidad real, muerte, guardado/carga y continuidad con dos clientes iguales. No está publicada ni corrige el origen del puntero inconsistente.
 
 La [v1.0.7](CANDIDATO_1.0.7.md) publica la revisión de textos y conserva las casillas y funciones de v1.0.6. Se ha reproducido desde el commit limpio, CI pasó y los tres archivos descargados coinciden con los preparados. No incorpora conectividad.
 
@@ -21,6 +23,8 @@ Ante un incidente, conservar los Logs de ambos antes de volver a abrir el juego 
 El [plan de conexión online automática](CONEXION_ONLINE.md) está preparado para una futura casilla opcional, independiente de pantalla y voces. Se conservarán las salas existentes sin nuevos servidores externos. **No hay implementación ni pruebas de red de esta función.** El próximo trabajo es reproducir el fallo de entrada en dos PC e identificar sockets, interfaz y negociación antes de preparar el prototipo de mapeos temporales. La propuesta detalla los pasos, la retirada y las pruebas. La entrega 1.0.7 no incluye esta función.
 
 ## Investigación posterior
+
+La [evaluación de recuperación de desync](RECUPERACION_DESYNC.md) revisa código, evidencia histórica y cadenas del ejecutable Steam verificado. Hay pistas para investigar; faltan funciones nativas identificadas y una prueba de guardado/restauración común en dos equipos. No se ha implementado ni probado recuperación automática. Esta línea es independiente de conectividad y de corregir causas concretas.
 
 1. Localizar una causa de desync Steam a partir de registros pareados y validar cualquier corrección con ambos clientes iguales.
 2. Ampliar compatibilidad de pantalla a partir de incidencias concretas, conservando el modo 1080p que ya funciona.

@@ -31,6 +31,7 @@ internal static partial class SyncrashTests
         Run("failure after replacement reports installed state", AfterReplaceFailure);
         Run("same-target concurrent application excluded", ConcurrentApply);
         Run("CLI --check and retired --test do not write", CliReadOnly);
+        Run("curse guard commands reject unknown inputs without writes", CurseGuardRejection);
         Run("CLI redirected streams without console", CliRedirected);
         Run("screen install, idempotence and removal preserve game files", ScreenLifecycle);
         Run("screen deselection applies base, removes owned files and is idempotent", ScreenDeselection);
@@ -367,6 +368,23 @@ internal static partial class SyncrashTests
         {
             if (!child.WaitForExit(10000)) { child.Kill(); throw new Exception("CLI timed out"); }
             return child.ExitCode;
+        }
+    }
+
+    private static void CurseGuardRejection()
+    {
+        using (var f = new Fixture())
+        {
+            DateTime old = new DateTime(2020, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            File.SetLastWriteTimeUtc(f.Target, old);
+            foreach (string command in new[] { "--check-curse-guard", "--apply-curse-guard", "--remove-curse-guard" })
+            {
+                int expected = 1;
+                Assert(Cli(command + " \"" + f.Target + "\"") == expected, "guard accepted unknown input");
+                Assert(Cli(command) == 2, "guard accepted missing path");
+            }
+            Assert(Hex(File.ReadAllBytes(f.Target)) == Hex(f.Source) && Hex(File.ReadAllBytes(f.Pak)) == Hex(f.PakData), "guard changed unknown files");
+            Assert(File.GetLastWriteTimeUtc(f.Target) == old && f.Stages() == 0, "guard rejection wrote files");
         }
     }
 

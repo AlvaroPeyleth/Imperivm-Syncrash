@@ -12,9 +12,11 @@ Syncrash redirige tres puntos de llamada a un helper de **42 bytes** que utiliza
 | `0x55F500` | Punto añadido en `ObjList::ClearDead`. |
 | `0xA95000` | Helper compartido por las tres llamadas. |
 
-Son direcciones de la imagen admitida, no una búsqueda universal para cualquier edición. Las diferencias exactas están en [`recipe.json`](../src/Syncrash/recipe.json). Los cambios incluyen cabeceras PE, las tres llamadas y una sección añadida; el aplicador verifica todos los bytes de entrada y el hash del resultado.
+Son direcciones de la imagen admitida, no una búsqueda universal para cualquier edición. Las diferencias exactas están en [`recipe.json`](../src/Syncrash/recipe.json). La receta de desarrollo incluye cabeceras PE, las tres llamadas, la cuarta protección de maldición y una sección añadida; el aplicador verifica todos los bytes de entrada y el hash del resultado.
 
 ## Límites conocidos
+
+El [candidato 1.0.8 del 09/10](MALDICION_EXPERIMENTAL.md) añade por defecto una cuarta protección: comprueba el puntero nulo al retirar maldición/bendición antes de leerlo. Usa otros 28 bytes en la misma sección y conserva íntegro el helper anterior. La entrega pública 1.0.7 conserva las tres protecciones anteriores.
 
 El cast no detecta todos los identificadores obsoletos reutilizados para otro objeto de mapa válido, ni repara cualquier puntero corrupto, guardado antiguo o ruta de cierre ajena a estas llamadas. No demuestra por sí solo que dos simulaciones multijugador permanezcan sincronizadas.
 

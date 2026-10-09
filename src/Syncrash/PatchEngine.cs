@@ -46,16 +46,26 @@ internal static class PatchEngine
     // Keep production hashes fixed; tests pass their own spec to Check/Apply.
     private static readonly PatchSpec Production = new PatchSpec(
         "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
-        "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+        CurseGuard.AfterHash,
         "6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50",
-        "bf2e6f23a25be0cbc093cdb2d08b120093790bc5b19fa9df81a45c5a4bdc0f08",
+        "bc437073ae1134502b510d898468cac20b74633f5407d17c79fe6c84b71d03aa",
         4456448, 4460544);
 
     private static readonly PatchSpec UpgradeV2 = new PatchSpec(
         "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
         Production.ResultHash, Production.PakHash,
-        "4d46f367ba1a248c13fbddf42c87cd213e88be6294dbb6a7008d5b65e3b94865",
+        "fc9f6343c5c7dbe5a9205a4141435eba7b5f988254bb4b965b9369f7b8ba00b6",
         4460544, 4460544, true);
+
+    private static readonly PatchSpec UpgradeLaa = new PatchSpec(
+        CurseGuard.BeforeHash, Production.ResultHash, Production.PakHash,
+        "2c57f63766cae3ed4936f1fd16954e0a1b9ec606b3261bfe0c577f2a0a447d42",
+        4460544, 4460544, true);
+
+    private static PatchSpec SelectGameSpec(string currentHash)
+    {
+        return currentHash == UpgradeLaa.SourceHash ? UpgradeLaa : SelectSpec(currentHash, Production, UpgradeV2);
+    }
 
     internal static PatchSpec SelectSpec(string currentHash, PatchSpec original, PatchSpec upgrade)
     {
@@ -65,21 +75,21 @@ internal static class PatchEngine
     internal static PatchStatus CheckGame(string path)
     {
         string target = TargetPath(path);
-        PatchSpec spec = SelectSpec(HashFile(target), Production, UpgradeV2);
-        return Check(target, spec, LoadEmbeddedRecipe(spec.IsUpgrade), RequireGameClosed);
+        PatchSpec spec = SelectGameSpec(HashFile(target));
+        return Check(target, spec, LoadEmbeddedRecipe(spec), RequireGameClosed);
     }
 
     internal static PatchStatus ApplyGame(string path)
     {
         string target = TargetPath(path);
-        PatchSpec spec = SelectSpec(HashFile(target), Production, UpgradeV2);
+        PatchSpec spec = SelectGameSpec(HashFile(target));
         // Apply checks the selected source again inside its mutex and before replacement.
-        return Apply(target, spec, LoadEmbeddedRecipe(spec.IsUpgrade), RequireGameClosed, null, null);
+        return Apply(target, spec, LoadEmbeddedRecipe(spec), RequireGameClosed, null, null);
     }
 
-    private static byte[] LoadEmbeddedRecipe(bool upgrade)
+    private static byte[] LoadEmbeddedRecipe(PatchSpec spec)
     {
-        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(upgrade ? "Syncrash.UpgradeV2" : "Syncrash.Recipe"))
+        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(spec == UpgradeLaa ? "Syncrash.CurseGuard" : spec == UpgradeV2 ? "Syncrash.UpgradeV2" : "Syncrash.Recipe"))
         {
             if (stream == null) throw new InvalidDataException("Falta la receta interna de Syncrash.");
             using (var memory = new MemoryStream())

@@ -1,0 +1,36 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Experimental null guard when removing Curse/Bless feedback",
+  "source_sha256": "cd35437004a441b7e70a8f0fd606003dea6c1e084667a7d813736c5d82a456cc",
+  "result_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+  "source_bytes": 4460544,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 392,
+      "before": "4f93",
+      "after": "89cc"
+    },
+    {
+      "offset": 760,
+      "before": "5c",
+      "after": "2a"
+    },
+    {
+      "offset": 1919060,
+      "before": "e9e7074c009090",
+      "after": "8b51048d4c0204"
+    },
+    {
+      "offset": 4456512,
+      "before": "9c85c90f840d",
+      "after": "000000000000"
+    },
+    {
+      "offset": 4456521,
+      "before": "9d8b51048d4c0204e905f8b3ff9de91af8b3ff",
+      "after": "00000000000000000000000000000000000000"
+    }
+  ],
+  "append_nonzero": []
+}

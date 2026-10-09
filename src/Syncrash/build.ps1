@@ -23,7 +23,7 @@ if (-not $voicePin.Success -or (Get-FileHash -LiteralPath $voiceMap -Algorithm S
     throw 'El mapa de voces no coincide con el revisado.'
 }
 $license = Join-Path $PSScriptRoot '../../LICENSE'
-$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
+$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs', 'CurseGuard.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
 $references = @('mscorlib', 'System', 'System.Core', 'System.Windows.Forms', 'System.Drawing', 'System.Runtime.Serialization', 'System.Xml') |
     ForEach-Object { '/r:' + (Join-Path $referenceRoot ($_.ToString() + '.dll')) }
 $screenResources = @()
@@ -32,11 +32,14 @@ try {
 if ($ScreenBundleDirectory) {
     $screenResources = @(& (Join-Path $PSScriptRoot 'screen-resources.ps1') -BundleDirectory $ScreenBundleDirectory -OutputDirectory $resourceDirectory)
 }
+$guardResources = @(
+    "/resource:$(Join-Path $PSScriptRoot 'curse-guard.json'),Syncrash.CurseGuard",
+    "/resource:$(Join-Path $PSScriptRoot 'curse-guard-remove.json'),Syncrash.CurseGuardRemove")
 & dotnet exec $compiler /nologo /target:winexe /platform:anycpu /optimize+ /deterministic+ /nostdlib+ /langversion:5 `
     ("/pathmap:$root=/_/syncrash") ("/out:$output") ("/win32manifest:$manifest") ("/win32icon:$icon") `
     ("/resource:$icon,Syncrash.Icon") ("/resource:$mark,Syncrash.Mark") ("/resource:$recipe,Syncrash.Recipe") `
     ("/resource:$upgrade,Syncrash.UpgradeV2") ("/resource:$(Join-Path $PSScriptRoot 'voice-map.json'),Syncrash.Voices") `
-    ("/resource:$banner,Syncrash.Banner") ("/resource:$license,Syncrash.License") $screenResources $references $sources
+    ("/resource:$banner,Syncrash.Banner") ("/resource:$license,Syncrash.License") $screenResources $guardResources $references $sources
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar Syncrash.' }
 } finally {
     # Delete only files created here; never recursively delete a computed path.

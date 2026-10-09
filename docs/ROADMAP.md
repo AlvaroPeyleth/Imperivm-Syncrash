@@ -12,6 +12,8 @@ La [ficha técnica](CANDIDATO_1.0.7.md) identifica archivos, pruebas y límites.
 
 ## Siguientes pasos de Steam
 
+La [protección de maldición del 09/10](MALDICION_EXPERIMENTAL.md) está integrada por defecto en el candidato local `1.0.8`, por decisión del usuario. Se conserva su retirada individual. Queda comprobar continuidad en partida y multijugador y completar la publicación autorizada. Community v12 exacto solo admite las órdenes individuales de esta protección, sin habilitar las opciones normales del mod.
+
 El [ajuste de casillas e interfaz](FUNCIONAMIENTO.md#casillas-unificadas) está disponible desde v1.0.6. Pantalla y voces se retiran al desmarcar y aplicar.
 
 Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar PAK; reaplicar adapta el idioma y desmarcar/aplicar retira los WAV registrados. Falta ampliar las pruebas de escucha en los tres idiomas y comprobar el multijugador con voces. La resolución interna superior a 1080p permanece fuera de la entrega tras un ensayo fallido.
@@ -24,6 +26,10 @@ Voces utiliza 188 rutas españolas, 188 italianas y 393 inglesas sin modificar P
 ## Conexión online automática · propuesta
 
 Preparar una tercera casilla independiente, desmarcada por defecto durante el piloto, para facilitar la entrada a las salas habituales. Primero se observará el fallo real y se probarán mapeos automáticos de duración limitada; después se evaluará la negociación NAT existente si permite coordinar los sockets sin añadir servidores. La [propuesta online](CONEXION_ONLINE.md) explica el diseño y las pruebas necesarias. **Todavía no está implementada ni incluida en v1.0.7.**
+
+## Recuperación de desincronizaciones · evaluación inicial
+
+La [evaluación del 05/10/2026](RECUPERACION_DESYNC.md) encuentra base para investigar una recarga común desde el anfitrión, pero no demuestra recuperación multijugador. Primero hay que comprobar que dos equipos restauran una partida sana y continúan sincronizados; la recuperación dentro de la misma sesión queda condicionada a ese resultado y a conservar la sesión de red. No está implementada ni incluida en v1.0.7.
 
 ## Community y otros mods
 

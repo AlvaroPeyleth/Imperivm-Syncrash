@@ -1,5 +1,15 @@
 # Historial de versiones
 
+## Preparación · v1.0.8 · 9 de octubre de 2026
+
+- [Protección de maldición/bendición](docs/MALDICION_EXPERIMENTAL.md) integrada por defecto a petición del usuario. La instalación normal y las actualizaciones desde las bases admitidas incluyen cuatro protecciones y LAA en un único reemplazo; pantalla y voces reconocen el nuevo resultado.
+- Conserva comprobación y retirada individual por CLI. Community v12 exacto mantiene únicamente esa vía individual, sin soporte general del mod.
+- Publicación autorizada y en preparación. Protección instalada y verificada localmente por hash, sin iniciar el juego. Pruebas, hashes, evidencia del piloto anterior y límites en la ficha principal; continuidad real y multijugador pendientes.
+
+## Investigación · Recuperación de desync · 5 de octubre de 2026
+
+- [Evaluación de viabilidad](docs/RECUPERACION_DESYNC.md) de adoptar el estado del anfitrión: evidencia histórica revisada, inventario estático sobre el original Steam por hash y criterios para un ensayo de restauración en dos equipos. Recuperación todavía sin implementar ni validar; no cambia el ejecutable ni la versión publicada.
+
 ## v1.0.7 · Aplicador 1.0.7.0 · 4 de octubre de 2026
 
 - Lleva al EXE los mensajes y ayudas revisados. Se conservan las funciones, las recetas, las voces y los componentes de pantalla de v1.0.6.

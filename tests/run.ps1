@@ -11,13 +11,16 @@ $tests = Join-Path $output 'SyncrashTests.exe'
 $compiler = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
 if (-not (Test-Path -LiteralPath $compiler)) { $compiler = Join-Path $env:WINDIR 'Microsoft.NET/Framework/v4.0.30319/csc.exe' }
 if (-not (Test-Path -LiteralPath $compiler)) { throw 'No se encuentra el compilador de .NET Framework.' }
-$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs') | ForEach-Object { Join-Path $source $_ }
+$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs', 'CurseGuard.cs') | ForEach-Object { Join-Path $source $_ }
+$guardResources = @(
+    "/resource:$(Join-Path $source 'curse-guard.json'),Syncrash.CurseGuard",
+    "/resource:$(Join-Path $source 'curse-guard-remove.json'),Syncrash.CurseGuardRemove")
 & $compiler /nologo /target:exe /platform:anycpu /optimize+ /main:SyncrashTests ("/out:$tests") `
     ("/resource:$(Join-Path $source 'recipe.json'),Syncrash.Recipe") `
     ("/resource:$(Join-Path $source 'upgrade-v2.json'),Syncrash.UpgradeV2") `
     ("/resource:$(Join-Path $source 'voice-map.json'),Syncrash.Voices") `
     /r:System.Windows.Forms.dll /r:System.Drawing.dll /r:System.Runtime.Serialization.dll `
-    $sources (Join-Path $PSScriptRoot 'SyncrashTests.cs') (Join-Path $PSScriptRoot 'ScreenCompatibilityTests.cs') (Join-Path $PSScriptRoot 'VoiceCompatibilityTests.cs')
+    $guardResources $sources (Join-Path $PSScriptRoot 'SyncrashTests.cs') (Join-Path $PSScriptRoot 'ScreenCompatibilityTests.cs') (Join-Path $PSScriptRoot 'VoiceCompatibilityTests.cs')
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar el arnés de pruebas.' }
 & $tests $app
 if ($LASTEXITCODE -ne 0) { throw "Pruebas fallidas: $LASTEXITCODE" }

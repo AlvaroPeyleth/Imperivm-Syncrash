@@ -1,8 +1,8 @@
 {
   "schema": "syncrash-exact-delta-v1",
-  "component": "Syncrash Steam crash protection V2 and Large Address Aware",
+  "component": "Syncrash four crash guards and Large Address Aware",
   "source_sha256": "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
-  "result_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+  "result_sha256": "cd35437004a441b7e70a8f0fd606003dea6c1e084667a7d813736c5d82a456cc",
   "source_bytes": 4456448,
   "result_bytes": 4460544,
   "patches": [
@@ -28,8 +28,8 @@
     },
     {
       "offset": 392,
-      "before": "00000000",
-      "after": "89cc4400"
+      "before": "000000",
+      "after": "4f9344"
     },
     {
       "offset": 752,
@@ -39,7 +39,7 @@
     {
       "offset": 760,
       "before": "00",
-      "after": "2a"
+      "after": "5c"
     },
     {
       "offset": 765,
@@ -90,6 +90,11 @@
       "offset": 1513466,
       "before": "50",
       "after": "00"
+    },
+    {
+      "offset": 1919060,
+      "before": "8b51048d4c0204",
+      "after": "e9e7074c009090"
     }
   ],
   "append_nonzero": [
@@ -107,6 +112,16 @@
       "offset": 4456489,
       "before": "00",
       "after": "c3"
+    },
+    {
+      "offset": 4456512,
+      "before": "000000000000",
+      "after": "9c85c90f840d"
+    },
+    {
+      "offset": 4456521,
+      "before": "00000000000000000000000000000000000000",
+      "after": "9d8b51048d4c0204e905f8b3ff9de91af8b3ff"
     }
   ]
 }

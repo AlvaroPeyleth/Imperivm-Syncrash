@@ -2,6 +2,8 @@
 
 ## Entrega actual: v1.0.7 · 04/10/2026
 
+La [protección de maldición del 09/10](MALDICION_EXPERIMENTAL.md) está integrada por defecto en el candidato local `1.0.8`. No se ha publicado ni sustituye esta entrega y sus hashes.
+
 **Publicada como v1 experimental.** [Descargar Syncrash v1.0.7](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.7). Mensajes y documentación más claros; mantiene las funciones y los componentes de v1.0.6. [Uso, pruebas y límites](CANDIDATO_1.0.7.md).
 
 | Dato | Valor |

@@ -12,6 +12,8 @@ Con pantalla adaptable marcada, instala `winmm.dll`, `dxwnd.dll`, `dxwnd.dxw`, l
 
 ## Archivos admitidos
 
+Los hashes de esta tabla corresponden a la entrega pública v1.0.7. El [candidato local 1.0.8](MALDICION_EXPERIMENTAL.md) incorpora por defecto la protección de maldición y tiene sus propios hashes y retirada individual. No amplía el soporte general de Community.
+
 | Archivo | SHA256 |
 | --- | --- |
 | Steam original `gbr.exe` | `72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473` |

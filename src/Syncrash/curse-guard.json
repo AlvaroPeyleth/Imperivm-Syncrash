@@ -1,19 +1,14 @@
 {
   "schema": "syncrash-exact-delta-v1",
-  "component": "Syncrash four crash guards and Large Address Aware",
-  "source_sha256": "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
+  "component": "Experimental null guard when removing Curse/Bless feedback",
+  "source_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
   "result_sha256": "cd35437004a441b7e70a8f0fd606003dea6c1e084667a7d813736c5d82a456cc",
   "source_bytes": 4460544,
   "result_bytes": 4460544,
   "patches": [
     {
-      "offset": 326,
-      "before": "0f",
-      "after": "2f"
-    },
-    {
       "offset": 392,
-      "before": "69cc",
+      "before": "89cc",
       "after": "4f93"
     },
     {

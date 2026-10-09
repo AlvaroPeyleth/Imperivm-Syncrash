@@ -10,4 +10,6 @@ La [versión 1.0.7](CANDIDATO_1.0.7.md) sigue siendo experimental. Usa la extrac
 
 Desde el 27/09/2026 no se exigen análisis antivirus periódicos para preparar entregas. Se mantienen las comprobaciones de archivos y las pruebas funcionales del aplicador. El EXE no tiene firma digital; una incidencia puede comunicarse indicando versión y mensaje recibido.
 
+La [protección de maldición](MALDICION_EXPERIMENTAL.md) del 09/10 está integrada en la compilación normal del candidato `1.0.8`, con recetas por hash para instalar, actualizar y retirar individualmente la protección. Sus pruebas y límites se describen por separado; no cambia los resultados de la entrega pública.
+
 Los [resultados antivirus antiguos](REVISION_ANTIVIRUS.md) se conservan como historial, vinculados a su archivo. No constituyen un análisis de las versiones posteriores.
