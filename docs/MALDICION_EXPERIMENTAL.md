@@ -1,6 +1,6 @@
 # Protección al retirar una maldición
 
-**09/10/2026 · integrada por defecto en v1.0.8, publicación autorizada y en preparación.** La entrega pública sigue siendo [v1.0.7](ENTREGA_ACTUAL.md). El usuario decidió incluir esta protección provisional para evitar el cierre conocido mientras se investiga el origen y la recuperación de desincronizaciones. Ya no requiere una compilación especial ni una casilla adicional.
+**09/10/2026 · incluida por defecto en [v1.0.8 publicada](ENTREGA_ACTUAL.md).** El usuario decidió incluir esta protección provisional para evitar el cierre conocido mientras se investiga el origen y la recuperación de desincronizaciones. Ya no requiere una compilación especial ni una casilla adicional.
 
 ## Qué protege
 
@@ -48,7 +48,7 @@ La comprobación no escribe. La retirada recupera exactamente el EXE anterior co
 
 ## Evidencia y entrega 1.0.8
 
-Aplicador final en preparación: **18586112 bytes**, SHA256 `6835b488180ac785111abd83d772c0df0b7f7816f05f78c493c3c443e5f5d155`. Versión 1.0.8.0 / informativa 1.0.8. Conserva el parche nativo del RC1; únicamente se retira el sufijo RC del título y metadatos.
+Aplicador publicado y descargado para verificarlo: **18586112 bytes**, SHA256 `6835b488180ac785111abd83d772c0df0b7f7816f05f78c493c3c443e5f5d155`. Versión 1.0.8.0 / informativa 1.0.8. Conserva el parche nativo del RC1; únicamente se retira el sufijo RC del título y metadatos.
 
 El candidato de integración `1.0.8-rc.1` pesaba **18586112 bytes**, SHA256 `0aad810e8db60296929505d36377719b1ceac62f1a6506f0132de750224b6564`. Se conserva como evidencia previa a la entrega 1.0.8.
 
@@ -66,4 +66,4 @@ El candidato de integración `1.0.8-rc.1` pesaba **18586112 bytes**, SHA256 `0aa
 
 Fuentes: [motor de aplicación](../src/Syncrash/PatchEngine.cs), [mantenimiento individual](../src/Syncrash/CurseGuard.cs), [receta completa](../src/Syncrash/recipe.json), [actualización sin LAA](../src/Syncrash/upgrade-v2.json), [protección individual](../src/Syncrash/curse-guard.json) y [retirada](../src/Syncrash/curse-guard-remove.json). Evidencia extensa, logs y archivos del juego permanecen excluidos de Git en `work/curse-guard-20261009/`.
 
-**Seguimiento pendiente:** caducidad real de maldición/bendición, muerte o retirada del efecto, guardado/carga y continuidad multijugador con dos clientes iguales; observar efectos residuales y desync. La integración está hecha por decisión del usuario, sin presentar esas pruebas como realizadas. La instalación local autorizada quedó protegida el 09/10: hash de salida verificado, PAK y configuración conservados. No se inició el juego. La publicación está en preparación; la instalación no equivale a una prueba de partida.
+**Seguimiento pendiente:** caducidad real de maldición/bendición, muerte o retirada del efecto, guardado/carga y continuidad multijugador con dos clientes iguales; observar efectos residuales y desync. La integración está hecha por decisión del usuario, sin presentar esas pruebas como realizadas. La instalación local autorizada quedó protegida el 09/10: hash de salida verificado, PAK y configuración conservados. No se inició el juego. La descarga pública está verificada; la instalación no equivale a una prueba de partida.

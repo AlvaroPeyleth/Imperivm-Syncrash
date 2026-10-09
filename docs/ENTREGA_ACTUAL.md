@@ -1,8 +1,21 @@
 # Syncrash · Ficha de entrega
 
-## Entrega actual: v1.0.7 · 04/10/2026
+## Entrega actual: v1.0.8 · 09/10/2026
 
-La [protección de maldición del 09/10](MALDICION_EXPERIMENTAL.md) está integrada por defecto en el candidato local `1.0.8`. No se ha publicado ni sustituye esta entrega y sus hashes.
+**Publicada como v1 experimental.** [Descargar Syncrash v1.0.8](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.8). Añade por defecto la protección frente al puntero nulo al retirar maldición/bendición. Conserva LAA, pantalla adaptable y voces. [Funcionamiento, compatibilidad y retirada individual](MALDICION_EXPERIMENTAL.md).
+
+| Dato | Valor |
+| --- | --- |
+| Aplicador | 1.0.8.0 · informativa 1.0.8 · `Syncrash.exe` |
+| Tamaño | 18.586.112 bytes |
+| SHA256 del EXE | `6835b488180ac785111abd83d772c0df0b7f7816f05f78c493c3c443e5f5d155` |
+| SHA256 de `gbr.exe` con cuatro protecciones y LAA | `cd35437004a441b7e70a8f0fd606003dea6c1e084667a7d813736c5d82a456cc` |
+
+39 pruebas automáticas con el EXE final, 55 operaciones sobre copias reales y dos compilaciones idénticas. El preparador reprodujo el EXE desde el commit limpio `ddf3f6341dc894b9780ecfe8644217b82e138681`, fuente del tag `v1.0.8`. [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/37944408666). EXE, sumas y licencia descargados de GitHub y comparados con el paquete local. La instalación local de la protección quedó verificada por hash; no se inició el juego.
+
+La evidencia de 25 casos emulados corresponde al mismo código nativo; no equivale a continuidad real ni multijugador. La causa del puntero inconsistente y las desync siguen pendientes. Community v12 exacto admite solo las órdenes individuales de la protección, sin habilitar sus opciones normales. Las pruebas y las partidas de entregas anteriores mantienen su fecha y alcance.
+
+## Histórico: v1.0.7 · 04/10/2026
 
 **Publicada como v1 experimental.** [Descargar Syncrash v1.0.7](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.7). Mensajes y documentación más claros; mantiene las funciones y los componentes de v1.0.6. [Uso, pruebas y límites](CANDIDATO_1.0.7.md).
 

@@ -15,13 +15,13 @@
 
 Syncrash es un parche independiente para **Imperivm RTC: HD Edition — Great Battles of Rome**, pensado para la edición de Steam sin mods (**Steam vanilla**). El proyecto investiga los cierres y las desincronizaciones del juego.
 
-**Es experimental.** Protege frente a tres casos de cierre identificados, pero no evita todos los fallos ni corrige todavía las desincronizaciones. Si lo pruebas, cuéntanos cómo te va.
+**Es experimental.** Protege frente a cuatro casos de cierre identificados, pero no evita todos los fallos ni corrige todavía las desincronizaciones. Si lo pruebas, cuéntanos cómo te va.
 
 La [recuperación de partidas tras un desync](docs/RECUPERACION_DESYNC.md) tiene una evaluación inicial de viabilidad; todavía no está implementada ni validada en multijugador.
 
-La [protección al retirar una maldición](docs/MALDICION_EXPERIMENTAL.md) ya está integrada por defecto en el candidato de desarrollo `1.0.8`, con retirada individual. No forma parte de la descarga v1.0.7; la continuidad en partida y multijugador sigue pendiente de comprobar.
+La [protección al retirar una maldición](docs/MALDICION_EXPERIMENTAL.md) está incluida por defecto en v1.0.8, con retirada individual; la continuidad en partida y multijugador sigue pendiente de comprobar.
 
-La [versión actual, v1.0.7](docs/ENTREGA_ACTUAL.md), amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
+La [versión actual, v1.0.8](docs/ENTREGA_ACTUAL.md), amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
@@ -46,20 +46,20 @@ Puedes aplicarlo al juego original o actualizar un parche anterior reconocido. S
 
 En las pruebas entre jugadores con y sin Syncrash no se comunicaron problemas. Aún faltan más partidas para comprobar esa compatibilidad. La protección se aplica únicamente al equipo donde está instalado: no evita los cierres de otros jugadores ni garantiza que la partida continúe si alguien se desconecta. Que otro jugador no lo tenga no desactiva tu protección.
 
-Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixtas corresponden a ensayos privados anteriores de la protección de cierres; la sesión comunicada con pantalla adaptable corresponde a 1.0.4. La comprobación multijugador con las nuevas voces sigue pendiente.
+Recomendamos que todos utilicen la misma versión de Syncrash. Las pruebas mixtas corresponden a ensayos privados anteriores de la protección de cierres; la sesión comunicada con pantalla adaptable corresponde a 1.0.4. La comprobación multijugador con voces y con la nueva protección de maldición sigue pendiente.
 
 ## Compatibilidad y alcance
 
 | Edición o función | Estado |
 | --- | --- |
 | Steam vanilla | Disponible para los archivos exactos [identificados por SHA256](docs/TRANSPARENCIA.md#archivos-admitidos). |
-| Protección de cierres | Comprueba el tipo de objeto antes de tres llamadas concretas. No cubre todos los posibles cierres. |
+| Protección de cierres | Comprueba el tipo de objeto en tres llamadas y el puntero nulo al retirar maldición/bendición. No cubre todos los cierres. |
 | Memoria | LAA amplía el espacio de direcciones disponible para el juego x86 en Windows de 64 bits. |
 | Pantalla adaptable | Opcional, con suavizado GPU y márgenes negros; conserva el escritorio. |
 | Voces de unidades | Opcional, en español, italiano e inglés, desde los PAK del jugador sin modificarlos. Falta escuchar todas las voces en partida. |
 | Desincronizaciones | En investigación; v1 no incorpora una corrección de desync. |
-| Conexión online automática | [Propuesta y pruebas planificadas](docs/CONEXION_ONLINE.md) para una futura casilla opcional. No incluida en v1.0.7. |
-| Community Mod | Próximamente. La opción está desactivada. |
+| Conexión online automática | [Propuesta y pruebas planificadas](docs/CONEXION_ONLINE.md) para una futura casilla opcional. No incluida en v1.0.8. |
+| Community Mod | Interfaz general desactivada. El v12 exacto admite solo la [protección individual por CLI](docs/MALDICION_EXPERIMENTAL.md#compilación-aplicación-y-retirada-individual). |
 | Otros mods | Sin compatibilidad validada. |
 
 Cuando haya soporte para Community, tendrás que **instalar primero el mod por sus canales habituales** y aplicar Syncrash después. [Hoja de ruta](docs/ROADMAP.md).
@@ -69,13 +69,13 @@ Cuando haya soporte para Community, tendrás que **instalar primero el mod por s
 - Comprueba `gbr.exe` y `Packs/data.pak` antes de actuar; rechaza versiones desconocidas.
 - Sustituye `gbr.exe`. Si eliges pantalla adaptable, instala también sus componentes y registro junto al juego. Si marcas voces, extrae archivos WAV y guarda una lista para poder retirarlos después. No modifica mapas, guardados ni PAK.
 - No instala servicios, observadores ni actualizadores. No envía datos ni registros.
-- Abrir la interfaz no modifica el juego. Los archivos solo cambian cuando aplicas las opciones o exportas las fuentes. Las órdenes CLI están descritas en la [ficha técnica](docs/CANDIDATO_1.0.7.md).
+- Abrir la interfaz no modifica el juego. Los archivos solo cambian cuando aplicas las opciones o exportas las fuentes. Las órdenes generales se conservan en la [ficha de uso](docs/CANDIDATO_1.0.7.md); la [protección de maldición](docs/MALDICION_EXPERIMENTAL.md) añade su mantenimiento individual.
 
 El aplicador contiene las diferencias necesarias, **no el ejecutable completo del juego**. Necesitas tu propia instalación de Steam.
 
 ## Pruebas de estabilidad
 
-v1.0.7 pasó 38 pruebas automáticas con el EXE completo; también se compararon dos compilaciones. Las pruebas sobre copias reales del juego de v1.0.6 y las partidas de v1.0.4 conservan sus resultados históricos. El prototipo de voces en español recibió comentarios favorables. **Falta escuchar todas las voces en italiano e inglés y probar el multijugador con voces.** [Evidencia y alcance](docs/CANDIDATO_1.0.7.md).
+v1.0.8 pasó 39 pruebas automáticas y 55 operaciones sobre copias reales, con dos compilaciones idénticas y CI correcto. El mismo parche nativo conserva evidencia de 25 casos emulados. Las pruebas sobre copias reales del juego de v1.0.6 y las partidas de v1.0.4 conservan sus resultados históricos. El prototipo de voces en español recibió comentarios favorables. **Falta escuchar todas las voces en italiano e inglés y probar el multijugador con voces.** [Evidencia y alcance](docs/MALDICION_EXPERIMENTAL.md).
 
 ## Ayuda a mejorar Syncrash
 
@@ -112,7 +112,7 @@ En los [créditos](docs/CREDITOS.md) puedes ver quién ha aportado registros, pr
 
 La [revisión de textos del 04/10/2026](CHANGELOG.md#revisión-de-textos--4-de-octubre-de-2026) está incluida en la descarga v1.0.7.
 
-El código propio usa MIT. Los componentes de pantalla tienen sus propias licencias; puedes exportar sus fuentes desde el aplicador. Consulta los detalles y las pruebas en la [ficha de 1.0.7](docs/CANDIDATO_1.0.7.md).
+El código propio usa MIT. Los componentes de pantalla tienen sus propias licencias; puedes exportar sus fuentes desde el aplicador. Consulta los detalles y las pruebas en la [ficha de entrega](docs/ENTREGA_ACTUAL.md).
 
 En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias de .NET Framework 4.8:
 
@@ -122,6 +122,6 @@ En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias 
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-Los comandos anteriores generan el candidato `1.0.8`, con la cuarta protección de cierres incluida, voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Candidato de desarrollo, hashes y retirada](docs/MALDICION_EXPERIMENTAL.md).
+Los comandos anteriores generan la versión `1.0.8`, con la cuarta protección de cierres incluida, voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Protección, hashes y retirada](docs/MALDICION_EXPERIMENTAL.md).
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

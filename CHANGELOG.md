@@ -1,10 +1,10 @@
 # Historial de versiones
 
-## Preparación · v1.0.8 · 9 de octubre de 2026
+## v1.0.8 · Aplicador 1.0.8.0 · 9 de octubre de 2026
 
 - [Protección de maldición/bendición](docs/MALDICION_EXPERIMENTAL.md) integrada por defecto a petición del usuario. La instalación normal y las actualizaciones desde las bases admitidas incluyen cuatro protecciones y LAA en un único reemplazo; pantalla y voces reconocen el nuevo resultado.
 - Conserva comprobación y retirada individual por CLI. Community v12 exacto mantiene únicamente esa vía individual, sin soporte general del mod.
-- Publicación autorizada y en preparación. Protección instalada y verificada localmente por hash, sin iniciar el juego. Pruebas, hashes, evidencia del piloto anterior y límites en la ficha principal; continuidad real y multijugador pendientes.
+- Publicada y descarga verificada: 39 pruebas, 55 operaciones sobre copias, dos compilaciones idénticas y CI correcto. EXE: 18.586.112 bytes, SHA256 `6835b488180ac785111abd83d772c0df0b7f7816f05f78c493c3c443e5f5d155`. Protección instalada y verificada localmente; continuidad real y multijugador pendientes. [Ficha de entrega](docs/ENTREGA_ACTUAL.md).
 
 ## Investigación · Recuperación de desync · 5 de octubre de 2026
 
