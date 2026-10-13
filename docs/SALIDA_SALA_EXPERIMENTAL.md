@@ -1,6 +1,6 @@
 # Protecciones experimentales de salida de sala y emparejamiento
 
-**13/10/2026 · versión `1.0.9` (aplicador `1.0.9.0`) preparada, pendiente de publicación.** Estado de entrega y hashes en la [ficha de entrega](ENTREGA_ACTUAL.md). Esta ficha reúne el alcance y las comprobaciones de las dos protecciones online añadidas a las cuatro de v1.0.8.
+**13/10/2026 · versión `1.0.9` (aplicador `1.0.9.0`) publicada como experimental.** Estado de entrega y hashes en la [ficha de entrega](ENTREGA_ACTUAL.md). Esta ficha reúne el alcance y las comprobaciones de las dos protecciones online añadidas a las cuatro de v1.0.8.
 
 ## Fallo y alcance
 
@@ -32,7 +32,7 @@ Las órdenes `menu-guard` gestionan juntas las protecciones de salida de sala y 
 
 ## Validación de v1.0.9
 
-El aplicador final pasó **40 pruebas automáticas y 86 operaciones CLI sobre copias reales**, incluyendo las migraciones, mantenimiento individual y opciones de pantalla/voces de la matriz RC2. Dos compilaciones completas son idénticas: **18.608.128 bytes**, SHA256 `145414c5019f888a89164dba85d5ee2c83e406e8e2e15a97ac372c2029f54999`. El delta nativo se conserva respecto a RC2; los ensayos emulados de los candidatos se mantienen abajo con su versión, sin atribuirlos a una nueva ejecución. No se ha iniciado el juego ni validado continuidad real, reconexión o multijugador. Publicación y comprobaciones remotas pendientes.
+El aplicador final pasó **40 pruebas automáticas y 86 operaciones CLI sobre copias reales**, incluyendo las migraciones, mantenimiento individual y opciones de pantalla/voces de la matriz RC2. Dos compilaciones completas son idénticas: **18.608.128 bytes**, SHA256 `145414c5019f888a89164dba85d5ee2c83e406e8e2e15a97ac372c2029f54999`. El delta nativo se conserva respecto a RC2; los ensayos emulados de los candidatos se mantienen abajo con su versión, sin atribuirlos a una nueva ejecución. No se ha iniciado el juego ni validado continuidad real, reconexión o multijugador. Publicación, CI y descarga comprobados: [fuente de compilación y entrega](ENTREGA_ACTUAL.md).
 
 ## Histórico RC2 · 13/10/2026
 

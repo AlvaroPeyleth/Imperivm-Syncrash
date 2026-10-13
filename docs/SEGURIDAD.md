@@ -1,8 +1,8 @@
 # Código y transparencia
 
-**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
+**v1.0.9 publicada · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Entrega experimental disponible; [hashes y comprobaciones](ENTREGA_ACTUAL.md).
 
-El código de Syncrash, las recetas del parche y las instrucciones de compilación están disponibles en el [repositorio público](https://github.com/AlvaroPeyleth/Imperivm-Syncrash). Puedes revisarlos y compilar tu propia versión. La [ficha de 1.0.9.0](ENTREGA_ACTUAL.md) identifica el aplicador preparado, su código y las comprobaciones de esa entrega.
+El código de Syncrash, las recetas del parche y las instrucciones de compilación están disponibles en el [repositorio público](https://github.com/AlvaroPeyleth/Imperivm-Syncrash). Puedes revisarlos y compilar tu propia versión. La [ficha de 1.0.9.0](ENTREGA_ACTUAL.md) identifica el aplicador publicado, su código y las comprobaciones de esa entrega.
 
 - [Aplicador y compilación](../src/Syncrash) · [Fuentes de pantalla y procedencia](../src/Screen/README.md).
 - [Qué modifica](TRANSPARENCIA.md) · [Versión pública y hashes](ENTREGA_ACTUAL.md).

@@ -17,13 +17,13 @@ Syncrash es un parche independiente para **Imperivm RTC: HD Edition — Great Ba
 
 **Es experimental.** La versión 1.0.9 reúne seis protecciones de cierres, pero no evita todos los fallos ni corrige todavía las desincronizaciones. Si lo pruebas, cuéntanos cómo te va.
 
-**v1.0.9 preparada, pendiente de publicación:** añade [protecciones de salida de sala y emparejamiento](docs/SALIDA_SALA_EXPERIMENTAL.md). Todavía no forma parte de la descarga publicada; falta validar la salida y la entrada posterior en otra sala.
+**v1.0.9 publicada:** añade [protecciones de salida de sala y emparejamiento](docs/SALIDA_SALA_EXPERIMENTAL.md). Falta validar la salida y la entrada posterior en otra sala.
 
 La [recuperación de partidas tras un desync](docs/RECUPERACION_DESYNC.md) tiene una evaluación inicial de viabilidad; todavía no está implementada ni validada en multijugador.
 
 La [protección al retirar una maldición](docs/MALDICION_EXPERIMENTAL.md) está incluida por defecto desde v1.0.8, con retirada individual; la continuidad en partida y multijugador sigue pendiente de comprobar.
 
-La [versión 1.0.9 preparada](docs/ENTREGA_ACTUAL.md) amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
+La [versión actual, v1.0.9](docs/ENTREGA_ACTUAL.md) amplía la memoria disponible y añade pantalla adaptable con suavizado y reparación de voces en español, italiano e inglés. Pantalla y voces vienen **marcadas por defecto**; puedes quitar cualquiera de las dos. Solo necesitas **Syncrash.exe** para aplicar el parche. Después abres el juego como siempre, también desde `gbr.exe`.
 
 **El código, las recetas del parche y las instrucciones de compilación son públicos.** Puedes revisarlos y generar tu propia versión: [código y transparencia](docs/SEGURIDAD.md).
 
@@ -124,6 +124,6 @@ En Windows, con **PowerShell 7.6.5 (`pwsh`)**, .NET SDK `8.0.400` y referencias 
 & ./scripts/compare-builds.ps1 -OutputDirectory ./work/mi-comparacion
 ```
 
-Los comandos anteriores generan la versión `1.0.9`, con seis protecciones de cierres, voces y sin pantalla. La descarga publicada sigue siendo v1.0.8. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Protección, hashes, pruebas y límites](docs/SALIDA_SALA_EXPERIMENTAL.md).
+Los comandos anteriores generan la versión `1.0.9`, con seis protecciones de cierres, voces y sin pantalla. Para el EXE completo, añade `-ScreenBundleDirectory <bundle revisado>` a cada comando: el build valida por hash componentes, perfiles y fuentes antes de incrustarlos. No descarga dependencias ni sobrescribe un EXE existente. [Protección, hashes, pruebas y límites](docs/SALIDA_SALA_EXPERIMENTAL.md).
 
 [Funcionamiento](docs/FUNCIONAMIENTO.md) · [Transparencia](docs/TRANSPARENCIA.md) · [Cambios](CHANGELOG.md) · [Hoja de ruta](docs/ROADMAP.md) · [Plan de pruebas](docs/PLAN_DE_EJECUCION.md)

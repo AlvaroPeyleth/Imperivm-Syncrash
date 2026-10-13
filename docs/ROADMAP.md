@@ -1,14 +1,14 @@
 # Hoja de ruta de Syncrash
 
-**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
+**v1.0.9 publicada · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Entrega experimental disponible; [hashes y comprobaciones](ENTREGA_ACTUAL.md).
 
 ## Ediciones compatibles
 
 Empezamos por **Steam sin mods**, con los archivos identificados por sus hashes. Las próximas correcciones se añadirán a Syncrash. Después queremos dar soporte a Community Mod y, más adelante, a otros mods. Cada edición necesitará sus propios hashes y pruebas, también cuando se actualice.
 
-## Versión preparada
+## Versión publicada
 
-La [v1.0.9 preparada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Sigue siendo experimental.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
+La [v1.0.9 publicada](ENTREGA_ACTUAL.md) reúne protección de cierres, LAA, pantalla adaptable con suavizado y voces opcionales en tres idiomas. **Sigue siendo experimental.** Las dos opciones están marcadas por defecto y son desactivables. El juego se abre normalmente, también desde `gbr.exe`.
 
 La [ficha técnica](SALIDA_SALA_EXPERIMENTAL.md) identifica archivos, pruebas y límites. Las partidas de 1.0.4 conservan su propio alcance. No se exigen análisis antivirus periódicos.
 

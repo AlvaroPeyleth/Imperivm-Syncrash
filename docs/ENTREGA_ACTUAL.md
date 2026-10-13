@@ -1,6 +1,6 @@
 # Syncrash · Ficha de entrega
 
-## v1.0.9 · preparada el 13/10/2026, pendiente de publicación
+## Entrega actual: v1.0.9 · 13/10/2026
 
 Añade dos protecciones online: salida de sala y detención de emparejamiento, con seis protecciones de cierres en total. Conserva LAA, pantalla adaptable y voces. [Funcionamiento, mantenimiento y límites](SALIDA_SALA_EXPERIMENTAL.md).
 
@@ -13,7 +13,7 @@ Añade dos protecciones online: salida de sala y detención de emparejamiento, c
 
 40 pruebas automáticas con el aplicador final, 86 operaciones CLI sobre copias reales y dos compilaciones completas idénticas. El delta nativo es idéntico a RC2; sus cuatro escenarios de emparejamiento emulados y los cuatro de salida de sala de RC1 conservan su versión y límites en la [ficha técnica](SALIDA_SALA_EXPERIMENTAL.md). No se ha repetido el juego real ni validado continuidad de menú, reconexión o multijugador.
 
-Publicación, CI y descarga de comprobación pendientes. La descarga pública sigue siendo v1.0.8 hasta confirmar la publicación de esta entrega.
+**Publicada como v1 experimental y entrega más reciente.** [Descargar Syncrash v1.0.9](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.9). El preparador reprodujo el EXE desde el commit limpio `2937efc4935bde4283340e695c4bc1bdc990c722`, fuente del tag `v1.0.9`. [CI correcto](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/actions/runs/38412687986). EXE, sumas y licencia descargados de GitHub y cotejados por hash con el paquete preparado. La entrega no incluye el gestor de mods experimental privado.
 
 ## Histórico: v1.0.8 · 09/10/2026
 

@@ -1,10 +1,10 @@
 # Syncrash: estado y próximos pasos
 
-**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
+**v1.0.9 publicada · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Entrega experimental disponible; [hashes y comprobaciones](ENTREGA_ACTUAL.md).
 
-**13/10/2026.** v1.0.9 está preparada, pendiente de publicación para **Steam vanilla**. **Sigue siendo experimental.** Community v12 exacto solo admite las órdenes individuales de maldición y protecciones online; su soporte general sigue pendiente.
+**13/10/2026.** v1.0.9 está publicada para **Steam vanilla**. **Sigue siendo experimental.** Community v12 exacto solo admite las órdenes individuales de maldición y protecciones online; su soporte general sigue pendiente.
 
-## Versión 1.0.9.0 preparada
+## Versión 1.0.9.0 publicada
 
 Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado y reparación de voces son opciones independientes, marcadas por defecto y desactivables. El juego se abre normalmente, también desde `gbr.exe`. Consulta los hashes y el estado de publicación en la [ficha de entrega](ENTREGA_ACTUAL.md), y el alcance y mantenimiento en la [ficha técnica](SALIDA_SALA_EXPERIMENTAL.md).
 

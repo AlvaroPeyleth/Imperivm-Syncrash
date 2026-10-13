@@ -1,6 +1,6 @@
 # Qué hace Syncrash Steam v1.0.9
 
-**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
+**v1.0.9 publicada · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Entrega experimental disponible; [hashes y comprobaciones](ENTREGA_ACTUAL.md).
 
 Syncrash aplica la protección de cierres y LAA al ejecutable de Imperivm Steam vanilla. Opcionalmente añade pantalla adaptable con suavizado GPU, manteniendo la resolución del escritorio. Puedes revisar el [código y las fuentes](SEGURIDAD.md).
 
