@@ -1,0 +1,31 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Syncrash exact guarded image",
+  "source_sha256": "c62ac2f66e687413b4568095d9f5a87e15d7ff6a0ffcc188090dd587a11cbc77",
+  "result_sha256": "0c3d71821ac06a55f937e6d9ab38550e6ce14aa6f2acde213a13d2bb880a1c79",
+  "source_bytes": 4460544,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 392,
+      "before": "830245",
+      "after": "17c944"
+    },
+    {
+      "offset": 1919060,
+      "before": "8b51048d4c0204",
+      "after": "e9e7074c009090"
+    },
+    {
+      "offset": 4456512,
+      "before": "000000000000",
+      "after": "9c85c90f840d"
+    },
+    {
+      "offset": 4456521,
+      "before": "00000000000000000000000000000000000000",
+      "after": "9d8b51048d4c0204e905f8b3ff9de91af8b3ff"
+    }
+  ],
+  "append_nonzero": []
+}

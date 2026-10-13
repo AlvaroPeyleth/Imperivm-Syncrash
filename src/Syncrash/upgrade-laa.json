@@ -1,0 +1,61 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Syncrash menu lifecycle null guards",
+  "source_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+  "result_sha256": "f34b4684bf65eab26fa7e6f65ec5ffd196846d7fb4f0c0501a620cf9f280db04",
+  "source_bytes": 4460544,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 392,
+      "before": "89cc",
+      "after": "ffba"
+    },
+    {
+      "offset": 760,
+      "before": "2a",
+      "after": "b4"
+    },
+    {
+      "offset": 1919060,
+      "before": "8b51048d4c0204",
+      "after": "e9e7074c009090"
+    },
+    {
+      "offset": 3322208,
+      "before": "8b4424048a4860",
+      "after": "e93b9f36009090"
+    },
+    {
+      "offset": 3324656,
+      "before": "56",
+      "after": "e9"
+    },
+    {
+      "offset": 3324658,
+      "before": "742408",
+      "after": "953600"
+    },
+    {
+      "offset": 4456512,
+      "before": "000000000000",
+      "after": "9c85c90f840d"
+    },
+    {
+      "offset": 4456521,
+      "before": "00000000000000000000000000000000000000",
+      "after": "9d8b51048d4c0204e905f8b3ff9de91af8b3ff"
+    },
+    {
+      "offset": 4456576,
+      "before": "000000000000000000000000000000000000",
+      "after": "568b74240885f60f84c06ac9ffe9636ac9ff"
+    },
+    {
+      "offset": 4456608,
+      "before": "0000000000000000000000000000000000000000",
+      "after": "8b44240485c00f84cf60c9ff8a4860e9b360c9ff"
+    }
+  ],
+  "append_nonzero": []
+}

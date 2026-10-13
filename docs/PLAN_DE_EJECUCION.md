@@ -1,10 +1,12 @@
 # Syncrash: estado y próximos pasos
 
-**09/10/2026.** v1.0.8 está publicada para **Steam vanilla**. **Sigue siendo experimental.** Community v12 exacto solo admite las órdenes individuales de la protección de maldición; su soporte general sigue pendiente.
+**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
 
-## Versión 1.0.8.0 publicada
+**13/10/2026.** v1.0.9 está preparada, pendiente de publicación para **Steam vanilla**. **Sigue siendo experimental.** Community v12 exacto solo admite las órdenes individuales de maldición y protecciones online; su soporte general sigue pendiente.
 
-Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado y reparación de voces son opciones independientes, marcadas por defecto y desactivables. El juego se abre normalmente, también desde `gbr.exe`. Consulta los hashes, las fuentes, las pruebas y la recuperación en la [ficha técnica](MALDICION_EXPERIMENTAL.md).
+## Versión 1.0.9.0 preparada
+
+Un único EXE con protección de cierres y LAA. Pantalla adaptable con suavizado y reparación de voces son opciones independientes, marcadas por defecto y desactivables. El juego se abre normalmente, también desde `gbr.exe`. Consulta los hashes y el estado de publicación en la [ficha de entrega](ENTREGA_ACTUAL.md), y el alcance y mantenimiento en la [ficha técnica](SALIDA_SALA_EXPERIMENTAL.md).
 
 Voces cubre español, italiano e inglés con WAV sueltos extraídos de los PAK identificados; el cambio de idioma se realiza al reaplicar. Las pruebas históricas y la sesión multijugador de 1.0.4 siguen en su [ficha](CANDIDATO_1.0.4.md): no se atribuyen al nuevo aplicador ni a las voces. No se exigen nuevos análisis antivirus; se mantienen comprobaciones de integridad y funcionamiento.
 
@@ -12,7 +14,7 @@ Voces cubre español, italiano e inglés con WAV sueltos extraídos de los PAK i
 
 **Protección publicada el 09/10:** la [protección al retirar maldición](MALDICION_EXPERIMENTAL.md) forma parte del flujo normal de `1.0.8`, con actualización desde las bases admitidas y retirada individual exacta. El usuario decidió incluirla mientras se investiga el origen. Sigue pendiente caducidad real, muerte, guardado/carga y continuidad con dos clientes iguales. No corrige el origen del puntero inconsistente.
 
-La [v1.0.8](MALDICION_EXPERIMENTAL.md) incluye cuatro protecciones y conserva las casillas y funciones de v1.0.7. Se ha reproducido desde el commit limpio, CI pasó y los tres archivos descargados coinciden con los preparados. No incorpora conectividad.
+La [v1.0.9](SALIDA_SALA_EXPERIMENTAL.md) reúne seis protecciones y conserva las casillas de pantalla y voces. Falta validar salida y reentrada real de sala, emparejamiento y continuidad multijugador. La hipótesis de inicialización online fallida sigue sin demostrar el origen del incidente. No incorpora conexión online automática ni recuperación de desync.
 
 Recopilar feedback de uso normal con versión, idioma, opciones activadas, duración y resultado, también cuando todo funciona. Falta probar guardado y recarga con el filtro final, otras GPU y escalas de pantalla (DPI), y cambios de monitor con el juego abierto.
 
@@ -20,7 +22,7 @@ Ante un incidente, conservar los Logs de ambos antes de volver a abrir el juego 
 
 ## Preparación de conectividad
 
-El [plan de conexión online automática](CONEXION_ONLINE.md) está preparado para una futura casilla opcional, independiente de pantalla y voces. Se conservarán las salas existentes sin nuevos servidores externos. **No hay implementación ni pruebas de red de esta función.** El próximo trabajo es reproducir el fallo de entrada en dos PC e identificar sockets, interfaz y negociación antes de preparar el prototipo de mapeos temporales. La propuesta detalla los pasos, la retirada y las pruebas. La entrega 1.0.8 no incluye esta función.
+El [plan de conexión online automática](CONEXION_ONLINE.md) está preparado para una futura casilla opcional, independiente de pantalla y voces. Se conservarán las salas existentes sin nuevos servidores externos. **No hay implementación ni pruebas de red de esta función.** El próximo trabajo es reproducir el fallo de entrada en dos PC e identificar sockets, interfaz y negociación antes de preparar el prototipo de mapeos temporales. La propuesta detalla los pasos, la retirada y las pruebas. La entrega 1.0.9 no incluye esta función.
 
 ## Investigación posterior
 

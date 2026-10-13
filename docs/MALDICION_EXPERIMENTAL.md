@@ -1,5 +1,7 @@
 # Protección al retirar una maldición
 
+**Alcance de esta ficha:** describe la entrega v1.0.8 y sus pruebas históricas. La versión 1.0.9 añade [protecciones online](SALIDA_SALA_EXPERIMENTAL.md); sus hashes, compatibilidad y límites se documentan allí.
+
 **09/10/2026 · incluida por defecto en [v1.0.8 publicada](ENTREGA_ACTUAL.md).** El usuario decidió incluir esta protección provisional para evitar el cierre conocido mientras se investiga el origen y la recuperación de desincronizaciones. Ya no requiere una compilación especial ni una casilla adicional.
 
 ## Qué protege
@@ -27,7 +29,7 @@ En Steam vanilla, Aplicar parche y las órdenes normales de instalación incluye
 
 ## Compilación, aplicación y retirada individual
 
-Con los requisitos de [compilación del proyecto](../README.md):
+Para reproducir esta entrega, utilizar el código del tag `v1.0.8` con los requisitos de [compilación del proyecto](../README.md). Ejecutar estos comandos sobre el código de trabajo genera el candidato indicado en el README:
 
 ```powershell
 & ./src/Syncrash/build.ps1 -OutputPath ./work/mi-candidato/Syncrash.exe

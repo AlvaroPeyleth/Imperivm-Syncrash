@@ -1,5 +1,11 @@
 # Historial de versiones
 
+## v1.0.9 · Aplicador 1.0.9.0 · 13 de octubre de 2026 · preparada
+
+- Añade [protecciones de salida de sala y emparejamiento](docs/SALIDA_SALA_EXPERIMENTAL.md) ante un puntero de conexión nulo. Seis protecciones en total, LAA y las opciones existentes de pantalla y voces.
+- Mantenimiento individual por CLI de ambas protecciones online y actualización desde los candidatos previos. Community v12 exacto mantiene únicamente el alcance individual.
+- 40 pruebas automáticas, 86 operaciones sobre copias y dos compilaciones completas idénticas del aplicador final. Publicación pendiente. Historial RC1/RC2 y límites en la ficha; continuidad real y causa definitiva pendientes.
+
 ## v1.0.8 · Aplicador 1.0.8.0 · 9 de octubre de 2026
 
 - [Protección de maldición/bendición](docs/MALDICION_EXPERIMENTAL.md) integrada por defecto a petición del usuario. La instalación normal y las actualizaciones desde las bases admitidas incluyen cuatro protecciones y LAA en un único reemplazo; pantalla y voces reconocen el nuevo resultado.

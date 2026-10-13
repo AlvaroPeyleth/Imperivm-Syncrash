@@ -31,6 +31,7 @@ internal static partial class SyncrashTests
         Run("failure after replacement reports installed state", AfterReplaceFailure);
         Run("same-target concurrent application excluded", ConcurrentApply);
         Run("CLI --check and retired --test do not write", CliReadOnly);
+        Run("menu and curse recipe graph pins and inverse deltas", MenuRecipeGraph);
         Run("curse guard commands reject unknown inputs without writes", CurseGuardRejection);
         Run("CLI redirected streams without console", CliRedirected);
         Run("screen install, idempotence and removal preserve game files", ScreenLifecycle);
@@ -57,6 +58,36 @@ internal static partial class SyncrashTests
         Run("voice base failure occurs before audio writes", VoiceBaseFailure);
         Console.WriteLine("PASS: " + passed + " synthetic/Windows tests");
         return 0;
+    }
+
+    private static void MenuRecipeGraph()
+    {
+        Assert(MenuGuard.IsCommand("--apply-menu-guard"), "Menu CLI not recognized");
+        Throws<ArgumentException>(() => MenuGuard.Execute("invalid", "missing"));
+        string[] names = { "menu-guard", "menu-only", "curse-with-menu" };
+        string[] sources = { MenuGuard.OldHash, CurseGuard.BeforeHash, MenuGuard.WithoutCurseHash };
+        string[] results = { MenuGuard.NewHash, MenuGuard.WithoutCurseHash, MenuGuard.NewHash };
+        for (int i = 0; i < names.Length; i++)
+        {
+            Recipe forward = null;
+            for (int reverse = 0; reverse < 2; reverse++)
+            {
+                string name = names[i] + (reverse == 1 ? "-remove" : "");
+                var spec = MenuGuard.Spec(reverse == 0 ? sources[i] : results[i], reverse == 0 ? results[i] : sources[i], "pak", name);
+                byte[] raw;
+                using (var stream = typeof(MenuGuard).Assembly.GetManifestResourceStream("Syncrash." + name))
+                using (var ms = new MemoryStream()) { stream.CopyTo(ms); raw = ms.ToArray(); }
+                Recipe recipe = PatchEngine.ReadRecipe(raw, spec);
+                Assert(recipe.Patches.Count > 0, "Missing native delta");
+                if (reverse == 0) forward = recipe;
+                else
+                {
+                    Assert(forward.Patches.Count == recipe.Patches.Count, "Inverse count");
+                    for (int j = 0; j < recipe.Patches.Count; j++)
+                        Assert(forward.Patches[j].Offset == recipe.Patches[j].Offset && forward.Patches[j].Before == recipe.Patches[j].After && forward.Patches[j].After == recipe.Patches[j].Before, "Inverse delta");
+                }
+            }
+        }
     }
 
     private static void Run(string name, Action test)
@@ -377,7 +408,7 @@ internal static partial class SyncrashTests
         {
             DateTime old = new DateTime(2020, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             File.SetLastWriteTimeUtc(f.Target, old);
-            foreach (string command in new[] { "--check-curse-guard", "--apply-curse-guard", "--remove-curse-guard" })
+            foreach (string command in new[] { "--check-curse-guard", "--apply-curse-guard", "--remove-curse-guard", "--check-menu-guard", "--apply-menu-guard", "--remove-menu-guard" })
             {
                 int expected = 1;
                 Assert(Cli(command + " \"" + f.Target + "\"") == expected, "guard accepted unknown input");

@@ -18,6 +18,8 @@ internal static class CurseGuard
     internal static PatchStatus Execute(string command, string path)
     {
         if (!IsCommand(command)) throw new ArgumentException("Orden de protección de maldición desconocida.");
+        string current = PatchEngine.HashFile(path);
+        if (current == MenuGuard.NewHash || current == MenuGuard.WithoutCurseHash || current == MenuGuard.Rc1Hash || current == MenuGuard.Rc1WithoutCurseHash) return MenuGuard.Execute(command, path);
         string target = Path.GetFullPath(path);
         string pak = Path.Combine(Path.GetDirectoryName(target), "Packs", "data.pak");
         string pakHash = PatchEngine.HashFile(pak);

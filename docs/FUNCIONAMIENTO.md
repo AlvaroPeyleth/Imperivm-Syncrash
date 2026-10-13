@@ -1,5 +1,7 @@
 # Cómo funciona el parche
 
+**Preparación de v1.0.9 · 13/10/2026:** incluye las [protecciones de salida de sala y emparejamiento](SALIDA_SALA_EXPERIMENTAL.md). Publicación pendiente; la descarga anterior sigue siendo v1.0.8.
+
 ## La protección de cierres
 
 La protección nació al investigar un fallo de tipo de objeto: una ruta obtenía un puntero a partir de un identificador y lo utilizaba como objeto de mapa sin comprobar que lo fuera. En los casos reconstruidos, esto podía acabar en una llamada incompatible y un desequilibrio de pila.
@@ -12,7 +14,7 @@ Syncrash redirige tres puntos de llamada a un helper de **42 bytes** que utiliza
 | `0x55F500` | Punto añadido en `ObjList::ClearDead`. |
 | `0xA95000` | Helper compartido por las tres llamadas. |
 
-Son direcciones de la imagen admitida, no una búsqueda universal para cualquier edición. Las diferencias exactas están en [`recipe.json`](../src/Syncrash/recipe.json). La receta de 1.0.8 incluye cabeceras PE, las tres llamadas, la cuarta protección de maldición y una sección añadida; el aplicador verifica todos los bytes de entrada y el hash del resultado.
+Son direcciones de la imagen admitida, no una búsqueda universal para cualquier edición. Las diferencias exactas están en [`recipe.json`](../src/Syncrash/recipe.json). La receta de 1.0.9 incluye cabeceras PE, las tres llamadas, la protección de maldición, las dos protecciones online y una sección añadida; el aplicador verifica todos los bytes de entrada y el hash del resultado.
 
 ## Límites conocidos
 

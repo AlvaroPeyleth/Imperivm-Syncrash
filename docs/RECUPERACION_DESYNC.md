@@ -1,6 +1,6 @@
 # Viabilidad de recuperar una desincronización
 
-**05/10/2026 · Evaluación técnica inicial. Sin prototipo ni prueba de recuperación.** La evaluación corresponde a [v1.0.7](CANDIDATO_1.0.7.md); esta capacidad tampoco se incluye en 1.0.8. Es una línea distinta de la [conexión online](CONEXION_ONLINE.md).
+**05/10/2026 · Evaluación técnica inicial. Sin prototipo ni prueba de recuperación.** La evaluación corresponde a [v1.0.7](CANDIDATO_1.0.7.md); esta capacidad tampoco se incluye en 1.0.9. Es una línea distinta de la [conexión online](CONEXION_ONLINE.md).
 
 ## Dictamen
 

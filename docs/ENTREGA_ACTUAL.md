@@ -1,6 +1,21 @@
 # Syncrash · Ficha de entrega
 
-## Entrega actual: v1.0.8 · 09/10/2026
+## v1.0.9 · preparada el 13/10/2026, pendiente de publicación
+
+Añade dos protecciones online: salida de sala y detención de emparejamiento, con seis protecciones de cierres en total. Conserva LAA, pantalla adaptable y voces. [Funcionamiento, mantenimiento y límites](SALIDA_SALA_EXPERIMENTAL.md).
+
+| Dato | Valor |
+| --- | --- |
+| Aplicador | 1.0.9.0 · informativa 1.0.9 · `Syncrash.exe` |
+| Tamaño | 18.608.128 bytes |
+| SHA256 del EXE | `145414c5019f888a89164dba85d5ee2c83e406e8e2e15a97ac372c2029f54999` |
+| SHA256 de `gbr.exe` con seis protecciones y LAA | `f34b4684bf65eab26fa7e6f65ec5ffd196846d7fb4f0c0501a620cf9f280db04` |
+
+40 pruebas automáticas con el aplicador final, 86 operaciones CLI sobre copias reales y dos compilaciones completas idénticas. El delta nativo es idéntico a RC2; sus cuatro escenarios de emparejamiento emulados y los cuatro de salida de sala de RC1 conservan su versión y límites en la [ficha técnica](SALIDA_SALA_EXPERIMENTAL.md). No se ha repetido el juego real ni validado continuidad de menú, reconexión o multijugador.
+
+Publicación, CI y descarga de comprobación pendientes. La descarga pública sigue siendo v1.0.8 hasta confirmar la publicación de esta entrega.
+
+## Histórico: v1.0.8 · 09/10/2026
 
 **Publicada como v1 experimental.** [Descargar Syncrash v1.0.8](https://github.com/AlvaroPeyleth/Imperivm-Syncrash/releases/tag/v1.0.8). Añade por defecto la protección frente al puntero nulo al retirar maldición/bendición. Conserva LAA, pantalla adaptable y voces. [Funcionamiento, compatibilidad y retirada individual](MALDICION_EXPERIMENTAL.md).
 

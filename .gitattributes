@@ -8,3 +8,18 @@ src/Syncrash/app.manifest text eol=lf
 LICENSE text eol=lf
 src/Syncrash/assets/*.png binary
 src/Syncrash/assets/*.ico binary
+
+src/Syncrash/upgrade-laa.json -text
+src/Syncrash/menu-guard.json -text
+src/Syncrash/menu-guard-remove.json -text
+src/Syncrash/menu-only.json -text
+src/Syncrash/menu-only-remove.json -text
+src/Syncrash/curse-with-menu.json -text
+src/Syncrash/curse-with-menu-remove.json -text
+src/Syncrash/menu-rc1.json -text
+src/Syncrash/menu-only-rc1.json -text
+src/Syncrash/menu-rc1-remove.json -text
+src/Syncrash/menu-only-rc1-remove.json -text
+src/Syncrash/upgrade-rc1-minus.json -text
+src/Syncrash/curse-rc1.json -text
+src/Syncrash/curse-rc1-remove.json -text

@@ -26,15 +26,16 @@ internal static class Syncrash
             Console.SetOut(new StreamWriter(Console.OpenStandardOutput(), utf8) { AutoFlush = true });
             Console.SetError(new StreamWriter(Console.OpenStandardError(), utf8) { AutoFlush = true });
         }
-        if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) && CurseGuard.IsCommand(args[0]))
+        if (args.Length == 2 && !string.IsNullOrWhiteSpace(args[1]) && (CurseGuard.IsCommand(args[0]) || MenuGuard.IsCommand(args[0])))
         {
             try
             {
-                PatchStatus state = CurseGuard.Execute(args[0], args[1]);
-                Console.WriteLine(args[0] == "--check-curse-guard" ?
-                    (state == PatchStatus.AlreadyInstalled ? "Protección de maldición instalada. Comprobación sin cambios." : "Protección de maldición aplicable. Comprobación sin cambios.") :
-                    args[0] == "--remove-curse-guard" ? "Protección de maldición retirada; se conserva Syncrash con LAA." :
-                    "Protección de maldición instalada. No cambia pantalla, voces ni PAK.");
+                PatchStatus state = MenuGuard.IsCommand(args[0]) ? MenuGuard.Execute(args[0], args[1]) : CurseGuard.Execute(args[0], args[1]);
+                string guard = MenuGuard.IsCommand(args[0]) ? "Protección de salida de sala" : "Protección de maldición";
+                Console.WriteLine(args[0].StartsWith("--check-", StringComparison.Ordinal) ?
+                    guard + (state == PatchStatus.AlreadyInstalled ? " instalada. Comprobación sin cambios." : " aplicable. Comprobación sin cambios.") :
+                    args[0].StartsWith("--remove-", StringComparison.Ordinal) ? guard + " retirada; se conservan las demás protecciones instaladas." :
+                    guard + " instalada. No cambia pantalla, voces ni PAK.");
                 return state == PatchStatus.AlreadyInstalled ? 3 : 0;
             }
             catch (PatchBusyException error) { Console.Error.WriteLine(error.Message); return 4; }
@@ -112,6 +113,7 @@ internal static class Syncrash
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
         }
         Console.Error.WriteLine("Uso: Syncrash.exe [--detect-only | --check <gbr.exe> | --apply <gbr.exe> | --apply-with-screen <gbr.exe> | --apply-with-smoothing <gbr.exe> | --apply-with-voices <gbr.exe> | --apply-all <gbr.exe> | --check-screen <gbr.exe> | --remove-screen <gbr.exe> | --check-voices <gbr.exe> | --apply-voices <gbr.exe> | --remove-voices <gbr.exe> | --export-screen-sources <nuevo.zip>]. --apply instala solo memoria y cierres; --apply-all incluye pantalla con suavizado y voces. --test ya no aplica el parche.");
+        Console.Error.WriteLine("Protección de salida de sala: --check-menu-guard <gbr.exe> | --apply-menu-guard <gbr.exe> | --remove-menu-guard <gbr.exe>. Requiere los hashes exactos admitidos de Syncrash con LAA y Steam vanilla o Community v12. La aplicación normal en Steam vanilla incluye esta protección.");
         Console.Error.WriteLine("Protección de maldición: --check-curse-guard <gbr.exe> | --apply-curse-guard <gbr.exe> | --remove-curse-guard <gbr.exe>. Requiere Syncrash con LAA ya instalado y los hashes admitidos. La aplicación normal en Steam vanilla incluye esta protección y la reinstala si se retira.");
         return 2;
     }

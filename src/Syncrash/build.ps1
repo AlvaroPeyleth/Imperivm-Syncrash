@@ -23,7 +23,7 @@ if (-not $voicePin.Success -or (Get-FileHash -LiteralPath $voiceMap -Algorithm S
     throw 'El mapa de voces no coincide con el revisado.'
 }
 $license = Join-Path $PSScriptRoot '../../LICENSE'
-$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs', 'CurseGuard.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
+$sources = @('Program.cs', 'PatchEngine.cs', 'Window.cs', 'ScreenCompatibility.cs', 'VoiceCompatibility.cs', 'AssemblyInfo.cs', 'CurseGuard.cs', 'MenuGuard.cs') | ForEach-Object { Join-Path $PSScriptRoot $_ }
 $references = @('mscorlib', 'System', 'System.Core', 'System.Windows.Forms', 'System.Drawing', 'System.Runtime.Serialization', 'System.Xml') |
     ForEach-Object { '/r:' + (Join-Path $referenceRoot ($_.ToString() + '.dll')) }
 $screenResources = @()
@@ -33,6 +33,23 @@ if ($ScreenBundleDirectory) {
     $screenResources = @(& (Join-Path $PSScriptRoot 'screen-resources.ps1') -BundleDirectory $ScreenBundleDirectory -OutputDirectory $resourceDirectory)
 }
 $guardResources = @(
+    "/resource:$(Join-Path $PSScriptRoot 'curse-rc1.json'),Syncrash.curse-rc1",
+    "/resource:$(Join-Path $PSScriptRoot 'curse-rc1-remove.json'),Syncrash.curse-rc1-remove",
+
+    "/resource:$(Join-Path $PSScriptRoot 'menu-rc1.json'),Syncrash.menu-rc1",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-only-rc1.json'),Syncrash.menu-only-rc1",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-rc1-remove.json'),Syncrash.menu-rc1-remove",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-only-rc1-remove.json'),Syncrash.menu-only-rc1-remove",
+    "/resource:$(Join-Path $PSScriptRoot 'upgrade-rc1-minus.json'),Syncrash.upgrade-rc1-minus",
+
+    "/resource:$(Join-Path $PSScriptRoot 'upgrade-laa.json'),Syncrash.upgrade-laa",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-guard.json'),Syncrash.menu-guard",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-guard-remove.json'),Syncrash.menu-guard-remove",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-only-remove.json'),Syncrash.menu-only-remove",
+    "/resource:$(Join-Path $PSScriptRoot 'menu-only.json'),Syncrash.menu-only",
+    "/resource:$(Join-Path $PSScriptRoot 'curse-with-menu.json'),Syncrash.curse-with-menu",
+    "/resource:$(Join-Path $PSScriptRoot 'curse-with-menu-remove.json'),Syncrash.curse-with-menu-remove",
+
     "/resource:$(Join-Path $PSScriptRoot 'curse-guard.json'),Syncrash.CurseGuard",
     "/resource:$(Join-Path $PSScriptRoot 'curse-guard-remove.json'),Syncrash.CurseGuardRemove")
 & dotnet exec $compiler /nologo /target:winexe /platform:anycpu /optimize+ /deterministic+ /nostdlib+ /langversion:5 `

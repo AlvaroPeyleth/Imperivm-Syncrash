@@ -1,0 +1,46 @@
+{
+  "schema": "syncrash-exact-delta-v1",
+  "component": "Syncrash menu lifecycle null guards",
+  "source_sha256": "ad10ac2ffbc6dfad3029585798b302dfeb11cd70a141f2924485f680125d42a1",
+  "result_sha256": "af59a5bbb4956f50dd671a4a52753376b7b359b2028c0331a2db5fde6f64c965",
+  "source_bytes": 4460544,
+  "result_bytes": 4460544,
+  "patches": [
+    {
+      "offset": 392,
+      "before": "6bf4",
+      "after": "89cc"
+    },
+    {
+      "offset": 760,
+      "before": "b4",
+      "after": "2a"
+    },
+    {
+      "offset": 3322208,
+      "before": "e93b9f36009090",
+      "after": "8b4424048a4860"
+    },
+    {
+      "offset": 3324656,
+      "before": "e9",
+      "after": "56"
+    },
+    {
+      "offset": 3324658,
+      "before": "953600",
+      "after": "742408"
+    },
+    {
+      "offset": 4456576,
+      "before": "568b74240885f60f84c06ac9ffe9636ac9ff",
+      "after": "000000000000000000000000000000000000"
+    },
+    {
+      "offset": 4456608,
+      "before": "8b44240485c00f84cf60c9ff8a4860e9b360c9ff",
+      "after": "0000000000000000000000000000000000000000"
+    }
+  ],
+  "append_nonzero": []
+}

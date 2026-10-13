@@ -46,25 +46,27 @@ internal static class PatchEngine
     // Keep production hashes fixed; tests pass their own spec to Check/Apply.
     private static readonly PatchSpec Production = new PatchSpec(
         "72b09d1abd4f311efe4213a9a1110185519bde4db4ee57769d346b475c748473",
-        CurseGuard.AfterHash,
+        "f34b4684bf65eab26fa7e6f65ec5ffd196846d7fb4f0c0501a620cf9f280db04",
         "6926c286b8e44dba9244723fbcd153a3ee8fc28633e3c22cc49c27d206c96d50",
-        "bc437073ae1134502b510d898468cac20b74633f5407d17c79fe6c84b71d03aa",
+        "c4a11d6a7b3fb4f935be0f338e3d57c8b4fe676b51ea7204d4d2569c5eaf7bea",
         4456448, 4460544);
 
     private static readonly PatchSpec UpgradeV2 = new PatchSpec(
         "752c95a475e62b0d61d88ec9fb7fabc07758cb217ab152d78651385a5de3d2cc",
         Production.ResultHash, Production.PakHash,
-        "fc9f6343c5c7dbe5a9205a4141435eba7b5f988254bb4b965b9369f7b8ba00b6",
+        "d1706177fb230899c89a268611b5d097420c40f27d1d149471ba38af17b55447",
         4460544, 4460544, true);
 
     private static readonly PatchSpec UpgradeLaa = new PatchSpec(
         CurseGuard.BeforeHash, Production.ResultHash, Production.PakHash,
-        "2c57f63766cae3ed4936f1fd16954e0a1b9ec606b3261bfe0c577f2a0a447d42",
+        "e32b83296a76b6b762ff0021a6afbdb1565ed0a1faa32a399b668c529c28363c",
         4460544, 4460544, true);
 
     private static PatchSpec SelectGameSpec(string currentHash)
     {
-        return currentHash == UpgradeLaa.SourceHash ? UpgradeLaa : SelectSpec(currentHash, Production, UpgradeV2);
+        if (currentHash == MenuGuard.Rc1Hash) return MenuGuard.Spec(currentHash, MenuGuard.NewHash, Production.PakHash, "menu-rc1");
+        if (currentHash == MenuGuard.Rc1WithoutCurseHash) return MenuGuard.Spec(currentHash, MenuGuard.NewHash, Production.PakHash, "upgrade-rc1-minus");
+        return currentHash == MenuGuard.OldHash ? MenuGuard.Upgrade(Production.PakHash) : currentHash == MenuGuard.WithoutCurseHash ? MenuGuard.RestoreCurse(Production.PakHash) : currentHash == UpgradeLaa.SourceHash ? UpgradeLaa : SelectSpec(currentHash, Production, UpgradeV2);
     }
 
     internal static PatchSpec SelectSpec(string currentHash, PatchSpec original, PatchSpec upgrade)
@@ -89,7 +91,7 @@ internal static class PatchEngine
 
     private static byte[] LoadEmbeddedRecipe(PatchSpec spec)
     {
-        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(spec == UpgradeLaa ? "Syncrash.CurseGuard" : spec == UpgradeV2 ? "Syncrash.UpgradeV2" : "Syncrash.Recipe"))
+        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(spec.SourceHash == MenuGuard.Rc1Hash ? "Syncrash.menu-rc1" : spec.SourceHash == MenuGuard.Rc1WithoutCurseHash ? "Syncrash.upgrade-rc1-minus" : spec.SourceHash == MenuGuard.OldHash ? "Syncrash.menu-guard" : spec.SourceHash == MenuGuard.WithoutCurseHash ? "Syncrash.curse-with-menu" : spec == UpgradeLaa ? "Syncrash.upgrade-laa" : spec == UpgradeV2 ? "Syncrash.UpgradeV2" : "Syncrash.Recipe"))
         {
             if (stream == null) throw new InvalidDataException("Falta la receta interna de Syncrash.");
             using (var memory = new MemoryStream())
